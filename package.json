@@ -1,0 +1,23 @@
+{
+  "name": "marv",
+  "version": "0.2.0",
+  "description": "Marv - Twitch Bot",
+  "repository": "github:onlfait/marv",
+  "author": "skarab42 <skarab42@users.noreply.github.com>",
+  "license": "MIT",
+  "scripts": {
+    "watch": "electron app/index.js --watch",
+    "start": "electron app/index.js",
+    "build": "electron-builder build",
+    "lint": "eslint ./app --fix"
+  },
+  "build": {
+    "productName": "Marv",
+    "icon": "app/static/icon.ico"
+  },
+  "devDependencies": {
+    "electron": "^10.1.5",
+    "electron-builder": "^22.9.1",
+    "eslint": "^7.12.0"
+  }
+}

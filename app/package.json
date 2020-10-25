@@ -1,0 +1,15 @@
+{
+  "name": "marv",
+  "version": "0.2.0",
+  "description": "Marv - Twitch Bot",
+  "repository": "github:onlfait/marv",
+  "author": "skarab42 <skarab42@users.noreply.github.com>",
+  "license": "MIT",
+  "main": "index.js",
+  "dependencies": {
+    "chalk": "^4.1.0",
+    "chokidar": "^3.4.3",
+    "polka": "^0.5.2",
+    "sirv": "^1.0.7"
+  }
+}
