@@ -13,7 +13,7 @@
     "client:build": "rollup -c",
     "tailwind:build": "node tailwind/build.js",
     "watch": "concurrently -k -n app,client -c yellow,magenta \"yarn app:watch\" \"yarn client:watch\"",
-    "build": "yarn tailwind:build && yarn client:build && yarn app:build",
+    "build": "yarn tailwind:build --prod && yarn client:build && yarn app:build",
     "lint": "eslint ./app ./client-src --fix"
   },
   "build": {
