@@ -1,5 +1,6 @@
 import livereload from "rollup-plugin-livereload";
 import resolve from "@rollup/plugin-node-resolve";
+import svelteSVG from "rollup-plugin-svelte-svg";
 import commonjs from "@rollup/plugin-commonjs";
 import { terser } from "rollup-plugin-terser";
 import cleaner from "rollup-plugin-cleaner";
@@ -21,6 +22,7 @@ export default {
   plugins: [
     resolve({ browser: true, dedupe: ["svelte"] }),
     commonjs(),
+    svelteSVG(),
     svelte({ dev: watch }),
     watch && livereload(publicDir),
     !watch && cleaner({ targets: [outputDir] }),
