@@ -34,7 +34,6 @@
     "rollup-plugin-terser": "^7.0.2",
     "socket.io-client": "^2.3.1",
     "svelte": "^3.29.4",
-    "tailwindcss": "^1.9.6",
-    "tailwindcss-dark-mode": "^1.1.7"
+    "tailwindcss": "^1.9.6"
   }
 }
