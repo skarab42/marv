@@ -11,7 +11,9 @@
     "app:build": "electron-builder build",
     "client:watch": "rollup -c -w",
     "client:build": "rollup -c",
+    "tailwind:build": "node tailwind/build.js",
     "watch": "concurrently -k -n app,client -c yellow,magenta \"yarn app:watch\" \"yarn client:watch\"",
+    "build": "yarn tailwind:build && yarn client:build && yarn app:build",
     "lint": "eslint ./app ./client-src --fix"
   },
   "build": {
@@ -29,6 +31,8 @@
     "rollup-plugin-cleaner": "^1.0.0",
     "rollup-plugin-livereload": "^2.0.0",
     "rollup-plugin-terser": "^7.0.2",
-    "socket.io-client": "^2.3.1"
+    "socket.io-client": "^2.3.1",
+    "tailwindcss": "^1.9.6",
+    "tailwindcss-dark-mode": "^1.1.7"
   }
 }

@@ -7,6 +7,9 @@ const socket = require("./socket");
 const polka = require("polka");
 const sirv = require("sirv");
 
+const sirvClient = sirv(config.server.clientPath, { dev: true });
+const sirvStatic = sirv(config.server.staticPath, { dev: true });
+
 function fingerprint() {
   /* eslint-disable no-console */
   console.log(`${config.app.fingerprint}`);
@@ -15,7 +18,8 @@ function fingerprint() {
 }
 
 const { server } = polka()
-  .use(sirv(config.server.path, { dev: true }))
+  .use(sirvClient)
+  .use(sirvStatic)
   .listen(config.server.port, error => {
     if (error) throw error;
     socket(server);

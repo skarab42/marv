@@ -14,6 +14,7 @@ module.exports = {
   server: {
     port: 4242,
     host: "localhost",
-    path: path.join(__dirname, "client")
+    clientPath: path.join(__dirname, "client"),
+    staticPath: path.join(__dirname, "static")
   }
 };
