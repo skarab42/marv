@@ -1,5 +1,7 @@
 "use strict";
 
+const io = require("socket.io-client");
+
 // eslint-disable-next-line no-console
 console.log("index.js....");
 

@@ -1,7 +1,7 @@
 const { name, version } = require("./package");
 const path = require("path");
 
-const watch = process.argv.includes("--watch");
+const watch = process.argv.includes("--watch") || process.argv.includes("-w");
 
 module.exports = {
   watch,
@@ -14,6 +14,6 @@ module.exports = {
   server: {
     port: 4242,
     host: "localhost",
-    path: path.join(__dirname, "public")
+    path: path.join(__dirname, "client")
   }
 };
