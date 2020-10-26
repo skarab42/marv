@@ -3,14 +3,13 @@ import resolve from "@rollup/plugin-node-resolve";
 import commonjs from "@rollup/plugin-commonjs";
 import { terser } from "rollup-plugin-terser";
 import cleaner from "rollup-plugin-cleaner";
-// import spawnServer from "./spawnServer";
+import svelte from "rollup-plugin-svelte";
 
 const watch = process.env.ROLLUP_WATCH;
 
 const inputDir = "client-src";
 const publicDir = "app/client";
 const outputDir = `${publicDir}/js`;
-// const serverPath = "server/index.js";
 
 export default {
   input: `${inputDir}/index.js`,
@@ -20,10 +19,10 @@ export default {
     sourcemap: true
   },
   plugins: [
+    resolve({ browser: true, dedupe: ["svelte"] }),
     commonjs(),
-    resolve({ browser: true }),
+    svelte({ dev: watch }),
     watch && livereload(publicDir),
-    // watch && spawnServer(serverPath),
     !watch && cleaner({ targets: [outputDir] }),
     !watch && terser()
   ]
