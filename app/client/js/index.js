@@ -24,6 +24,10 @@ function safe_not_equal(a, b) {
 function is_empty(obj) {
     return Object.keys(obj).length === 0;
 }
+
+function append(target, node) {
+    target.appendChild(node);
+}
 function insert(target, node, anchor) {
     target.insertBefore(node, anchor || null);
 }
@@ -32,6 +36,12 @@ function detach(node) {
 }
 function element(name) {
     return document.createElement(name);
+}
+function text(data) {
+    return document.createTextNode(data);
+}
+function space() {
+    return text(' ');
 }
 function attr(node, attribute, value) {
     if (value == null)
@@ -251,6 +261,10 @@ class SvelteComponent {
 function dispatch_dev(type, detail) {
     document.dispatchEvent(custom_event(type, Object.assign({ version: '3.29.4' }, detail)));
 }
+function append_dev(target, node) {
+    dispatch_dev('SvelteDOMInsert', { target, node });
+    append(target, node);
+}
 function insert_dev(target, node, anchor) {
     dispatch_dev('SvelteDOMInsert', { target, node, anchor });
     insert(target, node, anchor);
@@ -296,26 +310,43 @@ const { console: console_1 } = globals;
 const file = "client-src\\App.svelte";
 
 function create_fragment(ctx) {
-	let div;
+	let div1;
+	let div0;
+	let h3;
+	let t1;
+	let button;
 
 	const block = {
 		c: function create() {
-			div = element("div");
-			div.textContent = "pouet...";
-			attr_dev(div, "class", "pouet");
-			add_location(div, file, 4, 0, 47);
+			div1 = element("div");
+			div0 = element("div");
+			h3 = element("h3");
+			h3.textContent = "title";
+			t1 = space();
+			button = element("button");
+			button.textContent = "button";
+			add_location(h3, file, 6, 4, 133);
+			add_location(button, file, 7, 4, 152);
+			attr_dev(div0, "class", "m-auto p-5 bg-gray-600 rounded shadow");
+			add_location(div0, file, 5, 2, 77);
+			attr_dev(div1, "class", "flex h-screen");
+			add_location(div1, file, 4, 0, 47);
 		},
 		l: function claim(nodes) {
 			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
 		},
 		m: function mount(target, anchor) {
-			insert_dev(target, div, anchor);
+			insert_dev(target, div1, anchor);
+			append_dev(div1, div0);
+			append_dev(div0, h3);
+			append_dev(div0, t1);
+			append_dev(div0, button);
 		},
 		p: noop,
 		i: noop,
 		o: noop,
 		d: function destroy(detaching) {
-			if (detaching) detach_dev(div);
+			if (detaching) detach_dev(div1);
 		}
 	};
 
