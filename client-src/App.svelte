@@ -1,12 +1,12 @@
 <script>
-  import Landing from "./components/Landing.svelte";
-  import Dashboard from "./components/Dashboard.svelte";
+  import socket from "./libs/socket";
+  import store from "./libs/store";
 
-  let component = Landing;
-
-  setTimeout(function () {
-    component = Dashboard;
-  }, 1000);
+  socket.on("connect", async () => {
+    console.log(await store.get('app.openOnStartup'));
+    console.log(await store.set('app.prout', "pouet"));
+    console.log(await store.delete('app.prout'));
+    console.log(await store.get('app.prout', 42));
+    console.log(await store.set('app.openOnStartup', true));
+  });
 </script>
-
-<svelte:component this={component} />

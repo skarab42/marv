@@ -1,17 +1,22 @@
 const socket = require("socket.io");
+const storeAPI = require("./store/api");
+
 let io = null;
+
+const options = {
+  cookie: false,
+  serveClient: false,
+  allowUpgrades: false,
+  transports: ["websocket"]
+};
 
 module.exports = server => {
   if (io) return io;
 
-  io = socket(server);
+  io = socket(server, options);
 
   io.on("connection", socket => {
-    console.log("A user connected");
-
-    socket.on("disconnect", () => {
-      console.log("A user disconnected");
-    });
+    socket.use(storeAPI);
   });
 
   return io;
