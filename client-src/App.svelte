@@ -5,7 +5,7 @@
 
   (async function(){
     let _ = await i18n();
-    console.log(_('key'));
+    console.log(_('keypouet.tralalafgfgfg'));
 
     socket.on("connect", async () => {
       console.log(await store.get('app.openOnStartup'));

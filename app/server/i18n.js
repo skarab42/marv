@@ -1,28 +1,29 @@
+const config = require("../config");
 const backend = require("i18next-fs-backend");
 const i18next = require("i18next");
 const path = require("path");
 const fs = require("fs");
 
-const dev = true;
-
+const dev = config.watch;
+const [ns, lng] = ["app", "en"];
+const supportedLngs = ["en", "fr"];
 const locales = path.resolve(__dirname, "../static/locales");
 
 const _ = i18next.use(backend).init({
-  ns: "app",
-  defaultNS: "app",
-  lng: "en",
-  fallbackLng: "en",
-  debug: dev,
+  // debug: dev,
+  ns,
+  lng,
+  supportedLngs,
+  defaultNS: ns,
+  fallbackLng: lng,
+  preload: supportedLngs,
   saveMissing: dev,
   saveMissingTo: "all",
   initImmediate: false,
   backend: {
     loadPath: `${locales}/{{lng}}/{{ns}}.json`,
     addPath: `${locales}/{{lng}}/{{ns}}.json`
-  },
-  preload: fs.readdirSync(locales).filter(file => {
-    return fs.lstatSync(path.join(locales, file)).isDirectory();
-  })
+  }
 });
 
 function missingKeyHandler(req, res) {
@@ -35,7 +36,14 @@ function missingKeyHandler(req, res) {
   }
 
   for (let m in req.body) {
-    i18next.services.backendConnector.saveMissing([lng], ns, m, req.body[m]);
+    const v = req.body[m];
+    if (i18next.options.saveMissingTo === "all") {
+      supportedLngs.forEach(lng => {
+        i18next.services.backendConnector.saveMissing([lng], ns, m, v);
+      });
+    } else {
+      i18next.services.backendConnector.saveMissing([lng], ns, m, v);
+    }
   }
 
   res.end("ok");

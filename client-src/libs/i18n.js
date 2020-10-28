@@ -9,8 +9,10 @@ function init() {
     defaultNS: "app",
     lng: "en",
     fallbackLng: "en",
-    debug: dev,
+    supportedLngs: ["en", "fr"],
+    // debug: dev,
     saveMissing: dev,
+    saveMissingTo: "all",
     backend: {
       loadPath: "/locales/{{lng}}/{{ns}}.json",
       addPath: "/locales/add/{{lng}}/{{ns}}"
