@@ -6,6 +6,8 @@ const config = require("../config");
 const socket = require("./socket");
 const polka = require("polka");
 const sirv = require("sirv");
+const i18n = require("./i18n");
+const { json } = require("body-parser");
 
 const sirvClient = sirv(config.server.clientPath, { dev: true });
 const sirvStatic = sirv(config.server.staticPath, { dev: true });
@@ -18,8 +20,10 @@ function fingerprint() {
 }
 
 const { server } = polka()
+  .use(json())
   .use(sirvClient)
   .use(sirvStatic)
+  .post("/locales/add/:lng/:ns", i18n.missingKeyHandler)
   .listen(config.server.port, error => {
     if (error) throw error;
     socket(server);
