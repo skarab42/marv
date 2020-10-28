@@ -30,7 +30,7 @@ function missingKeyHandler(req, res) {
 
   if (!i18next.services.backendConnector) {
     res.statusCode = 404;
-    res.end("i18next-express-middleware:: no backend configured");
+    res.end("i18next: no backend configured");
     return;
   }
 
