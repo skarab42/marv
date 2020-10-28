@@ -2,7 +2,6 @@ const config = require("../config");
 const backend = require("i18next-fs-backend");
 const i18next = require("i18next");
 const path = require("path");
-const fs = require("fs");
 
 const dev = config.watch;
 const [ns, lng] = ["app", "en"];
