@@ -25,7 +25,8 @@ function stderr(buffer) {
 function start() {
   if (server) return server;
 
-  server = fork(path.join(__dirname, "index.js"), [], { stdio: "pipe" });
+  const argv = process.argv.slice(2);
+  server = fork(path.join(__dirname, "index.js"), argv, { stdio: "pipe" });
 
   server.stderr.on("data", stderr);
   server.stdout.on("data", stdout);
