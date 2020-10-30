@@ -23,7 +23,7 @@ module.exports = {
     defaultNS: "app",
     fallbackLng: "en",
     supportedLngs: ["en", "fr"],
-    saveMissing: watch,
-    saveMissingTo: "all"
+    saveMissingTo: "fallback",
+    saveMissing: watch
   }
 };
