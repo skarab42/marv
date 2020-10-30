@@ -11,18 +11,18 @@
   <div class="m-auto">
     <div class="flex flex-col items-center space-y-5">
       <MarvLogo width="200" />
+      <div class="font-mono	text-2xl">
+        {#await version}
+        	Marv v...
+        {:then version}
+        	Marv v{version}
+        {/await}
+      </div>
       <div class="font-bold text-2xl">
         {#await _}
         	Welcome home!
         {:then _}
         	{_('loading.welcome-message')}
-        {/await}
-      </div>
-      <div class="font-bold text-2xl">
-        {#await version}
-        	Marv v...
-        {:then version}
-        	Marv v{version}
         {/await}
       </div>
       <div class="font-bold text-2xl">

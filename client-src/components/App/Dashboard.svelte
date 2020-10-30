@@ -1,11 +1,5 @@
 <script>
-  console.log("Dashboard...");
+  import Topbar from "@/components/Dashboard/Topbar.svelte";
 </script>
 
-<div class="flex h-screen overflow-auto">
-  <div class="m-auto">
-    <div class="flex flex-col items-center space-y-5">
-      Dashboard
-    </div>
-  </div>
-</div>
+<Topbar />

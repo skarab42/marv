@@ -1,10 +1,9 @@
 {
   "loading": {
-    "welcome-message": "Welcome home!",
+    "welcome-message": "Welcome C:\\home",
     "waiting-for-connexion": "Waiting for connexion..."
   },
-  "landing": {
-    "welcome-message": "landing.welcome-message",
-    "connect-button-label": "landing.connect-button-label"
+  "words": {
+    "settings": "settings"
   }
 }
