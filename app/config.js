@@ -16,5 +16,14 @@ module.exports = {
     host: "localhost",
     clientPath: path.join(__dirname, "client"),
     staticPath: path.join(__dirname, "static")
+  },
+  i18next: {
+    ns: "app",
+    lng: "en",
+    defaultNS: "app",
+    fallbackLng: "en",
+    supportedLngs: ["en", "fr"],
+    saveMissing: watch,
+    saveMissingTo: "all"
   }
 };

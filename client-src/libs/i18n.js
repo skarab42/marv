@@ -1,18 +1,15 @@
+import store from "./store";
+import config from "./config";
 import i18next from "i18next";
 import HttpApi from "i18next-http-backend";
 
-const dev = true;
+async function init() {
+  const lng = await store.get("app.lang");
+  const options = await config.get("i18next");
 
-function init() {
   return i18next.use(HttpApi).init({
-    ns: "app",
-    defaultNS: "app",
-    lng: "en",
-    fallbackLng: "en",
-    supportedLngs: ["en", "fr"],
-    // debug: dev,
-    saveMissing: dev,
-    saveMissingTo: "all",
+    ...options,
+    lng,
     backend: {
       loadPath: "/locales/{{lng}}/{{ns}}.json",
       addPath: "/locales/add/{{lng}}/{{ns}}"

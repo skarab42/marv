@@ -9,7 +9,7 @@ module.exports = (args, next) => {
   const callback = args.pop();
 
   if (typeof callback !== "function") {
-    throw new Error("Undefined io callback");
+    throw new Error("Undefined socket.io callback");
   }
 
   const nsKey = args.shift() || "";
@@ -31,7 +31,7 @@ module.exports = (args, next) => {
   if (method === "has") {
     payload = store.has(key);
   } else if (method === "get") {
-    payload = key ? store.has(key) : store.store;
+    payload = key ? store.get(key) : store.store;
   } else if (method === "set") {
     payload = {
       oldValue: store.get(key),

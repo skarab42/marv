@@ -5,10 +5,15 @@
 
   (async function(){
     let _ = await i18n();
-    console.log(_('keypouet.tralalafgfgfg'));
+    console.log(_('pouet.sdfsdf'));
 
     socket.on("connect", async () => {
+      console.log("connected...");
       console.log(await store.get('app.openOnStartup'));
+    });
+
+    socket.on("disconnect", async () => {
+      console.log("disconnected...");
     });
   })()
 </script>
