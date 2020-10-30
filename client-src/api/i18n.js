@@ -17,7 +17,7 @@ async function init() {
     }
   };
 
-  return (_ = i18next.use(HttpApi).init(options));
+  return (_ = await i18next.use(HttpApi).init(options));
 }
 
 export default init;
