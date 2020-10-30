@@ -14,7 +14,7 @@
       await i18n();
       setTimeout(() => {
         component = Dashboard;
-      }, 1000);
+      }, 500);
     });
 
     socket.on("disconnect", () => {
