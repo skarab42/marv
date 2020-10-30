@@ -1,6 +1,6 @@
 <script>
-  import MarvLogo from "../../images/marv.svg";
-  import i18n from "../../api/i18n";
+  import MarvLogo from "@/images/marv.svg";
+  import i18n from "@/api/i18n";
 
   const _ = i18n();
 </script>

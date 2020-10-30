@@ -1,4 +1,4 @@
-import { emit } from "../libs/socket.io";
+import { emit } from "@/libs/socket.io";
 
 export default {
   has: key => emit("store.has", key),

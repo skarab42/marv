@@ -5,6 +5,7 @@ import commonjs from "@rollup/plugin-commonjs";
 import { terser } from "rollup-plugin-terser";
 import cleaner from "rollup-plugin-cleaner";
 import svelte from "rollup-plugin-svelte";
+import alias from "@rollup/plugin-alias";
 
 const watch = process.env.ROLLUP_WATCH;
 
@@ -20,6 +21,9 @@ export default {
     sourcemap: true
   },
   plugins: [
+    alias({
+      entries: [{ find: "@", replacement: `${__dirname}/client-src` }]
+    }),
     resolve({ browser: true, dedupe: ["svelte"] }),
     commonjs(),
     svelteSVG(),
