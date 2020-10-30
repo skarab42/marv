@@ -19,12 +19,13 @@ function socketEmitPromise(...args) {
   });
 }
 
-export default (options = {}) => {
+function init(options = {}) {
   if (!socket) {
     socket = io({ ...defaultOptions, ...options });
   }
 
   return socket;
-};
+}
 
-export { socketEmitPromise };
+export default init;
+export { socketEmitPromise, socket };
