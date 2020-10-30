@@ -1,21 +1,26 @@
 <script>
   import io from "./libs/socket.io";
-  import store from "./api/store";
   import i18n from "./api/i18n";
+
+  import Loading from "./components/App/Loading.svelte";
+  import Dashboard from "./components/App/Dashboard.svelte";
+
+  let component = Loading;
 
   (async function() {
     const socket = io();
 
     socket.on("connect", async () => {
-      console.log("connected...");
-      console.log(await store.get('app.openOnStartup'));
+      await i18n();
+      setTimeout(() => {
+        component = Dashboard;
+      }, 1000);
     });
 
-    socket.on("disconnect", async () => {
-      console.log("disconnected...");
+    socket.on("disconnect", () => {
+      component = Loading;
     });
-
-    const _ = await i18n();
-    console.log(_('pouet.sdfsdf'));
   })()
 </script>
+
+<svelte:component this={component} />

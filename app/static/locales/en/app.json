@@ -1,8 +1,10 @@
 {
-  "keypouet": {
-    "tralalafgfgfg": "keypouet.tralalafgfgfg"
+  "loading": {
+    "welcome-message": "Welcome home!",
+    "waiting-for-connexion": "Waiting for connexion..."
   },
-  "pouet": {
-    "sdfsdf": "pouet.sdfsdf"
+  "landing": {
+    "welcome-message": "landing.welcome-message",
+    "connect-button-label": "landing.connect-button-label"
   }
 }
