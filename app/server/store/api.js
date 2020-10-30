@@ -42,14 +42,6 @@ module.exports = (args, next) => {
     payload = { oldValue: store.get(key) };
     store.delete(key);
   }
-  // else if (method === "reset") {
-  //   payload = { oldValue: store.get(key) };
-  //   store.reset(key);
-  //   payload.newValue = store.get(key);
-  // } else if (method === "clear") {
-  //   payload = true;
-  //   store.clear(key);
-  // }
 
   callback({ payload });
 };

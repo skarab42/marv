@@ -5,6 +5,4 @@ export default {
   set: (key, val) => socketEmitPromise("store.set", key, val),
   get: (key, val = null) => socketEmitPromise("store.get", key, val),
   delete: key => socketEmitPromise("store.delete", key)
-  // reset: key => socketEmitPromise("store.reset", key),
-  // clear: store => socketEmitPromise("store.clear", store),
 };
