@@ -1,8 +1,10 @@
 <script>
   import MarvLogo from "@/images/marv.svg";
+  import config from "@/api/config";
   import i18n from "@/api/i18n";
 
   const _ = i18n();
+  const version = config.get('app.version');
 </script>
 
 <div class="flex h-screen overflow-auto">
@@ -14,6 +16,13 @@
         	Welcome home!
         {:then _}
         	{_('loading.welcome-message')}
+        {/await}
+      </div>
+      <div class="font-bold text-2xl">
+        {#await version}
+        	Marv v...
+        {:then version}
+        	Marv v{version}
         {/await}
       </div>
       <div class="font-bold text-2xl">
