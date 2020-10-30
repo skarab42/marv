@@ -7,7 +7,7 @@ const defaultOptions = {
 
 let socket = null;
 
-function socketEmitPromise(...args) {
+function emit(...args) {
   return new Promise((resolve, reject) => {
     if (!socket) {
       return reject(new Error("socket.io: Not connected"));
@@ -28,4 +28,4 @@ function init(options = {}) {
 }
 
 export default init;
-export { socketEmitPromise, socket };
+export { emit, socket };

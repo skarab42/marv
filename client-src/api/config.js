@@ -1,5 +1,5 @@
-import { socketEmitPromise } from "../libs/socket.io";
+import { emit } from "../libs/socket.io";
 
 export default {
-  get: (key, val = null) => socketEmitPromise("config.get", key, val)
+  get: (key, val = null) => emit("config.get", key, val)
 };

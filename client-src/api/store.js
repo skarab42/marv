@@ -1,8 +1,8 @@
-import { socketEmitPromise } from "../libs/socket.io";
+import { emit } from "../libs/socket.io";
 
 export default {
-  has: key => socketEmitPromise("store.has", key),
-  set: (key, val) => socketEmitPromise("store.set", key, val),
-  get: (key, val = null) => socketEmitPromise("store.get", key, val),
-  delete: key => socketEmitPromise("store.delete", key)
+  has: key => emit("store.has", key),
+  set: (key, val) => emit("store.set", key, val),
+  get: (key, val = null) => emit("store.get", key, val),
+  delete: key => emit("store.delete", key)
 };
