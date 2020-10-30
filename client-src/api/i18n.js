@@ -3,19 +3,22 @@ import config from "./config";
 import i18next from "i18next";
 import HttpApi from "i18next-http-backend";
 
-async function init() {
-  const lng = await store.get("app.lang");
-  const options = await config.get("i18next");
+let _ = null;
 
-  return i18next.use(HttpApi).init({
-    ...options,
-    lng,
+async function init() {
+  if (_) return _;
+
+  const options = {
+    ...(await config.get("i18next")),
+    lng: await store.get("app.lang"),
     backend: {
       loadPath: "/locales/{{lng}}/{{ns}}.json",
       addPath: "/locales/add/{{lng}}/{{ns}}"
     }
-  });
+  };
+
+  return (_ = i18next.use(HttpApi).init(options));
 }
 
 export default init;
-export { i18next };
+export { i18next, _ };
