@@ -1,5 +1,6 @@
 const socket = require("socket.io");
 const storeAPI = require("./store/api");
+const unhandledEvent = require("./unhandledEvent");
 
 let io = null;
 
@@ -17,6 +18,7 @@ module.exports = server => {
 
   io.on("connection", socket => {
     socket.use(storeAPI);
+    socket.use(unhandledEvent);
   });
 
   return io;

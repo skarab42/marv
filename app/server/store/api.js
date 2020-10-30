@@ -52,5 +52,4 @@ module.exports = (args, next) => {
   // }
 
   callback({ payload });
-  next();
 };
