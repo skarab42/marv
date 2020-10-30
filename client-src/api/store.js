@@ -1,4 +1,4 @@
-import { socketEmitPromise } from "./socket";
+import { socketEmitPromise } from "../libs/socket.io";
 
 export default {
   has: key => socketEmitPromise("store.has", key),

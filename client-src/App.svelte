@@ -1,11 +1,10 @@
 <script>
-  import socket from "./libs/socket";
-  import store from "./libs/store";
-  import i18n from "./libs/i18n";
+  import io from "./libs/socket.io";
+  import store from "./api/store";
+  import i18n from "./api/i18n";
 
-  (async function(){
-    let _ = await i18n();
-    console.log(_('pouet.sdfsdf'));
+  (async function() {
+    const socket = io();
 
     socket.on("connect", async () => {
       console.log("connected...");
@@ -15,5 +14,8 @@
     socket.on("disconnect", async () => {
       console.log("disconnected...");
     });
+
+    const _ = await i18n();
+    console.log(_('pouet.sdfsdf'));
   })()
 </script>
