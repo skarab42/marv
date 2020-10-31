@@ -2,11 +2,11 @@
 
 "use strict";
 
+const socket = require("./socket.io");
 const config = require("../config");
-const socket = require("./socket");
 const polka = require("polka");
 const sirv = require("sirv");
-const i18n = require("./i18n");
+const i18n = require("./libs/i18n");
 const { json } = require("body-parser");
 
 const sirvClient = sirv(config.server.clientPath, { dev: true });

@@ -1,4 +1,4 @@
-const stores = require("./index");
+const stores = require("../store");
 
 module.exports = (args, next) => {
   if (!args[0].match(/^store\./)) {

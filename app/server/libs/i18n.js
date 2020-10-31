@@ -1,7 +1,7 @@
 const backend = require("i18next-fs-backend");
 const i18next = require("i18next");
-const config = require("../config");
-const store = require("./store");
+const config = require("../../config");
+const store = require("../store");
 const path = require("path");
 
 const options = config.i18next;
