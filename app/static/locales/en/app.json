@@ -4,6 +4,11 @@
     "waiting-for-connexion": "Waiting for connexion"
   },
   "words": {
-    "settings": "settings"
+    "settings": "settings",
+    "yes": "yes",
+    "no": "no"
+  },
+  "app": {
+    "ask-for-client-reload": "Would you like to reload the application now to apply changes ?"
   }
 }

@@ -31,7 +31,7 @@
 </script>
 
 <div
-  {...$$props}
+  {...$$restProps}
   on:click="{toggle}"
   on:mouseenter={enter}
   on:mouseleave={leave}>

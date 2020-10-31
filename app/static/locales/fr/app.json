@@ -4,6 +4,11 @@
     "waiting-for-connexion": "En attente de connexion"
   },
   "words": {
-    "settings": "Options"
+    "settings": "options",
+    "yes": "oui",
+    "no": "non"
+  },
+  "app": {
+    "ask-for-client-reload": "Souhaitez-vous actualiser l'application maintenant pour appliquer les modifications?"
   }
 }
