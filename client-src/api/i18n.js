@@ -2,6 +2,7 @@ import store from "./store";
 import config from "./config";
 import i18next from "i18next";
 import HttpApi from "i18next-http-backend";
+import { emit } from "@/libs/socket.io";
 
 let _ = null;
 
@@ -17,8 +18,15 @@ async function init() {
     }
   };
 
+  options.preload = options.supportedLngs;
+
   return (_ = await i18next.use(HttpApi).init(options));
 }
 
+async function changeLanguage(language) {
+  await i18next.changeLanguage(language);
+  await emit("i18n.changeLanguage", language);
+}
+
 export default init;
-export { i18next, _ };
+export { i18next, _, changeLanguage };

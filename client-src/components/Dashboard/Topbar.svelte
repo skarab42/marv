@@ -8,7 +8,4 @@
     <div class="p-2 flex-auto">...</div>
     <Drawer />
   </div>
-  <div class="flex items-center bg-purple-700 text-light">
-    <div class="p-2 flex-auto">...</div>
-  </div>
 </div>
