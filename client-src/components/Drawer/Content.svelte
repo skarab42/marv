@@ -1,6 +1,6 @@
 <script>
   import { _ } from "@/api/i18n";
-  import LanguageSelect from "./LanguageSelect.svelte";
+  import LanguageSelect from "@/components/App/LanguageSelect.svelte";
 
   let position = "absolute z-50 top-0 right-0 bottom-0 ml-8";
   let colors = "bg-gray-800 text-dark";
