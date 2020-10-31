@@ -1,7 +1,7 @@
 {
   "loading": {
-    "welcome-message": "Welcome C:\\home",
-    "waiting-for-connexion": "Waiting for connexion..."
+    "welcome-message": "Welcome home",
+    "waiting-for-connexion": "Waiting for connexion"
   },
   "words": {
     "settings": "settings"

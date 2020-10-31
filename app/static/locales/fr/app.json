@@ -1,4 +1,8 @@
 {
+  "loading": {
+    "welcome-message": "Bienvenue chez toi",
+    "waiting-for-connexion": "En attente de connexion"
+  },
   "words": {
     "settings": "Options"
   }

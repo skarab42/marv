@@ -29,7 +29,7 @@
         {#await _}
         	Waiting for connexion...
         {:then _}
-        	{_('loading.waiting-for-connexion')}
+        	{_('loading.waiting-for-connexion')}...
         {/await}
       </div>
     </div>
