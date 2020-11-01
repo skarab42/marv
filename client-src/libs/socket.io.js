@@ -27,5 +27,9 @@ function init(options = {}) {
   return socket;
 }
 
+function on(...args) {
+  socket && socket.on(...args);
+}
+
 export default init;
-export { emit, socket };
+export { on, emit, socket };

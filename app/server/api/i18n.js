@@ -6,21 +6,23 @@ module.exports = async (args, next) => {
     return next();
   }
 
-  const key = args.shift().slice(5);
+  const method = args.shift().slice(5);
   const callback = args.pop() || function() {};
 
   if (callback && typeof callback !== "function") {
     throw new Error("socket.io callback must be a function");
   }
 
-  if (key === "changeLanguage") {
+  if (method === "changeLanguage") {
     try {
       const language = args[0];
       await store.app.set("lang", language);
       await i18next.changeLanguage(language);
-      callback({ payload: language });
+      return callback({ payload: language });
     } catch (error) {
-      callback({ error });
+      return callback({ error });
     }
   }
+
+  callback({ error: `Undefined i18n method ${method}` });
 };

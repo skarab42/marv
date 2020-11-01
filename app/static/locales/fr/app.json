@@ -6,7 +6,8 @@
   "words": {
     "settings": "options",
     "yes": "oui",
-    "no": "non"
+    "no": "non",
+    "connect": "words.connect"
   },
   "app": {
     "ask-for-client-reload": "Souhaitez-vous actualiser l'application maintenant pour appliquer les modifications?"
