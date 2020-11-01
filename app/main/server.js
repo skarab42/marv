@@ -1,10 +1,11 @@
 const { fork } = require("child_process");
-const config = require("../config");
+const config = require("./config");
 const chalk = require("chalk");
 const path = require("path");
 
 const colors = new chalk.Instance({ level: 2 });
-const appPath = path.resolve(__dirname, "../..");
+const rootPath = path.resolve(__dirname, "../..");
+const serverBin = path.join(__dirname, "../server/index.js");
 
 let server = null;
 
@@ -26,7 +27,7 @@ function start() {
   if (server) return server;
 
   const argv = process.argv.slice(2);
-  server = fork(path.join(__dirname, "index.js"), argv, { stdio: "pipe" });
+  server = fork(serverBin, argv, { stdio: "pipe" });
 
   server.stderr.on("data", stderr);
   server.stdout.on("data", stdout);
@@ -57,7 +58,7 @@ if (config.watch) {
 
   watcher.on("ready", () => {
     watcher.on("change", source => {
-      stdout(`${icon} file changed: ${path.relative(appPath, source)}`);
+      stdout(`${icon} file changed: ${path.relative(rootPath, source)}`);
       restart();
     });
   });

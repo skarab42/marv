@@ -6,8 +6,8 @@
   "author": "skarab42 <skarab42@users.noreply.github.com>",
   "license": "MIT",
   "scripts": {
-    "app:watch": "electron app/index.js -w",
-    "app:start": "electron app/index.js",
+    "app:watch": "electron app/main/index.js -w",
+    "app:start": "electron app/main/index.js",
     "app:build": "electron-builder build",
     "client:watch": "rollup -c -w",
     "client:build": "rollup -c",

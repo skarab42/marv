@@ -2,8 +2,8 @@
 
 "use strict";
 
+const config = require("../main/config");
 const socket = require("./socket.io");
-const config = require("../config");
 const polka = require("polka");
 const sirv = require("sirv");
 const i18n = require("./libs/i18n");

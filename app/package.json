@@ -5,7 +5,7 @@
   "repository": "github:onlfait/marv",
   "author": "skarab42 <skarab42@users.noreply.github.com>",
   "license": "MIT",
-  "main": "index.js",
+  "main": "main/index.js",
   "dependencies": {
     "body-parser": "^1.19.0",
     "chalk": "^4.1.0",

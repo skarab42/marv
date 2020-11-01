@@ -1,5 +1,5 @@
 const dotProp = require("dot-prop");
-const config = require("../../config");
+const config = require("../../main/config");
 
 module.exports = (args, next) => {
   if (args[0] !== "config.get") {
