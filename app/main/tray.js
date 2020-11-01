@@ -1,11 +1,11 @@
 const { app, Tray, Menu } = require("electron");
-const config = require("./config");
+const store = require("../store");
 const open = require("open");
 
-const { name, version, icon } = config.app;
+const { name, version, icon } = store.app.getAll();
 const fingerprint = `${name} v${version}`;
 
-const { host, port } = config.server;
+const { host, port } = store.server.getAll();
 const address = `http://${host}:${port}`;
 
 let tray = null;

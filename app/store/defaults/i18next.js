@@ -1,4 +1,4 @@
-const { watch } = require("./utils");
+const { watch } = require("../utils");
 
 module.exports = {
   ns: "app",

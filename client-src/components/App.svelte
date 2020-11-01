@@ -1,38 +1,5 @@
 <script>
-  import { io } from "@/libs/socket.io";
-  import { initialized } from'@/stores/app';
-  import { init as i18nextInit } from'@/libs/i18next';
-  import { load as configLoad } from "@/stores/config";
-  import Loading from "@/components/App/Loading.svelte";
-  import Connected from "@/components/App/Connected.svelte";
-  import Disconnected from "@/components/App/Disconnected.svelte";
-
-  const socket = io();
-  let component = Loading;
-
-  async function init() {
-    const config = await configLoad();
-    await i18nextInit(config.i18next);
-  }
-
-  socket.on("connect", async () => {
-    component = Loading;
-
-    if (!$initialized) {
-      await init();
-      $initialized = true;
-    }
-
-    setTimeout(() => {
-      if (component !== Disconnected) {
-        component = Connected;
-      }
-    }, 1000);
-  });
-
-  socket.on("disconnect", () => {
-    component = Disconnected;
-  });
+  let title = "Hello World";
 </script>
 
-<svelte:component this={component} />
+{title}

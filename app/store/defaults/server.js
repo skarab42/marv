@@ -1,4 +1,4 @@
-const { appPath } = require("./utils");
+const { appPath } = require("../utils");
 const path = require("path");
 
 module.exports = {

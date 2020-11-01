@@ -1,8 +1,9 @@
 const { fork } = require("child_process");
-const config = require("./config");
+const store = require("../store");
 const chalk = require("chalk");
 const path = require("path");
 
+const dev = !store.app.get("production");
 const colors = new chalk.Instance({ level: 2 });
 const rootPath = path.resolve(__dirname, "../..");
 const serverPath = path.join(__dirname, "../server");
@@ -52,7 +53,7 @@ function stop() {
   server = null;
 }
 
-if (config.watch) {
+if (dev) {
   const icon = colors.green("↺");
   const chokidar = require("chokidar");
   const watcher = chokidar.watch(path.join(serverPath, "**/*"));
