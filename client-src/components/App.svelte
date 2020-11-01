@@ -24,7 +24,9 @@
     }
 
     setTimeout(() => {
-      component = Connected;
+      if (component !== Disconnected) {
+        component = Connected;
+      }
     }, 1000);
   });
 
