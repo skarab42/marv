@@ -3,7 +3,7 @@
 "use strict";
 
 const socket = require("./socket.io");
-const store = require("../store");
+const store = require("../stores");
 const polka = require("polka");
 const sirv = require("sirv");
 // const i18n = require("./libs/i18n");
