@@ -15,11 +15,12 @@ module.exports = server => {
   io = socket(server, options);
 
   io.on("connection", socket => {
-    socket.use(require("../api/obs"));
-    socket.use(require("../api/i18n"));
-    socket.use(require("../api/store"));
-    socket.use(require("../api/config"));
-    socket.use(require("./unhandledEvent"));
+    socket.use(require("./api"));
+    // socket.use(require("../api/obs"));
+    // socket.use(require("../api/i18n"));
+    // socket.use(require("../api/store"));
+    // socket.use(require("../api/config"));
+    // socket.use(require("./unhandledEvent"));
   });
 
   return io;
