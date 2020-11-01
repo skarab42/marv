@@ -10,8 +10,9 @@
     <div class="m-5 flex flex-col items-center text-center space-y-5">
       <MarvLogo width="200" />
       {#if $config}
-      <div class="font-mono	text-2xl">
-        {$config.app.fingerprint}
+      <div class="font-mono text-2xl">
+        <span class="capitalize">{$config.app.name}</span>
+        v{$config.app.version}
       </div>
       {/if}
       <div class="font-bold text-4xl">
@@ -21,7 +22,7 @@
         Loading...
       {/if}
       </div>
-      <div class="font-mono	text-2xl">
+      <div class="font-mono text-2xl">
       {#if $initialized}
         {_('loading.waiting-for-connexion')}...
       {/if}
