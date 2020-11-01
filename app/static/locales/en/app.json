@@ -7,7 +7,10 @@
     "settings": "settings",
     "yes": "yes",
     "no": "no",
-    "connect": "words.connect"
+    "connect": "connect",
+    "disconnect": "disconnect",
+    "connected": "connected",
+    "disconnected": "disconnected"
   },
   "app": {
     "ask-for-client-reload": "Would you like to reload the application now to apply changes ?"
