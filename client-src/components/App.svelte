@@ -1,17 +1,28 @@
 <script>
-  import i18next, { _ } from "@/libs/i18next";
   import { on } from "@/libs/socket.io";
+  import i18next from "@/libs/i18next";
 
-  let title = "Waiting for connexion...";
+  import Loading from "@/components/App/Loading.svelte";
+  import Connected from "@/components/App/Connected.svelte";
+  import Disconnected from "@/components/App/Disconnected.svelte";
+
+  let component = Loading;
 
   on("connect", async () => {
+    component = Loading;
+
     await i18next();
-    title = _("loading.welcome-message");
+
+    setTimeout(() => {
+      if (component !== Disconnected) {
+        component = Connected;
+      }
+    }, 1000);
   });
 
   on("disconnect", () => {
-    title = "Waiting for connexion...";
+    component = Disconnected;
   });
 </script>
 
-{title}
+<svelte:component this="{component}" />
