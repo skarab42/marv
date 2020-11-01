@@ -5,7 +5,8 @@ const path = require("path");
 
 const colors = new chalk.Instance({ level: 2 });
 const rootPath = path.resolve(__dirname, "../..");
-const serverBin = path.join(__dirname, "../server/index.js");
+const serverPath = path.join(__dirname, "../server");
+const serverBin = path.join(serverPath, "index.js");
 
 let server = null;
 
@@ -54,7 +55,7 @@ function stop() {
 if (config.watch) {
   const icon = colors.green("↺");
   const chokidar = require("chokidar");
-  const watcher = chokidar.watch(path.join(__dirname, "**/*"));
+  const watcher = chokidar.watch(path.join(serverPath, "**/*"));
 
   watcher.on("ready", () => {
     watcher.on("change", source => {
