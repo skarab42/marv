@@ -12,7 +12,7 @@
     "client:watch": "rollup -c -w",
     "client:build": "rollup -c",
     "tailwind:build": "node tailwind/build.js",
-    "watch": "concurrently -k -n app,client -c yellow,magenta \"yarn app:watch\" \"yarn client:watch\"",
+    "watch": "concurrently -k -n client,app -c magenta,yellow \"yarn client:watch\" \"yarn app:watch\"",
     "build": "yarn tailwind:build --prod && yarn client:build && yarn app:build",
     "lint": "eslint ./app ./client-src --fix"
   },
@@ -31,6 +31,8 @@
     "eslint-plugin-svelte3": "^2.7.3",
     "i18next": "^19.8.3",
     "i18next-http-backend": "^1.0.21",
+    "prettier": "^2.1.2",
+    "prettier-plugin-svelte": "^1.4.1",
     "rollup": "^2.32.1",
     "rollup-plugin-cleaner": "^1.0.0",
     "rollup-plugin-livereload": "^2.0.0",
