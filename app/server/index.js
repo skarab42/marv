@@ -2,15 +2,17 @@
 
 "use strict";
 
-const socket = require("./socket.io");
-const store = require("../stores");
+const socket = require("./libs/socket.io");
+const stores = require("../stores");
 const polka = require("polka");
 const sirv = require("sirv");
-// const i18n = require("./libs/i18n");
 const { json } = require("body-parser");
 
-const { host, port, clientPath, staticPath } = store.server.getAll();
-const appFingerprint = store.app.get("fingerprint");
+const { i18next } = require("./libs/i18next");
+const missingKeyHandler = require("./libs/i18next/missingKeyHandler");
+
+const { host, port, clientPath, staticPath } = stores.server.getAll();
+const appFingerprint = stores.app.get("fingerprint");
 const serverURL = `http://${host}:${port}`;
 
 const sirvClient = sirv(clientPath, { dev: true });
@@ -25,8 +27,8 @@ const { server } = polka()
   .use(json())
   .use(sirvClient)
   .use(sirvStatic)
-  // .post("/locales/add/:lng/:ns", i18n.missingKeyHandler)
-  .listen(port, error => {
+  .post("/locales/add/:lng/:ns", missingKeyHandler(i18next))
+  .listen(port, (error) => {
     if (error) throw error;
     socket(server);
     printBanner();

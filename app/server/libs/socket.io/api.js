@@ -2,13 +2,15 @@ const dotProp = require("dot-prop");
 const path = require("path");
 const fs = require("fs");
 
-const apiPath = path.resolve(__dirname, "../api");
+const apiDir = "../../api";
+const apiPath = path.resolve(__dirname, apiDir);
+
 const modules = {};
 
 function loadModules(socket) {
-  fs.readdirSync(apiPath).forEach(filename => {
+  fs.readdirSync(apiPath).forEach((filename) => {
     const name = path.parse(filename).name;
-    modules[name] = require(`../api/${name}`)(socket);
+    modules[name] = require(`${apiDir}/${name}`)(socket);
   });
 }
 
@@ -33,7 +35,7 @@ async function middleware([key, ...args], next) {
   callback({ payload });
 }
 
-module.exports = socket => {
+module.exports = (socket) => {
   loadModules(socket);
   return middleware;
 };
