@@ -10,15 +10,18 @@
   const socket = io();
   let component = Loading;
 
+  async function init() {
+    const config = await configLoad();
+    await i18nextInit(config.i18next);
+  }
+
   socket.on("connect", async () => {
     component = Loading;
 
     if (!$initialized) {
-      const config = await configLoad();
-      await i18nextInit(config.i18next);
+      await init();
+      $initialized = true;
     }
-
-    $initialized = true;
 
     setTimeout(() => {
       component = Connected;
