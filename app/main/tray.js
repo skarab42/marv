@@ -1,5 +1,5 @@
 const { app, Tray, Menu } = require("electron");
-const store = require("../store");
+const store = require("../stores");
 const open = require("open");
 
 const { name, version, icon } = store.app.getAll();

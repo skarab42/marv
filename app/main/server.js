@@ -1,5 +1,5 @@
 const { fork } = require("child_process");
-const store = require("../store");
+const store = require("../stores");
 const chalk = require("chalk");
 const path = require("path");
 
