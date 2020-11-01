@@ -34,7 +34,7 @@ function start() {
   server.stderr.on("data", stderr);
   server.stdout.on("data", stdout);
 
-  server.on("close", code => {
+  server.on("close", (code) => {
     stdout(`exited with code ${code || 0}`);
   });
 }
@@ -59,7 +59,7 @@ if (dev) {
   const watcher = chokidar.watch(path.join(serverPath, "**/*"));
 
   watcher.on("ready", () => {
-    watcher.on("change", source => {
+    watcher.on("change", (source) => {
       stdout(`${icon} file changed: ${path.relative(rootPath, source)}`);
       restart();
     });
@@ -69,5 +69,5 @@ if (dev) {
 module.exports = {
   start,
   stop,
-  restart
+  restart,
 };

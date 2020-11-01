@@ -5,5 +5,5 @@ module.exports = {
   port: 4242,
   host: "localhost",
   clientPath: path.join(appPath, "client"),
-  staticPath: path.join(appPath, "static")
+  staticPath: path.join(appPath, "static"),
 };

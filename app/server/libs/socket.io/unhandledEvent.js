@@ -1,4 +1,4 @@
-module.exports = args => {
+module.exports = (args) => {
   const callback = args.pop();
   const eventName = args.shift();
   if (typeof callback === "function") {

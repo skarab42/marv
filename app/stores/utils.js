@@ -5,5 +5,5 @@ const watch = process.argv.includes("--watch") || process.argv.includes("-w");
 
 module.exports = {
   watch,
-  appPath
+  appPath,
 };

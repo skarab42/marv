@@ -7,5 +7,5 @@ module.exports = {
   fallbackLng: "en",
   supportedLngs: ["en", "fr"],
   saveMissingTo: "all",
-  saveMissing: watch
+  saveMissing: watch,
 };

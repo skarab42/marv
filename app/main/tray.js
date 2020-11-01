@@ -16,7 +16,7 @@ function createMenu() {
     { type: "separator" },
     { label: "Open", click: () => open(address) },
     { type: "separator" },
-    { label: "Quit", click: () => app.quit() }
+    { label: "Quit", click: () => app.quit() },
   ]);
 }
 

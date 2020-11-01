@@ -2,7 +2,7 @@ import client from "socket.io-client";
 
 const defaultOptions = {
   transports: ["websocket"],
-  upgrade: false
+  upgrade: false,
 };
 
 let socket = null;

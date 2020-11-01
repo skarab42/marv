@@ -1,0 +1,7 @@
+app/static/css/tailwind.css
+app/static/locales/
+app/client/js/
+node_modules/
+dist/
+*_.*
+*_
