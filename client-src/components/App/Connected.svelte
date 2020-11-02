@@ -1,6 +1,6 @@
 <script>
   import { _ } from "@/libs/i18next";
-  import SplashScreen from "@/components/UI/SplashScreen.svelte";
+  import SplashScreen from "./SplashScreen.svelte";
 </script>
 
 <SplashScreen>

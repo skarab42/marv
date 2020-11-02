@@ -1,5 +1,8 @@
 <script>
-  import SplashScreen from "@/components/UI/SplashScreen.svelte";
+  import { app } from "@/stores/app";
+  import SplashScreen from "./SplashScreen.svelte";
+
+  $: fingerprint = $app ? $app.fingerprint : "010110110101s";
 </script>
 
 <SplashScreen>
