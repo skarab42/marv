@@ -1,15 +1,17 @@
 <script>
   import clickoutside from "@/libs/svelte/click-outside";
   import { drawer, hide } from "@/stores/dashboard/drawer";
+  import LanguageSelect from "@/components/App/LanguageSelect.svelte";
 </script>
 
 {#if $drawer.visible}
   <div
     use:clickoutside
     on:clickoutside="{hide}"
-    class="absolute top-0 right-0 bottom-0 bg-dark"
+    class="absolute top-0 right-0 bottom-0 flex flex-col bg-dark"
   >
     <div class="p-2 bg-secondary">Drawer</div>
     <div class="p-2">Item...</div>
+    <LanguageSelect class="p-2 text-dark" />
   </div>
 {/if}

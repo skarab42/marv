@@ -1,10 +1,13 @@
 <script>
-  import { app } from "@/stores/app";
+  import { _ } from "@/libs/i18next";
+  import { initialized } from "@/stores/app";
   import SplashScreen from "./SplashScreen.svelte";
 
-  $: fingerprint = $app ? $app.fingerprint : "010110110101s";
+  $: message = $initialized
+    ? _("sentences.waiting-for-connexion")
+    : "Waiting for connexion";
 </script>
 
 <SplashScreen>
-  <div class="text-center font-mono text-2xl">Connecting...</div>
+  <div class="text-center font-mono">{message}...</div>
 </SplashScreen>

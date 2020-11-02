@@ -1,13 +1,10 @@
 import i18next from "i18next";
 import HttpApi from "i18next-http-backend";
-import { emit } from "@/libs/socket.io";
 
 let _ = null;
 
-async function init() {
+async function init(options) {
   if (_) return _;
-
-  const options = await emit("stores.i18next", "getAll");
 
   _ = await i18next.use(HttpApi).init({
     ...options,

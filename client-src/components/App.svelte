@@ -1,7 +1,9 @@
 <script>
   import { on } from "@/libs/socket.io";
   import i18next from "@/libs/i18next";
-  import appStore from "@/stores/app";
+
+  import i18nextStore from "@/stores/i18next";
+  import appStore, { initialized } from "@/stores/app";
 
   import Connected from "@/components/App/Connected.svelte";
   import Connecting from "@/components/App/Connecting.svelte";
@@ -9,11 +11,19 @@
 
   let component = Connecting;
 
+  async function initialize() {
+    await i18next(await i18nextStore());
+    await appStore();
+
+    $initialized = true;
+  }
+
   on("connect", async () => {
     component = Connecting;
 
-    await i18next();
-    await appStore();
+    if (!$initialized) {
+      await initialize();
+    }
 
     setTimeout(() => {
       if (component !== Disconnected) {
