@@ -2,14 +2,14 @@
   import { on } from "@/libs/socket.io";
   import i18next from "@/libs/i18next";
 
-  import Loading from "@/components/App/Loading.svelte";
   import Connected from "@/components/App/Connected.svelte";
+  import Connecting from "@/components/App/Connecting.svelte";
   import Disconnected from "@/components/App/Disconnected.svelte";
 
-  let component = Loading;
+  let component = Connecting;
 
   on("connect", async () => {
-    component = Loading;
+    component = Connecting;
 
     await i18next();
 

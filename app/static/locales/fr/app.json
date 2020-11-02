@@ -1,7 +1,8 @@
 {
-  "loading": {
+  "sentences": {
     "welcome-message": "Bienvenue chez toi",
-    "waiting-for-connexion": "En attente de connexion"
+    "waiting-for-connexion": "En attente de connexion",
+    "ask-for-client-reload": "Souhaitez-vous actualiser l'application maintenant pour appliquer les modifications?"
   },
   "words": {
     "settings": "options",
@@ -11,8 +12,5 @@
     "disconnect": "déconnexion",
     "connected": "connecté",
     "disconnected": "déconnecté"
-  },
-  "app": {
-    "ask-for-client-reload": "Souhaitez-vous actualiser l'application maintenant pour appliquer les modifications?"
   }
 }

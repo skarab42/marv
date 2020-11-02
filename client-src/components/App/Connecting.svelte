@@ -3,5 +3,5 @@
 </script>
 
 <SplashScreen>
-  <div class="text-center font-mono text-2xl">Loading...</div>
+  <div class="text-center font-mono text-2xl">Connecting...</div>
 </SplashScreen>
