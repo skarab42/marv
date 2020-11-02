@@ -1,6 +1,7 @@
 <script>
   import { on } from "@/libs/socket.io";
   import i18next from "@/libs/i18next";
+  import appStore from "@/stores/app";
 
   import Connected from "@/components/App/Connected.svelte";
   import Connecting from "@/components/App/Connecting.svelte";
@@ -12,6 +13,7 @@
     component = Connecting;
 
     await i18next();
+    await appStore();
 
     setTimeout(() => {
       if (component !== Disconnected) {
