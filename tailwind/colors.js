@@ -9,11 +9,11 @@ module.exports = {
     dark: colors.purple["900"],
   },
   secondary: {
-    light: colors.gray["500"],
-    lighter: colors.gray["600"],
-    default: colors.gray["700"],
-    darker: colors.gray["800"],
-    dark: colors.gray["900"],
+    light: colors.blue["400"],
+    lighter: colors.blue["500"],
+    default: colors.blue["600"],
+    darker: colors.blue["700"],
+    dark: colors.blue["800"],
   },
   light: {
     lighter: colors.gray["200"],

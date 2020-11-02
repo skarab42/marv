@@ -1,5 +1,7 @@
 <script>
-  import Topbar from "./Main/Topbar.svelte";
+  import Topbar from "./Topbar.svelte";
+  import Drawer from "./Drawer.svelte";
 </script>
 
 <Topbar />
+<Drawer />
