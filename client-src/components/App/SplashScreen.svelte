@@ -1,9 +1,9 @@
 <script>
-  import { app } from "@/stores/app";
+  import { store } from "@/stores/app";
   import MarvLogo from "@/assets/images/marv.svg";
   import CenteredBox from "@/components/UI/CenteredBox.svelte";
 
-  $: fingerprint = $app ? $app.fingerprint : "010110110101s";
+  $: fingerprint = $store ? $store.fingerprint : "010110110101s";
 </script>
 
 <CenteredBox>

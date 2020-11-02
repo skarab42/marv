@@ -8,5 +8,8 @@ module.exports = (/* socket */) => {
     i18next(method, ...args) {
       return stores.i18next[method](...args);
     },
+    obs(method, ...args) {
+      return stores.obs[method](...args);
+    },
   };
 };

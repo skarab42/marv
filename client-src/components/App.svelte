@@ -2,6 +2,7 @@
   import { on } from "@/libs/socket.io";
   import i18next from "@/libs/i18next";
 
+  import obsStore from "@/stores/obs";
   import i18nextStore from "@/stores/i18next";
   import appStore, { initialized } from "@/stores/app";
 
@@ -14,16 +15,15 @@
   async function initialize() {
     await i18next(await i18nextStore());
     await appStore();
+    await obsStore();
 
-    $initialized = true;
+    initialized.set(true);
   }
 
   on("connect", async () => {
     component = Connecting;
 
-    if (!$initialized) {
-      await initialize();
-    }
+    await initialize();
 
     setTimeout(() => {
       if (component !== Disconnected) {
