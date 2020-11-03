@@ -13,9 +13,10 @@ function registerEvents() {
 
   obs.on("state", state.set);
 
-  obs.on("connect", () => {
+  obs.on("connect", async () => {
     console.log("connected!");
-    obs.emit("GetStreamStatus");
+    const { version } = await obs.emit("GetVersion");
+    console.log({ version });
   });
 
   obs.on("StreamStatus", (...args) => {
