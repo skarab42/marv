@@ -150,6 +150,7 @@ function connect({ host = "localhost", port = 4444, password = null } = {}) {
       updateState({ connected: true, connecting });
       obs.on("ConnectionClosed", onConnectionClosed);
       registerEvents(obs);
+      updateStreamStatus();
       // onMessage(obs);
       emit("connected");
     })
