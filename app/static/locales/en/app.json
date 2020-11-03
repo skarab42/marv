@@ -12,6 +12,9 @@
     "disconnect": "disconnect",
     "connected": "connected",
     "disconnected": "disconnected",
-    "connecting": "connecting"
+    "connecting": "connecting",
+    "off": "off",
+    "stream": "stream",
+    "record": "record"
   }
 }

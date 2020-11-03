@@ -12,6 +12,9 @@
     "disconnect": "déconnexion",
     "connected": "connecté",
     "disconnected": "déconnecté",
-    "connecting": "connexion"
+    "connecting": "connexion",
+    "off": "éteint",
+    "stream": "diffusion",
+    "record": "enregistrement"
   }
 }
