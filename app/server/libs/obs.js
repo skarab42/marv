@@ -27,7 +27,9 @@ function send(...args) {
   if (!obs) {
     return Promise.reject("OBS is not initialized");
   }
-  return obs.send(...args);
+  return obs.send(...args).catch((data) => {
+    return Promise.reject(data.error);
+  });
 }
 
 function emit(type, ...args) {
@@ -43,13 +45,19 @@ function onMessage(obs) {
   const onmessage = obs._socket.onmessage;
   obs._socket.onmessage = (msg) => {
     onmessage(msg);
-    console.log({ msg });
-    const message = JSON.parse(msg.data);
-    if (message["update-type"]) {
-      const type = message["update-type"];
-      log("event:", type);
-      send(type, message);
-    }
+    // const { type, data } = msg;
+    // if (type !== "message") return;
+    // const message = JSON.parse(data);
+    //
+    // console.log({ message });
+    //
+    // if (message["error"]) {
+    //   log("error:", message["error"]);
+    //   send(type, message["error"]);
+    // } else if (message["update-type"]) {
+    //   log("event:", message["update-type"]);
+    //   send(message["update-type"], message);
+    // }
   };
 }
 

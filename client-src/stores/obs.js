@@ -12,10 +12,15 @@ function registerEvents() {
   initialized = true;
 
   obs.on("state", state.set);
+
+  obs.on("connect", () => {
+    console.log("connected!");
+    obs.emit("GetStreamStatus");
+  });
+
   obs.on("StreamStatus", (...args) => {
     console.log(args);
   });
-  obs.emit("GetStreamStatus");
 }
 
 export default async function load() {
