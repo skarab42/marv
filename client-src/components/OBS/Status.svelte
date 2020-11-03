@@ -11,9 +11,15 @@
       return _("words.disconnected");
     }
   }
+
+  $: console.log($state);
 </script>
 
-<div class="truncate">
-  <span>OBS</span>
-  <span class="lowercase">{label($state)}</span>
-</div>
+{#if !$state.connected}
+  <div class="truncate">
+    <span>OBS</span>
+    <span class="lowercase">{label($state)}</span>
+  </div>
+{:else}
+  <div class="">status...</div>
+{/if}

@@ -3,16 +3,22 @@ const socket = require("./socket.io");
 
 let obs = null;
 let io = socket();
+
+let connecting = false;
 let autoReconnect = true;
 let reconnectionTimeout = 5000;
 let reconnectionTimeoutId = null;
 
+let recordingHeartbeatId = null;
+let recordingHeartbeatTimeout = 2000;
+
 let state = {
   connected: false,
   connecting: false,
+  streaming: false,
+  recording: false,
+  status: null,
 };
-
-let connecting = false;
 
 function log(...args) {
   // eslint-disable-next-line
@@ -36,36 +42,73 @@ function emit(type, ...args) {
   io.emit(`obs.${type}`, ...args);
 }
 
-function setState(newState) {
-  state = { ...state, ...newState };
+function updateState(props) {
+  state = { ...state, ...props };
   emit("state", state);
 }
 
-function onMessage(obs) {
-  const onmessage = obs._socket.onmessage;
-  obs._socket.onmessage = (msg) => {
-    onmessage(msg);
-    // const { type, data } = msg;
-    // if (type !== "message") return;
-    // const message = JSON.parse(data);
-    //
-    // console.log({ message });
-    //
-    // if (message["error"]) {
-    //   log("error:", message["error"]);
-    //   send(type, message["error"]);
-    // } else if (message["update-type"]) {
-    //   log("event:", message["update-type"]);
-    //   send(message["update-type"], message);
-    // }
-  };
+function onStreamStatus(status) {
+  const { streaming, recording } = status;
+  updateState({ streaming, recording, status });
 }
+
+function updateStreamStatus() {
+  send("GetStreamingStatus").then(onStreamStatus);
+}
+
+function recordingHeartbeat() {
+  recordingHeartbeatId = setTimeout(() => {
+    updateStreamStatus();
+    recordingHeartbeat();
+  }, recordingHeartbeatTimeout);
+}
+
+function clearRecordingHeartbeat() {
+  clearTimeout(recordingHeartbeatId);
+  recordingHeartbeatId = null;
+}
+
+function registerEvents(obs) {
+  obs.on("RecordingStarted", () => {
+    updateState({ recording: true });
+    !state.streaming && recordingHeartbeat();
+  });
+
+  obs.on("RecordingStopped", () => {
+    updateState({ recording: false });
+    clearRecordingHeartbeat();
+  });
+
+  obs.on("StreamStarted", () => {
+    updateState({ streaming: true });
+    clearRecordingHeartbeat();
+  });
+
+  obs.on("StreamStopped", () => {
+    updateState({ streaming: false });
+    state.recording && recordingHeartbeat();
+  });
+
+  obs.on("StreamStatus", onStreamStatus);
+}
+
+// function onMessage(obs) {
+//   const onmessage = obs._socket.onmessage;
+//   obs._socket.onmessage = (msg) => {
+//     onmessage(msg);
+//     let { type, data } = msg;
+//     if (type !== "message") return;
+//     data = JSON.parse(data);
+//     const eventName = data["update-type"];
+//     eventName && log(eventName, data);
+//   };
+// }
 
 function reconnect(settings) {
   obs = null;
 
   log(`Reconnecting in ${reconnectionTimeout / 1000} sec.`);
-  setState({ connected: false, connecting: true });
+  updateState({ connected: false, connecting: true });
 
   reconnectionTimeoutId = setTimeout(() => {
     connecting = false;
@@ -80,12 +123,13 @@ function connect({ host = "localhost", port = 4444, password = null } = {}) {
   autoReconnect = true;
   const address = `${host}:${port}`;
 
-  setState({ connected: false, connecting: true });
+  updateState({ connected: false, connecting: true });
   log(`Connect (${address})`);
   emit("connect");
 
   function onConnectionClosed() {
-    setState({ connected: false, connecting: false });
+    updateState({ connected: false, connecting: false });
+    clearRecordingHeartbeat();
     log("Connection closed");
     emit("disconnected");
     obs = null;
@@ -103,14 +147,15 @@ function connect({ host = "localhost", port = 4444, password = null } = {}) {
     .then(() => {
       log("Connected");
       connecting = false;
-      setState({ connected: true, connecting });
+      updateState({ connected: true, connecting });
       obs.on("ConnectionClosed", onConnectionClosed);
+      registerEvents(obs);
+      // onMessage(obs);
       emit("connected");
-      onMessage(obs);
     })
     .catch((error) => {
       log(`Error: ${error.code}`);
-      setState({ connected: false, connecting: autoReconnect });
+      updateState({ connected: false, connecting: autoReconnect });
       if (autoReconnect) {
         reconnect({ host, port, password });
       } else {
@@ -121,7 +166,7 @@ function connect({ host = "localhost", port = 4444, password = null } = {}) {
 
 function disconnect() {
   connecting = false;
-  setState({ connected: false, connecting });
+  updateState({ connected: false, connecting });
   clearTimeout(reconnectionTimeoutId);
   reconnectionTimeoutId = null;
   obs && obs.disconnect();
