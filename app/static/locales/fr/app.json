@@ -11,6 +11,7 @@
     "connect": "connexion",
     "disconnect": "déconnexion",
     "connected": "connecté",
-    "disconnected": "déconnecté"
+    "disconnected": "déconnecté",
+    "connecting": "connexion"
   }
 }

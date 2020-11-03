@@ -28,7 +28,8 @@ async function middleware([key, ...args], next) {
     try {
       payload = await item(...args);
     } catch (error) {
-      return callback({ error: `[socket.io] ${key}: ${error.message}` });
+      const message = error.message || error;
+      return callback({ error: `[socket.io] ${key}: ${message}` });
     }
   }
 

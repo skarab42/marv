@@ -11,6 +11,7 @@
     "connect": "connect",
     "disconnect": "disconnect",
     "connected": "connected",
-    "disconnected": "disconnected"
+    "disconnected": "disconnected",
+    "connecting": "connecting"
   }
 }

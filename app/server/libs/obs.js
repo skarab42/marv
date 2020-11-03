@@ -39,6 +39,20 @@ function setState(newState) {
   emit("state", state);
 }
 
+function onMessage(obs) {
+  const onmessage = obs._socket.onmessage;
+  obs._socket.onmessage = (msg) => {
+    onmessage(msg);
+    console.log({ msg });
+    const message = JSON.parse(msg.data);
+    if (message["update-type"]) {
+      const type = message["update-type"];
+      log("event:", type);
+      send(type, message);
+    }
+  };
+}
+
 function reconnect(settings) {
   obs = null;
 
@@ -84,7 +98,7 @@ function connect({ host = "localhost", port = 4444, password = null } = {}) {
       setState({ connected: true, connecting });
       obs.on("ConnectionClosed", onConnectionClosed);
       emit("connected");
-      // onMessage(obs);
+      onMessage(obs);
     })
     .catch((error) => {
       log(`Error: ${error.code}`);

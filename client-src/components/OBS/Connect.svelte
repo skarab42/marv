@@ -28,5 +28,4 @@
   class="flex p-2 space-x-2 cursor-pointer {color($state)}"
 >
   <Icon icon="{MdPowerSettingsNew}" />
-  <div class="hidden md:inline">OBS</div>
 </div>

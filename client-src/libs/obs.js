@@ -5,5 +5,6 @@ export default {
   disconnect: () => emit("obs.disconnect"),
   getState: () => emit("obs.getState"),
   getStore: () => emit("stores.obs", "getAll"),
+  emit: (...args) => emit("obs.emit", ...args),
   on: (eventName, callback) => on(`obs.${eventName}`, callback),
 };
