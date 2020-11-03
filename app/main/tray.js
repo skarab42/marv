@@ -5,16 +5,18 @@ const open = require("open");
 const { name, version, icon } = store.app.getAll();
 const fingerprint = `${name} v${version}`;
 
-const { host, port } = store.server.getAll();
-const address = `http://${host}:${port}`;
-
 let tray = null;
+
+function openInBrowser() {
+  const { host, port } = store.server.getAll();
+  open(`http://${host}:${port}`);
+}
 
 function createMenu() {
   return Menu.buildFromTemplate([
     { label: fingerprint, enabled: false },
     { type: "separator" },
-    { label: "Open", click: () => open(address) },
+    { label: "Open in browser", click: () => openInBrowser() },
     { type: "separator" },
     { label: "Quit", click: () => app.quit() },
   ]);
