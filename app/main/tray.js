@@ -1,4 +1,5 @@
 const { app, Tray, Menu } = require("electron");
+const createWindow = require("./window");
 const store = require("../stores");
 const open = require("open");
 
@@ -17,6 +18,7 @@ function createMenu() {
     { label: fingerprint, enabled: false },
     { type: "separator" },
     { label: "Open in browser", click: () => openInBrowser() },
+    { label: "Open in window", click: () => createWindow() },
     { type: "separator" },
     { label: "Quit", click: () => app.quit() },
   ]);
