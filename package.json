@@ -25,6 +25,7 @@
     "@rollup/plugin-alias": "^3.1.1",
     "@rollup/plugin-commonjs": "^15.1.0",
     "@rollup/plugin-node-resolve": "^9.0.0",
+    "capitalize": "^2.0.3",
     "concurrently": "^5.3.0",
     "electron": "^10.1.5",
     "electron-builder": "^22.9.1",

@@ -1,10 +1,12 @@
 const { app, Tray, Menu } = require("electron");
+const { i18next } = require("../server/libs/i18next");
 const createWindow = require("./window");
+const capitalize = require("capitalize");
 const store = require("../stores");
 const open = require("open");
 
 const { name, version, icon } = store.app.getAll();
-const fingerprint = `${name} v${version}`;
+const fingerprint = `${capitalize(name)} v${version}`;
 
 let tray = null;
 
@@ -17,10 +19,16 @@ function createMenu() {
   return Menu.buildFromTemplate([
     { label: fingerprint, enabled: false },
     { type: "separator" },
-    { label: "Open in browser", click: () => openInBrowser() },
-    { label: "Open in window", click: () => createWindow() },
+    {
+      label: i18next.t("sentences.open-in-browser"),
+      click: () => openInBrowser(),
+    },
+    {
+      label: i18next.t("sentences.open-in-window"),
+      click: () => createWindow(),
+    },
     { type: "separator" },
-    { label: "Quit", click: () => app.quit() },
+    { label: capitalize(i18next.t("words.quit")), click: () => app.quit() },
   ]);
 }
 

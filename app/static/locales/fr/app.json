@@ -2,7 +2,9 @@
   "sentences": {
     "welcome-message": "Bienvenue chez toi",
     "waiting-for-connexion": "En attente de connexion",
-    "ask-for-client-reload": "Souhaitez-vous actualiser l'application maintenant pour appliquer les modifications?"
+    "ask-for-client-reload": "Souhaitez-vous actualiser l'application maintenant pour appliquer les modifications?",
+    "open-in-window": "Ouvrir dans une fenêtre",
+    "open-in-browser": "Ouvrir dans le navigateur"
   },
   "words": {
     "settings": "options",
@@ -15,6 +17,7 @@
     "connecting": "connexion",
     "off": "éteint",
     "stream": "diffusion",
-    "record": "enregistrement"
+    "record": "enregistrement",
+    "quit": "quitter"
   }
 }
