@@ -4,14 +4,15 @@ const { _ } = require("./i18next");
 
 let panels = store.get("panels");
 
-function name() {
-  return `${_("sentences.powers-group")} n°${panels.length + 1}`;
+function name(id) {
+  return `${_("sentences.powers-group")} #${id.slice(0, 4)}`;
 }
 
 function create() {
+  const id = uuid();
   return {
-    id: uuid(),
-    name: name(),
+    id,
+    name: name(id),
     widgets: [],
   };
 }
