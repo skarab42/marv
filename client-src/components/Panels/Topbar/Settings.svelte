@@ -25,7 +25,12 @@
 
 {#if $editMode}
   <div class="p-2 flex items-center bg-secondary-darker text-light space-x-2">
-    <Button icon="{MdDelete}" on:click="{openRemoveModal}" class="bg-red-600">
+    <Button
+      icon="{MdDelete}"
+      on:click="{openRemoveModal}"
+      padding="p-2"
+      class="bg-red-600"
+    >
       <div class="hidden lg:inline">{_('words.remove')}</div>
     </Button>
   </div>
