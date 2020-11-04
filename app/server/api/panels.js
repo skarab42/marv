@@ -1,8 +1,7 @@
-module.exports = (socket) => {
-  return {
-    add() {
-      console.log("addPanel...", socket.id);
-      socket.emit("panels.add", "prout");
-    },
-  };
+module.exports = {
+  add() {
+    console.log("addPanel...", this.id);
+    this.emit("panels.add", "me");
+    this.broadcast.emit("panels.add", "all");
+  },
 };

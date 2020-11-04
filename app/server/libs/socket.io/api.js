@@ -7,14 +7,14 @@ const apiPath = path.resolve(__dirname, apiDir);
 
 const modules = {};
 
-function loadModules(socket) {
+function loadModules() {
   fs.readdirSync(apiPath).forEach((filename) => {
     const name = path.parse(filename).name;
-    modules[name] = require(`${apiDir}/${name}`)(socket);
+    modules[name] = require(`${apiDir}/${name}`);
   });
 }
 
-async function middleware([key, ...args], next) {
+async function middleware(socket, [key, ...args], next) {
   const callback = args.pop();
   const item = dotProp.get(modules, key);
 
@@ -26,7 +26,8 @@ async function middleware([key, ...args], next) {
 
   if (typeof item === "function") {
     try {
-      payload = await item(...args);
+      const func = item.bind(socket);
+      payload = await func(...args);
     } catch (error) {
       const message = error.message || error;
       return callback({ error: `[socket.io] ${key}: ${message}` });
@@ -37,6 +38,6 @@ async function middleware([key, ...args], next) {
 }
 
 module.exports = (socket) => {
-  loadModules(socket);
-  return middleware;
+  loadModules();
+  return middleware.bind(null, socket);
 };
