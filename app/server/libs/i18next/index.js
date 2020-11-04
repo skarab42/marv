@@ -6,7 +6,7 @@ const stores = require("../../../stores");
 const options = stores.i18next.getAll();
 const locales = path.join(stores.server.get("staticPath"), "locales");
 
-const _ = i18next.use(backend).init({
+i18next.use(backend).init({
   ...options,
   initImmediate: false,
   backend: {
@@ -15,4 +15,6 @@ const _ = i18next.use(backend).init({
   },
 });
 
-module.exports = { _, i18next };
+const _ = (...args) => i18next.t(...args);
+
+module.exports = { i18next, _ };

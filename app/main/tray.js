@@ -1,5 +1,5 @@
 const { app, Tray, Menu } = require("electron");
-const { i18next } = require("../server/libs/i18next");
+const { _ } = require("../server/libs/i18next");
 const createWindow = require("./window");
 const capitalize = require("capitalize");
 const store = require("../stores");
@@ -20,15 +20,15 @@ function createMenu() {
     { label: fingerprint, enabled: false },
     { type: "separator" },
     {
-      label: i18next.t("sentences.open-in-browser"),
+      label: _("sentences.open-in-browser"),
       click: () => openInBrowser(),
     },
     {
-      label: i18next.t("sentences.open-in-window"),
+      label: _("sentences.open-in-window"),
       click: () => createWindow(),
     },
     { type: "separator" },
-    { label: capitalize(i18next.t("words.quit")), click: () => app.quit() },
+    { label: capitalize(_("words.quit")), click: () => app.quit() },
   ]);
 }
 
