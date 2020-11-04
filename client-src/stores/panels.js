@@ -8,8 +8,8 @@ let loaded = false;
 function loadOnce() {
   if (loaded) return;
 
-  api.on("add", (...args) => {
-    console.log("add:", args);
+  api.on("add", (panel, event) => {
+    console.log("add:", { panel, event });
   });
 
   loaded = true;
