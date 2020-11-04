@@ -19,9 +19,10 @@
   let scroller = null;
 
   api.on("add", (panel, { owner }) => {
-    if (!owner) return;
-    setCurrentPanel(panel);
-    scroller && scroller.scrollRight();
+    if (owner || !$currentPanel) {
+      setCurrentPanel(panel);
+      scroller && scroller.scrollRight();
+    }
   });
 
   api.on("remove", (panel, pos) => {
