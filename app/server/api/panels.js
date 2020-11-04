@@ -6,6 +6,11 @@ module.exports = {
     this.notify("panels.add", panel);
     return panel;
   },
+  addWidget(panel) {
+    const widget = panels.addWidget(panel);
+    this.notify("panels.addWidget", { panel, widget });
+    return { panel, widget };
+  },
   remove(panel) {
     const pos = panels.remove(panel);
     this.notify("panels.remove", panel, pos);

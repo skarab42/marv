@@ -1,4 +1,4 @@
-import { writable } from "svelte/store";
+import { writable, get } from "svelte/store";
 import api from "@/libs/panels";
 
 export const panels = writable([]);
@@ -19,12 +19,30 @@ export function setCurrentPanel(panel) {
   currentPanel.set(panel);
 }
 
-function onAdd(panel) {
+function onAdd(panel, { owner }) {
   panels.update((state) => [...state, panel]);
+  if (owner || !get(currentPanel)) {
+    setCurrentPanel(panel);
+  }
 }
 
-function onRemove(panel) {
-  panels.update((state) => state.filter((p) => p.id !== panel.id));
+function onRemove(panel, pos) {
+  panels.update((state) => {
+    state = state.filter((p) => p.id !== panel.id);
+    if (!state.length) {
+      setCurrentPanel(null);
+      setEditMode(false);
+      return state;
+    }
+
+    const cp = get(currentPanel);
+
+    if (cp && cp.id === panel.id) {
+      setCurrentPanel(state[pos] || state[pos - 1]);
+    }
+
+    return state;
+  });
 }
 
 function onUpdate(panel) {
@@ -42,6 +60,6 @@ function loadOnce() {
 export default async function load() {
   const store = await api.getStore();
   panels.set(store.panels);
-  setCurrentPanel(store.panels[0]);
+  setCurrentPanel(store.panels[0]); // TODO get from locale storage
   loadOnce();
 }

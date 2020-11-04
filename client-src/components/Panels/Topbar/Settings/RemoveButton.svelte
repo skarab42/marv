@@ -23,10 +23,10 @@
 </script>
 
 <Button
-  icon="{MdDelete}"
-  on:click="{openRemoveModal}"
   padding="p-2"
+  icon="{MdDelete}"
   class="bg-red-600"
+  on:click="{openRemoveModal}"
 >
   <div class="hidden lg:inline">{_('words.remove')}</div>
 </Button>

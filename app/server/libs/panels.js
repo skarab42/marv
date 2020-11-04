@@ -17,9 +17,32 @@ function create() {
   };
 }
 
+function createWidget() {
+  return {
+    id: uuid(),
+    state: { w: 2, h: 2 },
+    props: {
+      label: null,
+      labelSize: 16,
+      labelPadding: 8,
+      labelPosition: "text-center",
+      classList: "rounded-md",
+      backgroundColor: "#8fa2b5",
+      backgroundImage: null,
+      component: null,
+    },
+  };
+}
+
 function add() {
   let panel = create();
   panels.push(panel);
+  store.set("panels", panels);
+  return panel;
+}
+
+function update(panel) {
+  panels = panels.map((p) => (p.id === panel.id ? panel : p));
   store.set("panels", panels);
   return panel;
 }
@@ -37,13 +60,15 @@ function remove(panel) {
   return pos;
 }
 
-function update(panel) {
-  panels = panels.map((p) => (p.id === panel.id ? panel : p));
-  return panel;
+function addWidget(panel) {
+  let widget = createWidget();
+  panel.widgets.push(widget);
+  return update(panel);
 }
 
 module.exports = {
   add,
   remove,
   update,
+  addWidget,
 };

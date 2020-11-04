@@ -12,26 +12,13 @@
     currentPanel,
     setCurrentPanel,
     editMode,
-    setEditMode,
     toggleEditMode,
   } from "@/stores/panels";
 
   let scroller = null;
 
   api.on("add", (panel, { owner }) => {
-    if (owner || !$currentPanel) {
-      setCurrentPanel(panel);
-      scroller && scroller.scrollRight();
-    }
-  });
-
-  api.on("remove", (panel, pos) => {
-    if (!$panels.length) {
-      setEditMode(false);
-      setCurrentPanel(null);
-    } else if ($currentPanel.id === panel.id) {
-      setCurrentPanel($panels[pos] || $panels[pos - 1]);
-    }
+    owner && scroller && scroller.scrollRight();
   });
 
   function isActiveClass(p1, p2) {

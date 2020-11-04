@@ -8,7 +8,8 @@
     "no-panels-found": "No panel found o_O ! Click on the cross to add your first group of powers !",
     "powers-group": "Powers group",
     "ask-for-panel-deletion": "Would you like to remove the \"{{name}}\" panel?",
-    "no-widgets-found": "No widgets found o_O ! Click on the cog button to add your first power !"
+    "no-widgets-found": "No widgets found o_O ! Click on the cog button to add your first power !",
+    "add-grid-widget": "add widget"
   },
   "words": {
     "settings": "settings",

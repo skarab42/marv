@@ -5,5 +5,6 @@ export default {
   remove: (panel) => emit("panels.remove", panel),
   update: (panel) => emit("panels.update", panel),
   getStore: () => emit("stores.panels", "getAll"),
+  addWidget: (panel) => emit("panels.addWidget", panel),
   on: (eventName, callback) => on(`panels.${eventName}`, callback),
 };
