@@ -46,7 +46,15 @@ function onRemove(panel, pos) {
 }
 
 function onUpdate(panel) {
-  panels.update((state) => state.map((p) => (p.id === panel.id ? panel : p)));
+  console.log("update", panel);
+  panels.update((state) =>
+    state.map((p) => (p.id === panel.id ? { ...p, ...panel } : p))
+  );
+}
+
+function onAddWidget({ panel, widget }) {
+  console.log("add", { panel, widget });
+  onUpdate(panel);
 }
 
 function loadOnce() {
@@ -54,6 +62,7 @@ function loadOnce() {
   api.on("add", onAdd);
   api.on("remove", onRemove);
   api.on("update", onUpdate);
+  api.on("addWidget", onAddWidget);
   loaded = true;
 }
 

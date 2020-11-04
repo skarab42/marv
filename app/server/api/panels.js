@@ -6,8 +6,8 @@ module.exports = {
     this.notify("panels.add", panel);
     return panel;
   },
-  addWidget(panel) {
-    const widget = panels.addWidget(panel);
+  addWidget(targetPanel) {
+    const { panel, widget } = panels.addWidget(targetPanel);
     this.notify("panels.addWidget", { panel, widget });
     return { panel, widget };
   },

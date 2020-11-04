@@ -42,7 +42,12 @@ function add() {
 }
 
 function update(panel) {
-  panels = panels.map((p) => (p.id === panel.id ? panel : p));
+  panels = panels.map((p) => {
+    if (p.id === panel.id) {
+      return (panel = { ...p, ...panel });
+    }
+    return p;
+  });
   store.set("panels", panels);
   return panel;
 }
@@ -62,8 +67,11 @@ function remove(panel) {
 
 function addWidget(panel) {
   let widget = createWidget();
-  panel.widgets.push(widget);
-  return update(panel);
+  const oldPanel = panels.find((p) => p.id === panel.id);
+  oldPanel.widgets.push(widget);
+  const newPanel = update(oldPanel);
+  console.log(newPanel.widgets.length);
+  return { panel: newPanel, widget };
 }
 
 module.exports = {
