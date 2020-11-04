@@ -18,6 +18,12 @@
   }
 </script>
 
+<style>
+  button:focus {
+    outline: none;
+  }
+</style>
+
 <button
   class="flex items-center space-x-1 {padding} font-medium uppercase rounded {textColor} {cls}"
   {...$$restProps}
