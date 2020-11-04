@@ -11,5 +11,8 @@ module.exports = (/* socket */) => {
     obs(method, ...args) {
       return stores.obs[method](...args);
     },
+    panels(method, ...args) {
+      return stores.panels[method](...args);
+    },
   };
 };

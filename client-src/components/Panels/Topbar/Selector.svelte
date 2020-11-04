@@ -1,40 +1,21 @@
 <script>
-  import {
-    panels,
-    add,
-    select,
-    editMode,
-    toggleEditMode,
-  } from "@/stores/panels";
-  import { _ } from "@/libs/i18next";
+  import api from "@/libs/panels";
+  import { panels } from "@/stores/panels";
   import MdAdd from "svelte-icons/md/MdAdd.svelte";
   import Button from "@/components/UI/Button.svelte";
-  import MdSettings from "svelte-icons/md/MdSettings.svelte";
 
   function addPanel() {
-    select(add());
+    api.add();
   }
 
-  $: console.log($panels);
-  $: console.log($editMode);
+  $: console.log("$panels:", $panels);
 </script>
 
 <div class="p-2 flex space-x-2 items-center bg-dark text-light">
   <Button
     icon="{MdAdd}"
     padding="{null}"
-    class="bg-primary"
     on:click="{addPanel}"
+    class="bg-primary"
   />
-
-  {#if $panels.length}
-    <Button
-      padding="{null}"
-      icon="{MdSettings}"
-      on:click="{toggleEditMode}"
-      class="{$editMode ? 'bg-red-600' : 'bg-primary'}"
-    />
-  {:else}
-    <div class="p-2">{_('sentences.no-panels-found')}</div>
-  {/if}
 </div>

@@ -3,6 +3,7 @@
   import i18next from "@/libs/i18next";
 
   import obsStore from "@/stores/obs";
+  import panelsStore from "@/stores/panels";
   import i18nextStore from "@/stores/i18next";
   import appStore, { initialized } from "@/stores/app";
 
@@ -14,6 +15,7 @@
 
   async function initialize() {
     await i18next(await i18nextStore());
+    await panelsStore();
     await appStore();
     await obsStore();
 
