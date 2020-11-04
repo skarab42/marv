@@ -4,7 +4,9 @@
     "waiting-for-connexion": "En attente de connexion",
     "ask-for-client-reload": "Souhaitez-vous actualiser l'application maintenant pour appliquer les modifications?",
     "open-in-window": "Ouvrir dans une fenêtre",
-    "open-in-browser": "Ouvrir dans le navigateur"
+    "open-in-browser": "Ouvrir dans le navigateur",
+    "no-panels-found": "Aucun panneau trouvé o_O! Cliquez sur la croix pour ajouter votre premier groupe de pouvoirs!",
+    "powers-group": "Group de pouvoirs"
   },
   "words": {
     "settings": "options",

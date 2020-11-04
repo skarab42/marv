@@ -9,7 +9,7 @@
   export let iconSize = null;
   export let iconColor = null;
   export let textColor = null;
-  export let pad = "px-4 py-2";
+  export let padding = "px-4 py-2";
 
   let _textColor = dark ? "text-light" : "text-dark";
 
@@ -19,7 +19,7 @@
 </script>
 
 <button
-  class="flex items-center space-x-1 {pad} font-medium uppercase rounded {textColor} {cls}"
+  class="flex items-center space-x-1 {padding} font-medium uppercase rounded {textColor} {cls}"
   {...$$restProps}
   on:click
 >

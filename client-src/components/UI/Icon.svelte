@@ -3,6 +3,7 @@
   export let size = "md";
   export let flex = true;
   export let block = true;
+  export let color = null;
 
   export let cls = "";
   export { cls as class };
@@ -18,6 +19,6 @@
   $: _block = block ? "inline-block" : "";
 </script>
 
-<span on:click class="{_flex} {_size} {_block} {cls}">
+<span on:click class="{_flex} {_size} {_block} {color} {cls}">
   <svelte:component this="{icon}" />
 </span>

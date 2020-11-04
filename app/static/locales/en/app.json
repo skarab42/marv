@@ -4,7 +4,9 @@
     "waiting-for-connexion": "Waiting for connexion",
     "ask-for-client-reload": "Would you like to reload the application now to apply changes ?",
     "open-in-window": "Open in window",
-    "open-in-browser": "Open in browser"
+    "open-in-browser": "Open in browser",
+    "no-panels-found": "No panel found o_O ! Click on the cross to add your first group of powers !",
+    "powers-group": "Powers group"
   },
   "words": {
     "settings": "settings",
