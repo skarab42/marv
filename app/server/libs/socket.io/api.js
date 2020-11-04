@@ -37,7 +37,15 @@ async function middleware(socket, [key, ...args], next) {
   callback({ payload });
 }
 
+function extend(socket) {
+  socket.notify = (...args) => {
+    socket.emit(...args, { owner: true });
+    socket.broadcast.emit(...args, { owner: false });
+  };
+}
+
 module.exports = (socket) => {
   loadModules();
+  extend(socket);
   return middleware.bind(null, socket);
 };

@@ -1,7 +1,9 @@
+// const stores = require("../../stores");
+const panels = require("../libs/panels");
+
 module.exports = {
   add() {
-    console.log("addPanel...", this.id);
-    this.emit("panels.add", "me");
-    this.broadcast.emit("panels.add", "all");
+    const panel = panels.add();
+    this.notify("panels.add", panel);
   },
 };
