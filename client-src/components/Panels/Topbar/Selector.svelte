@@ -4,10 +4,6 @@
   import MdAdd from "svelte-icons/md/MdAdd.svelte";
   import Button from "@/components/UI/Button.svelte";
 
-  function addPanel() {
-    api.add();
-  }
-
   $: console.log("$panels:", $panels);
 </script>
 
@@ -15,7 +11,7 @@
   <Button
     icon="{MdAdd}"
     padding="{null}"
-    on:click="{addPanel}"
+    on:click="{api.add}"
     class="bg-primary"
   />
 </div>
