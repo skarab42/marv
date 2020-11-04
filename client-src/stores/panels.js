@@ -27,10 +27,15 @@ function onRemove(panel) {
   panels.update((state) => state.filter((p) => p.id !== panel.id));
 }
 
+function onUpdate(panel) {
+  panels.update((state) => state.map((p) => (p.id === panel.id ? panel : p)));
+}
+
 function loadOnce() {
   if (loaded) return;
   api.on("add", onAdd);
   api.on("remove", onRemove);
+  api.on("update", onUpdate);
   loaded = true;
 }
 

@@ -37,7 +37,13 @@ function remove(panel) {
   return pos;
 }
 
+function update(panel) {
+  panels = panels.map((p) => (p.id === panel.id ? panel : p));
+  return panel;
+}
+
 module.exports = {
   add,
   remove,
+  update,
 };

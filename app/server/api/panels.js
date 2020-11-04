@@ -11,4 +11,9 @@ module.exports = {
     this.notify("panels.remove", panel, pos);
     return panel;
   },
+  update(panel) {
+    panels.update(panel);
+    this.notify("panels.update", panel);
+    return panel;
+  },
 };

@@ -22,6 +22,7 @@
     "stream": "diffusion",
     "record": "enregistrement",
     "quit": "quitter",
-    "remove": "Supprimer"
+    "remove": "supprimer",
+    "rename": "renommer"
   }
 }

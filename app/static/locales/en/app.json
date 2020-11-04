@@ -22,6 +22,7 @@
     "stream": "stream",
     "record": "record",
     "quit": "quit",
-    "remove": "remove"
+    "remove": "remove",
+    "rename": "rename"
   }
 }
