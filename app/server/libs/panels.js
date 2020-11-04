@@ -2,7 +2,7 @@ const { panels: store } = require("../../stores");
 const { v4: uuid } = require("uuid");
 const { _ } = require("./i18next");
 
-const panels = store.get("panels");
+let panels = store.get("panels");
 
 function name() {
   return `${_("sentences.powers-group")} n°${panels.length + 1}`;
@@ -23,6 +23,20 @@ function add() {
   return panel;
 }
 
+function remove(panel) {
+  let pos = -1;
+  panels = panels.filter((p, i) => {
+    if (p.id === panel.id) {
+      pos = i;
+      return false;
+    }
+    return true;
+  });
+  store.set("panels", panels);
+  return pos;
+}
+
 module.exports = {
   add,
+  remove,
 };

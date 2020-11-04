@@ -6,7 +6,8 @@
     "open-in-window": "Ouvrir dans une fenêtre",
     "open-in-browser": "Ouvrir dans le navigateur",
     "no-panels-found": "Aucun panneau trouvé o_O! Cliquez sur la croix pour ajouter votre premier groupe de pouvoirs!",
-    "powers-group": "Group de pouvoirs"
+    "powers-group": "Group de pouvoirs",
+    "ask-for-panel-deletion": "Tu veux vraiment supprimer le paneau \"{{name}}\"?"
   },
   "words": {
     "settings": "options",
@@ -20,6 +21,7 @@
     "off": "éteint",
     "stream": "diffusion",
     "record": "enregistrement",
-    "quit": "quitter"
+    "quit": "quitter",
+    "remove": "Supprimer"
   }
 }

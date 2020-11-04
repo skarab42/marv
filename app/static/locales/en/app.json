@@ -6,7 +6,8 @@
     "open-in-window": "Open in window",
     "open-in-browser": "Open in browser",
     "no-panels-found": "No panel found o_O ! Click on the cross to add your first group of powers !",
-    "powers-group": "Powers group"
+    "powers-group": "Powers group",
+    "ask-for-panel-deletion": "Would you like to remove the \"{{name}}\" panel?"
   },
   "words": {
     "settings": "settings",
@@ -20,6 +21,7 @@
     "off": "off",
     "stream": "stream",
     "record": "record",
-    "quit": "quit"
+    "quit": "quit",
+    "remove": "remove"
   }
 }

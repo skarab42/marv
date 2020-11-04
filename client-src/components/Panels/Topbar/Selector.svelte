@@ -12,16 +12,25 @@
     currentPanel,
     setCurrentPanel,
     editMode,
+    setEditMode,
     toggleEditMode,
   } from "@/stores/panels";
 
-  let scoller = null;
-
-  $: console.log("$panels:", $panels);
-  $: console.log("$currentPanel", $currentPanel);
+  let scroller = null;
 
   api.on("add", (panel, { owner }) => {
-    owner && scoller.scrollRight();
+    if (!owner) return;
+    setCurrentPanel(panel);
+    scroller && scroller.scrollRight();
+  });
+
+  api.on("remove", (panel, pos) => {
+    if (!$panels.length) {
+      setEditMode(false);
+      setCurrentPanel(null);
+    } else if ($currentPanel.id === panel.id) {
+      setCurrentPanel($panels[pos] || $panels[pos - 1]);
+    }
   });
 
   function isActiveClass(p1, p2) {
@@ -43,7 +52,7 @@
       on:click="{toggleEditMode}"
       class="{$editMode ? 'bg-red-600' : 'bg-primary'}"
     />
-    <HorizontalScroller bind:this="{scoller}" gap="2" arrowClass="bg-dark">
+    <HorizontalScroller bind:this="{scroller}" gap="2" arrowClass="bg-dark">
       {#each $panels as panel}
         <Button
           padding="p-2"

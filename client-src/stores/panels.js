@@ -7,6 +7,10 @@ export const currentPanel = writable(null);
 
 let loaded = false;
 
+export function setEditMode(enabled = true) {
+  editMode.set(enabled);
+}
+
 export function toggleEditMode() {
   editMode.update((enabled) => !enabled);
 }
@@ -15,14 +19,18 @@ export function setCurrentPanel(panel) {
   currentPanel.set(panel);
 }
 
-function onAdd(panel, { owner }) {
+function onAdd(panel) {
   panels.update((state) => [...state, panel]);
-  owner && setCurrentPanel(panel);
+}
+
+function onRemove(panel) {
+  panels.update((state) => state.filter((p) => p.id !== panel.id));
 }
 
 function loadOnce() {
   if (loaded) return;
   api.on("add", onAdd);
+  api.on("remove", onRemove);
   loaded = true;
 }
 
