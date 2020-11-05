@@ -12,7 +12,7 @@
   {#each $panels as panel}
     <div class="absolute p-1 inset-0 {invisible($currentPanel, panel)}">
       {#if panel.grid.length}
-        <Grid grid="{panel.grid}" />
+        <Grid panel="{panel}" />
       {:else}
         <div class="p-4">{_('sentences.no-widgets-found')}</div>
       {/if}

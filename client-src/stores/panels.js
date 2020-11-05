@@ -55,14 +55,19 @@ function onRemove(panel, pos) {
 }
 
 function onUpdate(panel) {
+  const cp = get(currentPanel);
+
   panels.update((state) =>
     state.map((p) => (p.id === panel.id ? { ...p, ...panel } : p))
   );
+
+  if (cp && cp.id === panel.id) {
+    setCurrentPanel(panel);
+  }
 }
 
-function onAddWidget({ panel }, { owner }) {
+function onAddWidget({ panel }) {
   onUpdate(panel);
-  owner && setCurrentPanel(panel);
 }
 
 function loadOnce() {
