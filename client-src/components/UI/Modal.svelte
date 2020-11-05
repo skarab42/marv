@@ -42,18 +42,3 @@
     </div>
   </div>
 </div>
-
-<!-- <div bind:this={element} on:click|stopPropagation class="{position} {content} {colors}" style="top:32px">
-  <div class="relative flex flex-col min-w-full md:min-w-1/2">
-    <div class="flex-auto"></div>
-    <div class="mb-10 text-dark bg-light rounded {cls}">
-      {#if closable}
-      <div on:click={close} class="absolute right-0 mt-2 mr-2">
-        <Icon icon={MdClose} class="cursor-pointer" />
-      </div>
-      {/if}
-      <slot />
-    </div>
-    <div class="flex-auto"></div>
-  </div>
-</div> -->
