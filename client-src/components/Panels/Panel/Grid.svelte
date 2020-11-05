@@ -6,9 +6,10 @@
 
   export let panel;
 
+  const reducer = ({ id, x, y, w, h }) => ({ id, x, y, w, h });
+
   function onChange() {
-    const grid = panel.grid.map(({ id, x, y, w, h }) => ({ id, x, y, w, h }));
-    api.update({ ...panel, grid });
+    api.update({ ...panel, grid: panel.grid.map(reducer) });
   }
 </script>
 
