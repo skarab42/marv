@@ -1,6 +1,6 @@
 <script>
   export let borders;
-  export let position = "absolute right-0 px-1";
+  export let position = "absolute top-0 right-0 px-1";
 </script>
 
 <style>
