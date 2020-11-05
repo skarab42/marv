@@ -8,7 +8,7 @@
   <div
     use:clickoutside
     on:clickoutside="{hide}"
-    class="absolute top-0 right-0 bottom-0 flex flex-col bg-dark"
+    class="absolute z-50 top-0 right-0 bottom-0 flex flex-col bg-dark shadow"
   >
     <div class="p-2 bg-secondary">Drawer</div>
     <div class="p-2">Item...</div>
