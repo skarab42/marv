@@ -2,23 +2,32 @@
   import api from "@/api/panels";
   import { _ } from "@/libs/i18next";
   import { currentPanel } from "@/stores/panels";
-  import Modal from "@/components/UI/Modal.svelte";
   import Button from "@/components/UI/Button.svelte";
   import MdDelete from "svelte-icons/md/MdDeleteForever.svelte";
+  import ConfirmModal from "@/components/UI/ConfirmModal.svelte";
 
-  let removeModal = false;
+  let confirmModal = false;
 
-  function openRemoveModal() {
-    removeModal = true;
+  let question = _("sentences.ask-for-panel-deletion", {
+    name: $currentPanel.name,
+  });
+
+  function openConfirmModal() {
+    confirmModal = true;
   }
 
-  function closeRemoveModal() {
-    removeModal = false;
+  function closeConfirmModal() {
+    confirmModal = false;
   }
 
   function removeCurrentPanel() {
     api.remove($currentPanel);
-    closeRemoveModal();
+    closeConfirmModal();
+  }
+
+  function onConfirm({ detail }) {
+    if (detail) removeCurrentPanel();
+    else closeConfirmModal();
   }
 </script>
 
@@ -26,23 +35,13 @@
   padding="p-2"
   icon="{MdDelete}"
   class="bg-red-600"
-  on:click="{openRemoveModal}"
+  on:click="{openConfirmModal}"
 >
   <div class="hidden lg:inline">{_('words.remove')}</div>
 </Button>
 
-{#if removeModal}
-  <Modal class="bg-dark rounded">
-    <div class="p-5 font-bold">
-      {_('sentences.ask-for-panel-deletion', { name: $currentPanel.name })}
-    </div>
-    <div class="flex p-5 space-x-2">
-      <Button class="bg-primary" on:click="{removeCurrentPanel}">
-        {_('words.yes')}
-      </Button>
-      <Button class="bg-dark-darker" on:click="{closeRemoveModal}">
-        {_('words.no')}
-      </Button>
-    </div>
-  </Modal>
-{/if}
+<ConfirmModal
+  question="{question}"
+  visible="{confirmModal}"
+  on:confirm="{onConfirm}"
+/>
