@@ -41,11 +41,12 @@
   };
 
   function onWheel(event) {
+    event.stopPropagation();
     throttleScroll(event.deltaY / 100);
   }
 
   onMount(() => {
-    element.addEventListener("wheel", onWheel);
+    element.addEventListener("wheel", onWheel, { passive: true });
   });
 
   afterUpdate(isOverflowing);
