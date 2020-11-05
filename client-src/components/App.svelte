@@ -1,4 +1,7 @@
 <script>
+  import "simplebar";
+  import "simplebar/dist/simplebar.css";
+
   import { on } from "@/libs/socket.io";
   import i18next from "@/libs/i18next";
 

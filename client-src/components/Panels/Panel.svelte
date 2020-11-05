@@ -8,11 +8,13 @@
   }
 </script>
 
-<div class="relative flex flex-auto overflow-x-hidden overflow-y-auto">
+<div class="relative flex flex-auto">
   {#each $panels as panel}
     <div class="absolute inset-0 p-1 {invisible($currentPanel, panel)}">
       {#if panel.grid.length}
-        <Grid panel="{panel}" />
+        <div data-simplebar class="h-full">
+          <Grid panel="{panel}" />
+        </div>
       {:else}
         <div class="p-4">{_('sentences.no-widgets-found')}</div>
       {/if}
