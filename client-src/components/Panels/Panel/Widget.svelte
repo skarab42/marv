@@ -11,6 +11,9 @@
 </script>
 
 <div class="h-full {borders}" style="{bgColor}">
-  <Label widget="{widget}" />
+  <div class="h-full flex flex-col overflow-hidden">
+    <Label widget="{widget}" />
+    <div class="flex-auto">contents...</div>
+  </div>
   <EditMode panel="{panel}" widget="{widget}" />
 </div>
