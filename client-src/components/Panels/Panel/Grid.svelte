@@ -6,14 +6,6 @@
 
   export let panel;
 
-  function setCurrentWidget(widget) {
-    console.log("setEditWidget:", widget);
-  }
-
-  function openRemoveModal(widget) {
-    console.log("openRemoveModal:", widget);
-  }
-
   function onChange() {
     api.update(panel);
   }
@@ -32,10 +24,5 @@
   on:adjust="{onChange}"
   bind:items="{panel.grid}"
 >
-  <Widget
-    item="{item}"
-    panel="{panel}"
-    on:edit="{setCurrentWidget.bind(null, item)}"
-    on:remove="{openRemoveModal.bind(null, item)}"
-  />
+  <Widget item="{item}" panel="{panel}" />
 </Grid>

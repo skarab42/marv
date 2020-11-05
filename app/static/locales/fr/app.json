@@ -9,7 +9,8 @@
     "powers-group": "Group de pouvoirs",
     "ask-for-panel-deletion": "Tu veux vraiment supprimer le paneau \"{{name}}\"?",
     "no-widgets-found": "Aucun widget trouvé o_O! Cliquez sur le bouton avec l'engrenage pur passé en mode édition, puis clique sur le bouton avec le petit plus pour ajouter ton premier pouvoir!",
-    "add-grid-widget": "ajouter un pouvoir"
+    "add-grid-widget": "ajouter un pouvoir",
+    "ask-for-widget-deletion": "sentences.ask-for-widget-deletion"
   },
   "words": {
     "settings": "options",

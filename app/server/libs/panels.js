@@ -28,7 +28,7 @@ function createWidget() {
     labelPosition: "center",
     backgroundColor: "#553C9A",
     backgroundImage: null,
-    classList: "rounded",
+    borders: "rounded",
   };
 }
 
@@ -63,12 +63,23 @@ function remove(panel) {
   return pos;
 }
 
+function findPanelById(id) {
+  return panels.find((p) => p.id === id);
+}
+
 function addWidget(panel, item) {
   let widget = createWidget();
-  const oldPanel = panels.find((p) => p.id === panel.id);
-  oldPanel.widgets.push(widget);
+  const oldPanel = findPanelById(panel.id);
   oldPanel.grid.push({ id: widget.id, ...item });
+  oldPanel.widgets.push(widget);
   return { panel: update(oldPanel), widget, item };
+}
+
+function removeWidget(panel, widget) {
+  const oldPanel = findPanelById(panel.id);
+  oldPanel.grid = oldPanel.grid.filter((w) => w.id !== widget.id);
+  oldPanel.widgets = oldPanel.widgets.filter((w) => w.id !== widget.id);
+  return { panel: update(oldPanel), widget };
 }
 
 module.exports = {
@@ -76,4 +87,5 @@ module.exports = {
   remove,
   update,
   addWidget,
+  removeWidget,
 };

@@ -22,12 +22,11 @@
 
   function removeCurrentPanel() {
     api.remove($currentPanel);
-    closeConfirmModal();
   }
 
   function onConfirm({ detail }) {
-    if (detail) removeCurrentPanel();
-    else closeConfirmModal();
+    detail && removeCurrentPanel();
+    closeConfirmModal();
   }
 </script>
 

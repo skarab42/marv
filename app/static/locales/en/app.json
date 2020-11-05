@@ -9,7 +9,8 @@
     "powers-group": "Powers group",
     "ask-for-panel-deletion": "Would you like to remove the \"{{name}}\" panel?",
     "no-widgets-found": "No widgets found o_O ! Click on the cog button to add your first power !",
-    "add-grid-widget": "add widget"
+    "add-grid-widget": "add widget",
+    "ask-for-widget-deletion": "sentences.ask-for-widget-deletion"
   },
   "words": {
     "settings": "settings",

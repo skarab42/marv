@@ -66,16 +66,21 @@ function onUpdate(panel) {
   }
 }
 
-function onAddWidget({ panel }) {
-  onUpdate(panel);
-}
+// function onAddWidget({ panel }) {
+//   onUpdate(panel);
+// }
+//
+// function onRemoveWidget({ panel }) {
+//   onUpdate(panel);
+// }
 
 function loadOnce() {
   if (loaded) return;
   api.on("add", onAdd);
   api.on("remove", onRemove);
   api.on("update", onUpdate);
-  api.on("addWidget", onAddWidget);
+  // api.on("addWidget", onAddWidget);
+  // api.on("onRemoveWidget", onRemoveWidget);
   loaded = true;
 }
 

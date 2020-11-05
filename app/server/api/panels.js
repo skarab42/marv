@@ -6,11 +6,6 @@ module.exports = {
     this.notify("panels.add", panel);
     return panel;
   },
-  addWidget(targetPanel, item) {
-    const payload = panels.addWidget(targetPanel, item);
-    this.notify("panels.addWidget", payload);
-    return payload;
-  },
   remove(panel) {
     const pos = panels.remove(panel);
     this.notify("panels.remove", panel, pos);
@@ -20,5 +15,17 @@ module.exports = {
     panels.update(panel);
     this.notify("panels.update", panel);
     return panel;
+  },
+  addWidget(targetPanel, item) {
+    const payload = panels.addWidget(targetPanel, item);
+    this.notify("panels.addWidget", payload);
+    this.notify("panels.update", payload.panel);
+    return payload;
+  },
+  removeWidget(targetPanel, widget) {
+    const payload = panels.removeWidget(targetPanel, widget);
+    this.notify("panels.removeWidget", payload);
+    this.notify("panels.update", payload.panel);
+    return payload;
   },
 };
