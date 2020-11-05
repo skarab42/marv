@@ -17,12 +17,23 @@ export const gridOptions = writable({
 
 let loaded = false;
 
+export function updateEditMode() {
+  panels.update((state) => {
+    return state.map((panel) => {
+      makeGrid(panel);
+      return panel;
+    });
+  });
+}
+
 export function setEditMode(enabled = true) {
   editMode.set(enabled);
+  updateEditMode();
 }
 
 export function toggleEditMode() {
   editMode.update((enabled) => !enabled);
+  updateEditMode();
 }
 
 export function setCurrentPanel(panel) {
@@ -56,7 +67,11 @@ function onRemove(panel, pos) {
 }
 
 function makeGrid(panel) {
-  panel.grid = panel.grid.map(gridHelper.item);
+  const em = get(editMode);
+  const defaults = { static: !em, resizable: em, draggable: em };
+  panel.grid = panel.grid.map((item) =>
+    gridHelper.item({ ...item, ...defaults })
+  );
 }
 
 function onUpdate(panel) {
