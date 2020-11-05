@@ -21,16 +21,14 @@ function create() {
 function createWidget() {
   return {
     id: uuid(),
-    props: {
-      label: null,
-      labelSize: 16,
-      labelPadding: 8,
-      labelPosition: "text-center",
-      classList: "rounded-md",
-      backgroundColor: "#8fa2b5",
-      backgroundImage: null,
-      component: null,
-    },
+    component: null,
+    label: null,
+    labelSize: 16,
+    labelPadding: 8,
+    labelPosition: "center",
+    backgroundColor: "#553C9A",
+    backgroundImage: null,
+    classList: "rounded",
   };
 }
 

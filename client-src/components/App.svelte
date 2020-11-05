@@ -39,4 +39,6 @@
   });
 </script>
 
-<svelte:component this="{component}" />
+<div class="flex flex-col h-full">
+  <svelte:component this="{component}" />
+</div>

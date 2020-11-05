@@ -8,9 +8,9 @@
   }
 </script>
 
-<div class="relative">
+<div class="relative flex flex-auto overflow-x-hidden overflow-y-auto">
   {#each $panels as panel}
-    <div class="absolute p-1 inset-0 {invisible($currentPanel, panel)}">
+    <div class="absolute inset-0 p-1 {invisible($currentPanel, panel)}">
       {#if panel.grid.length}
         <Grid panel="{panel}" />
       {:else}

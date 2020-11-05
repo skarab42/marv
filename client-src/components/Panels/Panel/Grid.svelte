@@ -19,14 +19,22 @@
   }
 </script>
 
+<style>
+  :global(.svlt-grid-shadow) {
+    background: black;
+    opacity: 0.2;
+  }
+</style>
+
 <Grid
-  bind:items="{panel.grid}"
   let:item
   {...$gridOptions}
   on:adjust="{onChange}"
+  bind:items="{panel.grid}"
 >
   <Widget
-    widget="{item}"
+    item="{item}"
+    panel="{panel}"
     on:edit="{setCurrentWidget.bind(null, item)}"
     on:remove="{openRemoveModal.bind(null, item)}"
   />
