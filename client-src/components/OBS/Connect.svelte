@@ -1,5 +1,5 @@
 <script>
-  import obs from "@/libs/obs";
+  import obs from "@/api/obs";
   import { state } from "@/stores/obs";
   import Icon from "@/components/UI/Icon.svelte";
   import MdPowerSettingsNew from "svelte-icons/md/MdPowerSettingsNew.svelte";

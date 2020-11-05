@@ -45,6 +45,7 @@
     "rollup-plugin-terser": "^7.0.2",
     "socket.io-client": "^2.3.1",
     "svelte": "^3.29.4",
+    "svelte-grid": "1.11.0",
     "svelte-icons": "^2.1.0",
     "tailwindcss": "^1.9.6",
     "throttle-debounce": "^3.0.1",

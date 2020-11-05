@@ -1,5 +1,5 @@
 <script>
-  import { toggle } from "@/stores/dashboard/drawer";
+  import { toggle } from "@/stores/drawer";
   import MdMenu from "svelte-icons/md/MdMenu.svelte";
   import Icon from "@/components/UI/Icon.svelte";
 </script>

@@ -1,5 +1,5 @@
 <script>
-  import api from "@/libs/panels";
+  import api from "@/api/panels";
   import { _ } from "@/libs/i18next";
 
   import MdAdd from "svelte-icons/md/MdAdd.svelte";

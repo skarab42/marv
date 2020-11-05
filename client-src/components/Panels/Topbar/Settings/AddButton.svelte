@@ -1,12 +1,18 @@
 <script>
-  import api from "@/libs/panels";
+  import api from "@/api/panels";
   import { _ } from "@/libs/i18next";
-  import { currentPanel } from "@/stores/panels";
   import Button from "@/components/UI/Button.svelte";
+  import gridHelper from "svelte-grid/src/utils/helper";
   import MdAddToPhotos from "svelte-icons/md/MdAddToPhotos.svelte";
+  import { currentPanel, gridOptions, itemOptions } from "@/stores/panels";
 
   function addWidget() {
-    api.addWidget($currentPanel);
+    const cols = $gridOptions.cols;
+    const grid = $currentPanel.grid;
+    const item = gridHelper.item($itemOptions);
+    const pos = gridHelper.findSpaceForItem(item, grid, cols);
+
+    api.addWidget($currentPanel, { ...item, ...pos });
   }
 </script>
 

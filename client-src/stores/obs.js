@@ -1,5 +1,5 @@
 import { writable } from "svelte/store";
-import obs from "@/libs/obs";
+import obs from "@/api/obs";
 
 export const store = writable(null);
 export const state = writable(null);

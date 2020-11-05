@@ -14,13 +14,13 @@ function create() {
     id,
     name: name(id),
     widgets: [],
+    grid: [],
   };
 }
 
 function createWidget() {
   return {
     id: uuid(),
-    state: { w: 2, h: 2 },
     props: {
       label: null,
       labelSize: 16,
@@ -65,13 +65,12 @@ function remove(panel) {
   return pos;
 }
 
-function addWidget(panel) {
+function addWidget(panel, item) {
   let widget = createWidget();
   const oldPanel = panels.find((p) => p.id === panel.id);
   oldPanel.widgets.push(widget);
-  const newPanel = update(oldPanel);
-  console.log(newPanel.widgets.length);
-  return { panel: newPanel, widget };
+  oldPanel.grid.push({ id: widget.id, ...item });
+  return { panel: update(oldPanel), widget, item };
 }
 
 module.exports = {

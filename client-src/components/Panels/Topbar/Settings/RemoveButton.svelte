@@ -1,5 +1,5 @@
 <script>
-  import api from "@/libs/panels";
+  import api from "@/api/panels";
   import { _ } from "@/libs/i18next";
   import { currentPanel } from "@/stores/panels";
   import Modal from "@/components/UI/Modal.svelte";

@@ -1,9 +1,18 @@
 import { writable, get } from "svelte/store";
-import api from "@/libs/panels";
+import api from "@/api/panels";
 
 export const panels = writable([]);
 export const editMode = writable(false);
 export const currentPanel = writable(null);
+export const itemOptions = writable({ w: 2, h: 2 });
+export const gridOptions = writable({
+  gap: 4,
+  cols: 10,
+  rowHeight: 50,
+  fillEmpty: false,
+  useTransform: true,
+  breakpoints: false,
+});
 
 let loaded = false;
 
@@ -46,15 +55,14 @@ function onRemove(panel, pos) {
 }
 
 function onUpdate(panel) {
-  console.log("update", panel);
   panels.update((state) =>
     state.map((p) => (p.id === panel.id ? { ...p, ...panel } : p))
   );
 }
 
-function onAddWidget({ panel, widget }) {
-  console.log("add", { panel, widget });
+function onAddWidget({ panel }, { owner }) {
   onUpdate(panel);
+  owner && setCurrentPanel(panel);
 }
 
 function loadOnce() {

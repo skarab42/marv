@@ -12,12 +12,8 @@
 </script>
 
 <!-- svelte-ignore a11y-no-onchange -->
-<select
-  {...$$restProps}
-  on:change={change}
-  bind:value={value}
->
+<select {...$$restProps} on:change="{change}" bind:value>
   {#each items as item}
-    <option value={item} disabled={item === value}>{item}</option>
+    <option value="{item}" disabled="{item === value}">{item}</option>
   {/each}
 </select>

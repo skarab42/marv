@@ -6,10 +6,10 @@ module.exports = {
     this.notify("panels.add", panel);
     return panel;
   },
-  addWidget(targetPanel) {
-    const { panel, widget } = panels.addWidget(targetPanel);
-    this.notify("panels.addWidget", { panel, widget });
-    return { panel, widget };
+  addWidget(targetPanel, item) {
+    const payload = panels.addWidget(targetPanel, item);
+    this.notify("panels.addWidget", payload);
+    return payload;
   },
   remove(panel) {
     const pos = panels.remove(panel);
