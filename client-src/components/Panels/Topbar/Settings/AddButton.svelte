@@ -11,8 +11,7 @@
     const grid = $currentPanel.grid;
     const item = gridHelper.item($itemOptions);
     const pos = gridHelper.findSpaceForItem(item, grid, cols);
-
-    api.addWidget($currentPanel, { ...item, ...pos });
+    api.addWidget($currentPanel, { w: item.w, h: item.h, ...pos });
   }
 </script>
 

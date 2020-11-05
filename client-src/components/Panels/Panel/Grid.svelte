@@ -7,7 +7,8 @@
   export let panel;
 
   function onChange() {
-    api.update(panel);
+    const grid = panel.grid.map(({ id, x, y, w, h }) => ({ id, x, y, w, h }));
+    api.update({ ...panel, grid });
   }
 </script>
 

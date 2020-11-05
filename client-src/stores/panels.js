@@ -1,3 +1,4 @@
+import gridHelper from "svelte-grid/src/utils/helper";
 import { writable, get } from "svelte/store";
 import api from "@/api/panels";
 
@@ -54,8 +55,14 @@ function onRemove(panel, pos) {
   });
 }
 
+function makeGrid(panel) {
+  panel.grid = panel.grid.map(gridHelper.item);
+}
+
 function onUpdate(panel) {
   const cp = get(currentPanel);
+
+  makeGrid(panel);
 
   panels.update((state) =>
     state.map((p) => (p.id === panel.id ? { ...p, ...panel } : p))
@@ -86,6 +93,7 @@ function loadOnce() {
 
 export default async function load() {
   const store = await api.getStore();
+  store.panels.forEach(makeGrid);
   panels.set(store.panels);
   setCurrentPanel(store.panels[0]); // TODO get from locale storage
   loadOnce();
