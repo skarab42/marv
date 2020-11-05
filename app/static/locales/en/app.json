@@ -10,7 +10,8 @@
     "ask-for-panel-deletion": "Would you like to remove the panel \"{{name}}\"?",
     "no-widgets-found": "No widgets found o_O ! Click on the cog button to add your first power !",
     "add-grid-widget": "add widget",
-    "ask-for-widget-deletion": "Would you like to remove the widget \"{{name}}\"?"
+    "ask-for-widget-deletion": "Would you like to remove the widget \"{{name}}\"?",
+    "widget-settings": "Widget settings"
   },
   "words": {
     "settings": "settings",

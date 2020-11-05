@@ -1,6 +1,7 @@
 <script>
   import EditMode from "./Widget/EditMode.svelte";
   import Label from "./Widget/Label.svelte";
+  import { editMode } from "@/stores/panels";
 
   export let item;
   export let panel;
@@ -15,5 +16,7 @@
     <Label widget="{widget}" />
     <div class="flex-auto">contents...</div>
   </div>
-  <EditMode panel="{panel}" widget="{widget}" />
+  {#if $editMode}
+    <EditMode panel="{panel}" widget="{widget}" />
+  {/if}
 </div>
