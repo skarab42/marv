@@ -2,6 +2,7 @@
   import api from "@/api/panels";
   import { _ } from "@/libs/i18next";
   import Input from "@/components/UI/Input.svelte";
+  import Select from "@/components/UI/Select.svelte";
 
   export let panel;
   export let widget;
@@ -35,14 +36,20 @@
   />
   <Input
     type="number"
-    label="{labelWord}: {_('words.size')}"
+    label="{labelWord} | {_('words.size')}"
     value="{widget.labelSize}"
     on:update="{onUpdate.bind(null, 'labelSize')}"
   />
   <Input
     type="number"
-    label="{labelWord}: {_('words.padding')}"
+    label="{labelWord} | {_('words.padding')}"
     value="{widget.labelPadding}"
     on:update="{onUpdate.bind(null, 'labelPadding')}"
+  />
+  <Select
+    label="{labelWord} | {_('words.align')}"
+    value="{widget.labelAlign}"
+    items="{['left', 'center', 'top']}"
+    on:change="{onUpdate.bind(null, 'labelAlign')}"
   />
 </div>

@@ -27,7 +27,10 @@
     "record": "enregistrement",
     "quit": "quitter",
     "remove": "supprimer",
-    "rename": "renommer"
+    "rename": "renommer",
+    "label": "label",
+    "size": "taille",
+    "padding": "marges",
+    "align": "align"
   }
-}
 }

@@ -27,7 +27,10 @@
     "record": "record",
     "quit": "quit",
     "remove": "remove",
-    "rename": "rename"
+    "rename": "rename",
+    "label": "label",
+    "size": "size",
+    "padding": "padding",
+    "align": "alignement"
   }
-}
 }
