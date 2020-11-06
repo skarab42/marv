@@ -3,6 +3,7 @@
   import { _ } from "@/libs/i18next";
   import EditModal from "./EditModal.svelte";
   import RemoveCross from "./RemoveCross.svelte";
+  import doubletap from "@/libs/svelte/double-tap";
   import ConfirmModal from "@/components/UI/ConfirmModal.svelte";
 
   export let panel;
@@ -41,8 +42,15 @@
   }
 </script>
 
-<div class="absolute inset-0" on:dblclick="{openEditModal}"></div>
+<div
+  use:doubletap
+  class="absolute inset-0"
+  on:dbltap="{openEditModal}"
+  on:dblclick="{openEditModal}"
+></div>
+
 <RemoveCross borders="{widget.borders}" on:click="{openConfirmModal}" />
+
 <ConfirmModal
   question="{question}"
   visible="{confirmModal}"
@@ -50,5 +58,5 @@
 />
 
 {#if editModal}
-  <EditModal on:close="{closeEditModal}" />
+  <EditModal panel="{panel}" widget="{widget}" on:close="{closeEditModal}" />
 {/if}

@@ -1,6 +1,6 @@
 <script>
-  import clickoutside from "@/libs/svelte/click-outside";
   import { drawer, hide } from "@/stores/drawer";
+  import clickoutside from "@/libs/svelte/click-outside";
   import LanguageSelect from "@/components/App/LanguageSelect.svelte";
 </script>
 

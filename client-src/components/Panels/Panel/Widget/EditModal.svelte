@@ -1,5 +1,6 @@
 <script>
   import { _ } from "@/libs/i18next";
+  import Content from "./EditModal/Content.svelte";
   import Modal from "@/components/UI/Modal.svelte";
 </script>
 
@@ -8,6 +9,6 @@
     <div class="p-2 pr-10 font-bold bg-primary-darker rounded-t">
       {_('sentences.widget-settings')}
     </div>
-    <div class="p-2">...</div>
+    <Content {...$$restProps} />
   </div>
 </Modal>

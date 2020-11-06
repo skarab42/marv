@@ -2,14 +2,14 @@
   import api from "@/api/panels";
   import { _ } from "@/libs/i18next";
   import { currentPanel } from "@/stores/panels";
-  import InputText from "@/components/UI/InputText.svelte";
+  import Input from "@/components/UI/Input.svelte";
 
   function onUpdate({ detail }) {
     api.update({ ...$currentPanel, name: detail });
   }
 </script>
 
-<InputText
+<Input
   label="{_('words.rename')}"
   value="{$currentPanel.name}"
   on:update="{onUpdate}"

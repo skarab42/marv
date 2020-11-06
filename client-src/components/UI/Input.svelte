@@ -2,9 +2,9 @@
   import { debounce } from "throttle-debounce";
   import { createEventDispatcher } from "svelte";
 
-  export let value = "";
   export let label = null;
-  export let placeholder = "";
+  export let type = "text";
+  export let padding = "p-2";
   export let bgColor = "bg-gray-400";
   export let textColor = "bg-gray-700";
 
@@ -27,18 +27,20 @@
   }
 
   $: color = `${bgColor} ${textColor}`;
-  $: inputRounded = label ? "rounded-r" : "rounded";
+  $: rounded = label ? "rounded-r" : "rounded";
+
+  let flex = "flex flex-auto";
 </script>
 
-<label class="{color} inline-flex flex-shrink-0 items-center rounded">
-  {#if label}<span class="px-2 uppercase">{label}</span>{/if}
+<div class="flex flex-wrap items-center {color}">
+  <div class="{padding} {flex} uppercase">{label}</div>
   <input
-    type="text"
-    bind:value
+    {...$$restProps}
+    type="{type}"
+    on:blur
     on:change
     on:input="{input}"
     on:keypress="{onKeypress}"
-    placeholder="{placeholder}"
-    class="p-2 flex w-full text-dark {inputRounded}"
+    class="{padding} {flex} text-dark"
   />
-</label>
+</div>
