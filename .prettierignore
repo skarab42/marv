@@ -1,5 +1,6 @@
 app/static/css/tailwind.css
 app/static/locales/
+app/client/css/
 app/client/js/
 node_modules/
 dist/
