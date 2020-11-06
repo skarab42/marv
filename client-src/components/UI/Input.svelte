@@ -5,8 +5,12 @@
   export let label = null;
   export let type = "text";
   export let padding = "p-2";
-  export let bgColor = "bg-gray-400";
-  export let textColor = "bg-gray-700";
+  export let textColor = "text-light";
+  export let bgColor = "bg-dark-lighter";
+
+  let flex = "flex flex-auto";
+
+  $: color = `${bgColor} ${textColor}`;
 
   const dispatch = createEventDispatcher();
   const debounceUpdate = debounce(500, update);
@@ -25,15 +29,12 @@
     debounceUpdate(event);
     dispatch("input", event);
   }
-
-  $: color = `${bgColor} ${textColor}`;
-  $: rounded = label ? "rounded-r" : "rounded";
-
-  let flex = "flex flex-auto";
 </script>
 
 <div class="flex flex-wrap items-center {color}">
-  <div class="{padding} {flex} uppercase">{label}</div>
+  {#if label}
+    <div class="{padding} {flex} uppercase">{label}</div>
+  {/if}
   <input
     {...$$restProps}
     type="{type}"
