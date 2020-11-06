@@ -12,6 +12,6 @@
   >
     <div class="p-2 bg-secondary">Drawer</div>
     <div class="p-2">Item...</div>
-    <LanguageSelect class="p-2 text-dark" />
+    <LanguageSelect />
   </div>
 {/if}

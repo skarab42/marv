@@ -23,7 +23,6 @@
 </script>
 
 <Select
-  {...$$restProps}
   value="{$store.lng}"
   items="{$store.supportedLngs}"
   on:change="{onChange}"
