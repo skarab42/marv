@@ -11,7 +11,8 @@
     "no-widgets-found": "Aucun widget trouvé o_O! Cliquez sur le bouton avec l'engrenage pour passé en mode édition, puis clique sur le bouton avec le petit plus pour ajouter ton premier pouvoir!",
     "add-grid-widget": "ajouter un pouvoir",
     "ask-for-widget-deletion": "Tu veux vraiment supprimer le widget \"{{name}}\"?",
-    "widget-settings": "Réglages du widget"
+    "widget-settings": "Réglages du widget",
+    "background-color": "Couleur de fond"
   },
   "words": {
     "settings": "options",
@@ -31,6 +32,7 @@
     "label": "label",
     "size": "taille",
     "padding": "marges",
-    "align": "align"
+    "align": "alignement",
+    "color": "couleur"
   }
 }

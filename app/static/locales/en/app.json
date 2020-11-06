@@ -11,7 +11,8 @@
     "no-widgets-found": "No widgets found o_O ! Click on the cog button to add your first power !",
     "add-grid-widget": "add widget",
     "ask-for-widget-deletion": "Would you like to remove the widget \"{{name}}\"?",
-    "widget-settings": "Widget settings"
+    "widget-settings": "Widget settings",
+    "background-color": "Background color"
   },
   "words": {
     "settings": "settings",
@@ -31,6 +32,7 @@
     "label": "label",
     "size": "size",
     "padding": "padding",
-    "align": "alignement"
+    "align": "align",
+    "color": "color"
   }
 }
