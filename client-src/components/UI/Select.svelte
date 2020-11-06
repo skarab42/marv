@@ -17,7 +17,7 @@
   }
 </script>
 
-<div class="flex flex-wrap items-center {color}">
+<label class="flex flex-wrap items-center {color}">
   {#if label}
     <div class="{padding} uppercase">{label}</div>
   {/if}
@@ -34,4 +34,4 @@
       {/each}
     </select>
   </div>
-</div>
+</label>

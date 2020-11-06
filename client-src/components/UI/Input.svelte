@@ -29,7 +29,7 @@
   }
 </script>
 
-<div class="flex flex-wrap items-center {color}">
+<label class="flex flex-wrap items-center {color}">
   {#if label}
     <div class="{padding} uppercase">{label}</div>
   {/if}
@@ -44,4 +44,4 @@
       class="{padding} w-full text-dark"
     />
   </div>
-</div>
+</label>

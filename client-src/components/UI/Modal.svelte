@@ -28,11 +28,7 @@
   });
 </script>
 
-<div
-  bind:this="{element}"
-  on:click|stopPropagation
-  class="{colors} {content} {position}"
->
+<div bind:this="{element}" class="{colors} {content} {position}">
   <div class="m-auto">
     <div class="m-5 relative flex flex-col items-center {cls}">
       {#if closable}

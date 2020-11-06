@@ -3,14 +3,10 @@
   import { _ } from "@/libs/i18next";
   import Input from "@/components/UI/Input.svelte";
   import Select from "@/components/UI/Select.svelte";
+  import ColorPicker from "@/components/UI/ColorPicker.svelte";
 
   export let panel;
   export let widget;
-
-  // $: console.log(widget);
-
-  let component;
-  let labelPlaceholder;
 
   let labelWord = _("words.label");
 
@@ -21,9 +17,17 @@
   $: component = widget.component;
   $: labelPlaceholder = val(component, "label", "OBS | Alerts | Media");
 
-  function onUpdate(key, { detail: value }) {
+  function update(key, value) {
     widget[key] = value;
     api.update(panel);
+  }
+
+  function onUpdate(key, { detail: value }) {
+    update(key, value);
+  }
+
+  function onBackgroundColor({ detail: color }) {
+    update("backgroundColor", color.hex);
   }
 </script>
 
@@ -49,7 +53,13 @@
   <Select
     label="{labelWord} | {_('words.align')}"
     value="{widget.labelAlign}"
-    items="{['left', 'center', 'top']}"
+    items="{['left', 'center', 'right']}"
     on:change="{onUpdate.bind(null, 'labelAlign')}"
+  />
+
+  <ColorPicker
+    label="{_('sentences.background-color')}"
+    on:color="{onBackgroundColor}"
+    color="{widget.backgroundColor}"
   />
 </div>

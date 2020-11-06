@@ -2797,6 +2797,12 @@ supports-color@^7.0.0, supports-color@^7.1.0:
   dependencies:
     has-flag "^4.0.0"
 
+"svelte-color@https://github.com/skarab42/svelte-color.git":
+  version "1.0.2"
+  resolved "https://github.com/skarab42/svelte-color.git#102513038670dc622b63bf4a0267b249f3242c18"
+  dependencies:
+    tinycolor2 "^1.4.1"
+
 svelte-grid@1.11.0:
   version "1.11.0"
   resolved "https://registry.yarnpkg.com/svelte-grid/-/svelte-grid-1.11.0.tgz#3985f14f422ecab721192e2d52242d9c9ffa7f84"
@@ -2881,6 +2887,11 @@ throttle-debounce@^3.0.1:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/throttle-debounce/-/throttle-debounce-3.0.1.tgz#32f94d84dfa894f786c9a1f290e7a645b6a19abb"
   integrity sha512-dTEWWNu6JmeVXY0ZYoPuH5cRIwc0MeGbJwah9KUNYSJwommQpCzTySTpEe8Gs1J23aeWEuAobe4Ag7EHVt/LOg==
+
+tinycolor2@^1.4.1:
+  version "1.4.2"
+  resolved "https://registry.yarnpkg.com/tinycolor2/-/tinycolor2-1.4.2.tgz#3f6a4d1071ad07676d7fa472e1fac40a719d8803"
+  integrity sha512-vJhccZPs965sV/L2sU4oRQVAos0pQXwsvTLkWYdqJ+a8Q5kPFzJTuOFwy7UniPli44NKQGAglksjvOcpo95aZA==
 
 to-array@0.1.4:
   version "0.1.4"
