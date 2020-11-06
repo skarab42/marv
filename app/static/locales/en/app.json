@@ -1,20 +1,33 @@
 {
   "sentences": {
-    "waiting-for-connexion": "sentences.waiting-for-connexion",
-    "ask-for-panel-deletion": "sentences.ask-for-panel-deletion",
-    "add-grid-widget": "sentences.add-grid-widget",
-    "ask-for-widget-deletion": "sentences.ask-for-widget-deletion",
-    "widget-settings": "sentences.widget-settings"
+    "welcome-message": "Welcome home",
+    "waiting-for-connexion": "Waiting for connexion",
+    "ask-for-client-reload": "Would you like to reload the application now to apply changes ?",
+    "open-in-window": "Open in window",
+    "open-in-browser": "Open in browser",
+    "no-panels-found": "No panel found o_O ! Click on the cross to add your first group of powers !",
+    "powers-group": "Powers group",
+    "ask-for-panel-deletion": "Would you like to remove the panel \"{{name}}\"?",
+    "no-widgets-found": "No widgets found o_O ! Click on the cog button to add your first power !",
+    "add-grid-widget": "add widget",
+    "ask-for-widget-deletion": "Would you like to remove the widget \"{{name}}\"?",
+    "widget-settings": "Widget settings"
   },
   "words": {
-    "off": "words.off",
-    "disconnected": "words.disconnected",
-    "rename": "words.rename",
-    "yes": "words.yes",
-    "no": "words.no",
-    "remove": "words.remove",
-    "label": "words.label",
-    "size": "words.size",
-    "padding": "words.padding"
+    "settings": "settings",
+    "yes": "yes",
+    "no": "no",
+    "connect": "connect",
+    "disconnect": "disconnect",
+    "connected": "connected",
+    "disconnected": "disconnected",
+    "connecting": "connecting",
+    "off": "off",
+    "stream": "stream",
+    "record": "record",
+    "quit": "quit",
+    "remove": "remove",
+    "rename": "rename"
   }
+}
 }
