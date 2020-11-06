@@ -8,8 +8,6 @@
   export let textColor = "text-light";
   export let bgColor = "bg-dark-lighter";
 
-  let flex = "flex flex-auto";
-
   $: color = `${bgColor} ${textColor}`;
 
   const dispatch = createEventDispatcher();
@@ -21,12 +19,12 @@
 
 <div class="flex flex-wrap items-center {color}">
   {#if label}
-    <div class="{padding} {flex} uppercase">{label}</div>
+    <div class="{padding} flex flex-auto uppercase">{label}</div>
   {/if}
   <!-- svelte-ignore a11y-no-onchange -->
   <select
     {...$$restProps}
-    class="{padding} {flex} text-dark"
+    class="{padding} flex flex-auto text-dark"
     on:change="{change}"
     bind:value
   >

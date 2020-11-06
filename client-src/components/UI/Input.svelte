@@ -8,8 +8,6 @@
   export let textColor = "text-light";
   export let bgColor = "bg-dark-lighter";
 
-  let flex = "flex flex-auto";
-
   $: color = `${bgColor} ${textColor}`;
 
   const dispatch = createEventDispatcher();
@@ -33,15 +31,17 @@
 
 <div class="flex flex-wrap items-center {color}">
   {#if label}
-    <div class="{padding} {flex} uppercase">{label}</div>
+    <div class="{padding} flex flex-auto uppercase">{label}</div>
   {/if}
-  <input
-    {...$$restProps}
-    type="{type}"
-    on:blur
-    on:change
-    on:input="{input}"
-    on:keypress="{onKeypress}"
-    class="{padding} {flex} text-dark"
-  />
+  <div class="flex-auto">
+    <input
+      {...$$restProps}
+      type="{type}"
+      on:blur
+      on:change
+      on:input="{input}"
+      on:keypress="{onKeypress}"
+      class="{padding} w-full text-dark"
+    />
+  </div>
 </div>
