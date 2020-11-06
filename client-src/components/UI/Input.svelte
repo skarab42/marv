@@ -31,7 +31,7 @@
 
 <div class="flex flex-wrap items-center {color}">
   {#if label}
-    <div class="{padding} flex flex-auto uppercase">{label}</div>
+    <div class="{padding} uppercase">{label}</div>
   {/if}
   <div class="flex-auto">
     <input

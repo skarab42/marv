@@ -19,17 +19,19 @@
 
 <div class="flex flex-wrap items-center {color}">
   {#if label}
-    <div class="{padding} flex flex-auto uppercase">{label}</div>
+    <div class="{padding} uppercase">{label}</div>
   {/if}
-  <!-- svelte-ignore a11y-no-onchange -->
-  <select
-    {...$$restProps}
-    class="{padding} flex flex-auto text-dark"
-    on:change="{change}"
-    bind:value
-  >
-    {#each items as item}
-      <option value="{item}" disabled="{item === value}">{item}</option>
-    {/each}
-  </select>
+  <div class="flex-auto">
+    <!-- svelte-ignore a11y-no-onchange -->
+    <select
+      {...$$restProps}
+      class="{padding} w-full text-dark"
+      on:change="{change}"
+      bind:value
+    >
+      {#each items as item}
+        <option value="{item}" disabled="{item === value}">{item}</option>
+      {/each}
+    </select>
+  </div>
 </div>
