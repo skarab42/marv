@@ -35,6 +35,10 @@
   function openEditModal() {
     editModal = true;
   }
+
+  function closeEditModal() {
+    editModal = false;
+  }
 </script>
 
 <div class="absolute inset-0" on:dblclick="{openEditModal}"></div>
@@ -44,4 +48,7 @@
   visible="{confirmModal}"
   on:confirm="{onConfirm}"
 />
-<EditModal visible="{editModal}" />
+
+{#if editModal}
+  <EditModal on:close="{closeEditModal}" />
+{/if}

@@ -7,3 +7,5 @@
 <Topbar />
 <Drawer />
 <Panels />
+
+<div id="modal"></div>

@@ -17,12 +17,14 @@
   let cls = "";
   export { cls as class };
 
+  let modalWrapper = document.querySelector("#modal");
+
   function close() {
     dispatch("close");
   }
 
   onMount(() => {
-    document.body.append(element);
+    modalWrapper.appendChild(element);
   });
 </script>
 
