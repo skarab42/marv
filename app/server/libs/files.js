@@ -64,6 +64,17 @@ async function upload({ name, buffer }) {
   });
 }
 
+function remove(file) {
+  return new Promise((resolve, reject) => {
+    try {
+      fs.unlinkSync(path.join(uploadDir, file.filename));
+      resolve(file);
+    } catch (error) {
+      reject(error);
+    }
+  });
+}
+
 function localeSort(a, b) {
   return a.localeCompare(b, language, {
     numeric: true,
@@ -89,5 +100,6 @@ function getFileList() {
 
 module.exports = {
   upload,
+  remove,
   getFileList,
 };

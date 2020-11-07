@@ -19,6 +19,6 @@
   $: _block = block ? "inline-block" : "";
 </script>
 
-<span on:click class="{_flex} {_size} {_block} {color} {cls}">
+<span on:click class="{_flex} {_size} {_block} {color} {cls} flex-shrink-0">
   <svelte:component this="{icon}" />
 </span>

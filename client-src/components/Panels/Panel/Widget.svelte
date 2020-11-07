@@ -8,10 +8,16 @@
 
   $: widget = panel.widgets.find((i) => i.id === item.id);
   $: bgColor = `background-color: ${widget.backgroundColor};`;
+  $: bgImage =
+    widget.backgroundImage &&
+    `background-image: url(files/${widget.backgroundImage});`;
   $: borders = widget.borders;
 </script>
 
-<div class="h-full {borders}" style="{bgColor}">
+<div
+  class="h-full {borders} bg-center bg-no-repeat bg-cover"
+  style="{bgColor} {bgImage}"
+>
   <div class="h-full flex flex-col overflow-hidden">
     <Label widget="{widget}" />
     <div class="flex-auto">contents...</div>

@@ -7,5 +7,11 @@ module.exports = {
       return Promise.resolve(file);
     });
   },
+  remove(file) {
+    return files.remove(file).then((file) => {
+      this.notify("files.remove", file);
+      return Promise.resolve(file);
+    });
+  },
   getFileList: () => files.getFileList(),
 };

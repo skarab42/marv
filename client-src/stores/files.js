@@ -10,9 +10,14 @@ function onAdd(file) {
   store.update((state) => [...state, file]);
 }
 
+function onRemove(file) {
+  store.update((state) => state.filter((f) => f.filename !== file.filename));
+}
+
 function loadOnce() {
   if (loaded) return;
   api.on("add", onAdd);
+  api.on("remove", onRemove);
   loaded = true;
 }
 

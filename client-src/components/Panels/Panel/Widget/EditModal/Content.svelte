@@ -39,6 +39,11 @@
   function closeFileManager() {
     fileManager = false;
   }
+
+  function onFileSelect({ detail: file }) {
+    closeFileManager();
+    update("backgroundImage", file.filename);
+  }
 </script>
 
 <div class="p-2 space-y-2 flex flex-col">
@@ -77,5 +82,5 @@
 </div>
 
 {#if fileManager}
-  <FileManager on:close="{closeFileManager}" />
+  <FileManager on:close="{closeFileManager}" on:select="{onFileSelect}" />
 {/if}

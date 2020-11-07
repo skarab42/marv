@@ -20,4 +20,4 @@
   let icon = icons[type] || defaultIcon;
 </script>
 
-<Icon icon="{icon}" {...$$restProps} />
+<Icon icon="{icon}" {...$$restProps} on:click />

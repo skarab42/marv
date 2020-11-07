@@ -1,7 +1,7 @@
 <script>
   import Icon from "./Icon.svelte";
 
-  export let cls = "";
+  export let cls = "rounded";
   export { cls as class };
 
   export let dark = true;
@@ -25,7 +25,7 @@
 </style>
 
 <button
-  class="flex items-center space-x-1 {padding} font-medium uppercase rounded {textColor} {cls}"
+  class="flex items-center space-x-1 {padding} font-medium uppercase {textColor} {cls}"
   {...$$restProps}
   on:click
 >
