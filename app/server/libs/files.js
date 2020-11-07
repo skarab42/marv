@@ -13,7 +13,7 @@ function cleanFileName(name) {
   return name.replace(/[^a-z0-9_.]+/gi, "_");
 }
 
-function getFileType(filename, buffer) {
+function getFileInfo(filename, buffer) {
   const ext = path.extname(filename).slice(1);
   const mimeType = mime.getType(filename);
 
@@ -27,34 +27,54 @@ function getFileType(filename, buffer) {
   return { filename, size, ext, type, mimeType };
 }
 
+function getFileInfoFromFilename(filename) {
+  return getFileInfo(filename, fs.readFileSync(path.join(uploadDir, filename)));
+}
+
+function isAllowedMimeType(type) {
+  return allowedMimeTypes.includes(type);
+}
+
 async function upload({ name, buffer }) {
-  const filename = cleanFileName(name);
-  const fileInfo = getFileType(filename, buffer);
-  const filePath = path.join(uploadDir, filename);
+  return new Promise((resolve, reject) => {
+    const filename = cleanFileName(name);
+    const fileInfo = getFileInfo(filename, buffer);
+    const filePath = path.join(uploadDir, filename);
 
-  if (!fileInfo.size) {
-    return Promise.reject(_("sentences.empty-file"));
-  }
+    if (!fileInfo.size) {
+      return reject(_("sentences.file-is-empty"));
+    }
 
-  if (!allowedMimeTypes.includes(fileInfo.type)) {
-    return Promise.reject(_("sentences.disallowed-file-type"));
-  }
+    if (!isAllowedMimeType(fileInfo.type)) {
+      return reject(_("sentences.disallowed-file-type"));
+    }
 
-  if (fs.existsSync(filePath)) {
-    return Promise.reject(_("sentences.file-already-exists"));
-  }
+    if (fs.existsSync(filePath)) {
+      return reject(_("sentences.file-already-exists"));
+    }
 
-  try {
-    fs.writeFileSync(filePath, buffer);
-  } catch (error) {
-    return Promise.reject(error);
-  }
+    try {
+      fs.writeFileSync(filePath, buffer);
+    } catch (error) {
+      return reject(error);
+    }
 
-  return Promise.resolve(fileInfo);
+    return resolve(fileInfo);
+  });
 }
 
 function getFileList() {
-  return Promise.resolve(fs.readdirSync(uploadDir));
+  return new Promise((resolve, reject) => {
+    try {
+      const files = fs.readdirSync(uploadDir);
+      const fileList = files
+        .map(getFileInfoFromFilename)
+        .filter(({ type }) => isAllowedMimeType(type));
+      resolve(fileList);
+    } catch (error) {
+      reject(error);
+    }
+  });
 }
 
 module.exports = {

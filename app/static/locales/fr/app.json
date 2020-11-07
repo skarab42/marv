@@ -21,7 +21,10 @@
     "file-already-exists": "Le fichier existe déjà.",
     "disallowed-file-type": "Type de fichier non autorisé.",
     "obs-is-not-initialized": "OBS n'est pas initialisé.",
-    "empty-file": "Fichier vide."
+    "file-is-empty": "Le fichier est vide.",
+    "file-list-empty": "La liste de fichier est vide.",
+    "file-uploaded": "sentences.file-uploaded",
+    "file-uploaded-successfully": "Fichier téléchargé avec succès."
   },
   "words": {
     "settings": "options",
