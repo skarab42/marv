@@ -3,6 +3,7 @@ const { _ } = require("../server/libs/i18next");
 const createWindow = require("./window");
 const capitalize = require("capitalize");
 const store = require("../stores");
+const quit = require("./quit");
 const open = require("open");
 
 const { name, version, icon } = store.app.getAll();
@@ -28,7 +29,7 @@ function createMenu() {
       click: () => createWindow(),
     },
     { type: "separator" },
-    { label: capitalize(_("words.quit")), click: () => app.quit() },
+    { label: capitalize(_("words.quit")), click: () => quit() },
   ]);
 }
 

@@ -1,5 +1,6 @@
 const { BrowserWindow } = require("electron");
-const store = require("../stores");
+const hideOnClose = require("./hideOnClose");
+const store = require("../../stores");
 
 let win = null;
 
@@ -19,16 +20,12 @@ function createWindow() {
     webPreferences: { devTools },
   });
 
+  hideOnClose(win);
+
   win.webContents.once("did-finish-load", () => {
     win.show();
   });
 
-  win.on("close", (event) => {
-    event.preventDefault();
-    win.hide();
-  });
-
-  // and load the index.html of the app.
   win.loadURL("http://localhost:4242/");
   devTools && win.webContents.openDevTools();
 }
