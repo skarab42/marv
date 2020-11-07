@@ -12,7 +12,11 @@
     "add-grid-widget": "add widget",
     "ask-for-widget-deletion": "Would you like to remove the widget \"{{name}}\"?",
     "widget-settings": "Widget settings",
-    "background-color": "Background color"
+    "background-color": "Background color",
+    "file-manager": "File manager",
+    "open-file-manager": "Open file manager",
+    "select-file": "Select file",
+    "browse-file": "sentences.browse-file"
   },
   "words": {
     "settings": "settings",

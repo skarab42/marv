@@ -12,6 +12,8 @@
     "chalk": "^4.1.0",
     "chokidar": "^3.4.3",
     "conf": "^7.1.2",
+    "env-paths": "^2.2.0",
+    "fs-extra": "^9.0.1",
     "i18next": "^19.8.3",
     "i18next-fs-backend": "^1.0.7",
     "obs-websocket-js": "^4.0.2",

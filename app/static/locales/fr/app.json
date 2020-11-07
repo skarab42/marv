@@ -12,7 +12,11 @@
     "add-grid-widget": "ajouter un pouvoir",
     "ask-for-widget-deletion": "Tu veux vraiment supprimer le widget \"{{name}}\"?",
     "widget-settings": "Réglages du widget",
-    "background-color": "Couleur de fond"
+    "background-color": "Couleur de fond",
+    "file-manager": "Gestionnaire de fichier",
+    "open-file-manager": "Ouvrir le gestionnaire de fichier",
+    "select-file": "Sélectionner un fichier",
+    "browse-file": "sentences.browse-file"
   },
   "words": {
     "settings": "options",

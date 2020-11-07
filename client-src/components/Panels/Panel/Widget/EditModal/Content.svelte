@@ -4,10 +4,12 @@
   import Input from "@/components/UI/Input.svelte";
   import Select from "@/components/UI/Select.svelte";
   import ColorPicker from "@/components/UI/ColorPicker.svelte";
+  import FileManager from "@/components/FileManager/Main.svelte";
 
   export let panel;
   export let widget;
 
+  let fileManager = false;
   let labelWord = _("words.label");
 
   function val(source, key, defaultValue) {
@@ -28,6 +30,14 @@
 
   function onBackgroundColor({ detail: color }) {
     update("backgroundColor", color.hex);
+  }
+
+  function openFileManager() {
+    fileManager = true;
+  }
+
+  function closeFileManager() {
+    fileManager = false;
   }
 </script>
 
@@ -56,10 +66,16 @@
     items="{['left', 'center', 'right']}"
     on:change="{onUpdate.bind(null, 'labelAlign')}"
   />
-
   <ColorPicker
     label="{_('sentences.background-color')}"
     on:color="{onBackgroundColor}"
     color="{widget.backgroundColor}"
   />
+  <button
+    on:click="{openFileManager}"
+  >{_('sentences.open-file-manager')}</button>
 </div>
+
+{#if fileManager}
+  <FileManager on:close="{closeFileManager}" />
+{/if}

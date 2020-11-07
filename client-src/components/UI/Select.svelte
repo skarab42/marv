@@ -17,6 +17,7 @@
   }
 </script>
 
+<!-- svelte-ignore a11y-label-has-associated-control -->
 <label class="flex flex-wrap items-center {color}">
   {#if label}
     <div class="{padding} uppercase">{label}</div>

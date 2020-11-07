@@ -8,15 +8,17 @@ const polka = require("polka");
 const sirv = require("sirv");
 const http = require("http");
 const { json } = require("body-parser");
+const path = require("path");
 
 const { i18next } = require("./libs/i18next");
 const missingKeyHandler = require("./libs/i18next/missingKeyHandler");
 
-let { host, port, clientPath, staticPath } = stores.server.getAll();
+let { host, port, clientPath, staticPath, uploadPath } = stores.server.getAll();
 const appFingerprint = stores.app.get("fingerprint");
 
 const sirvClient = sirv(clientPath, { dev: true });
 const sirvStatic = sirv(staticPath, { dev: true });
+const sirvUpload = sirv(path.dirname(uploadPath), { dev: true });
 
 let portChangeCount = 0;
 let portChangeMaxCount = 10;
@@ -46,6 +48,7 @@ function start() {
     .use(json())
     .use(sirvClient)
     .use(sirvStatic)
+    .use(sirvUpload)
     .post("/locales/add/:lng/:ns", missingKeyHandler(i18next))
     .listen(port, (error) => {
       if (error) return onError(error);
