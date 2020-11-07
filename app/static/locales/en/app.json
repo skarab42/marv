@@ -20,7 +20,8 @@
     "upload-file": "Upload file",
     "file-already-exists": "The file already exists.",
     "disallowed-file-type": "Disallowed file type.",
-    "obs-is-not-initialized": "OBS is not initialized."
+    "obs-is-not-initialized": "OBS is not initialized.",
+    "empty-file": "Empty file"
   },
   "words": {
     "settings": "settings",

@@ -13,7 +13,7 @@ function cleanFileName(name) {
   return name.replace(/[^a-z0-9_.]+/gi, "_");
 }
 
-function getFileType(filename) {
+function getFileType(filename, buffer) {
   const ext = path.extname(filename).slice(1);
   const mimeType = mime.getType(filename);
 
@@ -22,19 +22,23 @@ function getFileType(filename) {
   }
 
   const type = mimeType.split("/")[0];
+  const size = Buffer.byteLength(buffer);
 
-  return { ext, type, mimeType };
+  return { filename, size, ext, type, mimeType };
 }
 
 async function upload({ name, buffer }) {
   const filename = cleanFileName(name);
-  const fileType = getFileType(filename);
+  const fileInfo = getFileType(filename, buffer);
+  const filePath = path.join(uploadDir, filename);
 
-  if (!allowedMimeTypes.includes(fileType.type)) {
-    return Promise.reject(_("sentences.disallowed-file-type"));
+  if (!fileInfo.size) {
+    return Promise.reject(_("sentences.empty-file"));
   }
 
-  const filePath = path.join(uploadDir, filename);
+  if (!allowedMimeTypes.includes(fileInfo.type)) {
+    return Promise.reject(_("sentences.disallowed-file-type"));
+  }
 
   if (fs.existsSync(filePath)) {
     return Promise.reject(_("sentences.file-already-exists"));
@@ -46,7 +50,7 @@ async function upload({ name, buffer }) {
     return Promise.reject(error);
   }
 
-  return Promise.resolve(filename);
+  return Promise.resolve(fileInfo);
 }
 
 function getFileList() {

@@ -20,7 +20,8 @@
     "upload-file": "Téléverser un fichier",
     "file-already-exists": "Le fichier existe déjà.",
     "disallowed-file-type": "Type de fichier non autorisé.",
-    "obs-is-not-initialized": "OBS n'est pas initialisé."
+    "obs-is-not-initialized": "OBS n'est pas initialisé.",
+    "empty-file": "Fichier vide."
   },
   "words": {
     "settings": "options",
