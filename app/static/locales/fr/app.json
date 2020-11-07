@@ -23,8 +23,8 @@
     "obs-is-not-initialized": "OBS n'est pas initialisé.",
     "file-is-empty": "Le fichier est vide.",
     "file-list-empty": "La liste de fichier est vide.",
-    "file-uploaded": "sentences.file-uploaded",
-    "file-uploaded-successfully": "Fichier téléchargé avec succès."
+    "file-uploaded-successfully": "Fichier téléchargé avec succès.",
+    "background-image": "Image de fond"
   },
   "words": {
     "settings": "options",

@@ -30,7 +30,7 @@
 
 <div use:clickoutside on:clickoutside="{hide}">
   <div class="flex cursor-pointer" on:click="{toggle}">
-    <div class="p-2 uppercase bg-dark-lighter">{label}</div>
+    <div class="p-2 uppercase font-medium bg-dark-lighter">{label}</div>
     <div class="p-2 text-dark flex-auto" style="{style}"></div>
   </div>
   <div class="absolute z-10 text-dark {hidden}">

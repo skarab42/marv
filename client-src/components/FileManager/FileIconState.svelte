@@ -6,15 +6,15 @@
 
   export let type;
   export let state;
+  export let visible = true;
 
   function onClick() {
     dispatch("click", type);
   }
+
+  $: color = !state[type] && "opacity-25";
 </script>
 
-<FileIcon
-  on:click="{onClick}"
-  size="lg"
-  type="{type}"
-  class="{state[type] && 'text-primary'}"
-/>
+{#if visible}
+  <FileIcon on:click="{onClick}" size="lg" type="{type}" class="{color}" />
+{/if}

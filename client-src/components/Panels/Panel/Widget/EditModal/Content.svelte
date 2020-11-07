@@ -3,6 +3,7 @@
   import { _ } from "@/libs/i18next";
   import Input from "@/components/UI/Input.svelte";
   import Select from "@/components/UI/Select.svelte";
+  import Button from "@/components/UI/Button.svelte";
   import ColorPicker from "@/components/UI/ColorPicker.svelte";
   import FileManager from "@/components/FileManager/Main.svelte";
 
@@ -12,12 +13,15 @@
   let fileManager = false;
   let labelWord = _("words.label");
 
-  function val(source, key, defaultValue) {
+  function val(source, key, defaultValue = null) {
     return (source && source[key]) || defaultValue;
   }
 
   $: component = widget.component;
   $: labelPlaceholder = val(component, "label", "OBS | Alerts | Media");
+  $: bgImage =
+    widget.backgroundImage &&
+    `background-image: url(files/${widget.backgroundImage});`;
 
   function update(key, value) {
     widget[key] = value;
@@ -76,11 +80,21 @@
     on:color="{onBackgroundColor}"
     color="{widget.backgroundColor}"
   />
-  <button
-    on:click="{openFileManager}"
-  >{_('sentences.open-file-manager')}</button>
+  <Button padding="" class="bg-dark-lighter" on:click="{openFileManager}">
+    <div class="p-2 text-left flex-auto">{_('sentences.background-image')}</div>
+    {#if bgImage}
+      <div
+        style="{bgImage}"
+        class="bg-center w-10 h-10 bg-no-repeat bg-cover"
+      ></div>
+    {/if}
+  </Button>
 </div>
 
 {#if fileManager}
-  <FileManager on:close="{closeFileManager}" on:select="{onFileSelect}" />
+  <FileManager
+    accept="{['image']}"
+    on:close="{closeFileManager}"
+    on:select="{onFileSelect}"
+  />
 {/if}

@@ -11,6 +11,8 @@
   import FileIcon from "@/components/UI/FileIcon.svelte";
   import FileInput from "@/components/UI/FileInput.svelte";
 
+  export let accept = ["text", "image", "audio", "video"];
+
   let message = null;
   let timeoutId = null;
   let messageDelay = 5000;
@@ -22,7 +24,13 @@
     video: true,
   };
 
+  Object.keys(typesState).forEach((key) => {
+    typesState[key] = accept.includes(key);
+  });
+
   const dispatch = createEventDispatcher();
+
+  $: files = $store.filter((file) => typesState[file.type]);
 
   function notify(type, text) {
     message = { type, text };
@@ -58,8 +66,6 @@
   function selectFile(file) {
     dispatch("select", file);
   }
-
-  $: files = $store.filter((file) => typesState[file.type]);
 </script>
 
 <div class="absolute inset-0">
@@ -79,24 +85,34 @@
           class="bg-secondary rounded"
           on:file="{onFile}"
         />
-        <div class="flex space-x-2">
-          <FileIconState type="text" state="{typesState}" on:click="{onType}" />
-          <FileIconState
-            type="image"
-            state="{typesState}"
-            on:click="{onType}"
-          />
-          <FileIconState
-            type="audio"
-            state="{typesState}"
-            on:click="{onType}"
-          />
-          <FileIconState
-            type="video"
-            state="{typesState}"
-            on:click="{onType}"
-          />
-        </div>
+        {#if accept.length > 1}
+          <div class="flex space-x-2">
+            <FileIconState
+              type="text"
+              state="{typesState}"
+              on:click="{onType}"
+              visible="{accept.includes('text')}"
+            />
+            <FileIconState
+              type="image"
+              state="{typesState}"
+              on:click="{onType}"
+              visible="{accept.includes('image')}"
+            />
+            <FileIconState
+              type="audio"
+              state="{typesState}"
+              on:click="{onType}"
+              visible="{accept.includes('audio')}"
+            />
+            <FileIconState
+              type="video"
+              state="{typesState}"
+              on:click="{onType}"
+              visible="{accept.includes('video')}"
+            />
+          </div>
+        {/if}
       </div>
       {#if message}
         <div in:fade out:fade class="px-4 py-2 {messageColor(message)}">

@@ -20,7 +20,7 @@
 <!-- svelte-ignore a11y-label-has-associated-control -->
 <label class="flex flex-wrap items-center {color}">
   {#if label}
-    <div class="{padding} uppercase">{label}</div>
+    <div class="{padding} font-medium uppercase">{label}</div>
   {/if}
   <div class="flex-auto">
     <!-- svelte-ignore a11y-no-onchange -->
