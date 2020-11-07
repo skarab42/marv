@@ -4,6 +4,7 @@ const fs = require("fs-extra");
 const { _ } = require("./i18next");
 const stores = require("../../stores");
 
+const language = stores.i18next.get("lng", "en");
 const uploadDir = stores.server.get("uploadDir");
 const allowedMimeTypes = ["text", "image", "audio", "video"];
 
@@ -63,13 +64,22 @@ async function upload({ name, buffer }) {
   });
 }
 
+function localeSort(a, b) {
+  return a.localeCompare(b, language, {
+    numeric: true,
+    ignorePunctuation: true,
+  });
+}
+
 function getFileList() {
   return new Promise((resolve, reject) => {
     try {
       const files = fs.readdirSync(uploadDir);
       const fileList = files
+        .sort(localeSort)
         .map(getFileInfoFromFilename)
         .filter(({ type }) => isAllowedMimeType(type));
+
       resolve(fileList);
     } catch (error) {
       reject(error);
