@@ -1,5 +1,5 @@
-const { app, Tray, Menu } = require("electron");
 const { _ } = require("../server/libs/i18next");
+const { Tray, Menu } = require("electron");
 const createWindow = require("./window");
 const capitalize = require("capitalize");
 const store = require("../stores");
