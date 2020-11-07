@@ -16,7 +16,8 @@
     "file-manager": "Gestionnaire de fichier",
     "open-file-manager": "Ouvrir le gestionnaire de fichier",
     "select-file": "Sélectionner un fichier",
-    "browse-file": "sentences.browse-file"
+    "browse-file": "Chercher un fichier",
+    "upload-file": "Téléverser un fichier"
   },
   "words": {
     "settings": "options",

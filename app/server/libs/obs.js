@@ -2,7 +2,7 @@ const OBSWebSocket = require("obs-websocket-js");
 const socket = require("./socket.io");
 
 let obs = null;
-let io = socket();
+const io = socket();
 
 let connecting = false;
 let autoReconnect = true;

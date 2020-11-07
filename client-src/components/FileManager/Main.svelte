@@ -1,23 +1,13 @@
 <script>
   import api from "@/api/files";
-  import { onMount } from "svelte";
   import { _ } from "@/libs/i18next";
-  // import Modal from "@/components/UI/Modal.svelte";
+  import { store } from "@/stores/files";
   import FileInput from "@/components/UI/FileInput.svelte";
-
-  let files = [];
-
-  async function updateFileList() {
-    files = await api.getFileList();
-  }
-
-  onMount(updateFileList);
 
   function onFile({ detail: file }) {
     api
       .upload({ name: file.name, buffer: file })
       .then((filename) => {
-        updateFileList();
         console.log("uploaded:", filename);
       })
       .catch((error) => {
@@ -33,13 +23,13 @@
     </div>
     <div class="p-2">
       <FileInput
-        label="{_('sentences.select-file')}"
+        label="{_('sentences.upload-file')}"
         class="bg-secondary rounded"
         on:file="{onFile}"
       />
     </div>
     <div class="p-2 flex flex-col space-y-2">
-      {#each files as file}
+      {#each $store as file}
         <div class="p-2 bg-dark-darker rounded">{file}</div>
       {:else}
         <div class="">The file list is empty...</div>
