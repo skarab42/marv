@@ -1,5 +1,6 @@
 const OBSWebSocket = require("obs-websocket-js");
 const socket = require("./socket.io");
+const { _ } = require("./i18next");
 
 let obs = null;
 const io = socket();
@@ -31,7 +32,7 @@ function getState() {
 
 function send(...args) {
   if (!obs) {
-    return Promise.reject("OBS is not initialized");
+    return Promise.reject(_("sentences.obs-is-not-initialized"));
   }
   return obs.send(...args).catch((data) => {
     return Promise.reject(data.error);

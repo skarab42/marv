@@ -1,10 +1,10 @@
 const path = require("path");
 const mime = require("mime");
 const fs = require("fs-extra");
+const { _ } = require("./i18next");
 const stores = require("../../stores");
 
 const uploadDir = stores.server.get("uploadDir");
-
 const allowedMimeTypes = ["text", "image", "audio", "video"];
 
 fs.ensureDirSync(uploadDir);
@@ -31,13 +31,13 @@ async function upload({ name, buffer }) {
   const fileType = getFileType(filename);
 
   if (!allowedMimeTypes.includes(fileType.type)) {
-    return Promise.reject("Disallowed file type");
+    return Promise.reject(_("sentences.disallowed-file-type"));
   }
 
   const filePath = path.join(uploadDir, filename);
 
   if (fs.existsSync(filePath)) {
-    return Promise.reject("File already exists");
+    return Promise.reject(_("sentences.file-already-exists"));
   }
 
   try {

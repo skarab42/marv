@@ -16,8 +16,11 @@
     "file-manager": "File manager",
     "open-file-manager": "Open file manager",
     "select-file": "Select file",
-    "browse-file": " Browse file",
-    "upload-file": "Upload file"
+    "browse-file": "Browse file",
+    "upload-file": "Upload file",
+    "file-already-exists": "The file already exists.",
+    "disallowed-file-type": "Disallowed file type.",
+    "obs-is-not-initialized": "OBS is not initialized."
   },
   "words": {
     "settings": "settings",

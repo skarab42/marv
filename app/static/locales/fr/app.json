@@ -17,7 +17,10 @@
     "open-file-manager": "Ouvrir le gestionnaire de fichier",
     "select-file": "Sélectionner un fichier",
     "browse-file": "Chercher un fichier",
-    "upload-file": "Téléverser un fichier"
+    "upload-file": "Téléverser un fichier",
+    "file-already-exists": "Le fichier existe déjà.",
+    "disallowed-file-type": "Type de fichier non autorisé.",
+    "obs-is-not-initialized": "OBS n'est pas initialisé."
   },
   "words": {
     "settings": "options",
