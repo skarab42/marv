@@ -32,21 +32,21 @@
     out:fade
     class="flex items-center bg-dark-darker rounded cursor-pointer"
   >
-    <div class="p-2" on:click="{selectFile.bind(null, file)}">
-      <FileIcon type="{file.type}" />
-    </div>
     <div
-      class="p-2 flex-auto truncate"
+      class="flex flex-auto items-center"
       on:click="{selectFile.bind(null, file)}"
     >
-      {file.filename}
+      <div class="p-2">
+        <FileIcon type="{file.type}" />
+      </div>
+      <div class="p-2 flex-auto truncate">{file.filename}</div>
+      {#if file.type === 'image'}
+        <div
+          style="{bgImage(file)}"
+          class="w-10 h-10 mr-1 bg-center bg-no-repeat bg-cover rounded"
+        ></div>
+      {/if}
     </div>
-    {#if file.type === 'image'}
-      <div
-        style="{bgImage(file)}"
-        class="w-10 h-10 mr-1 bg-center bg-no-repeat bg-cover rounded"
-      ></div>
-    {/if}
     <Button
       class="bg-red-600 rounded-r"
       on:click="{removeFile.bind(null, file)}"
