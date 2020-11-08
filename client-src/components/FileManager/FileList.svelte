@@ -20,6 +20,10 @@
   function selectFile(file) {
     dispatch("select", file);
   }
+
+  function bgImage(file) {
+    return `background-image: url(files/${file.filename});`;
+  }
 </script>
 
 {#each files as file}
@@ -37,6 +41,12 @@
     >
       {file.filename}
     </div>
+    {#if file.type === 'image'}
+      <div
+        style="{bgImage(file)}"
+        class="w-10 h-10 mr-1 bg-center bg-no-repeat bg-cover rounded"
+      ></div>
+    {/if}
     <Button
       class="bg-red-600 rounded-r"
       on:click="{removeFile.bind(null, file)}"
