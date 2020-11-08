@@ -1,11 +1,13 @@
 <script>
   import { _ } from "@/libs/i18next";
   import { update } from "@/libs/panels";
+  import Icon from "@/components/UI/Icon.svelte";
   import Input from "@/components/UI/Input.svelte";
   import Select from "@/components/UI/Select.svelte";
   import Button from "@/components/UI/Button.svelte";
   import ColorPicker from "@/components/UI/ColorPicker.svelte";
   import FileManager from "@/components/FileManager/Main.svelte";
+  import MdDelete from "svelte-icons/md/MdDeleteForever.svelte";
 
   export let panel;
   export let widget;
@@ -47,6 +49,10 @@
   function onFileSelect({ detail: file }) {
     closeFileManager();
     set("backgroundImage", file.filename);
+  }
+
+  function removeBackgroundImage() {
+    set("backgroundImage", null);
   }
 </script>
 
@@ -93,6 +99,12 @@
         class="bg-center w-10 h-10 bg-no-repeat bg-cover"
       ></div>
     {/if}
+    <div
+      class="flex items-center justify-center bg-red-700 w-10 h-10"
+      on:click|stopPropagation="{removeBackgroundImage}"
+    >
+      <Icon icon="{MdDelete}" />
+    </div>
   </Button>
 </div>
 
