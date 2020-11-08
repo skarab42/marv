@@ -5,14 +5,14 @@
   const dispatch = createEventDispatcher();
 
   export let type;
-  export let state;
+  export let types;
   export let visible = true;
 
   function onClick() {
     dispatch("click", type);
   }
 
-  $: color = !state[type] && "opacity-25";
+  $: color = !types[type] && "opacity-25";
 </script>
 
 {#if visible}

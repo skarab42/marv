@@ -92,9 +92,13 @@
 </div>
 
 {#if fileManager}
-  <FileManager
-    accept="{['image']}"
-    on:close="{closeFileManager}"
-    on:select="{onFileSelect}"
-  />
+  <div class="absolute inset-0">
+    <div class="relative h-full">
+      <FileManager
+        accept="{['image']}"
+        on:close="{closeFileManager}"
+        on:select="{onFileSelect}"
+      />
+    </div>
+  </div>
 {/if}

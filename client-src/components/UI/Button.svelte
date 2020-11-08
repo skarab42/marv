@@ -1,7 +1,7 @@
 <script>
   import Icon from "./Icon.svelte";
 
-  export let cls = "rounded";
+  export let cls = "";
   export { cls as class };
 
   export let dark = true;
