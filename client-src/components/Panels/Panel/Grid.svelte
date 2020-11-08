@@ -1,15 +1,13 @@
 <script>
   import Grid from "svelte-grid";
-  import api from "@/api/panels";
   import Widget from "./Widget.svelte";
+  import { update } from "@/libs/panels";
   import { gridOptions } from "@/stores/panels";
 
   export let panel;
 
-  const reducer = ({ id, x, y, w, h }) => ({ id, x, y, w, h });
-
   function onChange() {
-    api.update({ ...panel, grid: panel.grid.map(reducer) });
+    update(panel);
   }
 </script>
 

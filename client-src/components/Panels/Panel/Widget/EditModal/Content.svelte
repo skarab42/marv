@@ -1,6 +1,6 @@
 <script>
-  import api from "@/api/panels";
   import { _ } from "@/libs/i18next";
+  import { update } from "@/libs/panels";
   import Input from "@/components/UI/Input.svelte";
   import Select from "@/components/UI/Select.svelte";
   import Button from "@/components/UI/Button.svelte";
@@ -23,17 +23,17 @@
     widget.backgroundImage &&
     `background-image: url(files/${widget.backgroundImage});`;
 
-  function update(key, value) {
+  function set(key, value) {
     widget[key] = value;
-    api.update(panel);
+    update(panel);
   }
 
   function onUpdate(key, { detail: value }) {
-    update(key, value);
+    set(key, value);
   }
 
   function onBackgroundColor({ detail: color }) {
-    update("backgroundColor", color.hex);
+    set("backgroundColor", color.hex);
   }
 
   function openFileManager() {
@@ -46,7 +46,7 @@
 
   function onFileSelect({ detail: file }) {
     closeFileManager();
-    update("backgroundImage", file.filename);
+    set("backgroundImage", file.filename);
   }
 </script>
 
