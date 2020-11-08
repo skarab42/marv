@@ -1,6 +1,5 @@
 <script>
-  export let borders;
-  export let position = "absolute top-0 right-0 px-1";
+  // export let position = "absolute top-0 right-0";
 </script>
 
 <style>
@@ -13,5 +12,6 @@
 <span
   on:click
   {...$$restProps}
-  class="{position} {borders} text-shadow hover:bg-red-800 cursor-pointer"
+  style="top:-5px;right:-5px;"
+  class="absolute inline-block px-1 rounded text-shadow bg-red-600 cursor-pointer"
 >✕</span>

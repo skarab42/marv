@@ -18,7 +18,7 @@
   class="h-full {borders} bg-center bg-no-repeat bg-cover"
   style="{bgColor} {bgImage}"
 >
-  <div class="h-full flex flex-col overflow-hidden">
+  <div class="h-full {borders} flex flex-col overflow-hidden">
     <Label widget="{widget}" />
     <div class="flex-auto">contents...</div>
   </div>

@@ -75,6 +75,11 @@
     items="{['left', 'center', 'right']}"
     on:change="{onUpdate.bind(null, 'labelAlign')}"
   />
+  <Input
+    label="{_('words.borders')}"
+    value="{widget.borders}"
+    on:update="{onUpdate.bind(null, 'borders')}"
+  />
   <ColorPicker
     label="{_('sentences.background-color')}"
     on:color="{onBackgroundColor}"

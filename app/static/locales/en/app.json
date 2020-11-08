@@ -45,7 +45,8 @@
     "size": "size",
     "padding": "padding",
     "align": "align",
-    "color": "color"
+    "color": "color",
+    "borders": "words.borders"
   },
   "delete": "delete"
 }

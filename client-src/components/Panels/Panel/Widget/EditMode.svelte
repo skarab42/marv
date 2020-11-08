@@ -49,7 +49,7 @@
   on:dblclick="{openEditModal}"
 ></div>
 
-<RemoveCross borders="{widget.borders}" on:click="{openConfirmModal}" />
+<RemoveCross on:click="{openConfirmModal}" />
 
 <ConfirmModal
   question="{question}"
