@@ -98,13 +98,13 @@
         style="{bgImage}"
         class="bg-center w-10 h-10 bg-no-repeat bg-cover"
       ></div>
+      <div
+        class="flex items-center justify-center bg-red-700 w-10 h-10"
+        on:click|stopPropagation="{removeBackgroundImage}"
+      >
+        <Icon icon="{MdDelete}" />
+      </div>
     {/if}
-    <div
-      class="flex items-center justify-center bg-red-700 w-10 h-10"
-      on:click|stopPropagation="{removeBackgroundImage}"
-    >
-      <Icon icon="{MdDelete}" />
-    </div>
   </Button>
 </div>
 
