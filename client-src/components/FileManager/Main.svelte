@@ -9,6 +9,7 @@
 
   export let accept = ["text", "image", "audio", "video"];
 
+  let inputAccept = accept.map((type) => `${type}/*`);
   let acceptTypes = {
     text: true,
     image: true,
@@ -52,6 +53,7 @@
       <FileInput
         label="{_('sentences.upload-file')}"
         class="bg-secondary rounded"
+        accept="{inputAccept}"
         on:file="{onFile}"
       />
       <FilterButtons accept="{accept}" bind:types="{acceptTypes}" />
