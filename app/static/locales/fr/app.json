@@ -59,7 +59,6 @@
   },
   "obs": {
     "scene-list": "OBS | Liste des scènes",
-    "go-to-scene": "OBS | Aller à la scène",
-    "Scene list": "obs.Scene list"
+    "go-to-scene": "OBS | Aller à la scène"
   }
 }
