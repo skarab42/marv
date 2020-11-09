@@ -19,8 +19,11 @@ let state = {
   streaming: false,
   recording: false,
   status: null,
+  scenes: null,
+  currentScene: null,
 };
 
+// TODO use logs lib
 function log(...args) {
   // eslint-disable-next-line
   console.log(">>> OBS:", ...args);
@@ -57,6 +60,12 @@ function updateStreamStatus() {
   send("GetStreamingStatus").then(onStreamStatus);
 }
 
+function updateSceneList() {
+  return send("GetSceneList").then(({ currentScene, scenes }) => {
+    updateState({ currentScene, scenes });
+  });
+}
+
 function recordingHeartbeat() {
   recordingHeartbeatId = setTimeout(() => {
     updateStreamStatus();
@@ -91,6 +100,12 @@ function registerEvents(obs) {
   });
 
   obs.on("StreamStatus", onStreamStatus);
+
+  obs.on("SwitchScenes", ({ sceneName }) => {
+    updateState({ currentScene: sceneName });
+  });
+
+  obs.on("ScenesChanged", updateSceneList);
 }
 
 // function onMessage(obs) {
@@ -152,6 +167,7 @@ function connect({ host = "localhost", port = 4444, password = null } = {}) {
       obs.on("ConnectionClosed", onConnectionClosed);
       registerEvents(obs);
       updateStreamStatus();
+      updateSceneList();
       // onMessage(obs);
       emit("connected");
     })

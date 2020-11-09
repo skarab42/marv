@@ -26,6 +26,7 @@
 </script>
 
 {#if component}
+  <div class="p-2 font-bold bg-dark-lighter">{component.name}</div>
   <svelte:component this="{widgets[component.name].Settings}" />
   <Button icon="{MdDelete}" class="bg-red-600" on:click="{onRemoveAction}">
     {_('words.remove')}
