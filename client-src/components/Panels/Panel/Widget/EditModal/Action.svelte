@@ -9,7 +9,10 @@
   export let panel;
   export let widget;
 
-  const widgetsList = [{ key: "None", val: null }, ...getWidgetsList()];
+  const widgetsList = [
+    { key: _("words.none"), val: null },
+    ...getWidgetsList(),
+  ];
 
   $: component = widget.component;
   $: componentName = (component && component.name) || "";
@@ -33,7 +36,11 @@
 
 {#if component}
   <div class="p-2 font-bold bg-dark-lighter">{_(`obs.${component.label}`)}</div>
-  <svelte:component this="{widgets[component.name].Settings}" />
+  <svelte:component
+    this="{widgets[component.name].Settings}"
+    panel="{panel}"
+    widget="{widget}"
+  />
   <Button icon="{MdDelete}" class="bg-red-600" on:click="{onRemoveAction}">
     {_('words.remove')}
   </Button>

@@ -1,9 +1,12 @@
 <script>
   import { _ } from "@/libs/i18next";
   import { state } from "@/stores/obs";
+
+  export let cls = "";
+  export { cls as class };
 </script>
 
-<div class="relative h-full">
+<div class="relative h-full {cls}" on:click {...$$restProps}>
   <slot />
   {#if !$state.connected}
     <div class="absolute inset-0 bg-black bg-opacity-75">

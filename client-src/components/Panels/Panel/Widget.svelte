@@ -24,7 +24,10 @@
     <Label widget="{widget}" />
     <div class="flex-auto">
       {#if component}
-        <svelte:component this="{widgets[component.name].Widget}" />
+        <svelte:component
+          this="{widgets[component.name].Widget}"
+          widget="{widget}"
+        />
       {/if}
     </div>
   </div>
