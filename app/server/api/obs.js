@@ -5,5 +5,5 @@ module.exports = {
   connect: () => obs.connect(stores.obs.getAll()),
   disconnect: () => obs.disconnect(),
   getState: () => obs.getState(),
-  emit: () => obs.send(),
+  emit: (type, ...args) => obs.send(type, ...args),
 };
