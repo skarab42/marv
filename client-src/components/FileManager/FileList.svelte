@@ -6,8 +6,12 @@
   import { createEventDispatcher } from "svelte";
   import Button from "@/components/UI/Button.svelte";
   import FileIcon from "@/components/UI/FileIcon.svelte";
+  import ConfirmModal from "@/components/UI/ConfirmModal.svelte";
 
   export let acceptTypes;
+
+  let confirmRemoveModal = false;
+  let currentFile = null;
 
   const dispatch = createEventDispatcher();
 
@@ -15,6 +19,16 @@
 
   function removeFile(file) {
     api.remove(file);
+  }
+
+  function onRemoveFile(file) {
+    currentFile = file;
+    confirmRemoveModal = true;
+  }
+
+  function onConfirmRemove({ detail: confirm }) {
+    confirmRemoveModal = false;
+    confirm && removeFile(currentFile);
   }
 
   function selectFile(file) {
@@ -49,11 +63,24 @@
     </div>
     <Button
       class="bg-red-600 rounded-r"
-      on:click="{removeFile.bind(null, file)}"
+      on:click="{onRemoveFile.bind(null, file)}"
     >
-      {_('delete')}
+      {_('words.delete')}
     </Button>
   </div>
 {:else}
   <div>{_('sentences.file-list-empty')}</div>
 {/each}
+
+<ConfirmModal
+  question="{_('sentences.ask-remove-file', {
+    filename: currentFile && currentFile.filename,
+  })}"
+  visible="{confirmRemoveModal}"
+  on:confirm="{onConfirmRemove}"
+>
+  <div class="p-2 bg-orange-600">
+    <span class="uppercase font-bold">{_('words.warning')}:</span>
+    {_('sentences.file-can-be-used-by-other-widgets')}
+  </div>
+</ConfirmModal>

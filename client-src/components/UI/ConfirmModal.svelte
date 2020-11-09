@@ -19,6 +19,7 @@
 {#if visible}
   <Modal class="bg-dark rounded">
     <div class="p-5 font-bold">{question}</div>
+    <slot />
     <div class="flex p-5 space-x-2">
       <Button class="bg-primary" on:click="{confirm.bind(null, true)}">
         {yesLabel}

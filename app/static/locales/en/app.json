@@ -24,7 +24,9 @@
     "file-is-empty": "The file is empty.",
     "file-list-empty": "The file list is empty.",
     "file-uploaded-successfully": "File uploaded successfully.",
-    "background-image": "Background image"
+    "background-image": "Background image",
+    "ask-remove-file": "Are you sure you want to permanently delete \"{{filename}}\"?",
+    "file-can-be-used-by-other-widgets": "This file can be used by other widgets!"
   },
   "words": {
     "settings": "settings",
@@ -46,7 +48,8 @@
     "padding": "padding",
     "align": "align",
     "color": "color",
-    "borders": "words.borders"
-  },
-  "delete": "delete"
+    "borders": "borders",
+    "delete": "delete",
+    "warning": "warning"
+  }
 }

@@ -24,7 +24,9 @@
     "file-is-empty": "Le fichier est vide.",
     "file-list-empty": "La liste de fichier est vide.",
     "file-uploaded-successfully": "Fichier téléchargé avec succès.",
-    "background-image": "Image de fond"
+    "background-image": "Image de fond",
+    "ask-remove-file": "Êtes-vous sûr de vouloir supprimer définitivement \"{{filename}}\"?",
+    "file-can-be-used-by-other-widgets": "Ce fichier peut être utilisé par d'autre widgets!"
   },
   "words": {
     "settings": "options",
@@ -46,7 +48,8 @@
     "padding": "marges",
     "align": "alignement",
     "color": "couleur",
-    "borders": "words.borders"
-  },
-  "delete": "delete"
+    "borders": "bordures",
+    "delete": "delete",
+    "warning": "attention"
+  }
 }
