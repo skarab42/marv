@@ -51,6 +51,7 @@
     "borders": "bordures",
     "delete": "delete",
     "warning": "attention",
-    "position": "position"
+    "position": "position",
+    "component": "composant"
   }
 }

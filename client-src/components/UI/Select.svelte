@@ -4,6 +4,7 @@
   export let items = [];
   export let value = null;
   export let label = null;
+  export let object = false;
   export let padding = "p-2";
   export let textColor = "text-light";
   export let bgColor = "bg-dark-lighter";
@@ -31,7 +32,13 @@
       bind:value
     >
       {#each items as item}
-        <option value="{item}" disabled="{item === value}">{item}</option>
+        {#if object}
+          <option value="{item.val}" disabled="{item.val === value}">
+            {item.key}
+          </option>
+        {:else}
+          <option value="{item}" disabled="{item === value}">{item}</option>
+        {/if}
       {/each}
     </select>
   </div>

@@ -51,6 +51,7 @@
     "borders": "borders",
     "delete": "delete",
     "warning": "warning",
-    "position": "position"
+    "position": "position",
+    "component": "component"
   }
 }
