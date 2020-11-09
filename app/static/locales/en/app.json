@@ -50,6 +50,7 @@
     "color": "color",
     "borders": "borders",
     "delete": "delete",
-    "warning": "warning"
+    "warning": "warning",
+    "position": "position"
   }
 }

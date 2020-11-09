@@ -81,6 +81,12 @@
     items="{['left', 'center', 'right']}"
     on:change="{onUpdate.bind(null, 'labelAlign')}"
   />
+  <Select
+    label="{labelWord} | {_('words.position')}"
+    value="{widget.labelPosition}"
+    items="{['top', 'bottom']}"
+    on:change="{onUpdate.bind(null, 'labelPosition')}"
+  />
   <Input
     label="{_('words.borders')}"
     value="{widget.borders}"

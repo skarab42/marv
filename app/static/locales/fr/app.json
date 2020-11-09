@@ -50,6 +50,7 @@
     "color": "couleur",
     "borders": "bordures",
     "delete": "delete",
-    "warning": "attention"
+    "warning": "attention",
+    "position": "position"
   }
 }
