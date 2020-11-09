@@ -6,8 +6,8 @@
   import Select from "@/components/UI/Select.svelte";
   import Button from "@/components/UI/Button.svelte";
   import ColorPicker from "@/components/UI/ColorPicker.svelte";
-  import FileManager from "@/components/FileManager/Main.svelte";
   import MdDelete from "svelte-icons/md/MdDeleteForever.svelte";
+  import FileManager from "@/components/FileManager/Main.svelte";
 
   export let panel;
   export let widget;
