@@ -1,11 +1,13 @@
 <script>
   import EditMode from "./Widget/EditMode.svelte";
-  import Label from "./Widget/Label.svelte";
+  import widgets from "@/components/Widgets";
   import { editMode } from "@/stores/panels";
+  import Label from "./Widget/Label.svelte";
 
   export let item;
   export let panel;
 
+  $: component = widget.component;
   $: widget = panel.widgets.find((i) => i.id === item.id);
   $: bgColor = `background-color: ${widget.backgroundColor};`;
   $: bgImage =
@@ -20,7 +22,11 @@
 >
   <div class="h-full {borders} flex flex-col overflow-hidden">
     <Label widget="{widget}" />
-    <div class="flex-auto">contents...</div>
+    <div class="flex-auto">
+      {#if component}
+        <svelte:component this="{widgets[component.name].Widget}" />
+      {/if}
+    </div>
   </div>
   {#if $editMode}
     <EditMode panel="{panel}" widget="{widget}" />
