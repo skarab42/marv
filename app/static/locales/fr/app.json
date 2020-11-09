@@ -53,11 +53,13 @@
     "delete": "delete",
     "warning": "attention",
     "position": "position",
-    "component": "composant"
+    "component": "composant",
+    "none": "auncun",
+    "scene": "scène"
   },
   "obs": {
     "scene-list": "OBS | Liste des scènes",
-    "Scene list": "obs.Scene list",
-    "go-to-scene": "obs.go-to-scene"
+    "go-to-scene": "OBS | Aller à la scène",
+    "Scene list": "obs.Scene list"
   }
 }

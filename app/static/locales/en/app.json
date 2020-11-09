@@ -53,11 +53,13 @@
     "delete": "delete",
     "warning": "warning",
     "position": "position",
-    "component": "component"
+    "component": "component",
+    "none": "none",
+    "scene": "scene"
   },
   "obs": {
     "scene-list": "OBS | Scene list",
-    "Scene list": "obs.Scene list",
-    "go-to-scene": "obs.go-to-scene"
+    "go-to-scene": "OBS | Go to scene",
+    "Scene list": "obs.Scene list"
   }
 }
