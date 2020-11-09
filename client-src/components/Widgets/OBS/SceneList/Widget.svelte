@@ -1,7 +1,7 @@
 <script>
   import api from "@/api/obs";
-  import { _ } from "@/libs/i18next";
   import { state } from "@/stores/obs";
+  import WidgetWrapper from "@/components/Widgets/OBS/WidgetWrapper.svelte";
 
   $: scenes = $state.scenes || [];
 
@@ -14,7 +14,7 @@
   }
 </script>
 
-<div class="relative h-full">
+<WidgetWrapper>
   {#each scenes as scene}
     <div
       class="p-2 {selected(scene)} cursor-pointer hover:bg-blue-200 hover:bg-opacity-50"
@@ -23,15 +23,4 @@
       {scene.name}
     </div>
   {/each}
-  {#if !$state.connected}
-    <div class="absolute inset-0 bg-black bg-opacity-75">
-      <div class="flex justify-center items-center h-full">
-        <div
-          class="p-auto transform -rotate-45 p-2 bg-red-600 opacity-75 rounded shadow"
-        >
-          <span>{_('sentences.obs-not-connected')}</span>
-        </div>
-      </div>
-    </div>
-  {/if}
-</div>
+</WidgetWrapper>
