@@ -54,5 +54,17 @@
     "warning": "warning",
     "position": "position",
     "component": "component"
+  },
+  "obs": {
+    "scene-list": "OBS | Scene list",
+    "fgf": "obs.fgf",
+    "gffg": "obs.gffg",
+    "dffdsfdsdf": "obs.dffdsfdsdf",
+    "Scene": "obs.Scene",
+    "Scene list": "obs.Scene list",
+    "ddffd": "obs.ddffd",
+    "ddffdsdfdsf": "obs.ddffdsdfdsf",
+    "undefined": "obs.undefined",
+    "": "obs."
   }
 }

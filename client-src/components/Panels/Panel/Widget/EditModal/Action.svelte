@@ -1,9 +1,9 @@
 <script>
   import { _ } from "@/libs/i18next";
   import { update } from "@/libs/panels";
+  import widgets from "@/components/Widgets";
   import Button from "@/components/UI/Button.svelte";
   import Select from "@/components/UI/Select.svelte";
-  import widgets, { getWidgetsList } from "@/components/Widgets";
   import MdDelete from "svelte-icons/md/MdDeleteForever.svelte";
 
   export let panel;
@@ -13,6 +13,12 @@
 
   $: component = widget.component;
   $: componentName = (component && component.name) || "";
+
+  export function getWidgetsList() {
+    return Object.entries(widgets).map(([val, props]) => {
+      return { key: _(`obs.${props.config.label}`), val };
+    });
+  }
 
   function onComponentChange({ detail: name }) {
     widget.component = widgets[name].config;
@@ -26,7 +32,7 @@
 </script>
 
 {#if component}
-  <div class="p-2 font-bold bg-dark-lighter">{component.name}</div>
+  <div class="p-2 font-bold bg-dark-lighter">{_(`obs.${component.label}`)}</div>
   <svelte:component this="{widgets[component.name].Settings}" />
   <Button icon="{MdDelete}" class="bg-red-600" on:click="{onRemoveAction}">
     {_('words.remove')}

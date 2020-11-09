@@ -15,12 +15,10 @@
   let fileManager = false;
   let labelWord = _("words.label");
 
-  function val(source, key, defaultValue = null) {
-    return (source && source[key]) || defaultValue;
-  }
-
   $: component = widget.component;
-  $: labelPlaceholder = val(component, "label", "OBS | Alerts | Media");
+  $: labelPlaceholder = component
+    ? _(`obs.${component.label}`)
+    : "OBS | Alerts | Media";
   $: bgImage =
     widget.backgroundImage &&
     `background-image: url(files/${widget.backgroundImage});`;
