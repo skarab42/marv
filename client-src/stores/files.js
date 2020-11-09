@@ -7,7 +7,7 @@ export const store = writable([]);
 let loaded = false;
 
 function onAdd(file) {
-  store.update((state) => [...state, file]);
+  store.update((state) => [file, ...state]);
 }
 
 function onRemove(file) {
