@@ -1,5 +1,5 @@
 <script>
-  import Label from "./Widget/Label.svelte";
+  import Label from "./WidgetLabel.svelte";
 
   export let widget;
 
@@ -12,7 +12,7 @@
   class="relative h-full {widget.borders} flex flex-col overflow-hidden {cls}"
 >
   <Label widget="{widget}" />
-  <div class="flex-auto">
+  <div class="relative flex-auto">
     <slot />
   </div>
   <slot name="overlay" />

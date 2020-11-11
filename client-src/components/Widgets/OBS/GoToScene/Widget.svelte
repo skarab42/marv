@@ -5,10 +5,12 @@
 
   export let widget;
 
+  let selectedClass = "bg-black opacity-50";
+
   $: scene = widget.component.props.scene;
 
   function selected(scene2) {
-    return scene === scene2 ? "bg-blue-600 bg-opacity-25" : "";
+    return scene === scene2 ? selectedClass : "";
   }
 
   function onClick() {
@@ -17,11 +19,7 @@
 </script>
 
 <WidgetWrapper widget="{widget}" on:click="{onClick}" class="cursor-pointer">
-  <div
-    class="flex justify-center items-center h-full {selected($state.currentScene)}"
-  >
-    <div class="p-auto">
-      <div class="p-4">{scene}</div>
-    </div>
+  <div class="flex flex-col h-full text-center">
+    <div class="p-2 break-words {selected($state.currentScene)}">{scene}</div>
   </div>
 </WidgetWrapper>

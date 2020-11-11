@@ -5,7 +5,7 @@
 
   export let widget;
 
-  let selectedClass = "bg-black bg-opacity-25";
+  let selectedClass = "bg-black opacity-50";
 
   $: scene1 = widget.component.props.scene1;
   $: scene2 = widget.component.props.scene2;
@@ -23,10 +23,8 @@
 </script>
 
 <WidgetWrapper widget="{widget}" on:click="{onClick}" class="cursor-pointer">
-  <div class="flex justify-center items-center h-full">
-    <div class="p-auto">
-      <div class="p-4 {scene1Class}">{scene1}</div>
-      <div class="p-4 {scene2Class}">{scene2}</div>
-    </div>
+  <div class="flex flex-col h-full text-center">
+    <div class="p-2 break-words {scene1Class}">{scene1}</div>
+    <div class="p-2 break-words {scene2Class}">{scene2}</div>
   </div>
 </WidgetWrapper>

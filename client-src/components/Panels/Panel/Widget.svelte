@@ -2,7 +2,6 @@
   import EditMode from "./Widget/EditMode.svelte";
   import widgets from "@/components/Widgets";
   import { editMode } from "@/stores/panels";
-  import Label from "./Widget/Label.svelte";
 
   export let item;
   export let panel;

@@ -7,8 +7,10 @@
 
   $: scenes = $state.scenes || [];
 
+  let selectedClass = "bg-black opacity-50";
+
   function selected(scene) {
-    return scene.name === $state.currentScene ? "bg-black bg-opacity-25" : "";
+    return scene.name === $state.currentScene ? selectedClass : "";
   }
 
   function onSelect(scene) {
@@ -17,13 +19,15 @@
 </script>
 
 <WidgetWrapper widget="{widget}">
-  {#each scenes as scene}
-    <div
-      id="{widget.id}"
-      class="p-2 {selected(scene)} cursor-pointer hover:bg-blue-200 hover:bg-opacity-50"
-      on:click="{onSelect.bind(null, scene)}"
-    >
-      {scene.name}
-    </div>
-  {/each}
+  <div data-simplebar class="h-full">
+    {#each scenes as scene}
+      <div
+        id="{widget.id}"
+        class="p-2 {selected(scene)} cursor-pointer hover:bg-blue-200 hover:bg-opacity-50"
+        on:click="{onSelect.bind(null, scene)}"
+      >
+        {scene.name}
+      </div>
+    {/each}
+  </div>
 </WidgetWrapper>

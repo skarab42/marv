@@ -1,7 +1,7 @@
 <script>
   import { _ } from "@/libs/i18next";
   import { state } from "@/stores/obs";
-  import WidgetLayout from "@/components/Panels/Panel/WidgetLayout.svelte";
+  import WidgetWrapper from "@/components/Widgets/WidgetWrapper.svelte";
 
   export let cls = "";
   export { cls as class };
@@ -10,8 +10,8 @@
   $: disabled = $state.connected ? "" : "pointer-events-none";
 </script>
 
-<WidgetLayout {...$$props} on:click class="{disabled} {cls}">
-  <div class="relative h-full">
+<WidgetWrapper {...$$props} on:click class="{disabled} {cls}">
+  <div class="absolute inset-0">
     <slot />
   </div>
   <div slot="overlay" class="{hidden} absolute inset-0 bg-black bg-opacity-75">
@@ -25,4 +25,4 @@
       </div>
     </div>
   </div>
-</WidgetLayout>
+</WidgetWrapper>
