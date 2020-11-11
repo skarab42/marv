@@ -18,6 +18,6 @@
     class="{order} flex-shrink-0 py-2 break-words overflow-hidden bg-black opacity-25"
     style="{labelSize} {labelAlign} {labelPadding}"
   >
-    {label}
+    <span class="select-none">{label}</span>
   </div>
 {/if}

@@ -16,7 +16,7 @@
   }
 </script>
 
-<WidgetWrapper>
+<WidgetWrapper widget="{widget}">
   {#each scenes as scene}
     <div
       id="{widget.id}"

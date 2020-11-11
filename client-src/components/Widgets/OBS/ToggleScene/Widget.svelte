@@ -22,7 +22,7 @@
   }
 </script>
 
-<WidgetWrapper on:click="{onClick}" class="cursor-pointer">
+<WidgetWrapper widget="{widget}" on:click="{onClick}" class="cursor-pointer">
   <div class="flex justify-center items-center h-full">
     <div class="p-auto">
       <div class="p-4 {scene1Class}">{scene1}</div>
