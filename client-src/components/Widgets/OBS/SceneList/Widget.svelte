@@ -20,14 +20,16 @@
 
 <WidgetWrapper widget="{widget}">
   <div data-simplebar class="h-full">
-    {#each scenes as scene}
-      <div
-        id="{widget.id}"
-        class="p-2 {selected(scene)} cursor-pointer hover:bg-blue-200 hover:bg-opacity-50"
-        on:click="{onSelect.bind(null, scene)}"
-      >
-        {scene.name}
-      </div>
-    {/each}
+    <div class="divide-y divide-gray-900 divide-opacity-25">
+      {#each scenes as scene}
+        <div
+          id="{widget.id}"
+          class="p-2 {selected(scene)} break-words cursor-pointer hover:bg-black hover:bg-opacity-50"
+          on:click="{onSelect.bind(null, scene)}"
+        >
+          {scene.name}
+        </div>
+      {/each}
+    </div>
   </div>
 </WidgetWrapper>
