@@ -9,7 +9,7 @@
   $: trans = getTrans(item.target.trans);
 </script>
 
-{#await fetchText(item.target.name) then text}
+{#await fetchText(item.target.filename) then text}
 <div
   class="absolute"
   id="item-{item.id}"

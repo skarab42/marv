@@ -8,7 +8,7 @@
   import Timeline from "./Editor/Timeline.svelte";
   import ViewerItems from "./Editor/Viewer/Items.svelte";
 
-  import createItemFromFile from "./libs/createItemFromFile";
+  import createAnimeFromFile from "./libs/createAnimeFromFile";
 
   import animejs from "animejs/lib/anime.es.js";
   import { debounce } from "throttle-debounce";
@@ -79,13 +79,13 @@
     }
   }
 
-  function addFile(file) {
-    console.log({ file });
-    // createItemFromFile(file)
-    //   .then(addItem)
-    //   .catch(error => {
-    //     console.warn("addFile:", error.message, file);
-    //   });
+  function addFile({ detail: file }) {
+    console.log(file);
+    createAnimeFromFile(file)
+      .then(addItem)
+      .catch((error) => {
+        console.warn("addFile:", error.message, file);
+      });
   }
 
   function onDropFiles({ detail: files }) {
@@ -103,6 +103,6 @@
     <Settings />
   </div>
   <div slot="bottomPane" class="bg-primary-dark h-full shadow">
-    <Timeline />
+    <Timeline on:file="{addFile}" />
   </div>
 </Layout>

@@ -42,7 +42,7 @@
   <Section>
     <div slot="title" class="flex space-x-2">
       <AnimeIcon type="{$selectedItem.target.type}" />
-      <span class="truncate">{$selectedItem.target.name}</span>
+      <span class="truncate">{$selectedItem.target.filename}</span>
     </div>
     <InfoPanel info="{info}" />
     <AttrsPanel

@@ -124,7 +124,7 @@
   class="relative flex pl-2 items-center space-x-2 {selected}"
 >
   <AnimeIcon type={item.target.type} />
-  <div class="p-2 pl-0 truncate flex-1">{item.target.name}</div>
+  <div class="p-2 pl-0 truncate flex-1">{item.target.filename}</div>
   <div class="p-2 cursor-pointer hover:bg-red-600" on:click={onDelete}>
     <Icon icon={MdDeleteForever} />
   </div>

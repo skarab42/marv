@@ -1,11 +1,11 @@
-const mediaPath = "/public/media";
+const mediaPath = "/files";
 
 export function createImage(src) {
   return new Promise((resolve, reject) => {
     const img = new Image();
     img.onerror = reject;
     img.onload = () => resolve(img);
-    img.src = `${mediaPath}/images/${src}`;
+    img.src = `${mediaPath}/${src}`;
   });
 }
 
@@ -19,15 +19,15 @@ export function createMedia(type, src) {
 }
 
 export function createAudio(src) {
-  return createMedia("audio", `audios/${src}`);
+  return createMedia("audio", src);
 }
 
 export function createVideo(src) {
-  return createMedia("video", `videos/${src}`);
+  return createMedia("video", src);
 }
 
 export function fetchText(src) {
-  return fetch(`${mediaPath}/texts/${src}`).then(response => response.text());
+  return fetch(`${mediaPath}/${src}`).then((response) => response.text());
 }
 
 export async function createText(src) {

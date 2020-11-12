@@ -1,16 +1,3 @@
-export const extTypes = {
-  txt: "text",
-  ico: "image",
-  gif: "image",
-  png: "image",
-  jpg: "image",
-  jpeg: "image",
-  mp3: "audio",
-  ogg: "audio",
-  mp4: "video",
-  ogv: "video",
-};
-
 export const defaultAttrs = {
   audio: ["volume"],
   video: ["volume"],

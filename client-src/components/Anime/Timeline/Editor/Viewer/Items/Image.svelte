@@ -3,7 +3,6 @@
   import getTrans from "../../../libs/getTrans";
 
   export let item;
-  export let path = "/public/media/images";
 
   $: style = getStyle(item.target.style);
   $: trans = getTrans(item.target.trans);
@@ -11,9 +10,9 @@
 
 <img
   class="absolute"
-  draggable={false}
+  draggable="{false}"
   id="item-{item.id}"
   alt="item-{item.id}"
-  src="{path}/{item.target.name}"
+  src="files/{item.target.filename}"
   style="{style};{trans};"
 />
