@@ -16,9 +16,7 @@
   let labelWord = _("words.label");
 
   $: component = widget.component;
-  $: labelPlaceholder = component
-    ? _(`obs.${component.label}`)
-    : "OBS | Alerts | Media";
+  $: labelPlaceholder = component ? _(component.label) : "OBS | Alerts | Media";
   $: bgImage =
     widget.backgroundImage &&
     `background-image: url(files/${widget.backgroundImage});`;

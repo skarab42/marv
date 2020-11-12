@@ -1,6 +1,6 @@
 export default {
   name: "GoToScene",
-  label: "go-to-scene",
+  label: "obs.go-to-scene",
   props: {
     scene: null,
   },

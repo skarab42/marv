@@ -19,7 +19,7 @@
 
   export function getWidgetsList() {
     return Object.entries(widgets).map(([val, props]) => {
-      return { key: _(`obs.${props.config.label}`), val };
+      return { key: _(props.config.label), val };
     });
   }
 
@@ -35,7 +35,7 @@
 </script>
 
 {#if component}
-  <div class="p-2 font-bold bg-dark-lighter">{_(`obs.${component.label}`)}</div>
+  <div class="p-2 font-bold bg-dark-lighter">{_(component.label)}</div>
   <svelte:component
     this="{widgets[component.name].Settings}"
     panel="{panel}"

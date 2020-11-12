@@ -1,4 +1,4 @@
 export default {
   name: "SceneList",
-  label: "scene-list",
+  label: "obs.scene-list",
 };

@@ -4,7 +4,7 @@
   export let widget;
 
   $: component = widget.component;
-  $: componentLabel = component && _(`obs.${component.label}`);
+  $: componentLabel = component && _(component.label);
   $: label = (widget.label || componentLabel || "").trim();
   $: labelSize = `font-size:${widget.labelSize || 16}px;`;
   $: labelAlign = `text-align:${widget.labelAlign || "center"};`;
