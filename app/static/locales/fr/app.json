@@ -62,5 +62,8 @@
     "go-to-scene": "OBS | Aller à la scène",
     "toggle-scene": "OBS | Basculer entre deux scènes",
     "no-scene-selected": "Aucune scène sélectionnée"
+  },
+  "anime": {
+    "timeline": "Anime | Timeline"
   }
 }
