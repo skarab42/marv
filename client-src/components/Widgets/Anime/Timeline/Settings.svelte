@@ -1,5 +1,5 @@
 <script>
-  import Editor from "./Editor.svelte";
+  import Editor from "@/components/Anime/Timeline/Editor.svelte";
   import FullScreenModal from "@/components/UI/FullScreenModal.svelte";
 
   export let panel;
