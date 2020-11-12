@@ -60,6 +60,7 @@
   "obs": {
     "scene-list": "OBS | Liste des scènes",
     "go-to-scene": "OBS | Aller à la scène",
-    "toggle-scene": "OBS | Basculer entre deux scènes"
+    "toggle-scene": "OBS | Basculer entre deux scènes",
+    "no-scene-selected": "Aucune scène sélectionnée"
   }
 }
