@@ -80,7 +80,6 @@
   }
 
   function addFile({ detail: file }) {
-    console.log(file);
     createAnimeFromFile(file)
       .then(addItem)
       .catch((error) => {
