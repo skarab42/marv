@@ -1,41 +1,50 @@
 <script>
-  import { onMount } from "svelte";
   import pannable from "@/libs/svelte/pannable.js";
 
-  import { getContext } from "svelte";
-  const { anime, seek, pixelPerMs } = getContext("Editor");
+  import { onMount, getContext } from "svelte";
+  const { anime, timeline, pixelPerMs } = getContext("Editor");
 
-  export let size = 2;
+  let { left, scale } = timeline;
+
   export let min = 0;
+  export let size = 2;
   export let margin = 10;
 
+  let time = 0;
+  let position = 0;
+  let cursorElement;
   let max = Infinity;
 
-  let cursorElement;
-
-  $: console.log($seek);
-
-  $: left = min + margin + $seek;
-  $: cursorElement && min && getMax();
+  $: offset = min + margin;
+  $: x = offset + position;
+  $: cursorElement && min && getMaxWidth();
 
   onMount(() => {
-    window.addEventListener("resize", getMax);
+    window.addEventListener("resize", getMaxWidth);
   });
 
-  function _seek(time) {
-    let pos = Math.max(0, Math.min(max, time));
-    pos = $seek / pixelPerMs;
-    $anime && $anime.seek(pos);
+  function setPosition(pos) {
+    position = Math.max(0, Math.min(max, pos));
   }
 
-  function getMax() {
+  function getMaxWidth() {
     const { width } = cursorElement.parentElement.getBoundingClientRect();
-    max = width - min - margin - size;
-    setTimeout(() => _seek($seek), 42);
+    max = width - offset - size - margin;
+    seekPosition(position);
+  }
+
+  function setTimeFromPosition(pos) {
+    setPosition(pos);
+    time = ((position - $left) * pixelPerMs) / $scale;
+  }
+
+  function seekPosition(pos) {
+    setTimeFromPosition(pos);
+    $anime && $anime.seek(time);
   }
 
   function onCursorPan({ detail }) {
-    _seek($seek + detail.dx);
+    seekPosition(position + detail.dx);
   }
 </script>
 
@@ -45,5 +54,5 @@
   on:panmove="{onCursorPan}"
   on:mousedown|stopPropagation
   class="absolute z-50 top-0 bottom-0 bg-red-500"
-  style="width:{size}px;left:{left}px;cursor:ew-resize;"
+  style="width:{size}px;left:{x}px;cursor:ew-resize;"
 ></div>
