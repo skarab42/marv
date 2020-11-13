@@ -27,7 +27,8 @@
     "background-image": "Image de fond",
     "ask-remove-file": "Êtes-vous sûr de vouloir supprimer définitivement \"{{filename}}\"?",
     "file-can-be-used-by-other-widgets": "Ce fichier peut être utilisé par d'autre widgets!",
-    "obs-not-connected": "OBS n'est pas connecté!"
+    "obs-not-connected": "OBS n'est pas connecté!",
+    "open-anime-timeline": "Ouvrir la timeline"
   },
   "words": {
     "settings": "options",
