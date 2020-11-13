@@ -25,7 +25,7 @@
 </style>
 
 <button
-  class="flex items-center space-x-1 {padding} font-medium uppercase {textColor} {cls}"
+  class="flex items-center space-x-2 {padding} font-medium uppercase {textColor} {cls}"
   {...$$restProps}
   on:click
 >
