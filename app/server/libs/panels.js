@@ -22,6 +22,7 @@ function createWidget() {
   return {
     id: uuid(),
     component: null,
+    trigger: "immediat",
     label: null,
     labelSize: 16,
     labelPadding: 8,

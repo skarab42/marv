@@ -9,6 +9,8 @@
   export let panel;
   export let widget;
 
+  const triggerTypes = ["immediat", "queue", "asap"];
+
   const widgetsList = [
     { key: _("words.none"), val: null },
     ...getWidgetsList(),
@@ -36,6 +38,13 @@
 
 {#if component}
   <div class="p-2 font-bold bg-dark-lighter">{_(component.label)}</div>
+  <div class="p-2">
+    <Select
+      label="{_('words.trigger')}"
+      bind:value="{widget.trigger}"
+      items="{triggerTypes}"
+    />
+  </div>
   <svelte:component
     this="{widgets[component.name].Settings}"
     panel="{panel}"
@@ -45,7 +54,7 @@
     <div>{_('words.remove')}</div>
   </Button>
 {:else}
-  <div class="p-2 space-y-2 flex flex-col">
+  <div class="p-2">
     <Select
       object="{true}"
       label="{_('words.component')}"

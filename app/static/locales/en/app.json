@@ -56,7 +56,8 @@
     "position": "position",
     "component": "component",
     "none": "none",
-    "scene": "scene"
+    "scene": "scene",
+    "trigger": "trigger"
   },
   "obs": {
     "scene-list": "OBS | Scene list",
