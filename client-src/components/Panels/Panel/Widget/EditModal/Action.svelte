@@ -42,7 +42,7 @@
     widget="{widget}"
   />
   <Button icon="{MdDelete}" class="bg-red-600" on:click="{onRemoveAction}">
-    {_('words.remove')}
+    <div>{_('words.remove')}</div>
   </Button>
 {:else}
   <div class="p-2 space-y-2 flex flex-col">
