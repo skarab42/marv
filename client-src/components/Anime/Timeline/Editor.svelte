@@ -27,9 +27,7 @@
     $anime = animejs.timeline({
       autoplay: false,
       update() {
-        $seek = ($anime.duration / 100) * $anime.progress;
-        // let seek = (seek / pixelPerMs * $scale) + $left;
-        // console.log({pos, seek});
+        $seek = (this.duration / 100) * this.progress;
       },
     });
 
