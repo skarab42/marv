@@ -43,6 +43,7 @@
 
   function viewportFitToScreen() {
     const padding = 50;
+    if (!viewportWrapper) return; // TODO find side effect !!!
     const wrapper = viewportWrapper.getBoundingClientRect();
     const wRatio = (wrapper.width - padding) / size.width;
     const hRatio = (wrapper.height - padding) / size.height;
