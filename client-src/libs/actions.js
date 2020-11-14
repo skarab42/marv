@@ -8,4 +8,12 @@ function on(eventName, cb) {
   return api.on(eventName, cb);
 }
 
-export { push, on };
+function update(anime) {
+  return api.update(anime);
+}
+
+function get(id) {
+  return api.get(id);
+}
+
+export { push, on, update, get };

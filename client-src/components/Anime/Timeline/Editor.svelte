@@ -16,6 +16,8 @@
   import getStyle from "./libs/getStyle";
   import getTrans from "./libs/getTrans";
 
+  export let initialItems = [];
+
   const dispatch = createEventDispatcher();
 
   const store = createStore();
@@ -24,6 +26,10 @@
   const { anime, items, selectedItem, seek } = store;
 
   const playables = ["audio", "video"];
+
+  $: console.log(">>>", initialItems);
+
+  $items = initialItems;
 
   function updateAnime() {
     dispatch("update-start");

@@ -1,16 +1,23 @@
 <script>
   import { _ } from "@/libs/i18next";
+  import { update, get } from "@/libs/actions";
   import Button from "@/components/UI/Button.svelte";
   import MdOpenInNew from "svelte-icons/md/MdOpenInNew.svelte";
   import Editor from "@/components/Anime/Timeline/Editor.svelte";
   import FullScreenModal from "@/components/UI/FullScreenModal.svelte";
 
-  export let panel;
+  export let panel = null;
   export let widget;
 
-  let timelineOpened = false;
+  let initialItems = [];
 
-  $: console.log({ panel, widget });
+  get(widget.id).then(({ items } = {}) => {
+    if (items) {
+      initialItems = items;
+    }
+  });
+
+  let timelineOpened = false;
 
   function openTimeline() {
     timelineOpened = true;
@@ -21,7 +28,7 @@
   }
 
   function onAnimeUpdate({ detail: items }) {
-    console.log("update:", items);
+    update({ widget, anime: items });
   }
 </script>
 
@@ -31,6 +38,10 @@
 
 {#if timelineOpened}
   <FullScreenModal>
-    <Editor on:close="{closeTimeline}" on:update="{onAnimeUpdate}" />
+    <Editor
+      initialItems="{initialItems}"
+      on:close="{closeTimeline}"
+      on:update="{onAnimeUpdate}"
+    />
   </FullScreenModal>
 {/if}
