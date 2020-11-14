@@ -14,9 +14,19 @@ module.exports = (server) => {
 
   io = socket(server, options);
 
-  io.on("connection", (socket) => {
-    socket.use(require("./api")(socket));
-    socket.use(require("./unhandledEvent"));
+  io.on("connection", (clientSocket) => {
+    clientSocket.use(require("./api")(clientSocket));
+    clientSocket.use(require("./unhandledEvent"));
+  });
+
+  // TODO extract this shit !!!!
+  const adminNamespace = io.of("/overlay");
+
+  adminNamespace.on("connection", (overlaySocket) => {
+    io.__overlaySocket = overlaySocket;
+    overlaySocket.on("disconnect", () => {
+      io.__overlaySocket = null;
+    });
   });
 
   return io;

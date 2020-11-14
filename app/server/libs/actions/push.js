@@ -1,5 +1,6 @@
 const socket = require("../socket.io");
 const { v4: uuid } = require("uuid");
+const get = require("./get");
 
 const io = socket();
 
@@ -8,13 +9,11 @@ let lock = false;
 
 function sendAction(action) {
   io.emit("actions.start", action);
-
   return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      if (Math.random() > 0.5) resolve(action);
-      else reject(new Error("Oops"));
+    io.__overlaySocket.emit("actions.start", action, ({ error }) => {
+      error ? reject({ error, action }) : resolve(action);
       io.emit("actions.end", action);
-    }, 2000);
+    });
   });
 }
 
@@ -43,14 +42,14 @@ function processQueue() {
     });
 }
 
-function createAction(action) {
+function createAction(action, data) {
   return {
     id: uuid(),
     type: null,
     widgetId: null,
     trigger: "immediat",
-    data: null,
     ...action,
+    data,
   };
 }
 
@@ -66,7 +65,8 @@ function pushAction(action) {
 }
 
 module.exports = function push(action) {
-  action = createAction(action);
+  const { items } = get(action.widgetId);
+  action = createAction(action, items);
 
   io.emit("actions.push", action);
 

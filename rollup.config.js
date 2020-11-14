@@ -10,13 +10,14 @@ import css from "rollup-plugin-css-only";
 
 const watch = process.env.ROLLUP_WATCH;
 
-const inputDir = "client-src";
+const clientDir = "client-src";
+const overlayDir = "overlay-src";
 const publicDir = "app/client";
 const jsDir = `${publicDir}/js`;
 const cssDir = `${publicDir}/css`;
 
 export default {
-  input: `${inputDir}/index.js`,
+  input: [`${clientDir}/index.js`, `${overlayDir}/overlay.js`],
   output: {
     format: "es",
     dir: jsDir,
@@ -24,7 +25,7 @@ export default {
   },
   plugins: [
     alias({
-      entries: [{ find: "@", replacement: `${__dirname}/client-src` }],
+      entries: [{ find: "@", replacement: `${__dirname}/${clientDir}` }],
     }),
     resolve({ browser: true, dedupe: ["svelte"] }),
     commonjs(),
