@@ -1,6 +1,6 @@
 <script>
+  import { onMount, onDestroy } from "svelte";
   import pannable from "@/libs/svelte/pannable.js";
-  import { onMount } from "svelte";
 
   export let size = {
     width: window.screen.width,
@@ -43,7 +43,6 @@
 
   function viewportFitToScreen() {
     const padding = 50;
-    if (!viewportWrapper) return; // TODO find side effect !!!
     const wrapper = viewportWrapper.getBoundingClientRect();
     const wRatio = (wrapper.width - padding) / size.width;
     const hRatio = (wrapper.height - padding) / size.height;
@@ -73,9 +72,12 @@
 
   onMount(() => {
     setTimeout(viewportFitToScreen, 42);
+    window.addEventListener("resize", viewportFitToScreen);
   });
 
-  window.addEventListener("resize", viewportFitToScreen);
+  onDestroy(() => {
+    window.removeEventListener("resize", viewportFitToScreen);
+  });
 </script>
 
 <div class="h-full flex flex-col flex-auto">

@@ -1,7 +1,7 @@
 <script>
   import pannable from "@/libs/svelte/pannable.js";
 
-  import { onMount, getContext } from "svelte";
+  import { onMount, onDestroy, getContext } from "svelte";
   const { seek, anime, timeline, pixelPerMs } = getContext("Editor");
 
   let { left, scale } = timeline;
@@ -23,6 +23,10 @@
 
   onMount(() => {
     window.addEventListener("resize", getMaxWidth);
+  });
+
+  onDestroy(() => {
+    window.removeEventListener("resize", getMaxWidth);
   });
 
   function setPosition(pos) {
