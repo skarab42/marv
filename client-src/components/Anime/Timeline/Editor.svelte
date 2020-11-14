@@ -26,7 +26,8 @@
   const playables = ["audio", "video"];
 
   function updateAnime() {
-    console.log("updateAnime");
+    dispatch("update-start");
+
     $anime = animejs.timeline({
       autoplay: false,
       update() {
@@ -63,10 +64,11 @@
     });
 
     $anime.seek($seek);
+    dispatch("update", { items: $items });
   }
 
   function resetAnime() {
-    console.log("resetAnime");
+    dispatch("reset");
     $anime = null;
   }
 

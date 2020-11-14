@@ -19,6 +19,10 @@
   function closeTimeline() {
     timelineOpened = false;
   }
+
+  function onAnimeUpdate({ detail: items }) {
+    console.log("update:", items);
+  }
 </script>
 
 <Button icon="{MdOpenInNew}" class="bg-secondary" on:click="{openTimeline}">
@@ -27,6 +31,6 @@
 
 {#if timelineOpened}
   <FullScreenModal>
-    <Editor on:close="{closeTimeline}" />
+    <Editor on:close="{closeTimeline}" on:update="{onAnimeUpdate}" />
   </FullScreenModal>
 {/if}
