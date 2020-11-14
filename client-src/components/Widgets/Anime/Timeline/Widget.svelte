@@ -24,7 +24,6 @@
 
   on("push", (action) => {
     if (action.widgetId === widget.id) {
-      console.log("push", action.id);
       clickCount++;
     }
   });

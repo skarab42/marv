@@ -27,8 +27,6 @@
 
   const playables = ["audio", "video"];
 
-  $: console.log(">>>", initialItems);
-
   $items = initialItems;
 
   function updateAnime() {

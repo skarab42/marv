@@ -38,7 +38,8 @@
     dispatch("change", { key, value: styleDefs[key].default });
   }
 
-  function isRemovable(key) {
+  // TODO === a faire !!!!
+  function isRemovable(/*key*/) {
     return true;
   }
 </script>
