@@ -1,11 +1,12 @@
 <script>
-  import { setContext } from "svelte";
   import createStore from "./libs/store";
+  import { setContext, createEventDispatcher } from "svelte";
 
   import Layout from "./Editor/Layout.svelte";
   import Viewer from "./Editor/Viewer.svelte";
   import Settings from "./Editor/Settings.svelte";
   import Timeline from "./Editor/Timeline.svelte";
+  import Button from "@/components/UI/Button.svelte";
   import ViewerItems from "./Editor/Viewer/Items.svelte";
 
   import createAnimeFromFile from "./libs/createAnimeFromFile";
@@ -14,6 +15,8 @@
   import { debounce } from "throttle-debounce";
   import getStyle from "./libs/getStyle";
   import getTrans from "./libs/getTrans";
+
+  const dispatch = createEventDispatcher();
 
   const store = createStore();
   setContext("Editor", store);
@@ -88,11 +91,18 @@
   function onDropFiles({ detail: files }) {
     files.forEach(addFile);
   }
+
+  function onClose() {
+    dispatch("close");
+  }
 </script>
 
 <Layout on:dropFiles="{onDropFiles}">
-  <div slot="leftPane" class="relative h-full overflow-hidden">
+  <div slot="leftPane" class="relative h-full overflow-hidden shadow">
     <Viewer>
+      <div slot="header" class="bg-primary">
+        <Button on:click="{onClose}">back</Button>
+      </div>
       <ViewerItems />
     </Viewer>
   </div>

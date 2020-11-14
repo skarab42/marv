@@ -27,6 +27,6 @@
 
 {#if timelineOpened}
   <FullScreenModal>
-    <Editor />
+    <Editor on:close="{closeTimeline}" />
   </FullScreenModal>
 {/if}

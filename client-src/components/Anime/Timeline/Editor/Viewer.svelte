@@ -70,13 +70,16 @@
     viewportFitToScreen();
   }
 
-  onMount(viewportFitToScreen);
+  onMount(() => {
+    setTimeout(viewportFitToScreen, 42);
+  });
 
   window.addEventListener("resize", viewportFitToScreen);
 </script>
 
-<div class="h-full flex flex-col">
-  <div class="flex bg-secondary-dark shadow">
+<div class="h-full flex flex-col flex-auto">
+  <div class="flex bg-secondary-dark">
+    <slot name="header" />
     <div class="p-2 flex space-x-2">
       <span>width</span>
       <input
