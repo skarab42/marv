@@ -10,7 +10,7 @@ import {
   transDefs,
 } from "./settings";
 
-async function createElementFromTarget(target) {
+export async function createElementFromTarget(target) {
   const factory = elementFactories[target.type];
 
   if (!factory) {
