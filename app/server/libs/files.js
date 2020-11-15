@@ -5,10 +5,10 @@ const { _ } = require("./i18next");
 const stores = require("../../stores");
 
 const language = stores.i18next.get("lng", "en");
-const uploadDir = stores.server.get("uploadDir");
+const uploadPath = stores.server.get("uploadPath");
 const allowedMimeTypes = ["text", "image", "audio", "video"];
 
-fs.ensureDirSync(uploadDir);
+fs.ensureDirSync(uploadPath);
 
 function cleanFileName(name) {
   return name.replace(/[^a-z0-9_.]+/gi, "_");
@@ -29,7 +29,10 @@ function getFileInfo(filename, buffer) {
 }
 
 function getFileInfoFromFilename(filename) {
-  return getFileInfo(filename, fs.readFileSync(path.join(uploadDir, filename)));
+  return getFileInfo(
+    filename,
+    fs.readFileSync(path.join(uploadPath, filename))
+  );
 }
 
 function isAllowedMimeType(type) {
@@ -40,7 +43,7 @@ async function upload({ name, buffer }) {
   return new Promise((resolve, reject) => {
     const filename = cleanFileName(name);
     const fileInfo = getFileInfo(filename, buffer);
-    const filePath = path.join(uploadDir, filename);
+    const filePath = path.join(uploadPath, filename);
 
     if (!fileInfo.size) {
       return reject(_("sentences.file-is-empty"));
@@ -67,7 +70,7 @@ async function upload({ name, buffer }) {
 function remove(file) {
   return new Promise((resolve, reject) => {
     try {
-      fs.unlinkSync(path.join(uploadDir, file.filename));
+      fs.unlinkSync(path.join(uploadPath, file.filename));
       resolve(file);
     } catch (error) {
       reject(error);
@@ -85,7 +88,7 @@ function localeSort(a, b) {
 function getFileList() {
   return new Promise((resolve, reject) => {
     try {
-      const files = fs.readdirSync(uploadDir);
+      const files = fs.readdirSync(uploadPath);
       const fileList = files
         .sort(localeSort)
         .map(getFileInfoFromFilename)
