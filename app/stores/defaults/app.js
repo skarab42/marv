@@ -9,5 +9,5 @@ module.exports = {
   production: !watch,
   openOnStartup: false,
   fingerprint: `${name} v${version}`,
-  icon: path.join(appPath, "static/icon.ico"),
+  icon: path.join(appPath, "static/icon.png"),
 };
