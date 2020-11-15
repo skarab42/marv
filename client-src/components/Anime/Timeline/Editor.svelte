@@ -68,7 +68,7 @@
     });
 
     $anime.seek($seek);
-    dispatch("update", { items: $items });
+    dispatch("update", { duration: $anime.duration, items: $items });
   }
 
   function resetAnime() {

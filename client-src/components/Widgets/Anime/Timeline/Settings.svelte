@@ -27,8 +27,8 @@
     timelineOpened = false;
   }
 
-  function onAnimeUpdate({ detail: items }) {
-    update({ widget, anime: items });
+  function onAnimeUpdate({ detail: anime }) {
+    update({ widget, anime });
   }
 </script>
 

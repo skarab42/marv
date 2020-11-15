@@ -1,6 +1,5 @@
 <script>
   import { push, on } from "@/libs/actions";
-  import Icon from "@/components/UI/Icon.svelte";
   import MdAutorenew from "svelte-icons/md/MdAutorenew.svelte";
   import WidgetWrapper from "@/components/Widgets/WidgetWrapper.svelte";
 
@@ -15,13 +14,11 @@
       widgetId: widget.id,
       trigger: widget.trigger,
       data: "data...",
-    })
-      .then((response) => {
-        console.log({ response });
-      })
-      .catch((error) => {
-        console.log("Error:", error);
-      });
+    }).catch((error) => {
+      console.log("Error:", error);
+      clickCount--;
+      running--;
+    });
   }
 
   on("push", (action) => {
