@@ -16,4 +16,8 @@ function get(id) {
   return api.get(id);
 }
 
-export { push, on, update, get };
+function getState() {
+  return api.getState();
+}
+
+export { push, on, update, get, getState };

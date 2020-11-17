@@ -101,8 +101,7 @@ function registerEvents(obs) {
 
   obs.on("StreamStatus", onStreamStatus);
 
-  obs.on("SwitchScenes", ({ sceneName, ...rest }) => {
-    console.log("SwitchScenes:", rest);
+  obs.on("SwitchScenes", ({ sceneName }) => {
     updateState({ currentScene: sceneName });
   });
 

@@ -1,5 +1,4 @@
 <script>
-  // import api from "@/api/obs";
   import { state } from "@/stores/obs";
   import { push } from "@/libs/actions";
   import WidgetWrapper from "@/components/Widgets/OBS/WidgetWrapper.svelte";

@@ -1,23 +1,33 @@
-const socket = require("../socket.io");
+const state = require("./state");
 
 const actionTypes = {
   anime: require("./types/anime"),
   obs: require("./types/obs"),
 };
 
-const io = socket();
-
 const queue = [];
 let lock = false;
 
-function sendAction(action) {
+function sendAction(action, immediat = false) {
   const { send } = actionTypes[action.type] || {};
 
+  state.update({ ...action, running: true });
+
   if (!send) {
+    state.decrement(action);
+    state.update({ ...action, running: false });
     return Promise.reject(`Undefined action type: ${action.type}`);
   }
 
-  return send(action);
+  return send(action)
+    .then((response) => ({ response }))
+    .catch((error) => ({ error }))
+    .then(({ error, response }) => {
+      const { inQueue } = state.decrement(action);
+      const running = immediat && !!inQueue;
+      state.update({ ...action, running });
+      return error || response;
+    });
 }
 
 function processQueue() {
@@ -32,7 +42,7 @@ function processQueue() {
 
   const { action, resolve, reject } = queue.shift();
 
-  return sendAction(action)
+  sendAction(action)
     .then((response) => {
       lock = false;
       processQueue();
@@ -65,10 +75,10 @@ module.exports = function push(action) {
 
   action = create(action);
 
-  io.emit("actions.push", action);
+  state.push(action);
 
   if (action.widget.trigger === "immediat") {
-    return sendAction(action);
+    return sendAction(action, true);
   }
 
   return pushAction(action);

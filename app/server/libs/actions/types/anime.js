@@ -13,21 +13,17 @@ function create(action) {
 
 function send(action) {
   return new Promise((resolve, reject) => {
-    io.emit("actions.start", action);
-
     if (!io.__overlaySocket) {
       return reject({ error: "Overlay closed", action });
     }
 
     io.__overlaySocket.emit("actions.start", action, ({ error }) => {
       error ? reject({ error, action }) : resolve(action);
-      io.emit("actions.end", action);
     });
 
-    setTimeout(
-      () => reject({ error: "Action timeout", action }),
-      action.duration * timeoutDelta
-    );
+    setTimeout(() => {
+      reject({ error: "Action timeout", action });
+    }, action.duration * timeoutDelta);
   });
 }
 

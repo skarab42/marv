@@ -1,39 +1,20 @@
 <script>
-  import { push, on } from "@/libs/actions";
+  import { push } from "@/libs/actions";
+  import { store } from "@/stores/actions";
   import MdAutorenew from "svelte-icons/md/MdAutorenew.svelte";
   import WidgetWrapper from "@/components/Widgets/WidgetWrapper.svelte";
 
   export let widget;
 
-  let running = 0;
-  let clickCount = 0;
+  $: action = $store[widget.id] || {};
+  $: inQueue = action.inQueue || 0;
+  $: running = !!action.running;
 
   function triggerAction() {
     push({ type: "anime", widget }).catch((error) => {
       console.log(">>>Error:", error);
-      clickCount--;
-      running--;
     });
   }
-
-  on("push", (action) => {
-    if (action.widget.id === widget.id) {
-      clickCount++;
-    }
-  });
-
-  on("start", (action) => {
-    if (action.widget.id === widget.id) {
-      running++;
-    }
-  });
-
-  on("end", (action) => {
-    if (action.widget.id === widget.id) {
-      clickCount--;
-      running--;
-    }
-  });
 </script>
 
 <WidgetWrapper
@@ -42,7 +23,7 @@
   class="cursor-pointer bg-opacity-25 bg-black hover:bg-transparent"
 />
 
-{#if clickCount}
+{#if inQueue}
   {#if running}
     <div class="absolute inset-0 pointer-events-none">
       <div class="h-full animate-spin opacity-50">
@@ -55,7 +36,7 @@
       <div class="flex-auto text-center">
         <span
           class="{running ? '' : 'px-3 text-dark bg-gray-500 rounded-full'}"
-        >{clickCount}</span>
+        >{inQueue}</span>
       </div>
     </div>
   </div>

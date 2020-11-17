@@ -29,7 +29,11 @@ async function middleware(socket, [key, ...args], next) {
       const func = item.bind(socket);
       payload = await func(...args);
     } catch (error) {
-      return callback({ error: error.message || error });
+      let message = error;
+      if (message instanceof Error) {
+        message = `${error.message}\n${error.stack}`;
+      }
+      return callback({ error: message });
     }
   }
 

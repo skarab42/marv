@@ -10,4 +10,7 @@ module.exports = {
   get(id) {
     return actions.get(id);
   },
+  getState() {
+    return actions.getState();
+  },
 };
