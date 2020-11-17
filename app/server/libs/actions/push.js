@@ -1,29 +1,23 @@
 const socket = require("../socket.io");
-const { v4: uuid } = require("uuid");
-const get = require("./get");
+
+const actionTypes = {
+  anime: require("./types/anime"),
+  obs: require("./types/obs"),
+};
 
 const io = socket();
 
 const queue = [];
 let lock = false;
 
-const timeoutDelta = 1.5;
-
 function sendAction(action) {
-  io.emit("actions.start", action);
-  return new Promise((resolve, reject) => {
-    if (!io.__overlaySocket) {
-      return reject({ error: "Overlay closed", action });
-    }
-    io.__overlaySocket.emit("actions.start", action, ({ error }) => {
-      error ? reject({ error, action }) : resolve(action);
-      io.emit("actions.end", action);
-    });
-    setTimeout(
-      () => reject({ error: "Action timeout", action }),
-      action.duration * timeoutDelta
-    );
-  });
+  const { send } = actionTypes[action.type] || {};
+
+  if (!send) {
+    return Promise.reject(`Undefined action type: ${action.type}`);
+  }
+
+  return send(action);
 }
 
 function processQueue() {
@@ -51,16 +45,6 @@ function processQueue() {
     });
 }
 
-function createAction(action, data) {
-  return {
-    id: uuid(),
-    type: null,
-    widget: null,
-    ...action,
-    data,
-  };
-}
-
 function pushAction(action) {
   return new Promise((resolve, reject) => {
     if (action.widget.trigger === "asap") {
@@ -73,9 +57,13 @@ function pushAction(action) {
 }
 
 module.exports = function push(action) {
-  const { duration, items } = get(action.widget.id);
-  action.duration = duration;
-  action = createAction(action, items);
+  const { create } = actionTypes[action.type] || {};
+
+  if (!create) {
+    return Promise.reject(`Undefined action type: ${action.type}`);
+  }
+
+  action = create(action);
 
   io.emit("actions.push", action);
 

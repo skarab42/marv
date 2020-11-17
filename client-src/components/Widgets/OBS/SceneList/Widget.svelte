@@ -16,11 +16,11 @@
 
   function onSelect(scene) {
     push({
-      type: "obs.event",
+      type: "obs",
       widget,
       data: {
         eventName: "SetCurrentScene",
-        props: { "scene-name": scene.name },
+        args: { "scene-name": scene.name },
       },
     }).catch((error) => {
       console.log("Error:", error);
