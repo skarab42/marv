@@ -1,10 +1,13 @@
 <script>
+  import { _ } from "@/libs/i18next";
   import { getContext } from "svelte";
   import Panel from "./Panel.svelte";
   import Input from "./Input.svelte";
+  import { easings } from "../../libs/settings";
   import AttrsPanel from "./Panels/Attrs.svelte";
   import StylePanel from "./Panels/Style.svelte";
   import TransPanel from "./Panels/Trans.svelte";
+  import Select from "@/components/UI/Select.svelte";
 
   const { items, selectedItem, selectedKeyframe } = getContext("Editor");
 
@@ -19,6 +22,11 @@
 
   function onKeyframeChange(key, { target }) {
     $selectedKeyframe[key] = parseInt(target.value);
+    $items = $items;
+  }
+
+  function onEasingChange({ detail }) {
+    $selectedKeyframe.easing = detail;
     $items = $items;
   }
 
@@ -39,30 +47,52 @@
 </script>
 
 {#if $selectedKeyframe}
-<Panel title="Timming">
-  <Input
-    type="number"
-    label="delay"
-    min={0} step={100}
-    value={$selectedKeyframe.delay}
-    on:change={onKeyframeChange.bind(null, "delay")} />
-  <Input
-    type="number"
-    label="duration"
-    min={0} step={100}
-    value={$selectedKeyframe.duration}
-    on:change={onKeyframeChange.bind(null, "duration")} />
-</Panel>
+  <Panel title="Timming">
+    <Input
+      type="number"
+      label="delay"
+      min="{0}"
+      step="{100}"
+      value="{$selectedKeyframe.delay}"
+      on:change="{onKeyframeChange.bind(null, 'delay')}"
+    />
+    <Input
+      type="number"
+      label="duration"
+      min="{0}"
+      step="{100}"
+      value="{$selectedKeyframe.duration}"
+      on:change="{onKeyframeChange.bind(null, 'duration')}"
+    />
+    <div class="p-2">
+      <Select
+        items="{easings}"
+        bgColor="bg-transparent"
+        inputClass="px-2 rounded"
+        labelClass="pr-2 flex-auto"
+        label="{_('words.easing')}"
+        value="{$selectedKeyframe.easing}"
+        on:change="{onEasingChange}"
+      />
+    </div>
+  </Panel>
 
-<AttrsPanel {attrs}
-  visible={hasAttrs}
-  on:change={onChange.bind(null, "attrs")}
-  on:remove={onRemove.bind(null, "attrs")} />
-<StylePanel {style} visible={hasStyle}
-  on:change={onChange.bind(null, "style")}
-  on:remove={onRemove.bind(null, "style")} />
-<TransPanel {trans}
-  visible={hasTrans}
-  on:change={onChange.bind(null, "trans")}
-  on:remove={onRemove.bind(null, "trans")} />
+  <AttrsPanel
+    attrs="{attrs}"
+    visible="{hasAttrs}"
+    on:change="{onChange.bind(null, 'attrs')}"
+    on:remove="{onRemove.bind(null, 'attrs')}"
+  />
+  <StylePanel
+    style="{style}"
+    visible="{hasStyle}"
+    on:change="{onChange.bind(null, 'style')}"
+    on:remove="{onRemove.bind(null, 'style')}"
+  />
+  <TransPanel
+    trans="{trans}"
+    visible="{hasTrans}"
+    on:change="{onChange.bind(null, 'trans')}"
+    on:remove="{onRemove.bind(null, 'trans')}"
+  />
 {/if}

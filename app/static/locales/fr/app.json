@@ -57,7 +57,8 @@
     "component": "composant",
     "none": "aucun",
     "scene": "scène",
-    "trigger": "lanceur"
+    "trigger": "lanceur",
+    "easing": "easing"
   },
   "obs": {
     "scene-list": "OBS | Liste des scènes",

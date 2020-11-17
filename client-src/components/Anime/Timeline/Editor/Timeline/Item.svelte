@@ -10,12 +10,9 @@
   export let item;
   export let pos;
 
-  const {
-    items,
-    selectedItem,
-    selectedKeyframe,
-    pixelPerMs
-  } = getContext("Editor");
+  const { items, selectedItem, selectedKeyframe, pixelPerMs } = getContext(
+    "Editor"
+  );
 
   let isDragOver = false;
 
@@ -74,17 +71,19 @@
     return Math.round(delay * pixelPerMs);
   }
 
+  // TODO: extract default keyframe
   function addKeyframe(props) {
     const keyframe = {
       id: uuid(),
       delay: 0,
       duration: 1000,
+      easing: "linear",
       ...props,
       attrs: {},
       style: {},
-      trans: {}
+      trans: {},
     };
-    item.keyframes = [ ...item.keyframes, keyframe ];
+    item.keyframes = [...item.keyframes, keyframe];
     selectItem(item);
     selectKeyframe(keyframe);
     $items = $items;
@@ -108,37 +107,38 @@
   }
 
   function onRemoveKeyframe({ detail: keyframe }) {
-    item.keyframes = item.keyframes.filter(kf => kf.id !== keyframe.id);
+    item.keyframes = item.keyframes.filter((kf) => kf.id !== keyframe.id);
     $selectedKeyframe = null;
     $items = $items;
   }
 </script>
 
 <div
-  draggable={true}
-  on:click={onSelect}
-  on:dragstart={onDragStart}
-  on:dragover={onDragOver}
-  on:dragleave={onDragLeave}
-  on:drop={onDrop}
+  draggable="{true}"
+  on:click="{onSelect}"
+  on:dragstart="{onDragStart}"
+  on:dragover="{onDragOver}"
+  on:dragleave="{onDragLeave}"
+  on:drop="{onDrop}"
   class="relative flex pl-2 items-center space-x-2 {selected}"
 >
-  <AnimeIcon type={item.target.type} />
+  <AnimeIcon type="{item.target.type}" />
   <div class="p-2 pl-0 truncate flex-1">{item.target.filename}</div>
-  <div class="p-2 cursor-pointer hover:bg-red-600" on:click={onDelete}>
-    <Icon icon={MdDeleteForever} />
+  <div class="p-2 cursor-pointer hover:bg-red-600" on:click="{onDelete}">
+    <Icon icon="{MdDeleteForever}" />
   </div>
   {#if isDragOver}
-  <div class="absolute bg-red-600 inset-0" style="height:2px;top:auto;"></div>
+    <div class="absolute bg-red-600 inset-0" style="height:2px;top:auto;"></div>
   {/if}
 </div>
 
-<Keyframes on:add={onAddKeyframe} selected={isSelected}>
+<Keyframes on:add="{onAddKeyframe}" selected="{isSelected}">
   {#each item.keyframes as keyframe (keyframe.id)}
-  <Keyframe
-    {keyframe}
-    on:move={onMoveKeyframe}
-    on:select={onSelectKeyframe}
-    on:remove={onRemoveKeyframe} />
+    <Keyframe
+      keyframe="{keyframe}"
+      on:move="{onMoveKeyframe}"
+      on:select="{onSelectKeyframe}"
+      on:remove="{onRemoveKeyframe}"
+    />
   {/each}
 </Keyframes>

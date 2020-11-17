@@ -29,7 +29,6 @@
   }
 
   function resetAnime() {
-    $seek = 0;
     anime && anime.reset();
   }
 

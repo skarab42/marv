@@ -21,9 +21,9 @@ function runAnime(action, cb) {
 
   const timeline = animejs.timeline({
     autoplay: false,
-    update() {
-      console.log((this.duration / 100) * this.progress);
-    },
+    // update() {
+    //   console.log((this.duration / 100) * this.progress);
+    // },
     complete() {
       $anime.remove();
       cb({ success: true, action });
@@ -61,10 +61,13 @@ function runAnime(action, cb) {
         const begin = () => isPlayable && play();
         const complete = () => isPlayable && stop();
 
-        item.keyframes.forEach(({ delay, duration, attrs, style, trans }) => {
-          const props = { ...attrs, ...style, ...trans };
-          timeline.add({ targets, duration, ...props, begin, complete }, delay);
-        });
+        item.keyframes.forEach(
+          ({ delay, duration, easing, attrs, style, trans }) => {
+            const props = { ...attrs, ...style, ...trans, easing };
+            const kf = { targets, duration, ...props, begin, complete };
+            timeline.add(kf, delay);
+          }
+        );
 
         return element;
       })

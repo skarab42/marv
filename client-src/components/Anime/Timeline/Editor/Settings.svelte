@@ -69,10 +69,6 @@
       <Icon icon="{MdAdjust}" class="w-4 h-4 flex-shrink-0" />
       <div class="truncate">Keyframe</div>
     </div>
-    <!-- <div class="p-2 flex items-center">
-      <div class="truncate w-1/2">identifier</div>
-      <div class="truncate w-1/2">{$selectedKeyframe.id}</div>
-    </div> -->
     <Keyframe />
   </Section>
 {:else if $items.length}

@@ -5,9 +5,10 @@
   export let value = null;
   export let label = null;
   export let object = false;
-  export let padding = "p-2";
+  export let inputClass = "p-2";
   export let textColor = "text-light";
   export let bgColor = "bg-dark-lighter";
+  export let labelClass = "p-2 font-medium uppercase";
 
   $: color = `${bgColor} ${textColor}`;
 
@@ -21,13 +22,13 @@
 <!-- svelte-ignore a11y-label-has-associated-control -->
 <label class="flex flex-wrap items-center {color}">
   {#if label}
-    <div class="{padding} font-medium uppercase">{label}</div>
+    <div class="{labelClass}">{label}</div>
   {/if}
   <div class="flex-auto">
     <!-- svelte-ignore a11y-no-onchange -->
     <select
       {...$$restProps}
-      class="{padding} w-full text-dark"
+      class="{inputClass} w-full text-dark"
       on:change="{change}"
       bind:value
     >
