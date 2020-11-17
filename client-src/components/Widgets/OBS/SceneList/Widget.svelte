@@ -1,6 +1,7 @@
 <script>
-  import api from "@/api/obs";
+  // import api from "@/api/obs";
   import { state } from "@/stores/obs";
+  import { push } from "@/libs/actions";
   import WidgetWrapper from "@/components/Widgets/OBS/WidgetWrapper.svelte";
 
   export let widget = null;
@@ -14,7 +15,16 @@
   }
 
   function onSelect(scene) {
-    api.emit("SetCurrentScene", { "scene-name": scene.name });
+    push({
+      type: "obs.event",
+      widget,
+      data: {
+        eventName: "SetCurrentScene",
+        props: { "scene-name": scene.name },
+      },
+    }).catch((error) => {
+      console.log("Error:", error);
+    });
   }
 </script>
 

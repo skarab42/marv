@@ -9,32 +9,27 @@
   let clickCount = 0;
 
   function triggerAction() {
-    push({
-      type: "anime",
-      widgetId: widget.id,
-      trigger: widget.trigger,
-      data: "data...",
-    }).catch((error) => {
-      console.log("Error:", error);
+    push({ type: "anime", widget }).catch((error) => {
+      console.log(">>>Error:", error);
       clickCount--;
       running--;
     });
   }
 
   on("push", (action) => {
-    if (action.widgetId === widget.id) {
+    if (action.widget.id === widget.id) {
       clickCount++;
     }
   });
 
   on("start", (action) => {
-    if (action.widgetId === widget.id) {
+    if (action.widget.id === widget.id) {
       running++;
     }
   });
 
   on("end", (action) => {
-    if (action.widgetId === widget.id) {
+    if (action.widget.id === widget.id) {
       clickCount--;
       running--;
     }

@@ -55,8 +55,7 @@ function createAction(action, data) {
   return {
     id: uuid(),
     type: null,
-    widgetId: null,
-    trigger: "immediat",
+    widget: null,
     ...action,
     data,
   };
@@ -64,7 +63,7 @@ function createAction(action, data) {
 
 function pushAction(action) {
   return new Promise((resolve, reject) => {
-    if (action.trigger === "asap") {
+    if (action.widget.trigger === "asap") {
       queue.unshift({ action, resolve, reject });
     } else {
       queue.push({ action, resolve, reject });
@@ -74,13 +73,13 @@ function pushAction(action) {
 }
 
 module.exports = function push(action) {
-  const { duration, items } = get(action.widgetId);
+  const { duration, items } = get(action.widget.id);
   action.duration = duration;
   action = createAction(action, items);
 
   io.emit("actions.push", action);
 
-  if (action.trigger === "immediat") {
+  if (action.widget.trigger === "immediat") {
     return sendAction(action);
   }
 
