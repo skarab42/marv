@@ -2,6 +2,7 @@
   import { drawer, hide } from "@/stores/drawer";
   import clickoutside from "@/libs/svelte/click-outside";
   import LanguageSelect from "@/components/App/LanguageSelect.svelte";
+  import ConnectAtStartup from "@/components/OBS/ConnectAtStartup.svelte";
 </script>
 
 {#if $drawer.visible}
@@ -13,5 +14,6 @@
     <div class="p-2 bg-secondary">Drawer</div>
     <div class="p-2">Item...</div>
     <LanguageSelect />
+    <ConnectAtStartup />
   </div>
 {/if}

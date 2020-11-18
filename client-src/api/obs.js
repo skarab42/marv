@@ -6,5 +6,6 @@ export default {
   getState: () => emit("obs.getState"),
   getStore: () => emit("stores.obs", "getAll"),
   emit: (...args) => emit("obs.emit", ...args),
+  set: (key, val) => emit("stores.obs", "set", key, val),
   on: (eventName, callback) => on(`obs.${eventName}`, callback),
 };

@@ -3,11 +3,11 @@
 "use strict";
 
 const socket = require("./libs/socket.io");
+const { json } = require("body-parser");
 const stores = require("../stores");
 const polka = require("polka");
 const sirv = require("sirv");
 const http = require("http");
-const { json } = require("body-parser");
 const path = require("path");
 
 const { i18next } = require("./libs/i18next");
@@ -39,6 +39,12 @@ function onError(error) {
   start();
 }
 
+function obsAutoConnect() {
+  if (!stores.obs.get("connectOnStartup")) return;
+  const { connect } = require("./libs/obs");
+  connect();
+}
+
 function start() {
   const server = http.createServer();
 
@@ -53,6 +59,7 @@ function start() {
     .listen(port, (error) => {
       if (error) return onError(error);
       socket(server);
+      obsAutoConnect();
       printBanner();
     });
 }
