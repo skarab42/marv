@@ -1,10 +1,13 @@
 <script>
   import { debounce } from "throttle-debounce";
   import { createEventDispatcher } from "svelte";
+  import Icon from "@/components/UI/Icon.svelte";
 
+  export let icon = null;
   export let label = null;
   export let type = "text";
-  export let padding = "p-2";
+  export let labelClass = "p-2";
+  export let inputClass = "p-2";
   export let textColor = "text-light";
   export let bgColor = "bg-dark-lighter";
 
@@ -32,7 +35,12 @@
 <!-- svelte-ignore a11y-label-has-associated-control -->
 <label class="flex flex-wrap items-center {color}">
   {#if label}
-    <div class="{padding} font-medium uppercase">{label}</div>
+    <div class="flex font-medium uppercase {labelClass}">
+      {#if icon}
+        <Icon icon="{icon}" class="mr-2" />
+      {/if}
+      <span>{label}</span>
+    </div>
   {/if}
   <div class="flex-auto">
     <input
@@ -42,7 +50,7 @@
       on:change
       on:input="{input}"
       on:keypress="{onKeypress}"
-      class="{padding} w-full text-dark"
+      class="{inputClass} w-full text-dark"
     />
   </div>
 </label>
