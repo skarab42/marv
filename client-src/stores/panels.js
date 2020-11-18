@@ -38,6 +38,7 @@ export function toggleEditMode() {
 
 export function setCurrentPanel(panel) {
   currentPanel.set(panel);
+  localStorage.setItem("currentPanel", panel.id);
 }
 
 function onAdd(panel, { owner }) {
@@ -100,6 +101,8 @@ export default async function load() {
   const store = await api.getStore();
   store.panels.forEach(makeGrid);
   panels.set(store.panels);
-  setCurrentPanel(store.panels[0]); // TODO get from locale storage
+  const panelId = localStorage.getItem("currentPanel");
+  const panel = store.panels.find((panel) => panel.id === panelId);
+  setCurrentPanel(panel || store.panels[0]);
   loadOnce();
 }
