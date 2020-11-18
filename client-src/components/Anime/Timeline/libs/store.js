@@ -10,6 +10,7 @@ export default function create() {
       left: writable(0),
       scale: writable(1),
     },
+    paused: writable(false),
     seek: writable(0),
     pixelPerMs: 10,
   };

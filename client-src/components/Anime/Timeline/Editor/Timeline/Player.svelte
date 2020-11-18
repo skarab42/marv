@@ -6,7 +6,7 @@
   import MdSkipPrevious from "svelte-icons/md/MdSkipPrevious.svelte";
 
   import { getContext } from "svelte";
-  const { seek, items } = getContext("Editor");
+  const { seek, items, paused } = getContext("Editor");
 
   export let anime = null;
 
@@ -26,9 +26,12 @@
 
   function pauseAnime() {
     anime && anime.pause();
+    $paused = true;
   }
 
   function resetAnime() {
+    $seek = 0;
+    $paused = true;
     anime && anime.reset();
   }
 
@@ -40,5 +43,8 @@
 
 <Icon class="{iconClass}" icon="{MdReplay}" on:click="{restartAnime}" />
 <Icon class="{iconClass}" icon="{MdSkipPrevious}" on:click="{resetAnime}" />
-<Icon class="{iconClass}" icon="{MdPlayArrow}" on:click="{playAnime}" />
-<Icon class="{iconClass}" icon="{MdPause}" on:click="{pauseAnime}" />
+{#if $paused}
+  <Icon class="{iconClass}" icon="{MdPlayArrow}" on:click="{playAnime}" />
+{:else}
+  <Icon class="{iconClass}" icon="{MdPause}" on:click="{pauseAnime}" />
+{/if}

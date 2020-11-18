@@ -23,21 +23,30 @@
   const store = createStore();
   setContext("Editor", store);
 
-  const { anime, items, selectedItem, seek } = store;
+  const { anime, items, selectedItem, seek, paused } = store;
 
   const playables = ["audio", "video"];
 
   $items = initialItems;
 
   function updateAnime() {
-    if ($anime && !$anime.pause) return;
+    if ($anime && !$anime.paused) return;
 
     dispatch("update-start");
 
+    $paused = true;
+
     $anime = animejs.timeline({
       autoplay: false,
+      begin() {
+        $paused = false;
+      },
       update() {
+        $paused = false;
         $seek = (this.duration / 100) * this.progress;
+      },
+      complete() {
+        $paused = true;
       },
     });
 
