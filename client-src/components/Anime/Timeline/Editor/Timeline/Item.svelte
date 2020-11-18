@@ -67,7 +67,7 @@
     isDragOver = false;
   }
 
-  function getScaledDelay(delay) {
+  function getScaledValue(delay) {
     return Math.round(delay * pixelPerMs);
   }
 
@@ -90,7 +90,7 @@
   }
 
   function onAddKeyframe({ detail }) {
-    addKeyframe({ delay: getScaledDelay(detail.offset) });
+    addKeyframe({ delay: getScaledValue(detail.offset) });
   }
 
   function onSelectKeyframe({ detail: keyframe }) {
@@ -100,7 +100,7 @@
 
   function onMoveKeyframe({ detail }) {
     const { keyframe, offset } = detail;
-    const delay = keyframe.delay + getScaledDelay(offset);
+    const delay = keyframe.delay + getScaledValue(offset);
     keyframe.delay = Math.max(0, delay);
     $selectedKeyframe = keyframe;
     $items = $items;
@@ -109,6 +109,14 @@
   function onRemoveKeyframe({ detail: keyframe }) {
     item.keyframes = item.keyframes.filter((kf) => kf.id !== keyframe.id);
     $selectedKeyframe = null;
+    $items = $items;
+  }
+
+  function ondurationChange({ detail }) {
+    const { keyframe, offset } = detail;
+    const duration = keyframe.duration + getScaledValue(offset);
+    keyframe.duration = Math.max(0, duration);
+    $selectedKeyframe = keyframe;
     $items = $items;
   }
 </script>
@@ -139,6 +147,7 @@
       on:move="{onMoveKeyframe}"
       on:select="{onSelectKeyframe}"
       on:remove="{onRemoveKeyframe}"
+      on:duration="{ondurationChange}"
     />
   {/each}
 </Keyframes>

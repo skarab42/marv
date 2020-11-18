@@ -31,12 +31,24 @@
       dispatch("remove", keyframe);
     }
   }
+
+  function onDurationMove({ detail }) {
+    dispatch("duration", { keyframe, offset: detail.dx / $scale });
+  }
 </script>
 
 <div
   class="absolute z-10 bg-gray-500 bg-opacity-25"
   style="left:{left + halfWidth}px;width:{width}px;height:28.28px"
-></div>
+>
+  <div
+    use:pannable
+    on:panmove="{onDurationMove}"
+    on:mousedown|stopPropagation
+    style="cursor:ew-resize;left:{width}px;"
+    class="absolute right-0 top-0 bottom-0 w-1 bg-gray-500 bg-opacity-50"
+  ></div>
+</div>
 <div class="absolute z-20" style="left:{left}px">
   <div
     use:pannable
