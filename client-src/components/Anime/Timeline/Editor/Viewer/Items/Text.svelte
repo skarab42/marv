@@ -7,13 +7,10 @@
 
   $: style = getStyle(item.target.style);
   $: trans = getTrans(item.target.trans);
+
+  let text = "Loading...";
+
+  $: fetchText(item.target.filename).then((txt) => (text = txt));
 </script>
 
-{#await fetchText(item.target.filename) then text}
-<div
-  class="absolute"
-  id="item-{item.id}"
-  style="{style};{trans};">
-  {text}
-</div>
-{/await}
+<div class="absolute" id="item-{item.id}" style="{style};{trans};">{text}</div>

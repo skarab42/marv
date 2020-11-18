@@ -30,6 +30,8 @@
   $items = initialItems;
 
   function updateAnime() {
+    if ($anime && !$anime.pause) return;
+
     dispatch("update-start");
 
     $anime = animejs.timeline({
