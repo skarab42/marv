@@ -64,7 +64,8 @@
     "scene-list": "OBS | Scene list",
     "go-to-scene": "OBS | Go to scene",
     "toggle-scene": "OBS toggle between two scenes",
-    "no-scene-selected": "No scene selected"
+    "no-scene-selected": "No scene selected",
+    "connect-at-startup": "OBS connect at startup"
   },
   "anime": {
     "timeline": "Anime | Timeline"
