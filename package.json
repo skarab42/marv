@@ -2,7 +2,7 @@
   "name": "marv",
   "version": "0.3.0",
   "description": "Marv - Twitch Bot",
-  "repository": "github:onlfait/marv",
+  "repository": "github:skarab42/marv",
   "author": "skarab42 <skarab42@users.noreply.github.com>",
   "license": "MIT",
   "scripts": {
