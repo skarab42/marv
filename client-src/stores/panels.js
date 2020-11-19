@@ -38,7 +38,7 @@ export function toggleEditMode() {
 
 export function setCurrentPanel(panel) {
   currentPanel.set(panel);
-  localStorage.setItem("currentPanel", panel.id);
+  localStorage.setItem("currentPanel", panel && panel.id);
 }
 
 function onAdd(panel, { owner }) {
