@@ -1,6 +1,7 @@
 <script>
   import Item from "./Timeline/Item.svelte";
   import Grid from "./Timeline/Grid.svelte";
+  import Ruler from "./Timeline/Ruler.svelte";
   import Player from "./Timeline/Player.svelte";
   import Cursor from "./Timeline/Cursor.svelte";
   import Icon from "@/components/UI/Icon.svelte";
@@ -37,7 +38,9 @@
     />
     <Player anime="{$anime}" />
   </div>
-  <div slot="header" class="p-2 truncate bg-primary-dark">Timeline...</div>
+  <div slot="header" class="bg-primary-dark">
+    <Ruler />
+  </div>
   {#each $items as item, pos (item.id)}
     <Item bind:item pos="{pos}" />
   {/each}
