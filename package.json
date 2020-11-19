@@ -1,6 +1,6 @@
 {
   "name": "marv",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Marv - Twitch Bot",
   "repository": "github:onlfait/marv",
   "author": "skarab42 <skarab42@users.noreply.github.com>",
@@ -13,7 +13,7 @@
     "tailwind:build": "node tailwind/build.js",
     "start": "electron app/main/index.js",
     "watch": "concurrently -k -n client,app -c magenta,yellow \"yarn client:watch\" \"yarn app:watch\"",
-    "build": "yarn tailwind:build --prod && yarn client:build && yarn app:build",
+    "build": "yarn tailwind:build --prod && yarn client:build",
     "prettify": "prettier --write ./app ./client-src",
     "lint": "eslint ./app ./client-src --fix && yarn prettify"
   },
