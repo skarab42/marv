@@ -2,28 +2,22 @@
 
 "use strict";
 
-const { appPath, userPaths } = require("../utils");
-const socket = require("./libs/socket.io");
-const { json } = require("body-parser");
-const stores = require("../stores");
-const polka = require("polka");
 const sirv = require("sirv");
 const http = require("http");
-const path = require("path");
-
+const polka = require("polka");
+const stores = require("../stores");
+const { json } = require("body-parser");
+const socket = require("./libs/socket.io");
 const { i18next } = require("./libs/i18next");
+const { uploadPath, clientPath, staticPath } = require("../utils");
 const missingKeyHandler = require("./libs/i18next/missingKeyHandler");
 
 let { host, port } = stores.server.getAll();
 const appFingerprint = stores.app.get("fingerprint");
 
-const clientPath = path.join(appPath, "client");
-const staticPath = path.join(appPath, "static");
-const uploadPath = path.join(userPaths.data, "files");
-
 const sirvClient = sirv(clientPath, { dev: true });
 const sirvStatic = sirv(staticPath, { dev: true });
-const sirvUpload = sirv(path.dirname(uploadPath), { dev: true });
+const sirvUpload = sirv(uploadPath, { dev: true });
 
 let portChangeCount = 0;
 let portChangeMaxCount = 10;
