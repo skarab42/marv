@@ -39,6 +39,7 @@ function createTray() {
   tray = new Tray(path.join(staticPath, "icon.png"));
 
   tray.setToolTip(fingerprint);
+  tray.on("click", createWindow);
   tray.setContextMenu(createMenu());
   tray.setIgnoreDoubleClickEvents(true);
 
