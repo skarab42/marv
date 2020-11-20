@@ -27,6 +27,7 @@ function createWindow() {
     win.show();
   });
 
+  win.removeMenu();
   win.loadURL(`http://${host}:${port}`);
   watch && win.webContents.openDevTools();
 }
