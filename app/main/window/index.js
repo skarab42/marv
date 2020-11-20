@@ -1,7 +1,10 @@
 const { staticPath, watch } = require("../../utils");
 const { BrowserWindow } = require("electron");
 const hideOnClose = require("./hideOnClose");
+const stores = require("../../stores");
 const path = require("path");
+
+const { host, port } = stores.server.getAll();
 
 let win = null;
 
@@ -24,7 +27,7 @@ function createWindow() {
     win.show();
   });
 
-  win.loadURL("http://localhost:4242/");
+  win.loadURL(`http://${host}:${port}`);
   watch && win.webContents.openDevTools();
 }
 
