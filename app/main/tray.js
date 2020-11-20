@@ -1,9 +1,11 @@
 const { _ } = require("../server/libs/i18next");
+const { appPath } = require("../stores/utils");
 const { Tray, Menu } = require("electron");
 const createWindow = require("./window");
 const capitalize = require("capitalize");
 const store = require("../stores");
 const quit = require("./quit");
+const path = require("path");
 const open = require("open");
 
 const { name, version, icon } = store.app.getAll();
@@ -34,7 +36,7 @@ function createMenu() {
 }
 
 function createTray() {
-  tray = new Tray(icon);
+  tray = new Tray(path.join(appPath, icon));
 
   tray.setToolTip(fingerprint);
   tray.setContextMenu(createMenu());

@@ -1,10 +1,11 @@
+const { appPath } = require("../../../stores/utils");
 const backend = require("i18next-fs-backend");
+const stores = require("../../../stores");
 const i18next = require("i18next");
 const path = require("path");
-const stores = require("../../../stores");
 
 const options = stores.i18next.getAll();
-const locales = path.join(stores.server.get("staticPath"), "locales");
+const locales = path.join(appPath, "static/locales");
 
 i18next.use(backend).init({
   ...options,

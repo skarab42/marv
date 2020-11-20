@@ -2,6 +2,7 @@
 
 "use strict";
 
+const { appPath, userPaths } = require("../stores/utils");
 const socket = require("./libs/socket.io");
 const { json } = require("body-parser");
 const stores = require("../stores");
@@ -13,8 +14,12 @@ const path = require("path");
 const { i18next } = require("./libs/i18next");
 const missingKeyHandler = require("./libs/i18next/missingKeyHandler");
 
-let { host, port, clientPath, staticPath, uploadPath } = stores.server.getAll();
+let { host, port } = stores.server.getAll();
 const appFingerprint = stores.app.get("fingerprint");
+
+const clientPath = path.join(appPath, "client");
+const staticPath = path.join(appPath, "static");
+const uploadPath = path.join(userPaths.data, "files");
 
 const sirvClient = sirv(clientPath, { dev: true });
 const sirvStatic = sirv(staticPath, { dev: true });

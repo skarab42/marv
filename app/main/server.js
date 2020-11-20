@@ -4,7 +4,7 @@ const chalk = require("chalk");
 const path = require("path");
 
 const dev = !store.app.get("production");
-const colors = new chalk.Instance({ level: 2 });
+const colors = new chalk.Instance({ level: 3 });
 const rootPath = path.resolve(__dirname, "../..");
 const serverPath = path.join(__dirname, "../server");
 const serverBin = path.join(serverPath, "index.js");

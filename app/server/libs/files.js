@@ -3,9 +3,10 @@ const mime = require("mime");
 const fs = require("fs-extra");
 const { _ } = require("./i18next");
 const stores = require("../../stores");
+const { userPaths } = require("../../stores/utils");
 
 const language = stores.i18next.get("lng", "en");
-const uploadPath = stores.server.get("uploadPath");
+const uploadPath = path.join(userPaths.data, "files");
 const allowedMimeTypes = ["text", "image", "audio", "video"];
 
 fs.ensureDirSync(uploadPath);

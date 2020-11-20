@@ -1,13 +1,11 @@
 const { name, version } = require("../../package");
-const { watch, appPath } = require("../utils");
-const path = require("path");
+const { watch } = require("../utils");
 
 module.exports = {
   name,
   version,
-  path: appPath,
   production: !watch,
   openOnStartup: false,
+  icon: "static/icon.png",
   fingerprint: `${name} v${version}`,
-  icon: path.join(appPath, "static/icon.png"),
 };

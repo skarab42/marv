@@ -1,10 +1,12 @@
+const { appPath } = require("../../stores/utils");
 const { BrowserWindow } = require("electron");
 const hideOnClose = require("./hideOnClose");
 const store = require("../../stores");
+const path = require("path");
 
 let win = null;
 
-const icon = store.app.get("icon");
+const icon = path.join(appPath, store.app.get("icon"));
 const devTools = !store.app.get("production");
 
 function createWindow() {
