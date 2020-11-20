@@ -13,7 +13,7 @@
     "tailwind:build": "node tailwind/build.js",
     "start": "electron app/main/index.js",
     "watch": "concurrently -k -n tailwind,client,app -c red,magenta,yellow \"yarn tailwind:build\" \"yarn client:watch\" \"yarn app:watch\"",
-    "build": "yarn tailwind:build --prod && yarn client:build",
+    "build": "yarn client:build && yarn tailwind:build --prod",
     "prettify": "prettier --write ./app ./client-src",
     "lint": "eslint ./app ./client-src --fix && yarn prettify"
   },
@@ -27,6 +27,7 @@
     "@rollup/plugin-node-resolve": "^9.0.0",
     "animejs": "^3.2.1",
     "capitalize": "^2.0.3",
+    "chalk": "^4.1.0",
     "clone-deep": "^4.0.1",
     "concurrently": "^5.3.0",
     "electron": "^10.1.5",
@@ -53,8 +54,5 @@
     "tailwindcss": "^1.9.6",
     "throttle-debounce": "^3.0.1",
     "uuid": "^8.3.1"
-  },
-  "dependencies": {
-    "chalk": "^4.1.0"
   }
 }
