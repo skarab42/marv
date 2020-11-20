@@ -26,3 +26,15 @@ yarn build
 # lint project
 yarn lint
 ```
+
+# How to build with npm (easier from ubuntu?):
+
+```
+cd marv
+npm install
+npm run tailwind:build --prod
+npm run client:build
+npm run app:build
+```
+
+Credit: thermo74 :)
