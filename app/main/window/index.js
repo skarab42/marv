@@ -1,13 +1,9 @@
-const { appPath } = require("../../utils");
+const { staticPath, watch } = require("../../utils");
 const { BrowserWindow } = require("electron");
 const hideOnClose = require("./hideOnClose");
-const store = require("../../stores");
 const path = require("path");
 
 let win = null;
-
-const icon = path.join(appPath, store.app.get("icon"));
-const devTools = !store.app.get("production");
 
 function createWindow() {
   if (win) {
@@ -15,11 +11,11 @@ function createWindow() {
   }
 
   win = new BrowserWindow({
-    icon,
     width: 800,
     height: 600,
     show: false,
-    webPreferences: { devTools },
+    icon: path.join(staticPath, "icon.png"),
+    webPreferences: { devTools: watch },
   });
 
   hideOnClose(win);
@@ -29,7 +25,7 @@ function createWindow() {
   });
 
   win.loadURL("http://localhost:4242/");
-  devTools && win.webContents.openDevTools();
+  watch && win.webContents.openDevTools();
 }
 
 module.exports = createWindow;

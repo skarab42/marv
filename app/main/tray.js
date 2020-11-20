@@ -1,6 +1,6 @@
 const { _ } = require("../server/libs/i18next");
-const { appPath } = require("../utils");
 const { Tray, Menu } = require("electron");
+const { staticPath } = require("../utils");
 const createWindow = require("./window");
 const capitalize = require("capitalize");
 const store = require("../stores");
@@ -8,7 +8,7 @@ const quit = require("./quit");
 const path = require("path");
 const open = require("open");
 
-const { name, version, icon } = store.app.getAll();
+const { name, version } = store.app.getAll();
 const fingerprint = `${capitalize(name)} v${version}`;
 
 let tray = null;
@@ -36,7 +36,7 @@ function createMenu() {
 }
 
 function createTray() {
-  tray = new Tray(path.join(appPath, icon));
+  tray = new Tray(path.join(staticPath, "icon.png"));
 
   tray.setToolTip(fingerprint);
   tray.setContextMenu(createMenu());
