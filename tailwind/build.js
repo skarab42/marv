@@ -28,6 +28,7 @@ if (!process.argv.includes("--prod")) {
 
   watcher.on("ready", () => {
     watcher.on("change", (source) => {
+      // eslint-disable-next-line no-console
       console.log(`${icon} file changed: ${path.relative(rootPath, source)}`);
       build();
     });
