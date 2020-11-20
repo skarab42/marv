@@ -22,6 +22,7 @@ yarn start
 
 # build application in production mode
 yarn build
+yarn app:build
 
 # lint project
 yarn lint
