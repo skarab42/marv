@@ -3,7 +3,7 @@ const mime = require("mime");
 const fs = require("fs-extra");
 const { _ } = require("./i18next");
 const stores = require("../../stores");
-const { userPaths } = require("../../stores/utils");
+const { userPaths } = require("../../utils");
 
 const language = stores.i18next.get("lng", "en");
 const uploadPath = path.join(userPaths.data, "files");

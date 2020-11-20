@@ -1,5 +1,5 @@
 const { name, version } = require("../../package");
-const { watch } = require("../utils");
+const { watch } = require("../../utils");
 
 module.exports = {
   name,

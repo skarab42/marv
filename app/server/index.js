@@ -2,7 +2,7 @@
 
 "use strict";
 
-const { appPath, userPaths } = require("../stores/utils");
+const { appPath, userPaths } = require("../utils");
 const socket = require("./libs/socket.io");
 const { json } = require("body-parser");
 const stores = require("../stores");

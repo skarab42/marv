@@ -1,4 +1,4 @@
-const { appPath } = require("../../../stores/utils");
+const { appPath } = require("../../../utils");
 const backend = require("i18next-fs-backend");
 const stores = require("../../../stores");
 const i18next = require("i18next");

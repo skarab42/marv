@@ -1,4 +1,4 @@
-const { userPaths } = require("./utils");
+const { userPaths } = require("../utils");
 const Conf = require("conf");
 const path = require("path");
 

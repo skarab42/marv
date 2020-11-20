@@ -1,4 +1,4 @@
-const { appPath } = require("../../stores/utils");
+const { appPath } = require("../../utils");
 const { BrowserWindow } = require("electron");
 const hideOnClose = require("./hideOnClose");
 const store = require("../../stores");
