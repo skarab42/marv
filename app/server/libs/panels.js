@@ -1,4 +1,5 @@
 const { panels: store } = require("../../stores");
+const actions = require("./actions");
 const { v4: uuid } = require("uuid");
 const { _ } = require("./i18next");
 
@@ -57,6 +58,9 @@ function remove(panel) {
   panels = panels.filter((p, i) => {
     if (p.id === panel.id) {
       pos = i;
+      panel.widgets.forEach((widget) => {
+        actions.remove(widget.id);
+      });
       return false;
     }
     return true;
@@ -77,7 +81,15 @@ function addWidget(panel, item) {
   return { panel: update(oldPanel), widget, item };
 }
 
+function removeWidgetComponent(panel, widget) {
+  if (!widget.component) return;
+  actions.remove(widget.id);
+  widget.component = null;
+  return { panel: update(panel), widget };
+}
+
 function removeWidget(panel, widget) {
+  removeWidgetComponent(panel, widget);
   const oldPanel = findPanelById(panel.id);
   oldPanel.grid = oldPanel.grid.filter((w) => w.id !== widget.id);
   oldPanel.widgets = oldPanel.widgets.filter((w) => w.id !== widget.id);
@@ -90,4 +102,5 @@ module.exports = {
   update,
   addWidget,
   removeWidget,
+  removeWidgetComponent,
 };

@@ -28,4 +28,9 @@ module.exports = {
     this.notify("panels.update", payload.panel);
     return payload;
   },
+  removeWidgetComponent(panel, widget) {
+    const payload = panels.removeWidgetComponent(panel, widget);
+    this.notify("panels.update", payload.panel);
+    return payload;
+  },
 };
