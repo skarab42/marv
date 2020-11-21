@@ -1,7 +1,8 @@
 <script>
-  import EditMode from "./Widget/EditMode.svelte";
-  import widgets from "@/components/Widgets";
   import { editMode } from "@/stores/panels";
+  import widgets from "@/components/Widgets";
+  import EditMode from "./Widget/EditMode.svelte";
+  import MdAdd from "svelte-icons/md/MdAdd.svelte";
 
   export let item;
   export let panel;
@@ -24,8 +25,12 @@
       this="{widgets[component.name].Widget}"
       widget="{widget}"
     />
-  {/if}
-  {#if $editMode}
+  {:else if $editMode}
+    <div class="absolute inset-0 pointer-events-none">
+      <div class="flex w-full h-full opacity-50">
+        <MdAdd />
+      </div>
+    </div>
     <EditMode panel="{panel}" widget="{widget}" />
   {/if}
 </div>

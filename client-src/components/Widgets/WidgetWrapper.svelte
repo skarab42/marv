@@ -25,7 +25,7 @@
 </div>
 
 {#if inQueue}
-  <div class="absolute inset-0 pointer-events-none object-contain">
+  <div class="absolute inset-0 pointer-events-none">
     {#if running}
       <div class="flex w-full h-full opacity-50 animate-spin">
         <MdAutorenew />
