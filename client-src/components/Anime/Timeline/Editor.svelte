@@ -115,6 +115,10 @@
     files.forEach(addFile);
   }
 
+  function onRemove() {
+    dispatch("update", { duration: $anime.duration, items: $items });
+  }
+
   function onClose() {
     dispatch("close");
   }
@@ -133,6 +137,6 @@
     <Settings />
   </div>
   <div slot="bottomPane" class="bg-primary-dark h-full shadow">
-    <Timeline on:file="{addFile}" />
+    <Timeline on:file="{addFile}" on:remove="{onRemove}" />
   </div>
 </Layout>

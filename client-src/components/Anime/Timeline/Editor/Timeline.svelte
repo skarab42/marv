@@ -38,6 +38,10 @@
     closeFileManager();
     dispatch("file", file);
   }
+
+  function onRemove({ detail: item }) {
+    dispatch("remove", item);
+  }
 </script>
 
 <Grid bind:splitter>
@@ -56,7 +60,7 @@
     <Ruler />
   </div>
   {#each $items as item, pos (item.id)}
-    <Item bind:item pos="{pos}" />
+    <Item bind:item pos="{pos}" on:remove="{onRemove}" />
   {/each}
   <Cursor min="{splitter.x}" />
 </Grid>

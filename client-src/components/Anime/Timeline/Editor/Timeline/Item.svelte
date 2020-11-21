@@ -1,5 +1,5 @@
 <script>
-  import { getContext } from "svelte";
+  import { getContext, createEventDispatcher } from "svelte";
   import { createKeyframe } from "../../libs/createKeyframe";
   import Icon from "@/components/UI/Icon.svelte";
   import Keyframe from "./Keyframe.svelte";
@@ -13,6 +13,8 @@
   const { items, selectedItem, selectedKeyframe, pixelPerMs } = getContext(
     "Editor"
   );
+
+  const dispatch = createEventDispatcher();
 
   let isDragOver = false;
 
@@ -36,12 +38,13 @@
     selectItem(item);
   }
 
-  function onDelete(event) {
+  function onRemove(event) {
     event.stopPropagation();
     if ($selectedItem === item) {
       $selectedItem = null;
     }
     $items = $items.filter(({ id }) => id !== item.id);
+    dispatch("remove", item);
   }
 
   function onDragStart({ dataTransfer }) {
@@ -122,7 +125,7 @@
 >
   <AnimeIcon type="{item.target.type}" />
   <div class="p-2 pl-0 truncate flex-1">{item.target.filename}</div>
-  <div class="p-2 cursor-pointer hover:bg-red-600" on:click="{onDelete}">
+  <div class="p-2 cursor-pointer hover:bg-red-600" on:click="{onRemove}">
     <Icon icon="{MdDeleteForever}" />
   </div>
   {#if isDragOver}
