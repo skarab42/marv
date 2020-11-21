@@ -12,7 +12,7 @@
   export let colapsed = true;
 
   function onColor(event) {
-    color = event.detail;
+    color = event.detail.hex;
     dispatch("color", event.detail);
   }
 
