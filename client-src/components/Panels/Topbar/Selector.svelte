@@ -22,24 +22,26 @@
   });
 
   function isActiveClass(p1, p2) {
-    return p1.id === p2.id ? "bg-secondary" : "bg-primary";
+    return p1.id === p2.id ? "bg-secondary" : "bg-black bg-opacity-25";
   }
 </script>
 
 <div class="p-2 flex space-x-2 items-center bg-dark text-light">
   <Button
     padding="p-2"
-    icon="{MdAdd}"
-    on:click="{api.add}"
-    class="bg-primary"
+    icon="{MdSettings}"
+    on:click="{toggleEditMode}"
+    class="{$editMode ? 'bg-red-600' : 'bg-primary'}"
   />
-  {#if $panels.length}
+  {#if $editMode}
     <Button
       padding="p-2"
-      icon="{MdSettings}"
-      on:click="{toggleEditMode}"
-      class="{$editMode ? 'bg-red-600' : 'bg-primary'}"
+      icon="{MdAdd}"
+      on:click="{api.add}"
+      class="bg-primary"
     />
+  {/if}
+  {#if $panels.length}
     <HorizontalScroller bind:this="{scroller}" gap="2" arrowClass="bg-dark">
       {#each $panels as panel}
         <Button
