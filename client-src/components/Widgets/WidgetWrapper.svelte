@@ -25,15 +25,13 @@
 </div>
 
 {#if inQueue}
-  {#if running}
-    <div class="absolute inset-0 pointer-events-none">
-      <div class="h-full animate-spin opacity-50">
+  <div class="absolute inset-0 pointer-events-none object-contain">
+    {#if running}
+      <div class="flex w-full h-full opacity-50 animate-spin">
         <MdAutorenew />
       </div>
-    </div>
-  {/if}
-  <div class="absolute inset-0 pointer-events-none">
-    <div class="flex items-center h-full opacity-50 text-2xl">
+    {/if}
+    <div class="absolute inset-0 flex items-center h-full opacity-50 text-4xl">
       <div class="flex-auto text-center">
         <span
           class="{running ? '' : 'px-3 text-dark bg-gray-500 rounded-full'}"
