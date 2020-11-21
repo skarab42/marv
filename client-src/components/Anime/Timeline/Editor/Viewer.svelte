@@ -2,9 +2,13 @@
   import { onMount, onDestroy } from "svelte";
   import pannable from "@/libs/svelte/pannable.js";
 
+  const localSize = JSON.parse(
+    localStorage.getItem("anime.viewer.size") || "{}"
+  );
+
   export let size = {
-    width: window.screen.width,
-    height: window.screen.height,
+    width: localSize.width || window.screen.width,
+    height: localSize.height || window.screen.height,
   };
 
   export let position = { top: 0, left: 0 };
@@ -50,6 +54,8 @@
     zoom.scale = Math.min(wRatio, hRatio);
     position.top = wrapper.height / 2 - (size.height * zoom.scale) / 2;
     position.left = wrapper.width / 2 - (size.width * zoom.scale) / 2;
+
+    localStorage.setItem("anime.viewer.size", JSON.stringify(size));
   }
 
   function viewportZoom(delta) {
