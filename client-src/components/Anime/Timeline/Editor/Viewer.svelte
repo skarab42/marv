@@ -1,6 +1,8 @@
 <script>
+  import { _ } from "@/libs/i18next";
   import { onMount, onDestroy } from "svelte";
   import pannable from "@/libs/svelte/pannable.js";
+  import ColorPicker from "@/components/UI/ColorPicker.svelte";
 
   const localSize = JSON.parse(
     localStorage.getItem("anime.viewer.size") || "{}"
@@ -16,11 +18,14 @@
 
   let viewportWrapper;
 
+  let bgColor = localStorage.getItem("anime.viewer.bgColor") || "#111";
+
   $: viewportStyle = `
     top:${position.top}px;
     left:${position.left}px;
     width:${size.width}px;
     height:${size.height}px;
+    background-color: ${bgColor};
     transform-origin:0 0;
     transform:scale(${zoom.scale});
     outline: ${2 / zoom.scale}px rgba(255,255,255,.1) solid;
@@ -84,11 +89,24 @@
   onDestroy(() => {
     window.removeEventListener("resize", viewportFitToScreen);
   });
+
+  function onBackgroundColor({ detail: color }) {
+    bgColor = color.hex;
+    localStorage.setItem("anime.viewer.bgColor", bgColor);
+  }
 </script>
 
 <div class="h-full flex flex-col flex-auto">
   <div class="flex bg-secondary-dark">
     <slot name="header" />
+    <div class="flex">
+      <ColorPicker
+        label="{_('words.color')}"
+        on:color="{onBackgroundColor}"
+        previewClass="w-10"
+        color="{bgColor}"
+      />
+    </div>
     <div class="p-2 flex space-x-2">
       <span>width</span>
       <input
@@ -120,7 +138,7 @@
     on:dblclick="{onDoubleClick}"
     bind:this="{viewportWrapper}"
   >
-    <div class="absolute overflow-hidden bg-black" style="{viewportStyle}">
+    <div class="absolute overflow-hidden" style="{viewportStyle}">
       <slot />
     </div>
   </div>
