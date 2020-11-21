@@ -34,19 +34,19 @@
 
     dispatch("update-start");
 
-    $paused = true;
+    paused.set(true);
 
     $anime = animejs.timeline({
       autoplay: false,
       begin() {
-        $paused = false;
+        paused.set(false);
       },
       update() {
-        $paused = false;
+        paused.set(false);
         $seek = (this.duration / 100) * this.progress;
       },
       complete() {
-        $paused = true;
+        paused.set(true);
       },
     });
 
@@ -56,6 +56,8 @@
       const style = getStyle(item.target.style);
       const $target = document.querySelector(targets);
       const isPlayable = playables.includes(item.target.type);
+
+      if (!$target) return;
 
       const play = () => {
         $target.volume = item.target.attrs.volume;
