@@ -120,6 +120,7 @@
   }
 
   function onClose() {
+    dispatch("update", { duration: $anime.duration, items: $items });
     dispatch("close");
   }
 </script>

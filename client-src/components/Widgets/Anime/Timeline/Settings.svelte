@@ -28,6 +28,7 @@
   }
 
   function onAnimeUpdate({ detail: anime }) {
+    initialItems = anime.items;
     update({ widget, anime });
   }
 </script>
