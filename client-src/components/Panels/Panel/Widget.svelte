@@ -25,12 +25,18 @@
       this="{widgets[component.name].Widget}"
       widget="{widget}"
     />
-  {:else if $editMode}
+  {/if}
+
+  {#if !component && $editMode}
     <div class="absolute inset-0 pointer-events-none">
       <div class="flex w-full h-full opacity-50">
         <MdAdd />
       </div>
     </div>
+    <EditMode panel="{panel}" widget="{widget}" />
+  {/if}
+
+  {#if $editMode}
     <EditMode panel="{panel}" widget="{widget}" />
   {/if}
 </div>
