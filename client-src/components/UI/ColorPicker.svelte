@@ -10,6 +10,7 @@
   export let color = "#fff";
   export let alpha = false;
   export let colapsed = true;
+  export let previewClass = "";
 
   function onColor(event) {
     color = event.detail.hex;
@@ -31,7 +32,7 @@
 <div use:clickoutside on:clickoutside="{hide}">
   <div class="flex cursor-pointer" on:click="{toggle}">
     <div class="p-2 uppercase font-medium bg-dark-lighter">{label}</div>
-    <div class="p-2 text-dark flex-auto" style="{style}"></div>
+    <div class="p-2 text-dark flex-auto {previewClass}" style="{style}"></div>
   </div>
   <div class="absolute z-10 text-dark {hidden}">
     <ChromePicker
