@@ -7,4 +7,13 @@ input[type=file]::-webkit-file-upload-button {
   cursor: pointer;
 }
 
+.tippy-box[data-theme~="marv"] {
+  background-color: tomato;
+  color: yellow;
+}
+
+.tippy-box[data-theme~="marv"][data-placement^="top"] > .tippy-arrow::before {
+  border-top-color: tomato;
+}
+
 @import "tailwindcss/utilities";

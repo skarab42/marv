@@ -1,4 +1,5 @@
 <script>
+  import { _ } from "@/libs/i18next";
   import { getContext } from "svelte";
   import AnimeIcon from "./AnimeIcon.svelte";
   import Section from "./Settings/Section.svelte";
@@ -67,13 +68,14 @@
   <Section visible="{$selectedKeyframe}">
     <div slot="title" class="flex space-x-2">
       <Icon icon="{MdAdjust}" class="w-4 h-4 flex-shrink-0" />
-      <div class="truncate">Keyframe</div>
+      <div class="truncate">{_('words.keyframe')}</div>
     </div>
     <Keyframe />
   </Section>
 {:else if $items.length}
-  <div class="p-2 truncate bg-primary-dark">No file selected...</div>
+  <div class="p-2 truncate bg-primary-dark">
+    {_('sentences.no-file-selected')}
+  </div>
 {:else}
-  <div class="p-2 truncate bg-primary-dark">No files added...</div>
-  <div class="p-2">Drop some file on the timeline ;)</div>
+  <div class="p-2 truncate bg-primary-dark">{_('sentences.no-file-added')}</div>
 {/if}

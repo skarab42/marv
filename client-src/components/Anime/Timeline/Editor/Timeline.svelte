@@ -1,4 +1,5 @@
 <script>
+  import { _ } from "@/libs/i18next";
   import Item from "./Timeline/Item.svelte";
   import Grid from "./Timeline/Grid.svelte";
   import Ruler from "./Timeline/Ruler.svelte";
@@ -8,6 +9,16 @@
   import { getContext, createEventDispatcher } from "svelte";
   import MdFileUpload from "svelte-icons/md/MdFileUpload.svelte";
   import FileManager from "@/components/FileManager/Main.svelte";
+
+  // import "tippy.js/themes/translucent.css";
+  import tippy from "sveltejs-tippy";
+
+  const tippyProps = {
+    content: _("sentences.add-file-to-timeline"),
+    placement: "top",
+    showOnCreate: true,
+    theme: "marv",
+  };
 
   const { anime, items } = getContext("Editor");
   const dispatch = createEventDispatcher();
@@ -31,11 +42,14 @@
 
 <Grid bind:splitter>
   <div slot="header" class="p-2 flex splace-x-2 bg-primary-dark">
-    <Icon
-      icon="{MdFileUpload}"
-      on:click="{openFileManager}"
-      class="text-secondary cursor-pointer"
-    />
+    <div use:tippy="{tippyProps}">
+      <Icon
+        icon="{MdFileUpload}"
+        on:click="{openFileManager}"
+        class="text-secondary cursor-pointer"
+      />
+    </div>
+
     <Player anime="{$anime}" />
   </div>
   <div slot="header" class="bg-primary-dark">

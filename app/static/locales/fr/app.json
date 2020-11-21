@@ -28,7 +28,10 @@
     "ask-remove-file": "Êtes-vous sûr de vouloir supprimer définitivement \"{{filename}}\"?",
     "file-can-be-used-by-other-widgets": "Ce fichier peut être utilisé par d'autre widgets!",
     "obs-not-connected": "OBS n'est pas connecté!",
-    "open-anime-timeline": "Ouvrir la timeline"
+    "open-anime-timeline": "Ouvrir la timeline",
+    "no-file-selected": "Aucun fichier sélectionné",
+    "no-file-added": "Aucun fichier ajouté",
+    "add-file-to-timeline": "Clique sur la flêche blue pour ajouter un fichier."
   },
   "words": {
     "settings": "options",
@@ -59,7 +62,8 @@
     "scene": "scène",
     "trigger": "lanceur",
     "easing": "easing",
-    "language": "langue"
+    "language": "langue",
+    "keyframe": "Clé d'animation"
   },
   "obs": {
     "scene-list": "OBS | Liste des scènes",

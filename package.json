@@ -51,6 +51,7 @@
     "svelte-color": "https://github.com/skarab42/svelte-color.git",
     "svelte-grid": "1.11.0",
     "svelte-icons": "^2.1.0",
+    "sveltejs-tippy": "^3.0.0",
     "tailwindcss": "^1.9.6",
     "throttle-debounce": "^3.0.1",
     "uuid": "^8.3.1"
