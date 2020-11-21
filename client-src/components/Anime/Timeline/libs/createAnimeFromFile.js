@@ -1,5 +1,6 @@
 import { v4 as uuid } from "uuid";
 import { elementFactories } from "./utils";
+import { createKeyframe } from "./createKeyframe";
 
 import {
   defaultStyles,
@@ -80,6 +81,6 @@ export default async function createAnimeFromFile(file) {
     id: uuid(),
     type: "file",
     target: await createTargetFromFile(file),
-    keyframes: [],
+    keyframes: [createKeyframe()],
   };
 }

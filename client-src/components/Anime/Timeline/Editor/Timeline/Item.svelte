@@ -1,6 +1,6 @@
 <script>
-  import { v4 as uuid } from "uuid";
   import { getContext } from "svelte";
+  import { createKeyframe } from "../../libs/createKeyframe";
   import Icon from "@/components/UI/Icon.svelte";
   import Keyframe from "./Keyframe.svelte";
   import Keyframes from "./Keyframes.svelte";
@@ -71,18 +71,8 @@
     return Math.round(delay * pixelPerMs);
   }
 
-  // TODO: extract default keyframe
   function addKeyframe(props) {
-    const keyframe = {
-      id: uuid(),
-      delay: 0,
-      duration: 1000,
-      easing: "linear",
-      ...props,
-      attrs: {},
-      style: {},
-      trans: {},
-    };
+    const keyframe = createKeyframe(props);
     item.keyframes = [...item.keyframes, keyframe];
     selectItem(item);
     selectKeyframe(keyframe);
