@@ -13,18 +13,18 @@
   // import "tippy.js/themes/translucent.css";
   import tippy from "sveltejs-tippy";
 
-  const tippyProps = {
-    content: _("sentences.add-file-to-timeline"),
-    placement: "top",
-    showOnCreate: true,
-    theme: "marv",
-  };
-
   const { anime, items } = getContext("Editor");
   const dispatch = createEventDispatcher();
 
   let fileManager = false;
   let splitter = { x: 200, width: 4, min: 100, max: 500 };
+
+  $: tippyProps = {
+    content: _("sentences.add-file-to-timeline"),
+    showOnCreate: !$items.length,
+    placement: "top",
+    theme: "marv",
+  };
 
   function openFileManager() {
     fileManager = true;
