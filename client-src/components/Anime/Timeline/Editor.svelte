@@ -28,6 +28,7 @@
   const playables = ["audio", "video"];
 
   $items = initialItems;
+  $: duration = $anime ? $anime.duration : 0;
 
   function updateAnime() {
     if ($anime && !$anime.paused) return;
@@ -84,7 +85,7 @@
     });
 
     $anime.seek($seek);
-    dispatch("update", { duration: $anime.duration, items: $items });
+    dispatch("update", { duration, items: $items });
   }
 
   function resetAnime() {
@@ -116,11 +117,11 @@
   }
 
   function onRemove() {
-    dispatch("update", { duration: $anime.duration, items: $items });
+    dispatch("update", { duration, items: $items });
   }
 
   function onClose() {
-    dispatch("update", { duration: $anime.duration, items: $items });
+    dispatch("update", { duration, items: $items });
     dispatch("close");
   }
 </script>
