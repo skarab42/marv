@@ -11,7 +11,7 @@ export function update(props) {
 }
 
 export default async function load() {
-  const state = await emit("stores.i18next", "getAll");
+  const state = await emit("i18next.getConfig");
   store.set(state);
   return state;
 }

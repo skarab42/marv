@@ -9,8 +9,8 @@ async function init(options) {
   _ = await i18next.use(HttpApi).init({
     ...options,
     backend: {
-      loadPath: "/locales/{{lng}}/{{ns}}.json",
       addPath: "/locales/add/{{lng}}/{{ns}}",
+      loadPath: "/locales/{{lng}}/{{ns}}.json",
     },
   });
 

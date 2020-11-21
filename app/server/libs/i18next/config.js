@@ -1,8 +1,8 @@
-const { watch } = require("../../utils");
+const { watch } = require("../../../utils");
 
 module.exports = {
-  ns: "app",
   lng: "en",
+  ns: "app",
   defaultNS: "app",
   fallbackLng: "en",
   supportedLngs: ["en", "fr"],

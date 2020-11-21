@@ -5,7 +5,7 @@ const { _ } = require("./i18next");
 const stores = require("../../stores");
 const { filesPath } = require("../../utils");
 
-const language = stores.i18next.get("lng", "en");
+const language = stores.app.get("language", "en");
 const allowedMimeTypes = ["text", "image", "audio", "video"];
 
 fs.ensureDirSync(filesPath);
