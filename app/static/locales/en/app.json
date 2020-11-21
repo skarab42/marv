@@ -58,7 +58,8 @@
     "none": "none",
     "scene": "scene",
     "trigger": "trigger",
-    "easing": "easing"
+    "easing": "easing",
+    "language": "language"
   },
   "obs": {
     "scene-list": "OBS | Scene list",
