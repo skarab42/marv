@@ -12,6 +12,7 @@
   export let bgColor = "bg-dark-lighter";
 
   $: color = `${bgColor} ${textColor}`;
+  $: inputHidden = type === "checkbox" ? "hidden" : "";
 
   const dispatch = createEventDispatcher();
   const debounceUpdate = debounce(500, update);
@@ -50,7 +51,7 @@
       on:change
       on:input="{input}"
       on:keypress="{onKeypress}"
-      class="{inputClass} w-full text-dark"
+      class="{inputClass} w-full text-dark {inputHidden}"
     />
   </div>
 </label>
