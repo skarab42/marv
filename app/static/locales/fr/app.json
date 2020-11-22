@@ -31,7 +31,8 @@
     "open-anime-timeline": "Ouvrir la timeline",
     "no-file-selected": "Aucun fichier sélectionné",
     "no-file-added": "Aucun fichier ajouté",
-    "add-file-to-timeline": "Clique sur la flêche blue pour ajouter un fichier."
+    "add-file-to-timeline": "Clique sur la flêche blue pour ajouter un fichier.",
+    "electron-open-on-startup": "Ouvrir Marv au démarrage"
   },
   "words": {
     "settings": "options",
@@ -70,7 +71,7 @@
     "go-to-scene": "OBS | Aller à la scène",
     "toggle-scene": "OBS | Basculer entre deux scènes",
     "no-scene-selected": "Aucune scène sélectionnée",
-    "connect-at-startup": "OBS connection au démarrage"
+    "connect-at-startup": "Connexion à OBS au démarrage"
   },
   "anime": {
     "timeline": "Anime | Timeline"

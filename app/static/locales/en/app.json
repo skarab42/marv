@@ -32,6 +32,7 @@
     "no-file-selected": "No file selected",
     "no-file-added": "No file added",
     "add-file-to-timeline": "Click on the blue arrow to add some file.",
+    "electron-open-on-startup": "Open Marv on startup"
   },
   "words": {
     "settings": "settings",
@@ -68,9 +69,9 @@
   "obs": {
     "scene-list": "OBS | Scene list",
     "go-to-scene": "OBS | Go to scene",
-    "toggle-scene": "OBS toggle between two scenes",
+    "toggle-scene": "OBS | toggle between two scenes",
     "no-scene-selected": "No scene selected",
-    "connect-at-startup": "OBS connect at startup"
+    "connect-at-startup": "Connect OBS at startup"
   },
   "anime": {
     "timeline": "Anime | Timeline"

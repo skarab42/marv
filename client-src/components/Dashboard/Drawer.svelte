@@ -2,6 +2,7 @@
   import { _ } from "@/libs/i18next";
   import { drawer, hide } from "@/stores/drawer";
   import clickoutside from "@/libs/svelte/click-outside";
+  import OpenOnStartup from "@/components/App/OpenOnStartup.svelte";
   import LanguageSelect from "@/components/App/LanguageSelect.svelte";
   import ConnectAtStartup from "@/components/OBS/ConnectAtStartup.svelte";
 </script>
@@ -15,6 +16,7 @@
     <div class="p-2 bg-secondary">Drawer</div>
     <div class="p-2">{_('words.language')}</div>
     <LanguageSelect />
+    <OpenOnStartup />
     <ConnectAtStartup />
   </div>
 {/if}
