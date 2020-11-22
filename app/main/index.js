@@ -1,5 +1,6 @@
 "use strict";
 
+const createWindow = require("./window");
 const { app } = require("electron");
 const server = require("./server");
 const tray = require("./tray");
@@ -12,5 +13,6 @@ app.on("window-all-closed", (event) => {
 
 app.whenReady().then(() => {
   server.start();
+  createWindow({ showOnLoad: false });
   tray();
 });

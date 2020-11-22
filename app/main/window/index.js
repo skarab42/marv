@@ -8,7 +8,7 @@ const { host, port } = stores.server.getAll();
 
 let win = null;
 
-function createWindow() {
+function createWindow({ showOnLoad = true } = {}) {
   if (win) {
     return win.show();
   }
@@ -25,7 +25,7 @@ function createWindow() {
   hideOnClose(win);
 
   win.webContents.once("did-finish-load", () => {
-    win.show();
+    showOnLoad && win.show();
   });
 
   win.removeMenu();
