@@ -17,6 +17,7 @@ function createWindow() {
     width: 800,
     height: 600,
     show: false,
+    frame: false,
     icon: path.join(staticPath, "icon.png"),
     webPreferences: { devTools: watch },
   });
@@ -28,7 +29,7 @@ function createWindow() {
   });
 
   win.removeMenu();
-  win.loadURL(`http://${host}:${port}`);
+  win.loadURL(`http://${host}:${port}?electron`);
   watch && win.webContents.openDevTools();
 }
 

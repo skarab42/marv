@@ -15,6 +15,7 @@
   import Connected from "@/components/App/Connected.svelte";
   import Connecting from "@/components/App/Connecting.svelte";
   import Disconnected from "@/components/App/Disconnected.svelte";
+  import ElectronTopbar from "@/components/App/ElectronTopbar.svelte";
 
   let component = Connecting;
 
@@ -47,5 +48,6 @@
 </script>
 
 <div class="flex flex-col h-full">
+  <ElectronTopbar />
   <svelte:component this="{component}" />
 </div>
