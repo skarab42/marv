@@ -1,5 +1,6 @@
 const { staticPath, watch } = require("../../utils");
 const { BrowserWindow } = require("electron");
+const storeBounds = require("./storeBounds");
 const hideOnClose = require("./hideOnClose");
 const stores = require("../../stores");
 const path = require("path");
@@ -23,6 +24,7 @@ function createWindow({ showOnLoad = true } = {}) {
   });
 
   hideOnClose(win);
+  storeBounds({ win, name: "main" });
 
   win.webContents.once("did-finish-load", () => {
     showOnLoad && win.show();
