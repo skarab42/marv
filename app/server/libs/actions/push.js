@@ -11,11 +11,11 @@ let lock = false;
 function sendAction(action, immediat = false) {
   const { send } = actionTypes[action.type] || {};
 
-  state.update({ ...action, running: true });
+  state.update("start", { ...action, running: true });
 
   if (!send) {
     state.decrement(action);
-    state.update({ ...action, running: false });
+    state.update("end", { ...action, running: false });
     return Promise.reject(`Undefined action type: ${action.type}`);
   }
 
@@ -23,9 +23,9 @@ function sendAction(action, immediat = false) {
     .then((response) => ({ response }))
     .catch((error) => ({ error }))
     .then(({ error, response }) => {
-      const { inQueue } = state.decrement(action);
-      const running = immediat && !!inQueue;
-      state.update({ ...action, running });
+      const newAction = state.decrement(action);
+      const running = immediat && !!newAction.inQueue;
+      state.update("end", { ...action, ...newAction, running });
       return error || response;
     });
 }
