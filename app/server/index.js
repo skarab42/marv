@@ -7,6 +7,7 @@ const http = require("http");
 const polka = require("polka");
 const stores = require("../stores");
 const { json } = require("body-parser");
+const twitch = require("./libs/twitch");
 const socket = require("./libs/socket.io");
 const { i18next } = require("./libs/i18next");
 const { uploadPath, clientPath, staticPath } = require("../utils");
@@ -49,11 +50,14 @@ function start() {
 
   server.on("error", onError);
 
+  twitch.init();
+
   polka({ server })
     .use(json())
     .use(sirvClient)
     .use(sirvStatic)
     .use(sirvUpload)
+    .use(twitch.authMiddleware)
     .post("/locales/add/:lng/:ns", missingKeyHandler(i18next))
     .listen(port, (error) => {
       if (error) return onError(error);
