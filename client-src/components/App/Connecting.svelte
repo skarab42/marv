@@ -1,13 +1,12 @@
 <script>
   import { _ } from "@/libs/i18next";
-  import capitalize from "capitalize";
-  import { initialized, store } from "@/stores/app";
   import SplashScreen from "./SplashScreen.svelte";
+  import { initialized, fingerprint } from "@/stores/app";
 
   let message = "Waiting for connexion";
 
   $: if ($initialized) {
-    document.title = capitalize($store.fingerprint);
+    document.title = fingerprint;
     message = _("sentences.waiting-for-connexion");
   }
 </script>

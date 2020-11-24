@@ -7,6 +7,7 @@ import cleaner from "rollup-plugin-cleaner";
 import svelte from "rollup-plugin-svelte";
 import alias from "@rollup/plugin-alias";
 import css from "rollup-plugin-css-only";
+import json from "@rollup/plugin-json";
 
 const watch = process.env.ROLLUP_WATCH;
 
@@ -24,6 +25,7 @@ export default {
     sourcemap: true,
   },
   plugins: [
+    json(),
     alias({
       entries: [{ find: "@", replacement: `${__dirname}/${clientDir}` }],
     }),

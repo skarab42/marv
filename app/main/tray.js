@@ -9,7 +9,7 @@ const quit = require("./quit");
 const path = require("path");
 const open = require("open");
 
-const { name, version } = stores.app.getAll();
+const { name, version } = require("../package");
 const fingerprint = `${capitalize(name)} v${version}`;
 
 let tray = null;
