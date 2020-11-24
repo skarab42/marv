@@ -11,6 +11,7 @@ const twitch = require("./libs/twitch");
 const socket = require("./libs/socket.io");
 const { i18next } = require("./libs/i18next");
 const { uploadPath, clientPath, staticPath } = require("../utils");
+const twitchAuthMiddleware = require("./libs/twitch/authMiddleware");
 const missingKeyHandler = require("./libs/i18next/missingKeyHandler");
 
 let { host, port } = stores.server.getAll();
@@ -50,14 +51,12 @@ function start() {
 
   server.on("error", onError);
 
-  twitch.init();
-
   polka({ server })
     .use(json())
     .use(sirvClient)
     .use(sirvStatic)
     .use(sirvUpload)
-    .use(twitch.authMiddleware)
+    .use(twitchAuthMiddleware(twitch.authProvider))
     .post("/locales/add/:lng/:ns", missingKeyHandler(i18next))
     .listen(port, (error) => {
       if (error) return onError(error);

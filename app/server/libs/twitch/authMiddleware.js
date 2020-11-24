@@ -24,7 +24,7 @@ function twitchAuthSet(req, res) {
   this.resolveToken(req.query);
 }
 
-module.exports = async function authMiddleware(req, res, next) {
+function authMiddleware(req, res, next) {
   if (req.path === "/twitch-auth") {
     twitchAuth.call(this, req, res);
   } else if (req.path === "/twitch-auth/set") {
@@ -32,4 +32,8 @@ module.exports = async function authMiddleware(req, res, next) {
   }
 
   next();
+}
+
+module.exports = (authProvider) => {
+  return authMiddleware.bind(authProvider);
 };
