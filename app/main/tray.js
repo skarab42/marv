@@ -9,6 +9,8 @@ const quit = require("./quit");
 const path = require("path");
 const open = require("open");
 
+const isWin32 = process.platform === "win32";
+const icon = `icon.${isWin32 ? "ico" : "png"}`;
 const { name, version } = require("../package");
 const fingerprint = `${capitalize(name)} v${version}`;
 
@@ -43,7 +45,7 @@ function createMenu() {
 }
 
 function createTray() {
-  tray = new Tray(path.join(staticPath, "icon.png"));
+  tray = new Tray(path.join(staticPath, icon));
 
   tray.setToolTip(fingerprint);
   tray.on("click", mainWindow);
