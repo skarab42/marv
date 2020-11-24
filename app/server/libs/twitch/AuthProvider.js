@@ -24,10 +24,15 @@ module.exports = class AuthProvider {
     this.forceVerify = forceVerify;
 
     this.tokenType = "user";
-    this.accessToken = null;
-    this.currentScopes = [];
+    this.accessToken = stores.twitch.get("AccessToken", null);
+    this.currentScopes = stores.twitch.get("AccessToken.scope", []);
 
-    this.__resolve = null;
+    if (this.accessToken && this.accessToken.access_token) {
+      this.accessToken = new AccessToken(this.accessToken);
+    }
+
+    this.__resolveToken = null;
+    this.__rejectToken = null;
   }
 
   hasScopes(scopes) {
@@ -36,6 +41,7 @@ module.exports = class AuthProvider {
 
   getAuthUrl(scopes) {
     const redir = encodeURIComponent(this.redirectURI);
+
     return (
       `${authBaseURL}&client_id=${this.clientId}` +
       `&redirect_uri=${redir}&scope=${scopes.join(" ")}` +
@@ -43,52 +49,44 @@ module.exports = class AuthProvider {
     );
   }
 
-  setAccessToken(token) {
-    this.accessToken = token;
+  setAccessToken(accessToken) {
+    this.accessToken = accessToken;
   }
 
-  setToken({ access_token }) {
-    this.__resolve && this.__resolve(access_token);
+  resolveToken(response) {
+    this.__resolveToken && this.__resolveToken(response);
+    this.__resolveToken = null;
   }
 
-  getAccessToken(scopes = null) {
-    // TODO detect and reject promise on error
-    return new Promise((resolve) => {
-      const auth = stores.twitch.get("auth", {});
+  rejectToken(error) {
+    this.__rejectToken && this.__rejectToken(error);
+    this.__rejectToken = null;
+  }
 
-      if (auth.token) {
-        this.accessToken = new AccessToken({
-          access_token: auth.token,
-          scope: auth.scopes,
-          refresh_token: "",
-        });
+  refresh() {
+    stores.twitch.set("AccessToken.access_token", null);
+    return this.getAccessToken(this.currentScopes, { refresh: true });
+  }
 
-        return resolve(this.accessToken);
-      }
-
+  getAccessToken(scopes = null, { refresh = false } = {}) {
+    return new Promise((resolve, reject) => {
       scopes = normalizeScopes(scopes);
 
       // eslint-disable-next-line no-console
       console.log("\x1b[35m%s\x1b[0m", `Twitch request scopes [${scopes}]`);
 
-      if (!this.forceVerify && this.accessToken && this.hasScopes(scopes)) {
+      const forceVerify = refresh || this.forceVerify;
+
+      if (!forceVerify && this.accessToken && this.hasScopes(scopes)) {
         return resolve(this.accessToken);
       }
 
-      this.__resolve = (accessToken) => {
-        scopes.forEach((scope) => this.currentScopes.push(scope));
-
-        this.accessToken = new AccessToken({
-          access_token: accessToken,
-          scope: this.currentScopes,
-          refresh_token: "",
-        });
-
-        stores.twitch.set("auth", {
-          token: accessToken,
-          scopes: this.currentScopes,
-        });
-
+      this.__rejectToken = reject;
+      this.__resolveToken = ({ access_token }) => {
+        this.currentScopes = [...new Set([...this.currentScopes, ...scopes])];
+        const accessToken = { access_token, scope: this.currentScopes };
+        this.accessToken = new AccessToken(accessToken);
+        stores.twitch.set("AccessToken", accessToken);
         resolve(this.accessToken);
       };
 

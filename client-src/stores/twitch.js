@@ -7,7 +7,7 @@ export const store = writable({
 
 export default async function load() {
   store.set(await getState());
-  on("getMe", (user) => {
+  on("login", (user) => {
     store.update((store) => ({ ...store, user }));
   });
 }

@@ -4,8 +4,8 @@ export function on(eventName, cb) {
   return api.on(eventName, cb);
 }
 
-export function getMe(email = false) {
-  return api.getMe(email);
+export function login(email = false) {
+  return api.login(email);
 }
 
 export function getState() {

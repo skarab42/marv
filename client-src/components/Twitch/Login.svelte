@@ -1,19 +1,25 @@
 <script>
   import { _ } from "@/libs/i18next";
   import { store } from "@/stores/twitch";
-  import { getMe } from "@/libs/twitch";
+  import { login } from "@/libs/twitch";
   import Icon from "@/components/UI/Icon.svelte";
   import TwitchIcon from "@/assets/images/Twitch_icon.svg";
   import MdAccountCircle from "svelte-icons/md/MdAccountCircle.svelte";
 
-  function login() {
-    if ($store.user) return;
-    getMe(true);
+  function onLogin() {
+    // if ($store.user) return;
+    login(true)
+      .then((user) => {
+        console.log("Loged-in:", user);
+      })
+      .catch((error) => {
+        console.log("error:", error);
+      });
   }
 </script>
 
 {#if $store.user}
-  <div class="flex items-center bg-secondary">
+  <div class="flex items-center bg-secondary" on:click="{onLogin}">
     <div class="p-2 pr-0">
       <TwitchIcon width="16" fill="#fefefe" />
     </div>
@@ -28,7 +34,7 @@
   </div>
 {:else}
   <div
-    on:click="{login}"
+    on:click="{onLogin}"
     class="flex items-center bg-secondary hover:bg-secondary-dark cursor-pointer"
   >
     <div class="p-2 pr-0">
