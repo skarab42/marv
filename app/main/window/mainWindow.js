@@ -1,4 +1,5 @@
 const { staticPath, watch } = require("../../utils");
+const webPreferences = require("./webPreferences");
 const { BrowserWindow } = require("electron");
 const storeBounds = require("./storeBounds");
 const hideOnClose = require("./hideOnClose");
@@ -9,7 +10,7 @@ const { host, port } = stores.server.getAll();
 
 let win = null;
 
-function createWindow({ showOnLoad = true } = {}) {
+module.exports = function createWindow({ showOnLoad = true } = {}) {
   if (win) {
     return win.show();
   }
@@ -20,7 +21,7 @@ function createWindow({ showOnLoad = true } = {}) {
     show: false,
     frame: false,
     icon: path.join(staticPath, "icon.png"),
-    webPreferences: { devTools: watch },
+    webPreferences: { ...webPreferences, devTools: watch },
   });
 
   hideOnClose(win);
@@ -33,6 +34,4 @@ function createWindow({ showOnLoad = true } = {}) {
   win.removeMenu();
   win.loadURL(`http://${host}:${port}?electron`);
   watch && win.webContents.openDevTools();
-}
-
-module.exports = createWindow;
+};
