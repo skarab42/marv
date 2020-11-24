@@ -33,7 +33,8 @@
     "no-file-added": "No file added",
     "add-file-to-timeline": "Click on the blue arrow to add some file.",
     "electron-open-on-startup": "Open Marv on startup",
-    "connect-with-twitch": "Connect with Twitch"
+    "connect-with-twitch": "Connect with Twitch",
+    "open-twitch-chat-window": "Open Twitch chat"
   },
   "words": {
     "settings": "settings",
