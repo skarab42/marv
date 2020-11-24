@@ -10,8 +10,8 @@ let state = {
   },
 };
 
-function get(key = null) {
-  return key ? dotProp.get(state, key) : { ...state };
+function get(key = null, defaultValue = null) {
+  return key ? dotProp.get(state, key, defaultValue) : { ...state };
 }
 
 function set(key, value) {
