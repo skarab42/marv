@@ -1,3 +1,4 @@
+const stores = require("../../stores");
 const twitch = require("../libs/twitch");
 const chatJoin = require("../libs/twitch/chatJoin");
 const chatConnect = require("../libs/twitch/chatConnect");
@@ -11,6 +12,7 @@ module.exports = {
         chatJoin(user.display_name).then(({ alreadyJoined } = {}) => {
           if (!alreadyJoined) {
             console.log("Marv est dans la place !");
+            stores.twitch.set("chatWindow.channel", user.display_name);
             twitch.chat.say(user.display_name, "Marv est dans la place !");
           }
         });
