@@ -1,4 +1,5 @@
 module.exports = {
+  connectOnStartup: false,
   chatWindow: {
     channel: null,
   },

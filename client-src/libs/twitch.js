@@ -12,6 +12,10 @@ export function getState() {
   return api.getState();
 }
 
+export function getStore() {
+  return api.getStore();
+}
+
 export function updateState(state) {
   return api.updateState(state);
 }

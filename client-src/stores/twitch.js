@@ -1,13 +1,24 @@
+import { getStore, getState, on } from "@/libs/twitch";
 import { writable } from "svelte/store";
-import { getState, on } from "@/libs/twitch";
 
-export const store = writable({
-  user: null,
-});
+export const store = writable(null);
+export const state = writable(null);
+
+let loaded = false;
+
+function loadOnce() {
+  if (loaded) return;
+
+  on("state", state.set);
+  on("login", (user) => {
+    state.update((newState) => ({ ...newState, user }));
+  });
+
+  loaded = true;
+}
 
 export default async function load() {
-  store.set(await getState());
-  on("login", (user) => {
-    store.update((store) => ({ ...store, user }));
-  });
+  store.set(await getStore());
+  state.set(await getState());
+  loadOnce();
 }

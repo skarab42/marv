@@ -1,5 +1,5 @@
 import { writable } from "svelte/store";
-import obs from "@/api/obs";
+import api from "@/api/obs";
 
 export const store = writable(null);
 export const state = writable(null);
@@ -9,13 +9,13 @@ let loaded = false;
 function loadOnce() {
   if (loaded) return;
 
-  obs.on("state", state.set);
+  api.on("state", state.set);
 
   loaded = true;
 }
 
 export default async function load() {
-  store.set(await obs.getStore());
-  state.set(await obs.getState());
+  store.set(await api.getStore());
+  state.set(await api.getState());
   loadOnce();
 }

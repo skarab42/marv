@@ -1,13 +1,13 @@
 <script>
   import { _ } from "@/libs/i18next";
-  import { store } from "@/stores/twitch";
   import { login } from "@/libs/twitch";
+  import { state } from "@/stores/twitch";
   import Icon from "@/components/UI/Icon.svelte";
   import TwitchIcon from "@/assets/images/Twitch_icon.svg";
   import MdAccountCircle from "svelte-icons/md/MdAccountCircle.svelte";
 
   function onLogin() {
-    // if ($store.user) return;
+    if (state.user) return;
     login(true)
       .then((user) => {
         console.log("Loged-in:", user);
@@ -18,17 +18,17 @@
   }
 </script>
 
-{#if $store.user}
+{#if $state.user}
   <div class="flex items-center bg-secondary" on:click="{onLogin}">
     <div class="p-2 pr-0">
       <TwitchIcon width="16" fill="#fefefe" />
     </div>
-    <div class="p-2 flex-auto font-bold">{$store.user.display_name}</div>
+    <div class="p-2 flex-auto font-bold">{$state.user.display_name}</div>
     <div class="p-2">
       <img
         class="w-6 h-6 rounded-full"
-        src="{$store.user.profile_image_url}"
-        alt="{$store.user.display_name}"
+        src="{$state.user.profile_image_url}"
+        alt="{$state.user.display_name}"
       />
     </div>
   </div>

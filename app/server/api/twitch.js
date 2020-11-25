@@ -4,8 +4,8 @@ const chatJoin = require("../libs/twitch/chatJoin");
 const chatConnect = require("../libs/twitch/chatConnect");
 
 module.exports = {
-  login(email = false) {
-    return twitch.api.helix.users.getMe(email).then(({ _data: user }) => {
+  login() {
+    return twitch.api.helix.users.getMe(true).then(({ _data: user }) => {
       this.notify("twitch.login", user);
       twitch.state.update({ user });
       chatConnect().then(() => {
@@ -21,5 +21,6 @@ module.exports = {
     });
   },
   getState: () => twitch.state.get(),
+  getStore: () => stores.twitch.getAll(),
   updateState: (state) => twitch.state.update(state),
 };

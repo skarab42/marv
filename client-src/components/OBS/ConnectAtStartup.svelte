@@ -13,6 +13,7 @@
 
   function onChange(event) {
     checked = event.target.checked;
+    $store.connectOnStartup = checked;
     obs.set("connectOnStartup", checked);
   }
 </script>

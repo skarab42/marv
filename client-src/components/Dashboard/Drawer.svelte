@@ -5,7 +5,8 @@
   import TwitchLogin from "@/components/Twitch/Login.svelte";
   import OpenOnStartup from "@/components/App/OpenOnStartup.svelte";
   import LanguageSelect from "@/components/App/LanguageSelect.svelte";
-  import ConnectAtStartup from "@/components/OBS/ConnectAtStartup.svelte";
+  import OBSConnectAtStartup from "@/components/OBS/ConnectAtStartup.svelte";
+  import TwitchConnectAtStartup from "@/components/Twitch/ConnectAtStartup.svelte";
 
   const query = new URLSearchParams(location.search);
   const electron = query.has("electron");
@@ -24,6 +25,7 @@
     <div class="p-2">{_('words.language')}</div>
     <LanguageSelect />
     <OpenOnStartup />
-    <ConnectAtStartup />
+    <OBSConnectAtStartup />
+    <TwitchConnectAtStartup />
   </div>
 {/if}
