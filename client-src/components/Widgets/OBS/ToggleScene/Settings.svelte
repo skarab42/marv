@@ -4,8 +4,9 @@
   import { update } from "@/libs/panels";
   import Select from "@/components/UI/Select.svelte";
 
-  export let panel;
-  export let widget;
+  export let data;
+
+  let { panel, widget } = data;
 
   $: scenes = $state.scenes || [];
   $: props = widget.component.props;

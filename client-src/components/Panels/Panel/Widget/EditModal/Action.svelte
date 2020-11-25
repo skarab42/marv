@@ -16,6 +16,7 @@
     ...getWidgetsList(),
   ];
 
+  $: data = { panel, widget };
   $: component = widget.component;
   $: componentName = (component && component.name) || "";
 
@@ -50,11 +51,7 @@
       items="{triggerTypes}"
     />
   </div>
-  <svelte:component
-    this="{widgets[component.name].Settings}"
-    panel="{panel}"
-    widget="{widget}"
-  />
+  <svelte:component this="{widgets[component.name].Settings}" data="{data}" />
   <Button icon="{MdDelete}" class="bg-red-600" on:click="{onRemoveAction}">
     <div>{_('words.remove')}</div>
   </Button>

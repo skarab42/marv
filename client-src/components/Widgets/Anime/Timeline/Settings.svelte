@@ -6,18 +6,17 @@
   import Editor from "@/components/Anime/Timeline/Editor.svelte";
   import FullScreenModal from "@/components/UI/FullScreenModal.svelte";
 
-  export let panel = null;
-  export let widget;
+  export let data;
 
+  let { widget } = data;
   let initialItems = [];
+  let timelineOpened = false;
 
   get(widget.id).then(({ items } = {}) => {
     if (items) {
       initialItems = items;
     }
   });
-
-  let timelineOpened = false;
 
   function openTimeline() {
     timelineOpened = true;
