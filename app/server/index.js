@@ -14,6 +14,8 @@ const { uploadPath, clientPath, staticPath } = require("../utils");
 const twitchAuthMiddleware = require("./libs/twitch/authMiddleware");
 const missingKeyHandler = require("./libs/i18next/missingKeyHandler");
 
+require("./libs/twitch/logs");
+
 let { host, port } = stores.server.getAll();
 const appFingerprint = stores.app.get("fingerprint");
 
