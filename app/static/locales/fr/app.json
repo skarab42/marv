@@ -77,5 +77,8 @@
   },
   "anime": {
     "timeline": "Anime | Timeline"
+  },
+  "twitch": {
+    "connect-at-startup": "Connection a Twitch au "
   }
 }
