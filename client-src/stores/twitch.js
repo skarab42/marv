@@ -10,9 +10,6 @@ function loadOnce() {
   if (loaded) return;
 
   on("state", state.set);
-  on("login", (user) => {
-    state.update((newState) => ({ ...newState, user }));
-  });
 
   loaded = true;
 }

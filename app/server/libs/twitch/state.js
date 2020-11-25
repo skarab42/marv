@@ -1,7 +1,11 @@
+const socket = require("../socket.io");
 const dotProp = require("dot-prop");
+
+const io = socket();
 
 let state = {
   user: null,
+  stream: null,
   chat: {
     connecting: false,
     connected: false,
@@ -15,11 +19,13 @@ function get(key = null, defaultValue = null) {
 }
 
 function set(key, value) {
-  return dotProp.set(state, key, value);
+  dotProp.set(state, key, value);
+  io.emit("twitch.state", state);
 }
 
 function update(newState) {
   state = { ...state, ...newState };
+  io.emit("twitch.state", state);
 }
 
 module.exports = { get, set, update };
