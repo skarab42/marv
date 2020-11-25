@@ -7,14 +7,10 @@
   import MdAccountCircle from "svelte-icons/md/MdAccountCircle.svelte";
 
   function onLogin() {
-    if (state.user) return;
-    login(true)
-      .then((user) => {
-        console.log("Loged-in:", user);
-      })
-      .catch((error) => {
-        console.log("error:", error);
-      });
+    if ($state.user) return;
+    login(true).catch((error) => {
+      console.log("error:", error);
+    });
   }
 </script>
 
