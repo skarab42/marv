@@ -1,4 +1,3 @@
-const state = require("./state");
 const config = require("./config");
 const { ApiClient } = require("twitch");
 const AuthProvider = require("./AuthProvider");
@@ -9,9 +8,8 @@ const api = new ApiClient({ authProvider });
 const chat = new ChatClient(authProvider);
 
 module.exports = {
-  state,
-  config,
   authProvider,
-  api,
+  config,
   chat,
+  api,
 };

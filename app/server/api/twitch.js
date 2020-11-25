@@ -1,5 +1,5 @@
 const stores = require("../../stores");
-const twitch = require("../libs/twitch");
+const state = require("../libs/twitch/state");
 const twitchLogin = require("../libs/twitch/login");
 const chatJoin = require("../libs/twitch/chatJoin");
 const chatConnect = require("../libs/twitch/chatConnect");
@@ -13,7 +13,7 @@ module.exports = {
         chatJoin(user.display_name).then(({ alreadyJoined } = {}) => {
           if (!alreadyJoined) {
             console.log(banner);
-            twitch.chat.say(user.display_name, banner);
+            // twitch.chat.say(user.display_name, banner);
             stores.twitch.set("chatWindow.channel", user.display_name);
           }
         });
@@ -21,7 +21,7 @@ module.exports = {
       return user;
     });
   },
-  getState: () => twitch.state.get(),
+  getState: () => state.get(),
   getStore: () => stores.twitch.getAll(),
-  updateState: (state) => twitch.state.update(state),
+  updateState: (state) => state.update(state),
 };
