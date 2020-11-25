@@ -73,7 +73,7 @@ module.exports = class AuthProvider {
       scopes = normalizeScopes(scopes);
 
       // eslint-disable-next-line no-console
-      console.log("\x1b[35m%s\x1b[0m", `Twitch request scopes [${scopes}]`);
+      // console.log("\x1b[35m%s\x1b[0m", `Twitch request scopes [${scopes}]`);
 
       const forceVerify = refresh || this.forceVerify;
 
