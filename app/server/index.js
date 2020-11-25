@@ -48,6 +48,12 @@ function obsAutoConnect() {
   connect();
 }
 
+function twitchAutoConnect() {
+  if (!stores.twitch.get("connectOnStartup")) return;
+  const api = require("./api/twitch");
+  api.login();
+}
+
 function start() {
   const server = http.createServer();
 
@@ -63,6 +69,7 @@ function start() {
     .listen(port, (error) => {
       if (error) return onError(error);
       socket(server);
+      twitchAutoConnect();
       obsAutoConnect();
       printBanner();
     });
