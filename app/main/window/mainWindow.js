@@ -1,3 +1,4 @@
+const openLinkInBrowser = require("./openLinkInBrowser");
 const { staticPath, watch } = require("../../utils");
 const webPreferences = require("./webPreferences");
 const { BrowserWindow } = require("electron");
@@ -25,6 +26,7 @@ module.exports = function createWindow({ showOnLoad = true } = {}) {
   });
 
   hideOnClose(win);
+  openLinkInBrowser(win);
   storeBounds({ win, name: "main" });
 
   win.webContents.once("did-finish-load", () => {

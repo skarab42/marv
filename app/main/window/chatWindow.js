@@ -1,3 +1,4 @@
+const openLinkInBrowser = require("./openLinkInBrowser");
 const { staticPath, watch } = require("../../utils");
 const webPreferences = require("./webPreferences");
 const { BrowserWindow } = require("electron");
@@ -5,7 +6,6 @@ const storeBounds = require("./storeBounds");
 const hideOnClose = require("./hideOnClose");
 const stores = require("../../stores");
 const path = require("path");
-const open = require("open");
 
 let win = null;
 
@@ -28,12 +28,8 @@ module.exports = function chatWindow({ channel, showOnLoad = true } = {}) {
   });
 
   hideOnClose(win);
+  openLinkInBrowser(win);
   storeBounds({ win, name: "chat" });
-
-  win.webContents.on("new-window", (event, url) => {
-    event.preventDefault();
-    open(url);
-  });
 
   win.webContents.on("did-finish-load", () => {
     win.webContents.insertCSS(`
