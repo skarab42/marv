@@ -1,7 +1,7 @@
-const state = require("./state");
-const { chat } = require("./index");
+const state = require("../state");
+const { chat } = require("../index");
 
-module.exports = function chatJoin(channel) {
+module.exports = function join(channel) {
   const joinedChannels = state.get("chat.joinedChannels");
 
   if (joinedChannels.includes(channel)) {

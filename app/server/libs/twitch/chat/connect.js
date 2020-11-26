@@ -1,7 +1,7 @@
-const state = require("./state");
-const { chat } = require("./index");
+const state = require("../state");
+const { chat } = require("../index");
 
-module.exports = function chatConnect() {
+module.exports = function connect() {
   if (state.get("chat.connected")) {
     return Promise.resolve({ alreadyConnected: true });
   }

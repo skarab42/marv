@@ -1,8 +1,8 @@
 const stores = require("../../stores");
 const state = require("../libs/twitch/state");
 const twitchLogin = require("../libs/twitch/login");
-const chatJoin = require("../libs/twitch/chatJoin");
-const chatConnect = require("../libs/twitch/chatConnect");
+const chatJoin = require("../libs/twitch/chat/join");
+const chatConnect = require("../libs/twitch/chat/connect");
 
 const banner = "🤖 Marv est dans la place !";
 
