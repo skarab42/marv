@@ -34,7 +34,9 @@
     "add-file-to-timeline": "Clique sur la flêche blue pour ajouter un fichier.",
     "electron-open-on-startup": "Ouvrir Marv au démarrage",
     "connect-with-twitch": "Connexion avec Twitch",
-    "open-twitch-chat-window": "Ouvrir le chat Twitch"
+    "open-twitch-chat-window": "Ouvrir le chat Twitch",
+    "dont-ask-me-again": "Ne plus me le demander",
+    "first-start-title": "C'est ton premier démarrage! Happy :)"
   },
   "words": {
     "settings": "options",
@@ -68,14 +70,17 @@
     "language": "langue",
     "keyframe": "Clé d'animation",
     "theme": "Thème",
-    "channel": "salon"
+    "channel": "salon",
+    "loading": "chargement",
+    "download": "téléchargement"
   },
   "obs": {
     "scene-list": "OBS | Liste des scènes",
     "go-to-scene": "OBS | Aller à la scène",
     "toggle-scene": "OBS | Basculer entre deux scènes",
     "no-scene-selected": "Aucune scène sélectionnée",
-    "connect-at-startup": "Connexion à OBS au démarrage"
+    "connect-at-startup": "Connexion à OBS au démarrage",
+    "first-start-install-sentence": "Si tu veux utiliser OBS avec Marv, tu dois installer OBS WebSocket."
   },
   "anime": {
     "timeline": "Anime | Timeline"

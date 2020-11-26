@@ -53,3 +53,5 @@
   <ElectronTopbar />
   <svelte:component this="{component}" />
 </div>
+
+<div id="modal"></div>
