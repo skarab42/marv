@@ -18,7 +18,7 @@
   }
 </script>
 
-<div class="p-2">
+<div class="p-2 pt-0">
   <Select
     label="{_('words.scene')}"
     value="{props.scene}"
