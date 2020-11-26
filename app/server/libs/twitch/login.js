@@ -4,8 +4,8 @@ const state = require("./state");
 async function getStreamByChannel(channel) {
   channel = channel[0] === "#" ? channel.slice(1) : channel;
   const user = await twitch.api.helix.users.getUserByName(channel);
-  const { _data } = await twitch.api.helix.streams.getStreamByUserId(user);
-  return _data;
+  const stream = await twitch.api.helix.streams.getStreamByUserId(user);
+  return stream ? stream._data : null;
 }
 
 async function streamStatePlugin() {
@@ -19,10 +19,9 @@ function initTwitchPlugins() {
   streamStatePlugin();
 }
 
-module.exports = function login() {
-  return twitch.api.helix.users.getMe(true).then(({ _data: user }) => {
-    state.update({ user });
-    initTwitchPlugins();
-    return user;
-  });
+module.exports = async function login() {
+  const user = await twitch.api.helix.users.getMe(true);
+  state.update({ user: user._data });
+  initTwitchPlugins();
+  return user._data;
 };
