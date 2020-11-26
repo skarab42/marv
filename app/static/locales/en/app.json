@@ -66,7 +66,9 @@
     "trigger": "trigger",
     "easing": "easing",
     "language": "language",
-    "keyframe": "keyframe"
+    "keyframe": "keyframe",
+    "theme": "theme",
+    "channel": "channel"
   },
   "obs": {
     "scene-list": "OBS | Scene list",
@@ -79,6 +81,7 @@
     "timeline": "Anime | Timeline"
   },
   "twitch": {
-    "connect-at-startup": "Connect Twitch at startup"
+    "connect-at-startup": "Connect Twitch at startup",
+    "chat": "Twitch chat"
   }
 }
