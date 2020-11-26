@@ -25,6 +25,8 @@ cd marv
 
 # install all dependencies
 yarn install
+yarn build
+yarn app:build
 
 # run application in development mode
 yarn watch
