@@ -1,5 +1,5 @@
 <script>
-  import { state } from "@/stores/twitch";
+  import { stream } from "@/stores/twitch";
   import Icon from "@/components/UI/Icon.svelte";
   import MdVisibility from "svelte-icons/md/MdVisibility.svelte";
 
@@ -7,10 +7,10 @@
 </script>
 
 <div class="flex p-2 pl-0 space-x-2">
-  {#if $state.stream}
+  {#if $stream}
     <div class="{badge}">
       <Icon icon="{MdVisibility}" />
-      <span> {$state.stream.viewer_count}</span>
+      <span> {$stream.viewer_count}</span>
     </div>
   {/if}
 </div>

@@ -20,12 +20,13 @@ function get(key = null, defaultValue = null) {
 
 function set(key, value) {
   dotProp.set(state, key, value);
-  io.emit("twitch.state", state);
+  const rootKey = key.split(".").shift();
+  io.emit(`twitch.state.${rootKey}`, get(rootKey));
 }
 
-function update(newState) {
-  state = { ...state, ...newState };
-  io.emit("twitch.state", state);
-}
+// function update(newState) {
+//   state = { ...state, ...newState };
+//   io.emit("twitch.state", state);
+// }
 
-module.exports = { get, set, update };
+module.exports = { get, set };

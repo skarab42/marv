@@ -1,30 +1,30 @@
 <script>
   import { _ } from "@/libs/i18next";
   import { login } from "@/libs/twitch";
-  import { state } from "@/stores/twitch";
+  import { user } from "@/stores/twitch";
   import Icon from "@/components/UI/Icon.svelte";
   import TwitchIcon from "@/assets/images/Twitch_icon.svg";
   import MdAccountCircle from "svelte-icons/md/MdAccountCircle.svelte";
 
   function onLogin() {
-    if ($state.user) return;
+    if ($user) return;
     login(true).catch((error) => {
       console.log("error:", error);
     });
   }
 </script>
 
-{#if $state.user}
+{#if $user}
   <div class="flex items-center bg-secondary" on:click="{onLogin}">
     <div class="p-2 pr-0">
       <TwitchIcon width="16" fill="#fefefe" />
     </div>
-    <div class="p-2 flex-auto font-bold">{$state.user.display_name}</div>
+    <div class="p-2 flex-auto font-bold">{$user.display_name}</div>
     <div class="p-2">
       <img
         class="w-6 h-6 rounded-full"
-        src="{$state.user.profile_image_url}"
-        alt="{$state.user.display_name}"
+        src="{$user.profile_image_url}"
+        alt="{$user.display_name}"
       />
     </div>
   </div>
