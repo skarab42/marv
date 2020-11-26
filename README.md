@@ -1,8 +1,20 @@
-# Marv - Twitch Bot
+# Marv // StreamDeck Like // Twitch Bot
 
 WIP Projet développé en live sur la chaîne [twitch.tv/skarab42](https://www.twitch.tv/skarab42).
 
-# Project setup
+![Marv - v0.6.01](docs/images/screenshot.png)
+
+# Installation
+
+- Download and install from [here](https://github.com/skarab42/marv/releases) (win/mac/linux).
+
+## OBS WebSocket
+
+- For OBS to work with Marv you need to install [obs-websocket](https://github.com/Palakis/obs-websocket/releases).
+
+# Contribute ?!
+
+## Project setup
 
 ```bash
 # Clone this repository
@@ -28,7 +40,7 @@ yarn app:build
 yarn lint
 ```
 
-# How to build with npm (easier from ubuntu?):
+## How to build with npm (easier from ubuntu?):
 
 ```
 cd marv
