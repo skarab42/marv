@@ -45,8 +45,8 @@
 <div
   use:doubletap
   class="absolute inset-0"
-  on:dbltap="{openEditModal}"
-  on:dblclick="{openEditModal}"
+  on:dbltap|stopPropagation="{openEditModal}"
+  on:dblclick|stopPropagation="{openEditModal}"
 ></div>
 
 <RemoveCross on:click="{openConfirmModal}" />
