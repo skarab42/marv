@@ -8,13 +8,20 @@ const stores = require("../../stores");
 const path = require("path");
 
 let win = null;
+let currentChannel = null;
 
 const { host, port } = stores.server.getAll();
 const marvURL = `http://${host}:${port}`;
 
+function loadChat(win, channel) {
+  if (currentChannel === channel) return;
+  win.loadURL(`https://www.twitch.tv/embed/${channel}/chat?parent=localhost`);
+  currentChannel = channel;
+}
+
 module.exports = function chatWindow({ channel, showOnLoad = true } = {}) {
   if (win) {
-    win.loadURL(`https://www.twitch.tv/embed/${channel}/chat?parent=localhost`);
+    loadChat(win, channel);
     return win.show();
   }
 
@@ -98,6 +105,6 @@ module.exports = function chatWindow({ channel, showOnLoad = true } = {}) {
   });
 
   win.removeMenu();
-  win.loadURL(`https://www.twitch.tv/embed/${channel}/chat?parent=localhost`);
+  loadChat(win, channel);
   watch && win.webContents.openDevTools();
 };
