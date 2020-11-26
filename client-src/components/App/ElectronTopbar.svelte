@@ -1,9 +1,6 @@
 <script>
-  import { fingerprint } from "@/stores/app";
+  import { electron, fingerprint } from "@/stores/app";
   import MarvLogo from "@/assets/images/marv.svg";
-
-  const query = new URLSearchParams(location.search);
-  const electron = query.has("electron");
 
   function close() {
     window.close();
