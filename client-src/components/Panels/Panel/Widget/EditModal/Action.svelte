@@ -1,4 +1,5 @@
 <script>
+  import cloneDeep from "clone-deep";
   import { _ } from "@/libs/i18next";
   import widgets from "@/components/Widgets";
   import Button from "@/components/UI/Button.svelte";
@@ -27,7 +28,7 @@
   }
 
   function onComponentChange({ detail: name }) {
-    widget.component = widgets[name].config;
+    widget.component = cloneDeep(widgets[name].config);
     update(panel);
   }
 
