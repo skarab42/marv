@@ -37,11 +37,14 @@ function runAnime(action, cb) {
       createElementFromTarget(item.target).then((element) => {
         const style = getStyle(item.target.style);
         const trans = getTrans(item.target.trans);
+
         element.setAttribute("id", `item-${item.id}`);
         element.setAttribute("style", `${style};${trans}`);
+
         Object.entries(item.target.attrs).forEach(([key, val]) => {
           element.setAttribute(key, val);
         });
+
         element.style.position = "absolute";
 
         const targets = element;
@@ -68,6 +71,12 @@ function runAnime(action, cb) {
             timeline.add(kf, delay);
           }
         );
+
+        if (element.innerText !== "") {
+          Object.entries(action.eventProps).forEach(([key, val]) => {
+            element.innerText = element.innerText.replace(`$${key}`, val);
+          });
+        }
 
         return element;
       })
