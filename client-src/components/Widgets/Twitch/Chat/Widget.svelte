@@ -5,7 +5,8 @@
   export let widget = null;
 
   $: theme = widget.component.props.theme;
-  $: channel = widget.component.props.channel || $user.display_name;
+  $: channel =
+    widget.component.props.channel || $user ? $user.display_name : "";
   $: url = `https://www.twitch.tv/embed/${channel}/chat?parent=localhost&${theme}popout&no-reload=false`;
 </script>
 

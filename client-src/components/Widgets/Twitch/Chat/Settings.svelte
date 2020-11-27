@@ -27,7 +27,7 @@
     label="{_('words.channel')}"
     value="{props.channel}"
     on:update="{onChannelChange}"
-    placeholder="{$user.display_name}"
+    placeholder="{$user ? $user.display_name : '#channel'}"
   />
   <Select
     label="{_('words.theme')}"
