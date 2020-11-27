@@ -10,6 +10,7 @@
   export let panel;
   export let widget;
 
+  const eventNames = ["none", "follow", "sub", "raid"];
   const triggerTypes = ["immediat", "queue", "asap"];
 
   const widgetsList = [
@@ -41,6 +42,11 @@
         console.log("ERRRO:", error);
       });
   }
+
+  function onEventChange({ detail: eventName }) {
+    widget.eventName = eventName;
+    update(panel);
+  }
 </script>
 
 {#if component}
@@ -52,6 +58,14 @@
       items="{triggerTypes}"
     />
   </div>
+  <div class="p-2">
+    <Select
+      items="{eventNames}"
+      value="{widget.eventName}"
+      label="{_('words.event')}"
+      on:change="{onEventChange}"
+    />
+  </div>
   <svelte:component this="{widgets[component.name].Settings}" data="{data}" />
   <Button icon="{MdDelete}" class="bg-red-600" on:click="{onRemoveAction}">
     <div>{_('words.remove')}</div>
@@ -60,9 +74,9 @@
   <div class="p-2">
     <Select
       object="{true}"
-      label="{_('words.component')}"
-      value="{componentName}"
       items="{widgetsList}"
+      value="{componentName}"
+      label="{_('words.component')}"
       on:change="{onComponentChange}"
     />
   </div>
