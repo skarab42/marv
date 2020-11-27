@@ -72,7 +72,8 @@
     "theme": "theme",
     "channel": "channel",
     "loading": "loading",
-    "download": "download"
+    "download": "download",
+    "event": "event"
   },
   "obs": {
     "scene-list": "OBS | Scene list",

@@ -72,7 +72,8 @@
     "theme": "Thème",
     "channel": "salon",
     "loading": "chargement",
-    "download": "téléchargement"
+    "download": "téléchargement",
+    "event": "évènement"
   },
   "obs": {
     "scene-list": "OBS | Liste des scènes",
