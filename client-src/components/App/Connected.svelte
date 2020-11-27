@@ -9,7 +9,7 @@
 
   let showModal = $store.showFirstStartInfo;
 
-  $: checked = $store.showFirstStartInfo;
+  $: checked = !$store.showFirstStartInfo;
 
   const url =
     "https://api.github.com/repos/palakis/obs-websocket/releases/latest";
