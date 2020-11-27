@@ -3,10 +3,13 @@ const { isFirstStart } = require("../../../../utils");
 const streamStatePlugin = require("./streamState");
 const followsPlugin = require("./followsPlugin");
 
-module.exports = async function install() {
-  if (isFirstStart) {
-    await updateFollowsPlugin();
+let lock = false;
+
+module.exports = function install() {
+  if (isFirstStart && !lock) {
+    updateFollowsPlugin();
+    lock = true;
   }
-  await streamStatePlugin();
-  await followsPlugin();
+  streamStatePlugin();
+  followsPlugin();
 };
