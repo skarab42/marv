@@ -1,14 +1,10 @@
 const state = require("./state");
+const installPlugings = require("./plugins/install");
 const getConnectedUser = require("./api/getConnectedUser");
-const streamStatePlugin = require("./plugins/streamState");
-
-function initTwitchPlugins() {
-  streamStatePlugin();
-}
 
 module.exports = async function login() {
   const user = await getConnectedUser();
   state.set("user", user);
-  initTwitchPlugins();
+  installPlugings();
   return user;
 };
