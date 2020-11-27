@@ -9,7 +9,6 @@ const clientPath = path.join(appPath, "client");
 const staticPath = path.join(appPath, "static");
 const uploadPath = path.join(userPath, "upload");
 const storesPath = path.join(userPath, "stores");
-const databasePath = path.join(userPath, "database");
 const filesPath = path.join(uploadPath, "files");
 const watch = process.argv.includes("--watch") || process.argv.includes("-w");
 
@@ -23,5 +22,4 @@ module.exports = {
   storesPath,
   staticPath,
   clientPath,
-  databasePath,
 };
