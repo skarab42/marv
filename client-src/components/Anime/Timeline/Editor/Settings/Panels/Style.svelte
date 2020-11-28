@@ -21,7 +21,7 @@
   $: selectedStyle = styleNames[0] || "";
 
   function onChange(key, { target, detail }) {
-    const value = detail ? detail.hex : target.value;
+    const value = detail ? detail.hex || detail : target.value;
     dispatch("change", { key, value });
   }
 

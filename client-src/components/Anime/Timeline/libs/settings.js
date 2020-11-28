@@ -77,7 +77,7 @@ export const styleDefs = {
   },
   "text-align": {
     default: "center",
-    input: { type: "text" },
+    input: { type: "select", items: ["left", "center", "right"] },
   },
   color: {
     default: "#420042",

@@ -1,5 +1,6 @@
 <script>
   import Icon from "@/components/UI/Icon.svelte";
+  import Select from "@/components/UI/Select.svelte";
   import ColorPicker from "@/components/UI/ColorPicker.svelte";
   import MdDeleteForever from "svelte-icons/md/MdDeleteForever.svelte";
 
@@ -9,13 +10,14 @@
   export let label;
   export let type;
   export let value;
+  export let items = [];
   export let removable = false;
 
   function remove() {
     dispatch("remove", label);
   }
 
-  function onColor(event) {
+  function onChange(event) {
     dispatch("change", event.detail);
   }
 </script>
@@ -36,8 +38,16 @@
       label="{false}"
       color="{value}"
       position="right"
-      on:color="{onColor}"
+      on:color="{onChange}"
       previewClass="w-10"
+    />
+  {:else if type === 'select'}
+    <Select
+      pad="px-2"
+      value="{value}"
+      items="{items}"
+      class="flex-auto"
+      on:change="{onChange}"
     />
   {:else}
     <input
