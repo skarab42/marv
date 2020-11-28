@@ -1,4 +1,4 @@
-import { name, version } from "../../package";
+import { name, version } from "../../../package";
 import { writable } from "svelte/store";
 import { emit } from "@/libs/socket.io";
 import capitalize from "capitalize";
