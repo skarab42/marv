@@ -4,7 +4,7 @@ module.exports = {
   name,
   version,
   language: "en",
-  openOnStartup: false,
+  openOnStartup: true,
   showFirstStartInfo: true,
   fingerprint: `${name} v${version}`,
 };
