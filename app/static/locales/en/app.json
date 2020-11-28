@@ -32,7 +32,7 @@
     "no-file-selected": "No file selected",
     "no-file-added": "No file added",
     "add-file-to-timeline": "Click on the blue arrow to add some file.",
-    "electron-open-on-startup": "Open Marv on startup",
+    "electron-open-on-startup": "Open Marv minified",
     "connect-with-twitch": "Connect with Twitch",
     "open-twitch-chat-window": "Open Twitch chat",
     "dont-ask-me-again": "Dont ask me again",
@@ -74,8 +74,8 @@
     "loading": "loading",
     "download": "download",
     "event": "event",
-    "muted": "words.muted",
-    "autoplay": "words.autoplay"
+    "muted": "muted",
+    "autoplay": "autoplay"
   },
   "obs": {
     "scene-list": "OBS | Scene list",

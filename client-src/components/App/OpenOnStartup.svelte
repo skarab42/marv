@@ -14,7 +14,7 @@
 </script>
 
 <Checkbox
-  checked="{checked}"
+  checked="{!checked}"
   on:change="{onChange}"
   label="{_('sentences.electron-open-on-startup')}"
 />
