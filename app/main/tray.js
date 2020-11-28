@@ -1,3 +1,4 @@
+const getTrayIconByPlatform = require("./window/trayIcon");
 const mainWindow = require("./window/mainWindow");
 const chatWindow = require("./window/chatWindow");
 const { _ } = require("../server/libs/i18next");
@@ -9,8 +10,7 @@ const quit = require("./quit");
 const path = require("path");
 const open = require("open");
 
-const isWin32 = process.platform === "win32";
-const icon = `icon.${isWin32 ? "ico" : "png"}`;
+const icon = getTrayIconByPlatform();
 const { name, version } = require("../package");
 const fingerprint = `${capitalize(name)} v${version}`;
 
