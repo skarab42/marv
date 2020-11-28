@@ -6,14 +6,16 @@ const server = require("./server");
 const store = require("../stores");
 const tray = require("./tray");
 
-app.requestSingleInstanceLock() || app.quit();
+function init() {
+  app.on("window-all-closed", (event) => {
+    event.preventDefault();
+  });
 
-app.on("window-all-closed", (event) => {
-  event.preventDefault();
-});
+  app.whenReady().then(() => {
+    server.start();
+    mainWindow({ showOnLoad: store.app.get("openOnStartup") });
+    tray();
+  });
+}
 
-app.whenReady().then(() => {
-  server.start();
-  mainWindow({ showOnLoad: store.app.get("openOnStartup") });
-  tray();
-});
+app.requestSingleInstanceLock() ? init() : app.quit();
