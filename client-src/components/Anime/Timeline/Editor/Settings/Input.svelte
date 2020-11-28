@@ -1,6 +1,7 @@
 <script>
   import Icon from "@/components/UI/Icon.svelte";
   import Select from "@/components/UI/Select.svelte";
+  import Fontpicker from "@/components/UI/Fontpicker.svelte";
   import ColorPicker from "@/components/UI/ColorPicker.svelte";
   import MdDeleteForever from "svelte-icons/md/MdDeleteForever.svelte";
 
@@ -41,6 +42,8 @@
       on:color="{onChange}"
       previewClass="w-10"
     />
+  {:else if type === 'fontpicker'}
+    <Fontpicker font="{value}" on:font="{onChange}" />
   {:else if type === 'select'}
     <Select
       pad="px-2"

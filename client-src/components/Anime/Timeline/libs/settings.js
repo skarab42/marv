@@ -73,7 +73,7 @@ export const styleDefs = {
   },
   "font-family": {
     default: "monospace",
-    input: { type: "text" },
+    input: { type: "fontpicker" },
   },
   "text-align": {
     default: "center",

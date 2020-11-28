@@ -7,14 +7,20 @@
   import FilterButtons from "./FilterButtons.svelte";
   import FileInput from "@/components/UI/FileInput.svelte";
 
-  export let accept = ["text", "image", "audio", "video"];
+  export let accept = ["text", "image", "audio", "video", "font"];
 
   let inputAccept = accept.map((type) => `${type}/*`);
+
+  if (accept.includes("font")) {
+    inputAccept.push(".ttf", ".otf", ".woff", ".woff2");
+  }
+
   let acceptTypes = {
     text: true,
     image: true,
     audio: true,
     video: true,
+    font: true,
   };
 
   let message = null;

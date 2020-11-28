@@ -19,6 +19,8 @@
   let fileManager = false;
   let splitter = { x: 200, width: 4, min: 100, max: 500 };
 
+  const accept = ["image", "audio", "text", "video", "font"];
+
   $: tippyProps = {
     content: _("sentences.add-file-to-timeline"),
     showOnCreate: !$items.length,
@@ -69,7 +71,7 @@
   <div class="absolute inset-0 z-50">
     <div class="relative h-full">
       <FileManager
-        accept="{['image', 'audio', 'text', 'video']}"
+        accept="{accept}"
         on:close="{closeFileManager}"
         on:select="{onFileSelect}"
       />

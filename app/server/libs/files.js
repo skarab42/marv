@@ -6,7 +6,7 @@ const stores = require("../../stores");
 const { filesPath } = require("../../utils");
 
 const language = stores.app.get("language", "en");
-const allowedMimeTypes = ["text", "image", "audio", "video"];
+const allowedMimeTypes = ["text", "image", "audio", "video", "font"];
 
 fs.ensureDirSync(filesPath);
 
