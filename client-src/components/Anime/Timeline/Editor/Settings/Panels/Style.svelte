@@ -20,8 +20,9 @@
   );
   $: selectedStyle = styleNames[0] || "";
 
-  function onChange(key, { target }) {
-    dispatch("change", { key, value: target.value });
+  function onChange(key, { target, detail }) {
+    const value = detail ? detail.hex : target.value;
+    dispatch("change", { key, value });
   }
 
   function onRemove(key) {
@@ -41,6 +42,10 @@
   // TODO === a faire !!!!
   function isRemovable(/*key*/) {
     return true;
+  }
+
+  function inputProps(key) {
+    return styleDefs[key].input;
   }
 </script>
 
@@ -63,7 +68,7 @@
     <Input
       label="{key}"
       value="{value}"
-      {...styleDefs[key].input}
+      {...inputProps(key)}
       removable="{isRemovable(key)}"
       on:change="{onChange.bind(null, key)}"
       on:remove="{onRemove.bind(null, key)}"

@@ -1,16 +1,22 @@
 <script>
   import Icon from "@/components/UI/Icon.svelte";
+  import ColorPicker from "@/components/UI/ColorPicker.svelte";
   import MdDeleteForever from "svelte-icons/md/MdDeleteForever.svelte";
 
   import { createEventDispatcher } from "svelte";
   const dispatch = createEventDispatcher();
 
   export let label;
+  export let type;
   export let value;
   export let removable = false;
 
   function remove() {
     dispatch("remove", label);
+  }
+
+  function onColor(event) {
+    dispatch("change", event.detail);
   }
 </script>
 
@@ -25,12 +31,23 @@
       />
     {/if}
   </div>
-  <input
-    on:blur
-    on:input
-    on:change
-    value="{value}"
-    {...$$props}
-    class="px-2 w-1/2 flex-1 text-dark rounded"
-  />
+  {#if type === 'colorpicker'}
+    <ColorPicker
+      label="{false}"
+      color="{value}"
+      position="right"
+      on:color="{onColor}"
+      previewClass="w-10"
+    />
+  {:else}
+    <input
+      type="{type}"
+      on:blur
+      on:input
+      on:change
+      value="{value}"
+      {...$$restProps}
+      class="px-2 w-1/2 flex-1 text-dark rounded"
+    />
+  {/if}
 </div>

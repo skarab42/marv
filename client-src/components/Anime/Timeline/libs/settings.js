@@ -81,7 +81,7 @@ export const styleDefs = {
   },
   color: {
     default: "#420042",
-    input: { type: "text" },
+    input: { type: "colorpicker" },
   },
 };
 
