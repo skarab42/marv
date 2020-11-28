@@ -10,7 +10,7 @@
   export let panel;
   export let widget;
 
-  const eventNames = ["none", "follow", "sub", "raid"];
+  const eventNames = ["none", "follow", "sub", "raid", "hosted"];
   const triggerTypes = ["immediat", "queue", "asap"];
 
   const widgetsList = [

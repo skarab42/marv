@@ -16,8 +16,10 @@ const missingKeyHandler = require("./libs/i18next/missingKeyHandler");
 
 require("./db");
 
-// require("./libs/twitch/chat/onMessage");
 // require("./libs/twitch/webhooks_");
+function initEvents() {
+  require("./libs/twitch/chat/events");
+}
 
 let { host, port } = stores.server.getAll();
 const appFingerprint = stores.app.get("fingerprint");
@@ -75,6 +77,7 @@ function start() {
       twitchAutoConnect();
       obsAutoConnect();
       printBanner();
+      initEvents();
     });
 }
 
