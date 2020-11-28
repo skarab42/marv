@@ -4,10 +4,12 @@
 
   export let widget = null;
 
-  $: theme = widget.component.props.theme;
-  $: channel =
-    widget.component.props.channel || ($user ? $user.display_name : "");
-  $: url = `https://www.twitch.tv/embed/${channel}/chat?parent=localhost&${theme}popout&no-reload=true`;
+  $: muted = widget.component.props.muted;
+  $: autoplay = widget.component.props.autoplay;
+  $: displayName = $user ? $user.display_name : "";
+  $: channel = widget.component.props.channel || displayName;
+  $: query = `channel=${channel}&muted=${muted}&autoplay=${autoplay}&parent=localhost`;
+  $: url = `https://player.twitch.tv/?${query}`;
 </script>
 
 <WidgetWrapper widget="{widget}">
