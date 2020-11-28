@@ -19,7 +19,7 @@ module.exports = function createWindow({ showOnLoad = true } = {}) {
   win = new BrowserWindow({
     width: 800,
     height: 600,
-    show: false,
+    show: true,
     frame: false,
     icon: path.join(staticPath, "icon.png"),
     webPreferences: { ...webPreferences, devTools: watch },
