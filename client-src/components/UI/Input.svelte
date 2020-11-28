@@ -27,7 +27,7 @@
     dispatch("update", target.value);
   }
 
-  function input(event) {
+  function onInput(event) {
     debounceUpdate(event);
     dispatch("input", event);
   }
@@ -49,7 +49,7 @@
       type="{type}"
       on:blur
       on:change
-      on:input="{input}"
+      on:input="{onInput}"
       on:keypress="{onKeypress}"
       class="{inputClass} w-full text-dark {inputHidden}"
     />
