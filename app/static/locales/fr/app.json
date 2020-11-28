@@ -70,10 +70,12 @@
     "language": "langue",
     "keyframe": "Clé d'animation",
     "theme": "Thème",
-    "channel": "salon",
+    "channel": "chaîne",
     "loading": "chargement",
     "download": "téléchargement",
-    "event": "évènement"
+    "event": "évènement",
+    "muted": "words.muted",
+    "autoplay": "words.autoplay"
   },
   "obs": {
     "scene-list": "OBS | Liste des scènes",
@@ -88,6 +90,7 @@
   },
   "twitch": {
     "connect-at-startup": "Connection a Twitch au démarrage",
-    "chat": "Twitch chat"
+    "chat": "Twitch chat",
+    "stream": "Twitch stream"
   }
 }

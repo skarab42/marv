@@ -73,7 +73,9 @@
     "channel": "channel",
     "loading": "loading",
     "download": "download",
-    "event": "event"
+    "event": "event",
+    "muted": "words.muted",
+    "autoplay": "words.autoplay"
   },
   "obs": {
     "scene-list": "OBS | Scene list",
@@ -88,6 +90,7 @@
   },
   "twitch": {
     "connect-at-startup": "Connect Twitch at startup",
-    "chat": "Twitch chat"
+    "chat": "Twitch chat",
+    "stream": "Twitch stream"
   }
 }
