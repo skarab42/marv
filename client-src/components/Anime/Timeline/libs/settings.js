@@ -11,6 +11,7 @@ export const defaultStyles = {
     "font-size",
     "font-family",
     "font-weight",
+    "text-align",
     "color",
     "opacity",
     "z-index",
@@ -72,6 +73,10 @@ export const styleDefs = {
   },
   "font-family": {
     default: "monospace",
+    input: { type: "text" },
+  },
+  "text-align": {
+    default: "center",
     input: { type: "text" },
   },
   color: {
