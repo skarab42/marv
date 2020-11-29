@@ -79,6 +79,15 @@ export const styleDefs = {
     default: "center",
     input: { type: "select", items: ["left", "center", "right"] },
   },
+  "-webkit-text-stroke-width": {
+    default: 0,
+    unit: "px",
+    input: { type: "number", min: 0, step: 1 },
+  },
+  "-webkit-text-stroke-color": {
+    default: "#000000",
+    input: { type: "colorpicker" },
+  },
   color: {
     default: "#420042",
     input: { type: "colorpicker" },

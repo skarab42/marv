@@ -1,4 +1,5 @@
 <script>
+  import { _ } from "@/libs/i18next";
   import { createEventDispatcher } from "svelte";
   import { transDefs } from "../../../libs/settings";
 
@@ -37,9 +38,13 @@
     const key = selectedTrans;
     dispatch("change", { key, value: transDefs[key].default });
   }
+
+  function humanLabel(label) {
+    return _(`labels.${label}`);
+  }
 </script>
 
-<Panel title="Transformations" {...$$restProps}>
+<Panel title="{_('words.transformations')}" {...$$restProps}>
   {#if transNames.length}
     <div class="p-2 space-x-2 flex items-center">
       <Select
@@ -56,7 +61,7 @@
   {/if}
   {#each trans as [key, value] (key)}
     <Input
-      label="{key}"
+      label="{humanLabel(key)}"
       value="{value}"
       removable="{true}"
       {...transDefs[key].input}

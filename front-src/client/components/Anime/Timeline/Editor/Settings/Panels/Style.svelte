@@ -1,4 +1,5 @@
 <script>
+  import { _ } from "@/libs/i18next";
   import { createEventDispatcher } from "svelte";
   import { styleDefs } from "../../../libs/settings";
 
@@ -47,9 +48,13 @@
   function inputProps(key) {
     return styleDefs[key].input;
   }
+
+  function humanLabel(label) {
+    return _(`labels.${label}`);
+  }
 </script>
 
-<Panel title="Styles" {...$$restProps}>
+<Panel title="{_('words.styles')}" {...$$restProps}>
   {#if styleNames.length}
     <div class="p-2 space-x-2 flex items-center">
       <Select
@@ -66,7 +71,7 @@
   {/if}
   {#each style as [key, value] (key)}
     <Input
-      label="{key}"
+      label="{humanLabel(key)}"
       value="{value}"
       {...inputProps(key)}
       removable="{isRemovable(key)}"

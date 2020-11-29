@@ -47,10 +47,10 @@
 </script>
 
 {#if $selectedKeyframe}
-  <Panel title="Timming">
+  <Panel title="{_('labels.timming')}">
     <Input
       type="number"
-      label="delay"
+      label="{_('labels.delay')}"
       min="{0}"
       step="{100}"
       value="{$selectedKeyframe.delay}"
@@ -58,7 +58,7 @@
     />
     <Input
       type="number"
-      label="duration"
+      label="{_('labels.duration')}"
       min="{0}"
       step="{100}"
       value="{$selectedKeyframe.duration}"

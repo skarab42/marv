@@ -1,4 +1,5 @@
 <script>
+  import { _ } from "@/libs/i18next";
   import { createEventDispatcher } from "svelte";
   import { attrsDefs } from "../../../libs/settings";
 
@@ -42,9 +43,13 @@
   function isRemovable(/*key*/) {
     return true;
   }
+
+  function humanLabel(label) {
+    return _(`labels.${label}`);
+  }
 </script>
 
-<Panel title="Attributes" {...$$restProps}>
+<Panel title="{_('words.attributes')}" {...$$restProps}>
   {#if attrsNames.length}
     <div class="p-2 space-x-2 flex items-center">
       <Select
@@ -61,7 +66,7 @@
   {/if}
   {#each attrs as [key, value] (key)}
     <Input
-      label="{key}"
+      label="{humanLabel(key)}"
       value="{value}"
       {...attrsDefs[key].input}
       removable="{isRemovable(key)}"
