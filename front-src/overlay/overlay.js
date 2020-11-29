@@ -5,12 +5,14 @@ import getStyle from "@/components/Anime/Timeline/libs/getStyle";
 import getTrans from "@/components/Anime/Timeline/libs/getTrans";
 
 import io from "socket.io-client";
+import loadFonts from "../libs/loadFonts";
 import animejs from "animejs";
 
 const socket = io("/overlay", {
   transports: ["websocket"],
   upgrade: false,
 });
+(async () => await loadFonts())();
 
 const playables = ["audio", "video"];
 
@@ -21,9 +23,6 @@ function runAnime(action, cb) {
 
   const timeline = animejs.timeline({
     autoplay: false,
-    // update() {
-    //   console.log((this.duration / 100) * this.progress);
-    // },
     complete() {
       $anime.remove();
       cb({ success: true, action });
