@@ -5,7 +5,7 @@ module.exports = async function streamStatePlugin({ delay = 2 } = {}) {
   const follows = await getLastFollows();
 
   follows.forEach((viewer) => {
-    pushActions("follow", { user: viewer.name });
+    pushActions("onFollow", { user: viewer.name });
   });
 
   if (follows.length) {

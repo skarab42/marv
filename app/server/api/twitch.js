@@ -3,6 +3,7 @@ const state = require("../libs/twitch/state");
 const twitchLogin = require("../libs/twitch/login");
 const chatJoin = require("../libs/twitch/chat/join");
 const chatConnect = require("../libs/twitch/chat/connect");
+const { eventNames } = require("../libs/twitch/chat/events");
 
 const banner = "🤖 Marv est dans la place !";
 
@@ -21,6 +22,7 @@ module.exports = {
       return user;
     });
   },
+  getEventsNames: () => eventNames,
   getState: () => state.get(),
   getStore: () => stores.twitch.getAll(),
   updateState: (state) => state.update(state),

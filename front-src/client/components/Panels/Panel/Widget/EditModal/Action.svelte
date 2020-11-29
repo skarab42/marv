@@ -1,4 +1,5 @@
 <script>
+  import api from "@/api/twitch";
   import cloneDeep from "clone-deep";
   import { _ } from "@/libs/i18next";
   import widgets from "@/components/Widgets";
@@ -10,8 +11,12 @@
   export let panel;
   export let widget;
 
-  const eventNames = ["none", "follow", "sub", "raid", "hosted"];
+  let eventNames = ["none"];
   const triggerTypes = ["immediat", "queue", "asap"];
+
+  api.getEventsNames().then((names) => {
+    eventNames = [...eventNames, ...names];
+  });
 
   const widgetsList = [
     { key: _("words.none"), val: null },
