@@ -4,14 +4,10 @@ import { createElementFromTarget } from "@/components/Anime/Timeline/libs/create
 import getStyle from "@/components/Anime/Timeline/libs/getStyle";
 import getTrans from "@/components/Anime/Timeline/libs/getTrans";
 
-import io from "socket.io-client";
 import loadFonts from "../libs/loadFonts";
+import { on } from "./libs/socket.io";
 import animejs from "animejs";
 
-const socket = io("/overlay", {
-  transports: ["websocket"],
-  upgrade: false,
-});
 (async () => await loadFonts())();
 
 const playables = ["audio", "video"];
@@ -96,7 +92,7 @@ function runAnime(action, cb) {
     });
 }
 
-socket.on("actions.start", (action, cb) => {
+on("actions.start", (action, cb) => {
   if (action.type === "anime") {
     runAnime(action, cb);
   }
