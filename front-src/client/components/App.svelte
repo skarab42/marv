@@ -39,11 +39,11 @@
 
     await initialize();
 
-    setTimeout(() => {
-      if (component !== Disconnected) {
-        component = Connected;
-      }
-    }, 1000);
+    // setTimeout(() => {
+    if (component !== Disconnected) {
+      component = Connected;
+    }
+    // }, 1000);
   });
 
   on("disconnect", () => {
