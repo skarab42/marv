@@ -43,8 +43,8 @@
   {#if transNames.length}
     <div class="p-2 space-x-2 flex items-center">
       <Select
-        pad="px-2"
-        class="flex-auto"
+        rootClass="w-full"
+        inputClass="flex-auto rounded"
         items="{transNames}"
         value="{selectedTrans}"
         on:change="{onSelectTrans}"

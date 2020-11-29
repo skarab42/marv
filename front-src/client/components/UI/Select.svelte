@@ -5,6 +5,7 @@
   export let value = null;
   export let label = null;
   export let object = false;
+  export let rootClass = "";
   export let inputClass = "p-2";
   export let textColor = "text-light";
   export let bgColor = "bg-dark-lighter";
@@ -20,7 +21,7 @@
 </script>
 
 <!-- svelte-ignore a11y-label-has-associated-control -->
-<label class="flex flex-wrap items-center {color}">
+<label class="{rootClass} flex flex-wrap items-center {color}">
   {#if label}
     <div class="{labelClass}">{label}</div>
   {/if}

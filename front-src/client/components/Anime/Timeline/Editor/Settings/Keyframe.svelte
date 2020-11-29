@@ -64,13 +64,14 @@
       value="{$selectedKeyframe.duration}"
       on:change="{onKeyframeChange.bind(null, 'duration')}"
     />
-    <div class="p-2">
+    <div class="p-2 flex items-center">
+      <div class="flex items-center w-1/2">
+        <div class="flex-1 truncate">{_('words.easing')}</div>
+      </div>
       <Select
         items="{easings}"
-        bgColor="bg-transparent"
-        inputClass="px-2 rounded"
-        labelClass="pr-2 flex-auto"
-        label="{_('words.easing')}"
+        rootClass="w-1/2"
+        inputClass="flex-auto rounded"
         value="{$selectedKeyframe.easing}"
         on:change="{onEasingChange}"
       />

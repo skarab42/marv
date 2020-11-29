@@ -40,16 +40,22 @@
       color="{value}"
       position="right"
       on:color="{onChange}"
-      previewClass="w-10"
+      previewClass="h-5 rounded"
     />
   {:else if type === 'fontpicker'}
-    <Fontpicker font="{value}" on:font="{onChange}" />
+    <Fontpicker
+      font="{value}"
+      on:font="{onChange}"
+      rootClass="w-1/2"
+      inputClass="flex-auto rounded"
+    />
   {:else if type === 'select'}
     <Select
       pad="px-2"
       value="{value}"
       items="{items}"
-      class="flex-auto"
+      rootClass="w-1/2"
+      inputClass="flex-auto rounded"
       on:change="{onChange}"
     />
   {:else}
