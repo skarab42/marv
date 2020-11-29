@@ -75,7 +75,11 @@
     "download": "téléchargement",
     "event": "évènement",
     "muted": "en sourdine",
-    "autoplay": "lecture automatique"
+    "autoplay": "lecture automatique",
+    "info": "info",
+    "attributes": "attributs",
+    "styles": "styles",
+    "transformations": "transformations"
   },
   "obs": {
     "scene-list": "OBS | Liste des scènes",
@@ -92,5 +96,40 @@
     "connect-at-startup": "Connection a Twitch au démarrage",
     "chat": "Twitch chat",
     "stream": "Twitch stream"
+  },
+  "labels": {
+    "top": "haut",
+    "left": "gauche",
+    "width": "largeur",
+    "font-size": "font-size",
+    "font-family": "font-family",
+    "font-weight": "font-weight",
+    "text-align": "text-align",
+    "color": "color",
+    "opacity": "opacity",
+    "z-index": "z-index",
+    "-webkit-text-stroke-width": "-webkit-text-stroke-width",
+    "-webkit-text-stroke-color": "-webkit-text-stroke-color",
+    "length": "length",
+    "rotate": "rotate",
+    "scale": "scale",
+    "translateX": "translateX",
+    "translateY": "translateY",
+    "translateZ": "translateZ",
+    "timming": "timming",
+    "volume": "volume",
+    "delay": "delay",
+    "duration": "duration",
+    "rotateX": "rotateX",
+    "rotateY": "rotateY",
+    "rotateZ": "rotateZ",
+    "scaleX": "scaleX",
+    "scaleY": "scaleY",
+    "scaleZ": "scaleZ",
+    "skew": "skew",
+    "skewX": "skewX",
+    "skewY": "skewY",
+    "perspective": "perspective",
+    "height": "height"
   }
 }
