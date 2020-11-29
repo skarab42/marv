@@ -10,6 +10,7 @@ const { json } = require("body-parser");
 const twitch = require("./libs/twitch");
 const socket = require("./libs/socket.io");
 const { i18next } = require("./libs/i18next");
+const { getSystemFonts } = require("./libs/files");
 const { uploadPath, clientPath, staticPath } = require("../utils");
 const twitchAuthMiddleware = require("./libs/twitch/authMiddleware");
 const missingKeyHandler = require("./libs/i18next/missingKeyHandler");
@@ -24,9 +25,7 @@ function initEvents() {
 let { host, port } = stores.server.getAll();
 const appFingerprint = stores.app.get("fingerprint");
 
-const sirvClient = sirv(clientPath, { dev: true });
-const sirvStatic = sirv(staticPath, { dev: true });
-const sirvUpload = sirv(uploadPath, { dev: true });
+const staticPaths = [clientPath, staticPath, uploadPath];
 
 let portChangeCount = 0;
 let portChangeMaxCount = 10;
@@ -59,17 +58,20 @@ function twitchAutoConnect() {
   api.login();
 }
 
-function start() {
+async function start() {
   const server = http.createServer();
 
   server.on("error", onError);
 
-  polka({ server })
-    .use(json())
-    .use(sirvClient)
-    .use(sirvStatic)
-    .use(sirvUpload)
-    .use(twitchAuthMiddleware(twitch.authProvider))
+  const p = polka({ server }).use(json());
+
+  const { fontPaths } = await getSystemFonts();
+
+  [...staticPaths, ...fontPaths].forEach((path) => {
+    p.use(sirv(path, { dev: true }));
+  });
+
+  p.use(twitchAuthMiddleware(twitch.authProvider))
     .post("/locales/add/:lng/:ns", missingKeyHandler(i18next))
     .listen(port, (error) => {
       if (error) return onError(error);

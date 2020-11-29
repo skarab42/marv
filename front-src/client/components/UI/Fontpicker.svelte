@@ -1,14 +1,13 @@
 <script>
   import Select from "@/components/UI/Select.svelte";
   import { createEventDispatcher } from "svelte";
-  import loadFonts from "./loadFonts";
+  import loadFonts from "../../../libs/loadFonts";
 
   const dispatch = createEventDispatcher();
 
   export let font;
 
   function onChange({ detail: font }) {
-    console.log({ font });
     dispatch("font", font);
   }
 </script>

@@ -4,6 +4,7 @@ const fs = require("fs-extra");
 const { _ } = require("./i18next");
 const stores = require("../../stores");
 const { filesPath } = require("../../utils");
+const getSystemFonts = require("./files/getSystemFonts");
 
 const language = stores.app.get("language", "en");
 const allowedMimeTypes = ["text", "image", "audio", "video", "font"];
@@ -102,4 +103,5 @@ module.exports = {
   upload,
   remove,
   getFileList,
+  getSystemFonts,
 };

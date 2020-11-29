@@ -16,6 +16,7 @@
     "dot-prop": "^6.0.1",
     "env-paths": "^2.2.0",
     "fs-extra": "^9.0.1",
+    "get-system-fonts": "^2.0.2",
     "i18next": "^19.8.3",
     "i18next-fs-backend": "^1.0.7",
     "mime": "^2.4.6",

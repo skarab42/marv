@@ -11,6 +11,7 @@
   import twitchStore from "@/stores/twitch";
   import actionsStore from "@/stores/actions";
   import i18nextStore from "@/stores/i18next";
+  import loadFonts from "../../libs/loadFonts";
   import appStore, { initialized } from "@/stores/app";
 
   import Connected from "@/components/App/Connected.svelte";
@@ -28,6 +29,7 @@
     await filesStore();
     await appStore();
     await obsStore();
+    await loadFonts();
 
     initialized.set(true);
   }

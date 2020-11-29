@@ -1,13 +1,24 @@
-const { filesPath } = require("../../utils");
-const fs = require("fs");
+const { getSystemFonts } = require("../libs/files");
+const stores = require("../../stores");
 
-const allowedExts = ["ttf", "otf"];
+async function getFontsNames() {
+  const { fontNames } = await getSystemFonts();
 
-function getFonts() {
-  return fs.readdirSync(filesPath).filter((filename) => {
-    const ext = filename.split(".").pop();
-    return allowedExts.includes(ext);
+  return fontNames;
+}
+
+function getUsedFonts() {
+  const usedFonts = [];
+
+  Object.values(stores.actions.get("actions", {})).forEach((action) => {
+    action.items.forEach((item) => {
+      if (item.type === "file" && item.target.type === "text") {
+        usedFonts.push(item.target.style["font-family"]);
+      }
+    });
   });
+
+  return [...new Set(usedFonts)];
 }
 
 module.exports = {
@@ -15,6 +26,9 @@ module.exports = {
     return process.platform;
   },
   getFonts: () => {
-    return getFonts();
+    return getFontsNames();
+  },
+  getUsedFonts: () => {
+    return getUsedFonts();
   },
 };
