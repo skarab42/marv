@@ -8,7 +8,7 @@
 
   let attrs = { h: 0, v: 0, blur: 0, color: "#111" };
 
-  let cls = "px-2 w-1/2 flex-1 text-dark rounded";
+  let cls = "px-2 flex-auto text-dark rounded";
 
   $: if (value) {
     let [h, v, blur, color] = value.split(" ");
@@ -26,7 +26,7 @@
   }
 </script>
 
-<div class="flex space-x-1">
+<div class="flex flex-col space-y-1 w-1/2">
   <input
     type="number"
     value="{attrs.h}"
@@ -45,12 +45,12 @@
     on:change="{onChange.bind(null, 'blur')}"
     class="{cls}"
   />
-</div>
 
-<ColorPicker
-  label="{false}"
-  position="right"
-  color="{attrs.color}"
-  previewClass="h-5 rounded"
-  on:color="{onChange.bind(null, 'color')}"
-/>
+  <ColorPicker
+    label="{false}"
+    position="right"
+    color="{attrs.color}"
+    previewClass="h-5 rounded"
+    on:color="{onChange.bind(null, 'color')}"
+  />
+</div>
