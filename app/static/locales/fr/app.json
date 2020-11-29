@@ -130,6 +130,7 @@
     "skewX": "skewX",
     "skewY": "skewY",
     "perspective": "perspective",
-    "height": "height"
+    "height": "height",
+    "text-shadow": "labels.text-shadow"
   }
 }
