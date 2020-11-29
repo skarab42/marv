@@ -130,6 +130,7 @@
     "skewX": "distorsion x",
     "skewY": "distorsion y",
     "perspective": "point de vue",
-    "height": "hauteur"
+    "height": "hauteur",
+    "text-shadow": "ombre"
   }
 }
