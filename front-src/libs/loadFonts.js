@@ -14,9 +14,10 @@ async function loadFont(name, url) {
 
   const fontFace = new FontFace(name, `url(${encodeURI(url)})`);
 
+  loadedFonts.set(name, fontFace);
+
   await fontFace.load();
   document.fonts.add(fontFace);
-  loadedFonts.set(name, fontFace);
 
   return fontFace;
 }
@@ -30,7 +31,7 @@ export default async function loadFonts() {
       const filename = fonts[i];
       const [name] = filename.split(".");
       const fontFace = await loadFont(name, filename);
-      fontNames.push(fontFace.family);
+      fontFace.family && fontNames.push(fontFace.family);
     } catch (error) {
       // console.log("Oups:", error);
     }

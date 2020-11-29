@@ -85,8 +85,12 @@ export const styleDefs = {
     input: { type: "number", min: 0, step: 1 },
   },
   "-webkit-text-stroke-color": {
-    default: "#000000",
+    default: "#111111",
     input: { type: "colorpicker" },
+  },
+  "text-shadow": {
+    default: "1px 1px 0 #111111",
+    input: { type: "textshadow" },
   },
   color: {
     default: "#420042",

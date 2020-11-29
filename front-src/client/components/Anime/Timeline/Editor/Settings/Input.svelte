@@ -1,4 +1,5 @@
 <script>
+  import TextShadow from "./TextShadow.svelte";
   import Icon from "@/components/UI/Icon.svelte";
   import Select from "@/components/UI/Select.svelte";
   import Fontpicker from "@/components/UI/Fontpicker.svelte";
@@ -51,13 +52,14 @@
     />
   {:else if type === 'select'}
     <Select
-      pad="px-2"
       value="{value}"
       items="{items}"
       rootClass="w-1/2"
-      inputClass="flex-auto rounded"
       on:change="{onChange}"
+      inputClass="flex-auto rounded"
     />
+  {:else if type === 'textshadow'}
+    <TextShadow value="{value}" on:change="{onChange}" />
   {:else}
     <input
       type="{type}"
