@@ -96,7 +96,31 @@
   "twitch": {
     "connect-at-startup": "Connecter Twitch au démarrage",
     "chat": "Twitch chat",
-    "stream": "Twitch stream"
+    "stream": "Twitch stream",
+    "events": {
+      "None": "Aucun",
+      "onFollow": "Follow",
+      "onAction": "Action",
+      "onBan": "Ban",
+      "onBitsBadgeUpgrade": "Bits badge upgrade",
+      "onCommunityPayForward": "Community pay forward",
+      "onCommunitySub": "Community sub",
+      "onGiftPaidUpgrade": "Gift paid upgrade",
+      "onHosted": "Hosted",
+      "onJoin": "Join",
+      "onMessage": "Message",
+      "onPart": "Part",
+      "onPrimeCommunityGift": "Prime community gift",
+      "onPrimePaidUpgrade": "Prime paid upgrade",
+      "onRaid": "Raid",
+      "onResub": "Resub",
+      "onRewardGift": "Reward gift",
+      "onRitual": "Ritual",
+      "onStandardPayForward": "Standard pay forward",
+      "onSub": "Sub",
+      "onSubExtend": "Sub extend",
+      "onSubGift": "Sub gift"
+    }
   },
   "labels": {
     "top": "haut",
