@@ -58,15 +58,19 @@ function twitchAutoConnect() {
   api.login();
 }
 
+function uriDecode(req, res, next) {
+  req.path = decodeURI(req.path);
+  next();
+}
+
 async function start() {
   const server = http.createServer();
 
   server.on("error", onError);
 
-  const p = polka({ server }).use(json());
+  const p = polka({ server }).use(json()).use(uriDecode);
 
   const { fontPaths } = await getSystemFonts();
-
   [...staticPaths, ...fontPaths].forEach((path) => {
     p.use(sirv(path, { dev: true }));
   });
