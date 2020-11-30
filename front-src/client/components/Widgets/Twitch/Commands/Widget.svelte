@@ -44,13 +44,25 @@
 
   <div class="p-2 flex flex-col flex-auto space-y-2 overflow-auto">
     {#each $commands as command}
-      <div class="flex space-x-2 bg-light text-dark bg-opacity-50 rounded">
-        <div class="p-2 flex-auto font-bold">#{command.name}</div>
-        <div
-          class="p-2 hover:bg-red-600 hover:text-light cursor-pointer rounded-r"
-          on:click="{removeCommand.bind(null, command)}"
-        >
-          <Icon icon="{MdDeleteForever}" />
+      <div
+        class="flex items-center space-x-2 bg-light text-dark bg-opacity-50 rounded"
+      >
+        <div class="p-2 flex-auto flex-col">
+          <div class="p-2 font-bold">#{command.name}</div>
+          {#if command.usage}
+            <div class="p-2 text-xs">Usage: {command.usage}</div>
+          {/if}
+          {#if command.desciption}
+            <div class="p-2 text-sm">{command.desciption}</div>
+          {/if}
+        </div>
+        <div class="p-2">
+          <div
+            class="p-2 hover:bg-red-600 hover:text-light cursor-pointer rounded-full"
+            on:click="{removeCommand.bind(null, command)}"
+          >
+            <Icon icon="{MdDeleteForever}" />
+          </div>
         </div>
       </div>
     {:else}
