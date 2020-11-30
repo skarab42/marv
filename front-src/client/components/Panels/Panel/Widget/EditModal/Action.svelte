@@ -11,11 +11,13 @@
   export let panel;
   export let widget;
 
-  let eventNames = ["none"];
+  let eventNames = [];
   const triggerTypes = ["immediat", "queue", "asap"];
 
   api.getEventsNames().then((names) => {
-    eventNames = [...eventNames, ...names];
+    eventNames = ["None", ...names].map((val) => {
+      return { key: _(`twitch.events.${val}`), val };
+    });
   });
 
   const widgetsList = [
@@ -65,6 +67,7 @@
   </div>
   <div class="p-2">
     <Select
+      object="{true}"
       items="{eventNames}"
       value="{widget.eventName}"
       label="{_('words.event')}"
