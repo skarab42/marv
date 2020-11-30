@@ -5,6 +5,10 @@ const types = {
   AnimeTimeline: "anime",
 };
 
+function isSameCommand(widget, eventProps) {
+  return widget.commandName === eventProps.command.name;
+}
+
 module.exports = function pushActions(eventName, eventProps) {
   stores.panels.get("panels").forEach(({ widgets }) => {
     widgets.forEach((widget) => {
@@ -12,9 +16,11 @@ module.exports = function pushActions(eventName, eventProps) {
 
       const type = types[widget.component.name];
 
-      if (type === "anime" && widget.eventName === eventName) {
-        push({ type, widget, eventProps });
-      }
+      if (type !== "anime") return;
+      if (widget.eventName !== eventName) return;
+      if (widget.commandName && !isSameCommand(widget, eventProps)) return;
+
+      push({ type, widget, eventProps });
     });
   });
 };

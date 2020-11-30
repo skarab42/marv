@@ -80,7 +80,11 @@
     "info": "info",
     "attributes": "attributs",
     "styles": "styles",
-    "transformations": "transformations"
+    "transformations": "transformations",
+    "command": "commande",
+    "immediat": "immédiat",
+    "queue": "queue",
+    "asap": "asap"
   },
   "obs": {
     "scene-list": "OBS | Liste des scènes",
@@ -119,8 +123,12 @@
       "onStandardPayForward": "Standard pay forward",
       "onSub": "Sub",
       "onSubExtend": "Sub extend",
-      "onSubGift": "Sub gift"
-    }
+      "onSubGift": "Sub gift",
+      "onCommand": "Command",
+      "none": "twitch.events.none"
+    },
+    "commands": "twitch.commands",
+    "command-not-found": "Commande introuvable"
   },
   "labels": {
     "top": "haut",

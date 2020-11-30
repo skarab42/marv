@@ -25,6 +25,7 @@ function createWidget() {
     component: null,
     trigger: "immediat",
     eventName: "none",
+    commandName: "none",
     label: null,
     labelSize: 16,
     labelPadding: 8,

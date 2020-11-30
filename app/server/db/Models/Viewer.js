@@ -22,5 +22,3 @@ const Viewer = sequelize.define("Viewer", {
 });
 
 module.exports = Viewer;
-
-Viewer.sync({ alter: true }); // TODO: remove for prod

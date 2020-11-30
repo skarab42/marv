@@ -4,6 +4,7 @@ import * as ToggleScene from "./OBS/ToggleScene";
 import * as AnimeTimeline from "./Anime/Timeline";
 import * as TwitchChat from "./Twitch/Chat";
 import * as TwitchStream from "./Twitch/Stream";
+import * as TwitchCommands from "./Twitch/Commands";
 
 const widgets = {
   SceneList,
@@ -12,6 +13,7 @@ const widgets = {
   AnimeTimeline,
   TwitchChat,
   TwitchStream,
+  TwitchCommands,
 };
 
 export default widgets;

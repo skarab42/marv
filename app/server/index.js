@@ -11,11 +11,18 @@ const twitch = require("./libs/twitch");
 const socket = require("./libs/socket.io");
 const { i18next } = require("./libs/i18next");
 const { getSystemFonts } = require("./libs/files");
-const { uploadPath, clientPath, staticPath } = require("../utils");
 const twitchAuthMiddleware = require("./libs/twitch/authMiddleware");
 const missingKeyHandler = require("./libs/i18next/missingKeyHandler");
+const { watch, uploadPath, clientPath, staticPath } = require("../utils");
 
-require("./db");
+async function syncDB() {
+  const sequelize = require("./db");
+
+  require("./db/Models/Viewer");
+  require("./db/Models/Command");
+
+  await sequelize.sync({ alter: true });
+}
 
 // require("./libs/twitch/webhooks_");
 function initEvents() {
@@ -64,6 +71,8 @@ function uriDecode(req, res, next) {
 }
 
 async function start() {
+  watch && (await syncDB());
+
   const server = http.createServer();
 
   server.on("error", onError);

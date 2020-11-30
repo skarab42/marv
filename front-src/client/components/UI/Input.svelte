@@ -6,6 +6,7 @@
   export let icon = null;
   export let label = null;
   export let type = "text";
+  export let rootClass = "";
   export let labelClass = "p-2";
   export let inputClass = "p-2";
   export let textColor = "text-light";
@@ -19,7 +20,7 @@
 
   function onKeypress(event) {
     if (event.keyCode == 13) {
-      dispatch("enterKey");
+      dispatch("enterKey", event);
     }
   }
 
@@ -34,7 +35,7 @@
 </script>
 
 <!-- svelte-ignore a11y-label-has-associated-control -->
-<label class="flex flex-wrap items-center {color}">
+<label class="flex flex-wrap items-center {color} {rootClass}">
   {#if label}
     <div class="flex font-medium uppercase {labelClass}">
       {#if icon}

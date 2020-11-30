@@ -80,7 +80,11 @@
     "info": "info",
     "attributes": "attributes",
     "styles": "styles",
-    "transformations": "transformations"
+    "transformations": "transformations",
+    "command": "command",
+    "immediat": "immediat",
+    "queue": "queue",
+    "asap": "asap"
   },
   "obs": {
     "scene-list": "OBS | Scene list",
@@ -98,7 +102,7 @@
     "chat": "Twitch chat",
     "stream": "Twitch stream",
     "events": {
-      "None": "None",
+      "None": "twitch.events.None",
       "onFollow": "Follow",
       "onAction": "Action",
       "onBan": "Ban",
@@ -120,8 +124,11 @@
       "onSub": "Sub",
       "onSubExtend": "Sub extend",
       "onSubGift": "Sub gift",
-      "None": "twitch.events.None"
-    }
+      "onCommand": "Command",
+      "none": "twitch.events.none"
+    },
+    "commands": "twitch.commands",
+    "command-not-found": "Command not found"
   },
   "labels": {
     "top": "top",

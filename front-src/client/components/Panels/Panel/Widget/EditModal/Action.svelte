@@ -2,6 +2,7 @@
   import api from "@/api/twitch";
   import cloneDeep from "clone-deep";
   import { _ } from "@/libs/i18next";
+  import { commands } from "@/stores/twitch";
   import widgets from "@/components/Widgets";
   import Button from "@/components/UI/Button.svelte";
   import Select from "@/components/UI/Select.svelte";
@@ -11,11 +12,18 @@
   export let panel;
   export let widget;
 
-  let eventNames = [];
-  const triggerTypes = ["immediat", "queue", "asap"];
+  const none = _(`words.none`);
 
-  api.getEventsNames().then((names) => {
-    eventNames = ["None", ...names].map((val) => {
+  let eventNames = [];
+
+  $: commandNames = [none, ...$commands.map((cmd) => cmd.name)];
+
+  const triggerTypes = ["immediat", "queue", "asap"].map((val) => {
+    return { val, key: _(`words.${val}`) };
+  });
+
+  api.getEventNames().then((names) => {
+    eventNames = ["none", ...names].map((val) => {
       return { key: _(`twitch.events.${val}`), val };
     });
   });
@@ -54,18 +62,22 @@
     widget.eventName = eventName;
     update(panel);
   }
+
+  function onCommandChange({ detail: commandName }) {
+    widget.commandName = commandName;
+    update(panel);
+  }
 </script>
 
 {#if component}
   <div class="p-2 font-bold bg-dark-lighter">{_(component.label)}</div>
-  <div class="p-2">
+  <div class="p-2 flex flex-col space-y-2">
     <Select
+      object="{true}"
       label="{_('words.trigger')}"
       bind:value="{widget.trigger}"
       items="{triggerTypes}"
     />
-  </div>
-  <div class="p-2">
     <Select
       object="{true}"
       items="{eventNames}"
@@ -73,6 +85,14 @@
       label="{_('words.event')}"
       on:change="{onEventChange}"
     />
+    {#if widget.eventName === 'onCommand'}
+      <Select
+        value="{widget.commandName}"
+        items="{commandNames}"
+        label="{_('words.command')}"
+        on:change="{onCommandChange}"
+      />
+    {/if}
   </div>
   <svelte:component this="{widgets[component.name].Settings}" data="{data}" />
   <Button icon="{MdDelete}" class="bg-red-600" on:click="{onRemoveAction}">

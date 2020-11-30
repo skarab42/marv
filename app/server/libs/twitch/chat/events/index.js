@@ -2,7 +2,7 @@ const twitch = require("../../index");
 const path = require("path");
 const fs = require("fs");
 
-const eventNames = ["onFollow"];
+const eventNames = ["onFollow", "onCommand"];
 
 fs.readdirSync(__dirname).forEach((filename) => {
   const name = path.parse(filename).name;
