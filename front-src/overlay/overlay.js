@@ -4,11 +4,11 @@ import { createElementFromTarget } from "@/components/Anime/Timeline/libs/create
 import getStyle from "@/components/Anime/Timeline/libs/getStyle";
 import getTrans from "@/components/Anime/Timeline/libs/getTrans";
 
-import loadFonts from "../libs/loadFonts";
+import { loadUsedFonts, loadFont } from "../libs/fonts";
 import { on } from "./libs/socket.io";
 import animejs from "animejs";
 
-(async () => await loadFonts())();
+(async () => await loadUsedFonts(false))();
 
 const playables = ["audio", "video"];
 
@@ -97,3 +97,5 @@ on("actions.start", (action, cb) => {
     runAnime(action, cb);
   }
 });
+
+on("loadFont", (url) => loadFont(url, false));

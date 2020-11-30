@@ -1,26 +1,42 @@
 <script>
+  import { getFonts, loadFont } from "../../../libs/fonts";
   import Select from "@/components/UI/Select.svelte";
   import { createEventDispatcher } from "svelte";
-  import loadFonts from "../../../libs/loadFonts";
+  import capitalize from "capitalize";
+  import { _ } from "@/libs/i18next";
 
   const dispatch = createEventDispatcher();
 
   export let font;
 
+  let fonts = [];
+
+  function humanName(url) {
+    return capitalize(url.split(".").shift().replace(/[_-]/g, " "));
+  }
+
+  function fontItem(url) {
+    return { val: url, key: humanName(url) };
+  }
+
+  getFonts().then((allFonts) => {
+    fonts = allFonts.map(fontItem);
+  });
+
   function onChange({ detail: font }) {
     dispatch("font", font);
+    loadFont(font);
   }
 </script>
 
-{#await loadFonts()}
-  Loading fonts list...
-{:then fonts}
+{#if !fonts}
+  {_('sentences.loading-fonts-list')}
+{:else}
   <Select
+    object="{true}"
     value="{font}"
     items="{fonts}"
     {...$$restProps}
     on:change="{onChange}"
   />
-{:catch error}
-  <div class="bg-red-600 text-light">{error.message}</div>
-{/await}
+{/if}

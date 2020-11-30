@@ -72,6 +72,7 @@ export const styleDefs = {
     input: { type: "number", min: 100, max: 900, step: 100 },
   },
   "font-family": {
+    type: "string",
     default: "monospace",
     input: { type: "fontpicker" },
   },

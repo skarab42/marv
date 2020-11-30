@@ -36,7 +36,8 @@
     "connect-with-twitch": "Connect with Twitch",
     "open-twitch-chat-window": "Open Twitch chat",
     "dont-ask-me-again": "Dont ask me again",
-    "first-start-title": "This is your first start ! Happy :)"
+    "first-start-title": "This is your first start ! Happy :)",
+    "loading-fonts-list": "Loading fonts list"
   },
   "words": {
     "settings": "settings",

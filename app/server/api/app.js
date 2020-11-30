@@ -7,6 +7,11 @@ module.exports = {
   getFonts: async () => {
     return (await getSystemFonts()).fontNames;
   },
+  loadFont: (url) => {
+    const io = require("../libs/socket.io")();
+    if (!io.__overlaySocket) return;
+    io.__overlaySocket.emit("loadFont", url);
+  },
   getUsedFonts: () => {
     return getUsedFonts();
   },
