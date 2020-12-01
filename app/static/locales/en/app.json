@@ -84,7 +84,8 @@
     "command": "command",
     "immediat": "immediat",
     "queue": "queue",
-    "asap": "asap"
+    "asap": "asap",
+    "add": "add"
   },
   "obs": {
     "scene-list": "OBS | Scene list",
