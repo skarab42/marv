@@ -90,7 +90,7 @@
   class="relative h-full {widget.borders} flex flex-col overflow-hidden {cls}"
 >
   <Label widget="{widget}" />
-  <div class="relative flex-auto">
+  <div class="relative flex-auto overflow-hidden">
     <slot />
   </div>
   <slot name="overlay" />
