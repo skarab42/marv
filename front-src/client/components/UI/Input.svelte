@@ -52,7 +52,7 @@
       on:change
       on:input="{onInput}"
       on:keypress="{onKeypress}"
-      class="{inputClass} w-full text-dark {inputHidden}"
+      class="{inputClass} w-full text-dark {inputHidden} bg-white bg-opacity-75 focus:bg-opacity-100"
     />
   </div>
 </label>

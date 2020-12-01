@@ -7,6 +7,10 @@ input[type=file]::-webkit-file-upload-button {
   cursor: pointer;
 }
 
+input:focus {
+  outline: 0;
+}
+
 .tippy-box[data-theme~="marv"] {
   background-color: tomato;
   color: yellow;
