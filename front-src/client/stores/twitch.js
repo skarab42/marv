@@ -23,6 +23,14 @@ function loadOnce() {
     });
   });
 
+  on("updateCommand", (command) => {
+    commands.update((state) => {
+      return state.map((cmd) =>
+        cmd.id === command.id ? { ...cmd, ...command } : cmd
+      );
+    });
+  });
+
   on("removeCommand", (command) => {
     commands.update((state) => {
       return state.filter((cmd) => cmd.id !== command.id);

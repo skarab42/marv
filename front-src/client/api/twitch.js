@@ -8,6 +8,7 @@ export default {
   getCommandNames: () => emit("twitch.getCommandNames"),
   getCommandPrefix: () => emit("twitch.getCommandPrefix"),
   addCommand: (command) => emit("twitch.addCommand", command),
+  updateCommand: (command) => emit("twitch.updateCommand", command),
   removeCommand: (command) => emit("twitch.removeCommand", command),
   updateState: (state) => emit("twitch.updateState", state),
   login: (email = false) => emit("twitch.login", email),

@@ -5,6 +5,7 @@ const chatJoin = require("../libs/twitch/chat/join");
 const chatConnect = require("../libs/twitch/chat/connect");
 const addCommand = require("../libs/twitch/api/addCommand");
 const { eventNames } = require("../libs/twitch/chat/events");
+const updateCommand = require("../libs/twitch/api/updateCommand");
 const removeCommand = require("../libs/twitch/api/removeCommand");
 const getCommandList = require("../libs/twitch/api/getCommandList");
 const getCommandNames = require("../libs/twitch/api/getCommandNames");
@@ -30,6 +31,10 @@ module.exports = {
   addCommand(command) {
     addCommand(command);
     this.notify("twitch.addCommand", command);
+  },
+  updateCommand(command) {
+    updateCommand(command);
+    this.notify("twitch.updateCommand", command);
   },
   removeCommand(command) {
     removeCommand(command);

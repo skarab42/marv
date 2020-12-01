@@ -10,7 +10,15 @@ module.exports = async function onCommand({ channel, command, nick, message }) {
   const now = Date.now();
 
   if (!commandEntry) {
-    throw new Error(`${_("twitch.command-not-found")} ${command.name}`);
+    throw new Error(
+      `${_("twitch.command-not-found", { command: command.name })}`
+    );
+  }
+
+  if (!commandEntry.enabled) {
+    throw new Error(
+      `${_("twitch.command-disabled", { command: command.name })}`
+    );
   }
 
   const lastCall = cooldowns[command.name] || 0;
@@ -18,8 +26,11 @@ module.exports = async function onCommand({ channel, command, nick, message }) {
   const elapsedTime = now - lastCall;
 
   if (elapsedTime < cooldown) {
-    const rest = cooldown - elapsedTime;
-    this.say(channel, `Cooldown for ${command.name} -> ~${ms(rest)}`);
+    const rest = ms(cooldown - elapsedTime);
+    this.say(
+      channel,
+      _("twitch.command-cooldown", { command: command.name, rest })
+    );
     return;
   }
 
