@@ -28,7 +28,7 @@
 </script>
 
 <WidgetWrapper widget="{widget}">
-  <div data-simplebar class="h-full">
+  <div class="h-full overflow-auto">
     <div class="divide-y divide-gray-900 divide-opacity-25">
       {#each scenes as scene}
         <div

@@ -16,7 +16,7 @@
     </div>
   </div>
   <slot name="topbar" />
-  <div data-simplebar class="overflow-auto h-full">
+  <div class="overflow-auto h-full">
     <slot />
   </div>
 </div>

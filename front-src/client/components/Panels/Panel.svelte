@@ -32,7 +32,7 @@
   {#each $panels as panel}
     <div class="absolute inset-0 p-1 {invisible($currentPanel, panel)}">
       {#if panel.grid.length}
-        <div data-simplebar class="h-full overflow-x-hidden">
+        <div class="h-full overflow-x-hidden">
           <Grid panel="{panel}" />
         </div>
       {:else}
