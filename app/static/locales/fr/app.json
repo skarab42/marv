@@ -103,7 +103,10 @@
     "chat": "Twitch chat",
     "stream": "Twitch stream",
     "commands": "Commandes",
-    "command-not-found": "Commande introuvable",
+    "empty-command-list": "Aucune commande",
+    "command-not-found": "La commande \"{{command}}\" est introuvable",
+    "command-disabled": "La commande \"{{command}}\" est désactivée",
+    "command-cooldown": "Cooldown \"{{command}}\" -> ~{{rest}}",
     "events": {
       "None": "Aucun",
       "onFollow": "Follow",
@@ -129,8 +132,7 @@
       "onSubGift": "Sub gift",
       "onCommand": "Command",
       "none": "Aucun"
-    },
-    "empty-command-list": "twitch.empty-command-list"
+    }
   },
   "labels": {
     "top": "haut",
