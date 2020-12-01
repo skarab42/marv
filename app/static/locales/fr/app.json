@@ -128,7 +128,8 @@
       "onSubGift": "Sub gift",
       "onCommand": "Command",
       "none": "Aucun"
-    }
+    },
+    "empty-command-list": "twitch.empty-command-list"
   },
   "labels": {
     "top": "haut",
