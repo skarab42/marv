@@ -101,6 +101,8 @@
     "connect-at-startup": "Connect Twitch at startup",
     "chat": "Twitch chat",
     "stream": "Twitch stream",
+    "commands": "Commands",
+    "command-not-found": "Command not found",
     "events": {
       "None": "twitch.events.None",
       "onFollow": "Follow",
@@ -125,10 +127,8 @@
       "onSubExtend": "Sub extend",
       "onSubGift": "Sub gift",
       "onCommand": "Command",
-      "none": "twitch.events.none"
-    },
-    "commands": "twitch.commands",
-    "command-not-found": "Command not found"
+      "none": "None"
+    }
   },
   "labels": {
     "top": "top",
