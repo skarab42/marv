@@ -6,6 +6,7 @@ export default {
   getEventNames: () => emit("twitch.getEventNames"),
   getCommandList: () => emit("twitch.getCommandList"),
   getCommandNames: () => emit("twitch.getCommandNames"),
+  getCommandPrefix: () => emit("twitch.getCommandPrefix"),
   addCommand: (command) => emit("twitch.addCommand", command),
   removeCommand: (command) => emit("twitch.removeCommand", command),
   updateState: (state) => emit("twitch.updateState", state),
