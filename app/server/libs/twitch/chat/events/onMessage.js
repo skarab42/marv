@@ -17,7 +17,8 @@ function isCommand(prefix, message) {
 function parseCommand(prefix, message) {
   const args = message.slice(prefix.length).split(" ");
   const name = args.shift();
-  return { name, args };
+
+  return { prefix, name, args };
 }
 
 module.exports = async function onMessage(channel, nick, message, data) {

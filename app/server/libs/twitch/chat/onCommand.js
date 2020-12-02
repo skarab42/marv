@@ -5,6 +5,14 @@ const ms = require("ms");
 
 const cooldowns = {};
 
+function parseUsage(usage) {
+  return (usage || "")
+    .replace(/[ ,]+/g, " ")
+    .trim()
+    .split(" ")
+    .filter((arg) => arg.length);
+}
+
 module.exports = async function onCommand({ channel, command, nick, message }) {
   const commandEntry = await getCommandByName(command.name);
   const now = Date.now();
@@ -34,6 +42,21 @@ module.exports = async function onCommand({ channel, command, nick, message }) {
     return;
   }
 
+  const args = {};
+  const argNames = parseUsage(commandEntry.usage);
+  const argList = argNames.map((arg) => `[${arg}]`).join(" ");
+  const usage = `${command.prefix}${command.name} ${argList}`;
+
+  if (command.args.length > argNames.length) {
+    throw new Error(`${_("twitch.command-too-much-argument", { usage })}`);
+  } else if (command.args.length < argNames.length) {
+    throw new Error(`${_("twitch.command-not-enough-argument", { usage })}`);
+  }
+
+  argNames.forEach((arg, i) => {
+    args[arg] = command.args[i] || `$${arg}`;
+  });
+
   cooldowns[command.name] = now;
-  pushActions("onCommand", { user: nick, message, command });
+  pushActions("onCommand", { user: nick, message, command, ...args });
 };
