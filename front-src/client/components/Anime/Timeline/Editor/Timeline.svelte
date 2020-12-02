@@ -62,7 +62,7 @@
     <Ruler />
   </div>
   {#each $items as item, pos (item.id)}
-    <Item bind:item pos="{pos}" on:remove="{onRemove}" />
+    <Item bind:item pos="{pos}" on:remove="{onRemove}" on:textFileChange />
   {/each}
   <Cursor min="{splitter.x}" />
 </Grid>

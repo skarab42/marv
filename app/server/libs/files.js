@@ -38,6 +38,18 @@ function isAllowedMimeType(type) {
   return allowedMimeTypes.includes(type);
 }
 
+async function update(filename, data) {
+  return new Promise((resolve, reject) => {
+    try {
+      fs.writeFileSync(path.join(filesPath, filename), data);
+    } catch (error) {
+      return reject(error);
+    }
+
+    return true;
+  });
+}
+
 async function upload({ name, buffer }) {
   return new Promise((resolve, reject) => {
     const filename = cleanFileName(name);
@@ -103,6 +115,7 @@ function getFileList() {
 module.exports = {
   upload,
   remove,
+  update,
   getFileList,
   getUsedFonts,
   getSystemFonts,

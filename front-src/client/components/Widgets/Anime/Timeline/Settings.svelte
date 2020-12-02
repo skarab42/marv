@@ -1,4 +1,5 @@
 <script>
+  import filesAPI from "@/api/files";
   import { _ } from "@/libs/i18next";
   import { update, get } from "@/libs/actions";
   import Button from "@/components/UI/Button.svelte";
@@ -30,6 +31,11 @@
     initialItems = anime.items;
     update({ widget, anime });
   }
+
+  async function onTextFileChange({ detail }) {
+    await filesAPI.update(detail.item.target.filename, detail.text);
+    initialItems = initialItems;
+  }
 </script>
 
 <Button icon="{MdOpenInNew}" class="bg-secondary" on:click="{openTimeline}">
@@ -42,6 +48,7 @@
       initialItems="{initialItems}"
       on:close="{closeTimeline}"
       on:update="{onAnimeUpdate}"
+      on:textFileChange="{onTextFileChange}"
     />
   </FullScreenModal>
 {/if}

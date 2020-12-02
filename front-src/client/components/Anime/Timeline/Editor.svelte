@@ -27,7 +27,7 @@
 
   const playables = ["audio", "video"];
 
-  $items = initialItems;
+  $: $items = initialItems;
   $: duration = $anime ? $anime.duration : 0;
 
   function updateAnime() {
@@ -139,6 +139,6 @@
     <Settings />
   </div>
   <div slot="bottomPane" class="bg-primary-dark h-full shadow">
-    <Timeline on:file="{addFile}" on:remove="{onRemove}" />
+    <Timeline on:file="{addFile}" on:remove="{onRemove}" on:textFileChange />
   </div>
 </Layout>

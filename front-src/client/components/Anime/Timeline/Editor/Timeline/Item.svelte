@@ -1,10 +1,13 @@
 <script>
   import { getContext, createEventDispatcher } from "svelte";
   import { createKeyframe } from "../../libs/createKeyframe";
-  import Icon from "@/components/UI/Icon.svelte";
+
   import Keyframe from "./Keyframe.svelte";
   import Keyframes from "./Keyframes.svelte";
   import AnimeIcon from "../AnimeIcon.svelte";
+  import TextEditor from "./TextEditor.svelte";
+  import Icon from "@/components/UI/Icon.svelte";
+  import MdEdit from "svelte-icons/md/MdEdit.svelte";
   import MdDeleteForever from "svelte-icons/md/MdDeleteForever.svelte";
 
   export let item;
@@ -17,6 +20,7 @@
   const dispatch = createEventDispatcher();
 
   let isDragOver = false;
+  let showTextEditor = false;
 
   $: isSelected = $selectedItem && $selectedItem.id === item.id;
   $: selected = isSelected ? "bg-blue-600 bg-opacity-50" : "bg-primary-darker";
@@ -112,6 +116,15 @@
     $selectedKeyframe = keyframe;
     $items = $items;
   }
+
+  function openTextEditor(item) {
+    selectItem(item);
+    showTextEditor = true;
+  }
+
+  function closeTextEditor() {
+    showTextEditor = false;
+  }
 </script>
 
 <div
@@ -125,6 +138,14 @@
 >
   <AnimeIcon type="{item.target.type}" />
   <div class="p-2 pl-0 truncate flex-1">{item.target.filename}</div>
+  {#if item.target.type === 'text'}
+    <div
+      class="p-2 cursor-pointer hover:bg-red-600"
+      on:click="{openTextEditor.bind(null, item)}"
+    >
+      <Icon icon="{MdEdit}" />
+    </div>
+  {/if}
   <div class="p-2 cursor-pointer hover:bg-red-600" on:click="{onRemove}">
     <Icon icon="{MdDeleteForever}" />
   </div>
@@ -144,3 +165,11 @@
     />
   {/each}
 </Keyframes>
+
+{#if showTextEditor}
+  <TextEditor
+    item="{$selectedItem}"
+    on:close="{closeTextEditor}"
+    on:textFileChange
+  />
+{/if}
