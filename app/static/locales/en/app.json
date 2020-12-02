@@ -85,7 +85,10 @@
     "immediat": "immediat",
     "queue": "queue",
     "asap": "asap",
-    "add": "add"
+    "add": "add",
+    "usage": "usage",
+    "description": "description",
+    "cooldown": "cooldown"
   },
   "obs": {
     "scene-list": "OBS | Scene list",
@@ -132,7 +135,9 @@
       "onSubGift": "Sub gift",
       "onCommand": "Command",
       "none": "None"
-    }
+    },
+    "command-too-much-argument": "Too much argument! Usage: {{usage}}",
+    "command-not-enough-argument": "Not enough argument! Usage: {{usage}}"
   },
   "labels": {
     "top": "top",
