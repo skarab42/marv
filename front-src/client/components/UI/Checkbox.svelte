@@ -5,6 +5,7 @@
 
   export let label = null;
   export let checked = false;
+  export let labelClass = "p-2 cursor-pointer";
 
   $: icon = checked ? MdCheckBox : MdCheckBoxOutlineBlank;
   $: bgColor = checked ? "bg-green-600" : "bg-primary";
@@ -17,5 +18,5 @@
   type="checkbox"
   bgColor="{bgColor}"
   checked="{checked}"
-  labelClass="p-2 cursor-pointer"
+  labelClass="{labelClass}"
 />
