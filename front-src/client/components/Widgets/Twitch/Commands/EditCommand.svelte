@@ -14,7 +14,7 @@
 
 <Modal closable="{true}" on:close>
   <div class="bg-dark text-light rounded">
-    <div class="px-5 py-2 font-bold">Command settings</div>
+    <div class="px-5 py-2 font-bold bg-primary rounded-t">Command settings</div>
     <div class="px-5 pt-2 pb-5 flex flex-col space-y-2">
       <Input
         label="{_('words.command')}"
