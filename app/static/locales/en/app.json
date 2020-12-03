@@ -89,7 +89,10 @@
     "usage": "usage",
     "description": "description",
     "cooldown": "cooldown",
-    "done": "done"
+    "done": "done",
+    "back": "back",
+    "width": "width",
+    "height": "height"
   },
   "obs": {
     "scene-list": "OBS | Scene list",
