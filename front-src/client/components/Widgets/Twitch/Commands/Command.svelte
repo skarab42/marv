@@ -38,13 +38,18 @@
   }
 
   $: usage = parseUsage(command.usage || "");
+
+  let ts =
+    "text-shadow: 0px 1px 2px rgb(30 29 39 / 19%), 1px 2px 4px rgb(54 64 147 / 18%)";
 </script>
 
-<div class="flex items-center hover:bg-opacity-50 hover:bg-black">
+<div class="flex items-center hover:bg-opacity-50 hover:bg-black" style="{ts}">
   <div class="p-1 flex flex-auto flex-wrap items-center">
     <div class="p-1">
-      <span class="opacity-75">{prefix}</span>{command.name}
-      {#if usage}<span class="opacity-50">{usage}</span>{/if}
+      <div class="px-2 bg-black bg-opacity-25 rounded-full">
+        <span class="opacity-75">{prefix}</span>{command.name}
+        {#if usage}<span class="opacity-50">{usage}</span>{/if}
+      </div>
     </div>
     {#if command.description}
       <div class="p-1 flex-auto">{command.description}</div>
