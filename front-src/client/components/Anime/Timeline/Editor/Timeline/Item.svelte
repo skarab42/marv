@@ -124,6 +124,7 @@
 
   function closeTextEditor() {
     showTextEditor = false;
+    $items = $items;
   }
 </script>
 
@@ -140,7 +141,7 @@
   <div class="p-2 pl-0 truncate flex-1">{item.target.filename}</div>
   {#if item.target.type === 'text'}
     <div
-      class="p-2 cursor-pointer hover:bg-red-600"
+      class="p-2 cursor-pointer hover:bg-secondary"
       on:click="{openTextEditor.bind(null, item)}"
     >
       <Icon icon="{MdEdit}" />
