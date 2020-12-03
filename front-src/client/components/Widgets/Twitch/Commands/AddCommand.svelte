@@ -25,7 +25,7 @@
 </script>
 
 <div class="flex items-center">
-  <div class="p-2 px-4 bg-light bg-opacity-25">{prefix}</div>
+  <div class="p-2 px-4 bg-gray-600 bg-opacity-25">{prefix}</div>
   <Input
     label="{false}"
     value="{value}"
@@ -33,5 +33,7 @@
     on:input="{setCommand}"
     on:enterKey="{onEnterKey}"
   />
-  <Button on:click="{addCommand}" class="bg-primary">{_('words.add')}</Button>
+  <Button on:click="{addCommand}" class="bg-white bg-opacity-25">
+    {_('words.add')}
+  </Button>
 </div>
