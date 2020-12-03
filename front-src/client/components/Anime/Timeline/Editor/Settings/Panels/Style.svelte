@@ -16,9 +16,9 @@
   let itemStyleNames = [];
 
   $: itemStyleNames = style.map(([key]) => key);
-  $: styleNames = Object.keys(styleDefs).filter(
-    (key) => !itemStyleNames.includes(key)
-  );
+  $: styleNames = Object.keys(styleDefs)
+    .filter((key) => !itemStyleNames.includes(key))
+    .map((val) => ({ val, key: humanLabel(val) }));
   $: selectedStyle = styleNames[0] || "";
 
   function onChange(key, { target, detail }) {
@@ -58,6 +58,7 @@
   {#if styleNames.length}
     <div class="p-2 space-x-2 flex items-center">
       <Select
+        object="{true}"
         rootClass="w-full"
         inputClass="flex-auto rounded"
         items="{styleNames}"

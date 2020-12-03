@@ -16,9 +16,9 @@
   let itemAttrsNames = [];
 
   $: itemAttrsNames = attrs.map(([key]) => key);
-  $: attrsNames = Object.keys(attrsDefs).filter(
-    (key) => !itemAttrsNames.includes(key)
-  );
+  $: attrsNames = Object.keys(attrsDefs)
+    .filter((key) => !itemAttrsNames.includes(key))
+    .map((val) => ({ val, key: humanLabel(val) }));
   $: selectedAttrs = attrsNames[0] || "";
 
   function onChange(key, { target }) {
@@ -53,6 +53,7 @@
   {#if attrsNames.length}
     <div class="p-2 space-x-2 flex items-center">
       <Select
+        object="{true}"
         rootClass="w-full"
         inputClass="flex-auto rounded"
         items="{attrsNames}"

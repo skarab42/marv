@@ -16,9 +16,9 @@
   let itemTransNames = [];
 
   $: itemTransNames = trans.map(([key]) => key);
-  $: transNames = Object.keys(transDefs).filter(
-    (key) => !itemTransNames.includes(key)
-  );
+  $: transNames = Object.keys(transDefs)
+    .filter((key) => !itemTransNames.includes(key))
+    .map((val) => ({ val, key: humanLabel(val) }));
   $: selectedTrans = transNames[0] || "";
 
   function onChange(key, { target }) {
@@ -48,6 +48,7 @@
   {#if transNames.length}
     <div class="p-2 space-x-2 flex items-center">
       <Select
+        object="{true}"
         rootClass="w-full"
         inputClass="flex-auto rounded"
         items="{transNames}"
