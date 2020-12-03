@@ -88,7 +88,8 @@
     "add": "ajouter",
     "usage": "utilisation",
     "description": "déscription",
-    "cooldown": "cooldown"
+    "cooldown": "cooldown",
+    "done": "terminé"
   },
   "obs": {
     "scene-list": "OBS | Liste des scènes",
