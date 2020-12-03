@@ -36,6 +36,7 @@
   $: data = { panel, widget };
   $: component = widget.component;
   $: componentName = (component && component.name) || "";
+  $: config = componentName ? widgets[componentName].config : {};
 
   export function getWidgetsList() {
     return Object.entries(widgets).map(([val, props]) => {
@@ -72,26 +73,30 @@
 {#if component}
   <div class="p-2 font-bold bg-dark-lighter">{_(component.label)}</div>
   <div class="p-2 flex flex-col space-y-2">
-    <Select
-      object="{true}"
-      label="{_('words.trigger')}"
-      bind:value="{widget.trigger}"
-      items="{triggerTypes}"
-    />
-    <Select
-      object="{true}"
-      items="{eventNames}"
-      value="{widget.eventName}"
-      label="{_('words.event')}"
-      on:change="{onEventChange}"
-    />
-    {#if widget.eventName === 'onCommand'}
+    {#if config.hasTrigger}
       <Select
-        value="{widget.commandName}"
-        items="{commandNames}"
-        label="{_('words.command')}"
-        on:change="{onCommandChange}"
+        object="{true}"
+        label="{_('words.trigger')}"
+        bind:value="{widget.trigger}"
+        items="{triggerTypes}"
       />
+    {/if}
+    {#if config.hasEvent}
+      <Select
+        object="{true}"
+        items="{eventNames}"
+        value="{widget.eventName}"
+        label="{_('words.event')}"
+        on:change="{onEventChange}"
+      />
+      {#if widget.eventName === 'onCommand'}
+        <Select
+          value="{widget.commandName}"
+          items="{commandNames}"
+          label="{_('words.command')}"
+          on:change="{onCommandChange}"
+        />
+      {/if}
     {/if}
   </div>
   <svelte:component this="{widgets[component.name].Settings}" data="{data}" />
