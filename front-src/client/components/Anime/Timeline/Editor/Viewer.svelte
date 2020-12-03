@@ -108,7 +108,7 @@
       />
     </div>
     <div class="p-2 flex space-x-2">
-      <span>width</span>
+      <span>{_('words.width')}</span>
       <input
         type="number"
         min="{42}"
@@ -119,7 +119,7 @@
       />
     </div>
     <div class="p-2 flex space-x-2">
-      <span>height</span>
+      <span>{_('words.height')}</span>
       <input
         type="number"
         min="{42}"

@@ -1,4 +1,5 @@
 <script>
+  import { _ } from "@/libs/i18next";
   import createStore from "./libs/store";
   import { setContext, createEventDispatcher } from "svelte";
 
@@ -130,7 +131,7 @@
   <div slot="leftPane" class="relative h-full overflow-hidden shadow">
     <Viewer>
       <div slot="header" class="bg-primary">
-        <Button on:click="{onClose}">back</Button>
+        <Button on:click="{onClose}">{_('words.back')}</Button>
       </div>
       <ViewerItems />
     </Viewer>
