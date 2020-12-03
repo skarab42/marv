@@ -53,6 +53,7 @@
     removeWidgetComponent(panel, widget)
       .then(() => {
         widget.component = null;
+        update(panel);
       })
       .catch((error) => {
         console.log("ERRRO:", error);
