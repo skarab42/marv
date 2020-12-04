@@ -26,7 +26,7 @@
     }
   }
 
-  $: if ($state.streaming) {
+  $: if ($state.streaming && $state.status["fps"]) {
     fps = parseInt($state.status["fps"]);
     mem = parseInt($state.status["memory-usage"]);
     cpu = parseFloat($state.status["cpu-usage"]).toFixed(1);
