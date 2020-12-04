@@ -27,7 +27,7 @@
           on:click="{select.bind(null, option)}"
           class="{selectedClass(selected, option)} rounded-t"
         >
-          online
+          {_(`words.${option}`)}
         </Button>
       {/each}
     </div>

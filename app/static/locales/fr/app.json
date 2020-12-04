@@ -94,7 +94,9 @@
     "width": "largeur",
     "height": "hauteur",
     "disabled": "désactivé",
-    "reward": "récomponse"
+    "reward": "récomponse",
+    "online": "en live",
+    "offline": "hors live"
   },
   "obs": {
     "scene-list": "OBS | Liste des scènes",

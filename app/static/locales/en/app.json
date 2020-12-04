@@ -94,7 +94,9 @@
     "width": "width",
     "height": "height",
     "disabled": "disabled",
-    "reward": "words.reward"
+    "reward": "reward",
+    "online": "online",
+    "offline": "offline"
   },
   "obs": {
     "scene-list": "OBS | Scene list",
