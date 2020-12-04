@@ -5,11 +5,11 @@
 
   export let reward;
 
-  function onSwitchChange({ detail }) {
-    api.updateReward({ id: reward.id, isPaused: detail }).catch((error) => {
-      console.log("ERROR >>>", error);
-    });
-  }
+  // function onSwitchChange({ detail }) {
+  //   api.updateReward({ id: reward.id, isPaused: detail }).catch((error) => {
+  //     console.log("ERROR >>>", error);
+  //   });
+  // }
 
   function image(reward) {
     return (reward.image || reward.default_image).url_1x;
@@ -25,11 +25,11 @@
         class="text-xs px-2 bg-black bg-opacity-25 rounded-full"
       >{reward.cost}</span>
     </div>
-    <div class="px-2 break-words">{reward.prompt}</div>
+    <div class="px-2 break-words text-sm opacity-75">{reward.prompt}</div>
   </div>
-  <div class="p-2">
+  <!-- <div class="p-2">
     <Switch enabled="{!reward.is_paused}" on:change="{onSwitchChange}" />
-  </div>
+  </div> -->
   {#if !reward.is_enabled}
     <div
       class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center"

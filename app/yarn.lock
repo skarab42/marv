@@ -2105,6 +2105,16 @@ twitch-chat-client@^4.3.1:
     ircv3 "^0.26.5"
     tslib "^2.0.3"
 
+twitch-pubsub-client@^4.3.2:
+  version "4.3.2"
+  resolved "https://registry.yarnpkg.com/twitch-pubsub-client/-/twitch-pubsub-client-4.3.2.tgz#4db10e7e41960a808144801f47a535ea78a82767"
+  integrity sha512-sbI0akeuq8mE6wMW4bWsixBkTr4oXekUsR4NWEPdhkGHfJwM5byGHYvnIf8q2ravrBaK5v+W2hWhnctbw5NWAg==
+  dependencies:
+    "@d-fischer/connection" "^6.2.1"
+    "@d-fischer/logger" "^2.1.1"
+    "@d-fischer/shared-utils" "^2.4.1"
+    "@d-fischer/typed-event-emitter" "^3.1.1"
+
 twitch@^4.3.1:
   version "4.3.1"
   resolved "https://registry.yarnpkg.com/twitch/-/twitch-4.3.1.tgz#d38b5eec350d46a3adca50adf21f65349c5a0e33"

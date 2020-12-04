@@ -105,13 +105,15 @@
           on:change="{onCommandChange}"
         />
       {/if}
-      <Select
-        object="{true}"
-        items="{rewardNames}"
-        value="{widget.rewardId}"
-        label="{_('words.reward')}"
-        on:change="{onRewardChange}"
-      />
+      {#if widget.eventName === 'onRedemption'}
+        <Select
+          object="{true}"
+          items="{rewardNames}"
+          value="{widget.rewardId}"
+          label="{_('words.reward')}"
+          on:change="{onRewardChange}"
+        />
+      {/if}
     {/if}
   </div>
   <svelte:component this="{widgets[component.name].Settings}" data="{data}" />

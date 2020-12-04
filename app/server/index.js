@@ -26,6 +26,7 @@ async function syncDB() {
 
 // require("./libs/twitch/webhooks_");
 function initEvents() {
+  require("./libs/twitch/pubsub")();
   require("./libs/twitch/chat/events");
 }
 

@@ -94,7 +94,7 @@
     "width": "largeur",
     "height": "hauteur",
     "disabled": "désactivé",
-    "reward": "words.reward"
+    "reward": "récomponse"
   },
   "obs": {
     "scene-list": "OBS | Liste des scènes",
@@ -140,7 +140,8 @@
       "onSubExtend": "Sub extend",
       "onSubGift": "Sub gift",
       "onCommand": "Command",
-      "none": "Aucun"
+      "none": "Aucun",
+      "onRedemption": "Récompense"
     },
     "command-too-much-argument": "Trop d'argument! Usage: {{usage}}",
     "command-not-enough-argument": "Pas assez d'argument! Usage: {{usage}}",

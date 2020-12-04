@@ -5,8 +5,6 @@
   import WidgetWrapper from "@/components/Widgets/WidgetWrapper.svelte";
 
   export let widget;
-
-  $: console.log($rewards);
 </script>
 
 <WidgetWrapper widget="{widget}">

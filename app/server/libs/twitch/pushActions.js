@@ -6,7 +6,11 @@ const types = {
 };
 
 function isSameCommand(widget, eventProps) {
-  return widget.commandName === eventProps.command.name;
+  return eventProps.command && widget.commandName === eventProps.command.name;
+}
+
+function isReward(widget, eventProps) {
+  return eventProps.reward && widget.rewardId === eventProps.reward.id;
 }
 
 module.exports = function pushActions(eventName, eventProps) {
@@ -18,7 +22,8 @@ module.exports = function pushActions(eventName, eventProps) {
 
       if (type !== "anime") return;
       if (widget.eventName !== eventName) return;
-      if (widget.commandName && !isSameCommand(widget, eventProps)) return;
+      if (!isReward(widget, eventProps) && !isSameCommand(widget, eventProps))
+        return;
 
       push({ type, widget, eventProps });
     });
