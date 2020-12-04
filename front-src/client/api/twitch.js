@@ -8,6 +8,7 @@ export default {
   getCommandList: () => emit("twitch.getCommandList"),
   getCommandNames: () => emit("twitch.getCommandNames"),
   getCommandPrefix: () => emit("twitch.getCommandPrefix"),
+  getLastFollowers: () => emit("twitch.getLastFollowers"),
   addCommand: (command) => emit("twitch.addCommand", command),
   updateReward: (reward) => emit("twitch.updateReward", reward),
   updateCommand: (command) => emit("twitch.updateCommand", command),

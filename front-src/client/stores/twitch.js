@@ -8,6 +8,7 @@ export const user = writable(null);
 export const chat = writable(null);
 export const commands = writable(null);
 export const rewards = writable(null);
+export const followers = writable(null);
 
 let loaded = false;
 
@@ -38,9 +39,11 @@ async function loadOnce() {
     });
   });
 
+  const _followers = await api.getLastFollowers();
   const _commands = await api.getCommandList();
   const _rewards = await api.getRewardList();
 
+  followers.set(_followers);
   commands.set(_commands);
   rewards.set(_rewards);
 
