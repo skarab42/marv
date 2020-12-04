@@ -6,29 +6,16 @@ const sirv = require("sirv");
 const http = require("http");
 const polka = require("polka");
 const stores = require("../stores");
+const initDB = require("./db/init");
 const { json } = require("body-parser");
 const twitch = require("./libs/twitch");
 const socket = require("./libs/socket.io");
 const { i18next } = require("./libs/i18next");
 const { getSystemFonts } = require("./libs/files");
+const initTwitchEvents = require("./libs/twitch/initEvents");
 const twitchAuthMiddleware = require("./libs/twitch/authMiddleware");
 const missingKeyHandler = require("./libs/i18next/missingKeyHandler");
 const { watch, uploadPath, clientPath, staticPath } = require("../utils");
-
-async function syncDB() {
-  const sequelize = require("./db");
-
-  require("./db/Models/Viewer");
-  require("./db/Models/Command");
-
-  await sequelize.sync({ alter: true });
-}
-
-// require("./libs/twitch/webhooks_");
-function initEvents() {
-  require("./libs/twitch/pubsub")();
-  require("./libs/twitch/chat/events");
-}
 
 let { host, port } = stores.server.getAll();
 const appFingerprint = stores.app.get("fingerprint");
@@ -72,7 +59,7 @@ function uriDecode(req, res, next) {
 }
 
 async function start() {
-  watch && (await syncDB());
+  watch && (await initDB());
 
   const server = http.createServer();
 
@@ -91,9 +78,9 @@ async function start() {
       if (error) return onError(error);
       socket(server);
       twitchAutoConnect();
+      initTwitchEvents();
       obsAutoConnect();
       printBanner();
-      initEvents();
     });
 }
 
