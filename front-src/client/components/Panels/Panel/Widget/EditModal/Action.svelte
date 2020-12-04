@@ -2,7 +2,7 @@
   import api from "@/api/twitch";
   import cloneDeep from "clone-deep";
   import { _ } from "@/libs/i18next";
-  import { commands } from "@/stores/twitch";
+  import { commands, rewards } from "@/stores/twitch";
   import widgets from "@/components/Widgets";
   import Button from "@/components/UI/Button.svelte";
   import Select from "@/components/UI/Select.svelte";
@@ -12,11 +12,18 @@
   export let panel;
   export let widget;
 
-  const none = _(`words.none`);
-
   let eventNames = [];
 
+  const none = _(`words.none`);
+
+  const noneObject = { key: _("words.none"), val: null };
+  const rewardMap = (reward) => ({ val: reward.id, key: reward.title });
+  const widgetsList = [noneObject, ...getWidgetsList()];
+
   $: commandNames = [none, ...$commands.map((cmd) => cmd.name)];
+  $: rewardNames = $rewards
+    ? [noneObject, ...$rewards.map(rewardMap)]
+    : [noneObject];
 
   const triggerTypes = ["immediat", "queue", "asap"].map((val) => {
     return { val, key: _(`words.${val}`) };
@@ -27,11 +34,6 @@
       return { key: _(`twitch.events.${val}`), val };
     });
   });
-
-  const widgetsList = [
-    { key: _("words.none"), val: null },
-    ...getWidgetsList(),
-  ];
 
   $: data = { panel, widget };
   $: component = widget.component;
@@ -69,6 +71,11 @@
     widget.commandName = commandName;
     update(panel);
   }
+
+  function onRewardChange({ detail: rewardId }) {
+    widget.rewardId = rewardId;
+    update(panel);
+  }
 </script>
 
 {#if component}
@@ -98,6 +105,13 @@
           on:change="{onCommandChange}"
         />
       {/if}
+      <Select
+        object="{true}"
+        items="{rewardNames}"
+        value="{widget.rewardId}"
+        label="{_('words.reward')}"
+        on:change="{onRewardChange}"
+      />
     {/if}
   </div>
   <svelte:component this="{widgets[component.name].Settings}" data="{data}" />

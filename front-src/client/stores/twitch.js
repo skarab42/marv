@@ -7,10 +7,11 @@ export const stream = writable(null);
 export const user = writable(null);
 export const chat = writable(null);
 export const commands = writable(null);
+export const rewards = writable(null);
 
 let loaded = false;
 
-function loadOnce() {
+async function loadOnce() {
   if (loaded) return;
 
   on("state.stream", stream.set);
@@ -37,7 +38,11 @@ function loadOnce() {
     });
   });
 
-  api.getCommandList().then(commands.set);
+  const _commands = await api.getCommandList();
+  const _rewards = await api.getRewardList();
+
+  commands.set(_commands);
+  rewards.set(_rewards);
 
   loaded = true;
 }
@@ -48,5 +53,5 @@ export default async function load() {
   stream.set(state.stream);
   user.set(state.user);
   chat.set(state.chat);
-  loadOnce();
+  await loadOnce();
 }
