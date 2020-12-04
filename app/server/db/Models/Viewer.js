@@ -19,6 +19,10 @@ const Viewer = sequelize.define("Viewer", {
     type: DataTypes.BOOLEAN,
     allowNull: false,
   },
+  offlineFollow: {
+    type: DataTypes.BOOLEAN,
+    defaultValue: false,
+  },
 });
 
 module.exports = Viewer;

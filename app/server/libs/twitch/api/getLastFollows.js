@@ -1,6 +1,8 @@
 const twitch = require("../index");
 const Viewer = require("../../../db/Models/Viewer");
 
+let offlineFollow = true;
+
 module.exports = async function getLastFollows() {
   const user = await twitch.api.helix.users.getMe(true);
   const followsPaginated = await twitch.api.helix.users.getFollowsPaginated({
@@ -23,10 +25,15 @@ module.exports = async function getLastFollows() {
       name: _data.from_name,
       followedAt: _data.followed_at,
       isFollowing: true,
+      offlineFollow,
     });
 
-    newFollows.push(newFollow);
+    if (!offlineFollow) {
+      newFollows.push(newFollow);
+    }
   }
+
+  offlineFollow = false;
 
   return newFollows;
 };

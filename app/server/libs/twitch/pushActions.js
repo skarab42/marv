@@ -5,12 +5,12 @@ const types = {
   AnimeTimeline: "anime",
 };
 
-function isSameCommand(widget, eventProps) {
-  return eventProps.command && widget.commandName === eventProps.command.name;
+function isInvalidCommand(widget, eventProps) {
+  return eventProps.command && widget.commandName !== eventProps.command.name;
 }
 
-function isReward(widget, eventProps) {
-  return eventProps.reward && widget.rewardId === eventProps.reward.id;
+function isInvalidReward(widget, eventProps) {
+  return eventProps.reward && widget.rewardId !== eventProps.reward.id;
 }
 
 module.exports = function pushActions(eventName, eventProps) {
@@ -22,8 +22,8 @@ module.exports = function pushActions(eventName, eventProps) {
 
       if (type !== "anime") return;
       if (widget.eventName !== eventName) return;
-      if (!isReward(widget, eventProps) && !isSameCommand(widget, eventProps))
-        return;
+      if (isInvalidReward(widget, eventProps)) return;
+      if (isInvalidCommand(widget, eventProps)) return;
 
       push({ type, widget, eventProps });
     });

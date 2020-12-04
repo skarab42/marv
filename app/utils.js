@@ -13,8 +13,9 @@ const uploadPath = path.join(userPath, "upload");
 const storesPath = path.join(userPath, "stores");
 const filesPath = path.join(uploadPath, "files");
 const databasePath = path.join(userPath, "database");
+const databaseFilename = "marv.sqlite";
 
-const isFirstStart = !fs.existsSync(databasePath);
+const isFirstStart = !fs.existsSync(path.join(databasePath, databaseFilename));
 const watch = process.argv.includes("--watch") || process.argv.includes("-w");
 
 module.exports = {
@@ -28,5 +29,6 @@ module.exports = {
   staticPath,
   clientPath,
   databasePath,
+  databaseFilename,
   isFirstStart,
 };
