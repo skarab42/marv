@@ -15,7 +15,12 @@ const { getSystemFonts } = require("./libs/files");
 const initTwitchEvents = require("./libs/twitch/initEvents");
 const twitchAuthMiddleware = require("./libs/twitch/authMiddleware");
 const missingKeyHandler = require("./libs/i18next/missingKeyHandler");
-const { watch, uploadPath, clientPath, staticPath } = require("../utils");
+const {
+  isFirstStart,
+  uploadPath,
+  clientPath,
+  staticPath,
+} = require("../utils");
 
 let { host, port } = stores.server.getAll();
 const appFingerprint = stores.app.get("fingerprint");
@@ -59,7 +64,7 @@ function uriDecode(req, res, next) {
 }
 
 async function start() {
-  watch && (await initDB());
+  isFirstStart && (await initDB());
 
   const server = http.createServer();
 
