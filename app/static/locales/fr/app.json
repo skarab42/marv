@@ -92,7 +92,9 @@
     "done": "terminé",
     "back": "retour",
     "width": "largeur",
-    "height": "hauteur"
+    "height": "hauteur",
+    "disabled": "désactivé",
+    "reward": "words.reward"
   },
   "obs": {
     "scene-list": "OBS | Liste des scènes",
@@ -141,7 +143,8 @@
       "none": "Aucun"
     },
     "command-too-much-argument": "Trop d'argument! Usage: {{usage}}",
-    "command-not-enough-argument": "Pas assez d'argument! Usage: {{usage}}"
+    "command-not-enough-argument": "Pas assez d'argument! Usage: {{usage}}",
+    "rewards": "Récompenses"
   },
   "labels": {
     "top": "haut",

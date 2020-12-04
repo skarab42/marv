@@ -92,7 +92,9 @@
     "done": "done",
     "back": "back",
     "width": "width",
-    "height": "height"
+    "height": "height",
+    "disabled": "disabled",
+    "reward": "words.reward"
   },
   "obs": {
     "scene-list": "OBS | Scene list",
@@ -141,7 +143,8 @@
       "none": "None"
     },
     "command-too-much-argument": "Too much argument! Usage: {{usage}}",
-    "command-not-enough-argument": "Not enough argument! Usage: {{usage}}"
+    "command-not-enough-argument": "Not enough argument! Usage: {{usage}}",
+    "rewards": "Rewards"
   },
   "labels": {
     "top": "top",
