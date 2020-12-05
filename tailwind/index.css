@@ -20,6 +20,11 @@ input:focus {
   border-top-color: tomato;
 }
 
+.tippy-box[data-theme~="marv"][data-placement^="bottom"]
+  > .tippy-arrow::before {
+  border-bottom-color: tomato;
+}
+
 /*
   The emerging W3C standard that is currently Firefox-only
   Source: https://www.digitalocean.com/community/tutorials/css-scrollbars
