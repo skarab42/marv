@@ -6,7 +6,7 @@
     "open-in-window": "Open in window",
     "open-in-browser": "Open in browser",
     "no-panel-found": "No panel found o_O!",
-    "open-edit-mode": "Switch to edit mode by clicking on the gear.",
+    "open-edit-mode": "Switch to edit mode by clicking on the pencil.",
     "click-to-add-panel": "Click on '+' to add your first panel!",
     "click-to-add-widget": "Click on '+' to add your first widget!",
     "powers-group": "Panel",
@@ -41,7 +41,9 @@
     "dont-ask-me-again": "Dont ask me again",
     "first-start-title": "This is your first start ! Happy :)",
     "loading-fonts-list": "Loading fonts list",
-    "double-click-to-edit": "click me twice"
+    "double-click-to-edit": "click me twice",
+    "edit-mode": "Edit mode",
+    "add-panel": "sentences.add-panel"
   },
   "words": {
     "settings": "settings",

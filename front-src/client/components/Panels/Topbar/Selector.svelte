@@ -4,8 +4,9 @@
 
   import MdAdd from "svelte-icons/md/MdAdd.svelte";
   import Tippy from "@/components/UI/Tippy.svelte";
+  import MdEdit from "svelte-icons/md/MdEdit.svelte";
+  import MdDone from "svelte-icons/md/MdDone.svelte";
   import Button from "@/components/UI/Button.svelte";
-  import MdSettings from "svelte-icons/md/MdSettings.svelte";
   import HorizontalScroller from "@/components/UI/HorizontalScroller.svelte";
 
   import {
@@ -44,10 +45,14 @@
   <Tippy options="{editTippy}" disabled="{disabledEditTippy}">
     <Button
       padding="p-2"
-      icon="{MdSettings}"
       on:click="{toggleEditMode}"
-      class="{$editMode ? 'bg-red-600' : 'bg-primary'}"
-    />
+      icon="{$editMode ? MdDone : MdEdit}"
+      class="{$editMode ? 'bg-green-600' : 'bg-primary'}"
+    >
+      <span
+        class="hidden md:inline md:ml-2"
+      >{$editMode ? _('words.done') : _('sentences.edit-mode')}</span>
+    </Button>
   </Tippy>
   {#if $editMode}
     <Tippy options="{addTippy}" disabled="{$panels.length}">
@@ -56,7 +61,9 @@
         icon="{MdAdd}"
         on:click="{api.add}"
         class="bg-primary"
-      />
+      >
+        <span class="hidden md:inline md:ml-2">{_('sentences.add-panel')}</span>
+      </Button>
     </Tippy>
   {/if}
   {#if $panels.length}

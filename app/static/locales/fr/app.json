@@ -6,7 +6,7 @@
     "open-in-window": "Ouvrir dans une fenêtre",
     "open-in-browser": "Ouvrir dans le navigateur",
     "no-panel-found": "Aucun panneau trouvé o_O!",
-    "open-edit-mode": "Passe en mode édition en cliquant sur l'engrenage.",
+    "open-edit-mode": "Passe en mode édition en cliquant sur l'crayon.",
     "click-to-add-panel": "Clique sur '+' pour ajouter ton premier panneau.",
     "click-to-add-widget": "Clique sur '+' pour ajouter ton premier widget.",
     "powers-group": "Panneau",
@@ -41,7 +41,9 @@
     "dont-ask-me-again": "Ne plus afficher",
     "first-start-title": "Connexion à OBS !",
     "loading-fonts-list": "Chargement des polices",
-    "double-click-to-edit": "clique moi 2x"
+    "double-click-to-edit": "clique moi 2x",
+    "edit-mode": "Mode édition",
+    "add-panel": "sentences.add-panel"
   },
   "words": {
     "settings": "options",
