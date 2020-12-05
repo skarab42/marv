@@ -2,6 +2,7 @@
   import api from "@/api/twitch";
   import cloneDeep from "clone-deep";
   import { _ } from "@/libs/i18next";
+  import capitalize from "capitalize";
   import { commands, rewards } from "@/stores/twitch";
   import widgets from "@/components/Widgets";
   import Button from "@/components/UI/Button.svelte";
@@ -14,9 +15,9 @@
 
   let eventNames = [];
 
-  const none = _(`words.none`);
+  const none = capitalize(_(`words.none`));
 
-  const noneObject = { key: _("words.none"), val: null };
+  const noneObject = { key: none, val: null };
   const rewardMap = (reward) => ({ val: reward.id, key: reward.title });
   const widgetsList = [noneObject, ...getWidgetsList()];
 
@@ -26,7 +27,7 @@
     : [noneObject];
 
   const triggerTypes = ["immediat", "queue", "asap"].map((val) => {
-    return { val, key: _(`words.${val}`) };
+    return { val, key: capitalize(_(`words.${val}`)) };
   });
 
   api.getEventNames().then((names) => {
