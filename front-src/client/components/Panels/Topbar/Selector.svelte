@@ -3,6 +3,7 @@
   import { _ } from "@/libs/i18next";
 
   import MdAdd from "svelte-icons/md/MdAdd.svelte";
+  import Tippy from "@/components/UI/Tippy.svelte";
   import Button from "@/components/UI/Button.svelte";
   import MdSettings from "svelte-icons/md/MdSettings.svelte";
   import HorizontalScroller from "@/components/UI/HorizontalScroller.svelte";
@@ -17,6 +18,12 @@
 
   let scroller = null;
 
+  let tippy = {
+    content: _("sentences.no-panels-found"),
+    placement: "bottom",
+    showOnCreate: true,
+  };
+
   api.on("add", (panel, { owner }) => {
     owner && scroller && scroller.scrollRight();
   });
@@ -27,12 +34,14 @@
 </script>
 
 <div class="p-2 flex space-x-2 items-center bg-dark text-light">
-  <Button
-    padding="p-2"
-    icon="{MdSettings}"
-    on:click="{toggleEditMode}"
-    class="{$editMode ? 'bg-red-600' : 'bg-primary'}"
-  />
+  <Tippy options="{tippy}" disabled="{$panels.length}">
+    <Button
+      padding="p-2"
+      icon="{MdSettings}"
+      on:click="{toggleEditMode}"
+      class="{$editMode ? 'bg-red-600' : 'bg-primary'}"
+    />
+  </Tippy>
   {#if $editMode}
     <Button
       padding="p-2"
@@ -53,7 +62,5 @@
         </Button>
       {/each}
     </HorizontalScroller>
-  {:else}
-    <div class="p-2">{_('sentences.no-panels-found')}</div>
   {/if}
 </div>
