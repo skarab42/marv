@@ -19,7 +19,7 @@
   $: transNames = Object.keys(transDefs)
     .filter((key) => !itemTransNames.includes(key))
     .map((val) => ({ val, key: humanLabel(val) }));
-  $: selectedTrans = transNames[0] || "";
+  $: selectedTrans = (transNames[0] && transNames[0].val) || "";
 
   function onChange(key, { target }) {
     dispatch("change", { key, value: target.value });

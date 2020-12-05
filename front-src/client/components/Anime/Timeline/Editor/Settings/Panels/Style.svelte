@@ -19,7 +19,7 @@
   $: styleNames = Object.keys(styleDefs)
     .filter((key) => !itemStyleNames.includes(key))
     .map((val) => ({ val, key: humanLabel(val) }));
-  $: selectedStyle = styleNames[0] || "";
+  $: selectedStyle = (styleNames[0] && styleNames[0].val) || "";
 
   function onChange(key, { target, detail }) {
     const value = detail ? detail.hex || detail : target.value;

@@ -19,7 +19,7 @@
   $: attrsNames = Object.keys(attrsDefs)
     .filter((key) => !itemAttrsNames.includes(key))
     .map((val) => ({ val, key: humanLabel(val) }));
-  $: selectedAttrs = attrsNames[0] || "";
+  $: selectedAttrs = (attrsNames[0] && attrsNames[0].val) || "";
 
   function onChange(key, { target }) {
     dispatch("change", { key, value: target.value });
