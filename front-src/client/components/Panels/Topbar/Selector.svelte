@@ -18,11 +18,18 @@
 
   let scroller = null;
 
-  let tippy = {
-    content: _("sentences.no-panels-found"),
-    placement: "bottom",
-    showOnCreate: true,
-  };
+  const noPanelFound = _("sentences.no-panel-found");
+  const noWidgetFound = _("sentences.no-widget-found");
+  const openEditMode = _("sentences.open-edit-mode");
+  const clickAddPanel = _("sentences.click-to-add-panel");
+
+  const tippy = { placement: "bottom", showOnCreate: true };
+
+  $: widgetsCount = $currentPanel ? $currentPanel.widgets.length : 0;
+  $: notFound = $panels.length ? noWidgetFound : noPanelFound;
+  $: editTippy = { ...tippy, content: `${notFound} ${openEditMode}` };
+  $: addTippy = { ...tippy, content: clickAddPanel };
+  $: disabledEditTippy = $editMode || widgetsCount;
 
   api.on("add", (panel, { owner }) => {
     owner && scroller && scroller.scrollRight();
@@ -34,7 +41,7 @@
 </script>
 
 <div class="p-2 flex space-x-2 items-center bg-dark text-light">
-  <Tippy options="{tippy}" disabled="{$panels.length}">
+  <Tippy options="{editTippy}" disabled="{disabledEditTippy}">
     <Button
       padding="p-2"
       icon="{MdSettings}"
@@ -43,12 +50,14 @@
     />
   </Tippy>
   {#if $editMode}
-    <Button
-      padding="p-2"
-      icon="{MdAdd}"
-      on:click="{api.add}"
-      class="bg-primary"
-    />
+    <Tippy options="{addTippy}" disabled="{$panels.length}">
+      <Button
+        padding="p-2"
+        icon="{MdAdd}"
+        on:click="{api.add}"
+        class="bg-primary"
+      />
+    </Tippy>
   {/if}
   {#if $panels.length}
     <HorizontalScroller bind:this="{scroller}" gap="2" arrowClass="bg-dark">

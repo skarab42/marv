@@ -1,6 +1,5 @@
 <script>
   import api from "@/api/panels";
-  import { _ } from "@/libs/i18next";
   import Grid from "./Panel/Grid.svelte";
   import gridHelper from "svelte-grid/src/utils/helper";
   import {
@@ -35,8 +34,6 @@
         <div class="h-full overflow-x-hidden">
           <Grid panel="{panel}" />
         </div>
-      {:else}
-        <div class="p-4">{_('sentences.no-widgets-found')}</div>
       {/if}
     </div>
   {/each}

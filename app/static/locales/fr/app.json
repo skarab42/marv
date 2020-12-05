@@ -5,10 +5,13 @@
     "ask-for-client-reload": "Appliquer les modifications?",
     "open-in-window": "Ouvrir dans une fenêtre",
     "open-in-browser": "Ouvrir dans le navigateur",
-    "no-panels-found": "Aucun panneau trouvé o_O ! Passe en mode édition en cliquant sur l'engrenage, puis clic sur '+' pour ajouter ton premier panneau.",
+    "no-panel-found": "Aucun panneau trouvé o_O!",
+    "open-edit-mode": "Passe en mode édition en cliquant sur l'engrenage.",
+    "click-to-add-panel": "Clique sur '+' pour ajouter ton premier panneau.",
+    "click-to-add-widget": "Clique sur '+' pour ajouter ton premier widget.",
     "powers-group": "Panneau",
     "ask-for-panel-deletion": "Supprimer le \"{{name}}\"?",
-    "no-widgets-found": "Aucun bouton trouvé o_O ! Passe en mode édition en cliquant sur l'engrenage pour ajouter ton premier bouton.",
+    "no-widget-found": "Aucun bouton trouvé o_O!",
     "add-grid-widget": "Ajouter un bouton",
     "ask-for-widget-deletion": "Supprimer le bouton \"{{name}}\"?",
     "widget-settings": "Réglages du bouton",
@@ -37,7 +40,8 @@
     "open-twitch-chat-window": "Ouvrir le chat Twitch",
     "dont-ask-me-again": "Ne plus afficher",
     "first-start-title": "Connexion à OBS !",
-    "loading-fonts-list": "Chargement des polices"
+    "loading-fonts-list": "Chargement des polices",
+    "double-click-to-edit": "clique moi 2x"
   },
   "words": {
     "settings": "options",

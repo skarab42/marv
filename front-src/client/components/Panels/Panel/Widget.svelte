@@ -1,4 +1,5 @@
 <script>
+  import { _ } from "@/libs/i18next";
   import { editMode } from "@/stores/panels";
   import widgets from "@/components/Widgets";
   import EditMode from "./Widget/EditMode.svelte";
@@ -29,8 +30,13 @@
 
   {#if !component && $editMode}
     <div class="absolute inset-0 pointer-events-none">
-      <div class="flex w-full h-full opacity-50">
+      <div class="flex w-full h-full opacity-50 pb-2">
         <MdAdd />
+      </div>
+      <div class="absolute bottom-0 w-full text-center">
+        <span
+          class="text-xs opacity-50"
+        >{_('sentences.double-click-to-edit')}</span>
       </div>
     </div>
     <EditMode panel="{panel}" widget="{widget}" />

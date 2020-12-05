@@ -2,13 +2,16 @@
   "sentences": {
     "welcome-message": "Welcome home",
     "waiting-for-connexion": "Waiting for connexion",
-    "ask-for-client-reload": "Would you like to reload the application now to apply changes ?",
+    "ask-for-client-reload": "Would you like to reload the application now to apply changes?",
     "open-in-window": "Open in window",
     "open-in-browser": "Open in browser",
-    "no-panels-found": "No panel found o_O ! Click on the cross to add your first group of powers !",
-    "powers-group": "Powers group",
+    "no-panel-found": "No panel found o_O!",
+    "open-edit-mode": "Switch to edit mode by clicking on the gear.",
+    "click-to-add-panel": "Click on '+' to add your first panel!",
+    "click-to-add-widget": "Click on '+' to add your first widget!",
+    "powers-group": "Panel",
     "ask-for-panel-deletion": "Would you like to remove the panel \"{{name}}\"?",
-    "no-widgets-found": "No widgets found o_O ! Click on the cog button to add your first power !",
+    "no-widget-found": "No widget found o_O!",
     "add-grid-widget": "add widget",
     "ask-for-widget-deletion": "Would you like to remove the widget \"{{name}}\"?",
     "widget-settings": "Widget settings",
@@ -37,7 +40,8 @@
     "open-twitch-chat-window": "Open Twitch chat",
     "dont-ask-me-again": "Dont ask me again",
     "first-start-title": "This is your first start ! Happy :)",
-    "loading-fonts-list": "Loading fonts list"
+    "loading-fonts-list": "Loading fonts list",
+    "double-click-to-edit": "click me twice"
   },
   "words": {
     "settings": "settings",
