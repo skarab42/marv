@@ -6,12 +6,10 @@
   import Player from "./Timeline/Player.svelte";
   import Cursor from "./Timeline/Cursor.svelte";
   import Icon from "@/components/UI/Icon.svelte";
+  import Tippy from "@/components/UI/Tippy.svelte";
   import { getContext, createEventDispatcher } from "svelte";
   import MdFileUpload from "svelte-icons/md/MdFileUpload.svelte";
   import FileManager from "@/components/FileManager/Main.svelte";
-
-  // import "tippy.js/themes/translucent.css";
-  import tippy from "sveltejs-tippy";
 
   const { anime, items } = getContext("Editor");
   const dispatch = createEventDispatcher();
@@ -21,11 +19,10 @@
 
   const accept = ["image", "audio", "text", "video", "font"];
 
-  $: tippyProps = {
+  let tippy = {
     content: _("sentences.add-file-to-timeline"),
-    showOnCreate: !$items.length,
+    showOnCreate: true,
     placement: "top",
-    theme: "marv",
   };
 
   function openFileManager() {
@@ -48,13 +45,13 @@
 
 <Grid bind:splitter>
   <div slot="header" class="p-2 flex splace-x-2 bg-primary-dark">
-    <div use:tippy="{tippyProps}">
+    <Tippy options="{tippy}" disabled="{$items.length}">
       <Icon
         icon="{MdFileUpload}"
         on:click="{openFileManager}"
         class="text-secondary cursor-pointer"
       />
-    </div>
+    </Tippy>
 
     <Player anime="{$anime}" />
   </div>
