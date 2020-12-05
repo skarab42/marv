@@ -41,9 +41,9 @@
     "dont-ask-me-again": "Dont ask me again",
     "first-start-title": "This is your first start ! Happy :)",
     "loading-fonts-list": "Loading fonts list",
-    "double-click-to-edit": "click me twice",
+    "double-click-to-edit": "Click me twice",
     "edit-mode": "Edit mode",
-    "add-panel": "sentences.add-panel"
+    "add-panel": "Add panel"
   },
   "words": {
     "settings": "settings",
@@ -102,7 +102,12 @@
     "disabled": "disabled",
     "reward": "reward",
     "online": "online",
-    "offline": "offline"
+    "offline": "offline",
+    "top": "top",
+    "bottom": "bottom",
+    "left": "left",
+    "center": "center",
+    "right": "right"
   },
   "obs": {
     "scene-list": "OBS | Scene list",
@@ -116,16 +121,21 @@
     "timeline": "Anime | Timeline"
   },
   "twitch": {
-    "connect-at-startup": "Connect Twitch at startup",
     "chat": "Twitch chat",
     "stream": "Twitch stream",
     "commands": "Commands",
+    "rewards": "Rewards",
+    "followers": "Followers",
+    "connect-at-startup": "Connect Twitch at startup",
     "empty-command-list": "Empty command list",
     "command-not-found": "Command \"{{command}}\" not found",
     "command-disabled": "Command \"{{command}}\" disabled",
     "command-cooldown": "Cooldown \"{{command}}\" -> ~{{rest}}",
+    "command-too-much-argument": "Too much argument! Usage: {{usage}}",
+    "command-not-enough-argument": "Not enough argument! Usage: {{usage}}",
+    "empty-follower-list": "The follower list is empty.",
     "events": {
-      "None": "twitch.events.None",
+      "none": "None",
       "onFollow": "Follow",
       "onAction": "Action",
       "onBan": "Ban",
@@ -148,14 +158,8 @@
       "onSubExtend": "Sub extend",
       "onSubGift": "Sub gift",
       "onCommand": "Command",
-      "none": "None",
       "onRedemption": "Redemption"
-    },
-    "command-too-much-argument": "Too much argument! Usage: {{usage}}",
-    "command-not-enough-argument": "Not enough argument! Usage: {{usage}}",
-    "rewards": "Rewards",
-    "followers": "Followers",
-    "empty-follower-list": "twitch.empty-follower-list"
+    }
   },
   "labels": {
     "top": "top",

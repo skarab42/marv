@@ -1,10 +1,13 @@
 <script>
+  import borders from "./borders";
   import { _ } from "@/libs/i18next";
+  import capitalize from "capitalize";
   import { update } from "@/libs/panels";
   import Icon from "@/components/UI/Icon.svelte";
   import Input from "@/components/UI/Input.svelte";
   import Select from "@/components/UI/Select.svelte";
   import Button from "@/components/UI/Button.svelte";
+  import MdClose from "svelte-icons/md/MdClose.svelte";
   import ColorPicker from "@/components/UI/ColorPicker.svelte";
   import MdDelete from "svelte-icons/md/MdDeleteForever.svelte";
   import FileManager from "@/components/FileManager/Main.svelte";
@@ -20,6 +23,23 @@
   $: bgImage =
     widget.backgroundImage &&
     `background-image: url(files/${widget.backgroundImage});`;
+
+  function _capitalize(val) {
+    return { val, key: capitalize(_(`words.${val}`)) };
+  }
+
+  let borderSizes = borders.positions;
+  let borderPositions = borders.sizes;
+
+  let borderSize = borderSizes[0].val;
+  let borderPosition = borderPositions[0].val;
+
+  $: selectedBorders = `rounded-${borderSize}-${borderPosition}`;
+
+  let positionItems = ["top", "bottom"].map(_capitalize);
+  let alignItems = ["left", "center", "right"].map(_capitalize);
+
+  $: bordersTags = widget.borders.split(" ").filter((tag) => tag.length);
 
   function set(key, value) {
     widget[key] = value;
@@ -50,6 +70,24 @@
   function removeBackgroundImage() {
     set("backgroundImage", null);
   }
+
+  function onBorderSizeChange({ detail: size }) {
+    borderSize = size;
+  }
+
+  function onBorderPositionChange({ detail: position }) {
+    borderPosition = position;
+  }
+
+  function onBorderAdd() {
+    if (!bordersTags.includes(selectedBorders)) {
+      set("borders", `${widget.borders} ${selectedBorders}`);
+    }
+  }
+
+  function removeBorderTag(tag) {
+    set("borders", widget.borders.replace(tag, "").trim());
+  }
 </script>
 
 <div class="p-2 space-y-2 flex flex-col">
@@ -72,22 +110,49 @@
     on:update="{onUpdate.bind(null, 'labelPadding')}"
   />
   <Select
-    label="{labelWord} | {_('words.align')}"
+    object="{true}"
+    items="{alignItems}"
     value="{widget.labelAlign}"
-    items="{['left', 'center', 'right']}"
+    label="{labelWord} | {_('words.align')}"
     on:change="{onUpdate.bind(null, 'labelAlign')}"
   />
   <Select
-    label="{labelWord} | {_('words.position')}"
+    object="{true}"
+    items="{positionItems}"
     value="{widget.labelPosition}"
-    items="{['top', 'bottom']}"
+    label="{labelWord} | {_('words.position')}"
     on:change="{onUpdate.bind(null, 'labelPosition')}"
   />
-  <Input
-    label="{_('words.borders')}"
-    value="{widget.borders}"
-    on:update="{onUpdate.bind(null, 'borders')}"
-  />
+  <div class="flex space-x-1">
+    <Select
+      object="{true}"
+      value="{borderSize}"
+      items="{borderSizes}"
+      label="{_('words.borders')}"
+      on:change="{onBorderSizeChange}"
+    />
+    <Select
+      object="{true}"
+      label="{false}"
+      value="{borderPosition}"
+      items="{borderPositions}"
+      on:change="{onBorderPositionChange}"
+    />
+    <Button class="flex-auto bg-secondary" on:click="{onBorderAdd}">Add</Button>
+  </div>
+  <div class="flex space-x-2">
+    {#each bordersTags as tag}
+      <div
+        class="flex items-center bg-black bg-opacity-50 rounded overflow-hidden"
+      >
+        <div class="px-2 flex-auto">{tag}</div>
+        <span
+          on:click="{removeBorderTag.bind(null, tag)}"
+          class="p-1 bg-red-600 cursor-pointer"
+        ><Icon size="sm" icon="{MdClose}" /></span>
+      </div>
+    {/each}
+  </div>
   <ColorPicker
     label="{_('sentences.background-color')}"
     on:color="{onBackgroundColor}"
