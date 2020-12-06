@@ -18,8 +18,8 @@
   on:click="{onClick}"
   class="relative h-4 flex items-center rounded cursor-pointer"
 >
-  <div class="w-6 h-2 bg-gray-500 bg-opacity-75 rounded-full"></div>
+  <div class="w-6 h-2 bg-gray-500 bg-opacity-75 rounded-xl"></div>
   <div
-    class="absolute top-0 {position} w-4 h-4 {color} rounded-full shadow"
+    class="absolute top-0 {position} w-4 h-4 {color} rounded-xl shadow"
   ></div>
 </div>

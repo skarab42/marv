@@ -22,7 +22,7 @@
       <img src="{image(reward)}" alt="{reward.title}" class="h-6" />
       <span class="font-bold">{reward.title}</span>
       <span
-        class="text-xs px-2 bg-black bg-opacity-25 rounded-full"
+        class="text-xs px-2 bg-black bg-opacity-25 rounded"
       >{reward.cost}</span>
     </div>
     <div class="px-2 break-words text-sm opacity-75">{reward.prompt}</div>

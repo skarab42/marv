@@ -25,7 +25,7 @@
 
 {#if visible}
   <div class="p-2 flex space-x-2 items-center">
-    <div class="px-2 text-xs bg-black bg-opacity-50 rounded-full">{time}</div>
+    <div class="px-2 text-xs bg-black bg-opacity-50 rounded">{time}</div>
     <div class="font-bold">{follower.name}</div>
   </div>
 {/if}

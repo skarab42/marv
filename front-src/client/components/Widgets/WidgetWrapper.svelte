@@ -113,7 +113,7 @@
     <div class="absolute inset-0 flex items-center h-full opacity-50 text-4xl">
       <div class="flex-auto text-center">
         <span
-          class="{action.running ? '' : 'px-3 text-dark bg-gray-500 rounded-full'}"
+          class="{action.running ? '' : 'px-4 text-dark bg-gray-500 rounded-full'}"
         >{action.inQueue}</span>
       </div>
     </div>

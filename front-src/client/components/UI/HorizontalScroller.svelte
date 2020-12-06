@@ -8,7 +8,7 @@
   import MdKeyboardArrowRight from "svelte-icons/md/MdKeyboardArrowRight.svelte";
 
   export let gap = 1;
-  export let arrowClass = "bg-primary-light rounded-full";
+  export let arrowClass = "bg-primary-light";
 
   let element = null;
   let overflowing = false;

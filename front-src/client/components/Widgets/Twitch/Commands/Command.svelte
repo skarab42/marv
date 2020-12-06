@@ -46,7 +46,7 @@
 <div class="flex items-center hover:bg-opacity-50 hover:bg-black" style="{ts}">
   <div class="p-1 flex flex-auto flex-wrap items-center">
     <div class="p-1">
-      <div class="px-2 bg-black bg-opacity-25 rounded-full">
+      <div class="px-2 bg-black bg-opacity-25 rounded">
         <span class="opacity-75">{prefix}</span>{command.name}
         {#if usage}<span class="opacity-50">{usage}</span>{/if}
       </div>
