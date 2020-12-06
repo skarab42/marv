@@ -108,7 +108,12 @@
     "left": "left",
     "center": "center",
     "right": "right",
-    "refresh": "refresh"
+    "refresh": "refresh",
+    "all": "words.all",
+    "top left": "top left",
+    "top right": "top right",
+    "bottom left": "bottom left",
+    "bottom right": "bottom right"
   },
   "obs": {
     "scene-list": "OBS | Scene list",

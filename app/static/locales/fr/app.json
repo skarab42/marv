@@ -108,7 +108,12 @@
     "left": "gauche",
     "center": "centre",
     "right": "droite",
-    "refresh": "actualiser "
+    "refresh": "actualiser ",
+    "all": "tous",
+    "top left": "haut gauche",
+    "top right": "haut droite",
+    "bottom left": "bas gauche",
+    "bottom right": "bas droite"
   },
   "obs": {
     "scene-list": "OBS | Liste des scènes",
