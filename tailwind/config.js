@@ -1,7 +1,5 @@
 const colors = require("./colors");
 
-const purge = process.argv.includes("--prod");
-
 module.exports = {
   future: {
     purgeLayersByDefault: true,
