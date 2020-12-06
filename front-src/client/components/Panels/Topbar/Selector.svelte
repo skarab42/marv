@@ -50,7 +50,7 @@
       class="{$editMode ? 'bg-green-600' : 'bg-primary'}"
     >
       <span
-        class="hidden md:inline md:ml-2"
+        class="hidden md:inline md:ml-2 truncate"
       >{$editMode ? _('words.done') : _('sentences.edit-mode')}</span>
     </Button>
   </Tippy>
@@ -62,7 +62,9 @@
         on:click="{api.add}"
         class="bg-primary"
       >
-        <span class="hidden md:inline md:ml-2">{_('sentences.add-panel')}</span>
+        <span
+          class="hidden md:inline md:ml-2 truncate"
+        >{_('sentences.add-panel')}</span>
       </Button>
     </Tippy>
   {/if}
@@ -72,7 +74,7 @@
         <Button
           padding="p-2"
           on:click="{setCurrentPanel.bind(null, panel)}"
-          class="flex-shrink-0 {isActiveClass($currentPanel, panel)}"
+          class="flex-shrink-0 {isActiveClass($currentPanel, panel)} truncate"
         >
           {panel.name}
         </Button>
