@@ -107,7 +107,8 @@
     "bottom": "bottom",
     "left": "left",
     "center": "center",
-    "right": "right"
+    "right": "right",
+    "refresh": "refresh"
   },
   "obs": {
     "scene-list": "OBS | Scene list",
@@ -134,6 +135,7 @@
     "command-too-much-argument": "Too much argument! Usage: {{usage}}",
     "command-not-enough-argument": "Not enough argument! Usage: {{usage}}",
     "empty-follower-list": "The follower list is empty.",
+    "empty-reward-list": "The rewards list is empty.",
     "events": {
       "none": "None",
       "onFollow": "Follow",

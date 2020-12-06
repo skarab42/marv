@@ -107,7 +107,8 @@
     "bottom": "bas",
     "left": "gauche",
     "center": "centre",
-    "right": "droite"
+    "right": "droite",
+    "refresh": "actualiser "
   },
   "obs": {
     "scene-list": "OBS | Liste des scènes",
@@ -134,6 +135,7 @@
     "command-too-much-argument": "Trop d'argument! Usage: {{usage}}",
     "command-not-enough-argument": "Pas assez d'argument! Usage: {{usage}}",
     "empty-follower-list": "La liste des supporters est vide.",
+    "empty-reward-list": "La liste des récomponses est vide.",
     "events": {
       "none": "Aucun",
       "onFollow": "Follow",
