@@ -119,7 +119,7 @@
   </div>
   <svelte:component this="{widgets[component.name].Settings}" data="{data}" />
   <Button icon="{MdDelete}" class="bg-red-600" on:click="{onRemoveAction}">
-    <div>{_('words.remove')}</div>
+    {_('words.remove')}
   </Button>
 {:else}
   <div class="p-2">
