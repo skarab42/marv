@@ -20,7 +20,10 @@
   }
 
   getFonts().then((allFonts) => {
-    fonts = allFonts.map(fontItem);
+    fonts = [
+      { val: "", key: capitalize(_(`words.none`)) },
+      ...allFonts.map(fontItem),
+    ];
   });
 
   function onChange({ detail: font }) {
