@@ -96,7 +96,6 @@
 
   const updateAnimeDebounce = debounce(100, updateAnime);
   $: $items.length ? updateAnimeDebounce() : resetAnime();
-  // $: $items.length ? updateAnime() : resetAnime();
 
   function addItem(item) {
     $items = [...$items, item];
