@@ -1,10 +1,11 @@
+const login = require("../login");
 const twitch = require("../index");
 const Viewer = require("../../../db/Models/Viewer");
 
 let offlineFollow = true;
 
 module.exports = async function getLastFollows() {
-  const user = await twitch.api.helix.users.getMe(true);
+  const user = await login();
   const followsPaginated = await twitch.api.helix.users.getFollowsPaginated({
     followedUser: user,
   });
