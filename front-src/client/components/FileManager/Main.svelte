@@ -2,9 +2,9 @@
   import api from "@/api/files";
   import { _ } from "@/libs/i18next";
   import Layout from "./Layout.svelte";
-  import { fade } from "svelte/transition";
   import FileList from "./FileList.svelte";
   import FilterButtons from "./FilterButtons.svelte";
+  import Notify from "@/components/UI/Notify.svelte";
   import FileInput from "@/components/UI/FileInput.svelte";
 
   export let accept = ["text", "image", "audio", "video", "font"];
@@ -23,30 +23,19 @@
     font: true,
   };
 
-  let message = null;
-  let timeoutId = null;
-  let messageDelay = 5000;
-
-  function notify(type, text) {
-    message = { type, text };
-    clearTimeout(timeoutId);
-    timeoutId = setTimeout(() => {
-      message = null;
-    }, messageDelay);
-  }
-
-  function messageColor(message) {
-    return message.type === "error" ? "bg-red-600" : "bg-blue-600";
-  }
+  let notify = { type: "info", message: null };
 
   function onFile({ detail: file }) {
     api
       .upload({ name: file.name, buffer: file })
       .then(() => {
-        notify("info", _("sentences.file-uploaded-successfully"));
+        notify = {
+          type: "info",
+          message: _("sentences.file-uploaded-successfully"),
+        };
       })
       .catch((error) => {
-        notify("error", error);
+        notify = { type: "error", message: error };
       });
   }
 </script>
@@ -64,11 +53,7 @@
       />
       <FilterButtons accept="{accept}" bind:types="{acceptTypes}" />
     </div>
-    {#if message}
-      <div in:fade out:fade class="px-4 py-2 {messageColor(message)}">
-        {message.text}
-      </div>
-    {/if}
+    <Notify type="{notify.type}" bind:message="{notify.message}" />
   </div>
   <div class="p-2 flex flex-col space-y-2">
     <FileList on:select acceptTypes="{acceptTypes}" />
