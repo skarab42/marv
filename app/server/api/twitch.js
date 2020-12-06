@@ -32,24 +32,28 @@ module.exports = {
     });
   },
   addCommand(command) {
-    const promise = addCommand(command);
-    this.notify("twitch.addCommand", command);
-    return promise;
+    return addCommand(command).then((result) => {
+      this.notify("twitch.addCommand", command);
+      return result;
+    });
   },
   updateCommand(command) {
-    const promise = updateCommand(command);
-    this.notify("twitch.updateCommand", command);
-    return promise;
+    return updateCommand(command).then((result) => {
+      this.notify("twitch.updateCommand", command);
+      return result;
+    });
   },
   removeCommand(command) {
-    const promise = removeCommand(command);
-    this.notify("twitch.removeCommand", command);
-    return promise;
+    return removeCommand(command).then((result) => {
+      this.notify("twitch.removeCommand", command);
+      return result;
+    });
   },
   updateReward(reward) {
-    const promise = updateReward(reward);
-    this.notify("twitch.updateReward", reward);
-    return promise;
+    return updateReward(reward).then((result) => {
+      this.notify("twitch.updateReward", reward);
+      return result;
+    });
   },
   getEventNames: () => eventNames,
   getRewardList: () => getRewardList(),
