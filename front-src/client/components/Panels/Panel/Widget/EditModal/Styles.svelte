@@ -28,8 +28,10 @@
     return { val, key: capitalize(_(`words.${val}`)) };
   }
 
-  let borderSizes = borders.positions;
   let borderPositions = borders.sizes;
+  let borderSizes = borders.positions.map((pos) => {
+    return { ...pos, key: capitalize(_(`words.${pos.key}`)) };
+  });
 
   let borderSize = borderSizes[0].val;
   let borderPosition = borderPositions[0].val;
@@ -55,12 +57,12 @@
       sizeTag = borders.sizes.find((tag) => "" === tag.val);
     } else if (sizeTag && !posTag) {
       posTag = borders.positions.find((tag) => "" === tag.val);
-    } else {
+    } else if (!sizeTag && !posTag) {
       sizeTag = borders.sizes.find((tag) => "" === tag.val);
       posTag = borders.positions.find((tag) => "" === tag.val);
     }
 
-    return `${posTag.key} ${sizeTag.key}`;
+    return `${_(`words.${posTag.key}`)} ${sizeTag.key}`;
   }
 
   function set(key, value) {
@@ -163,7 +165,9 @@
       items="{borderPositions}"
       on:change="{onBorderPositionChange}"
     />
-    <Button class="flex-auto bg-secondary" on:click="{onBorderAdd}">Add</Button>
+    <Button class="flex-auto bg-secondary" on:click="{onBorderAdd}">
+      {_('words.add')}
+    </Button>
   </div>
   <div class="flex flex-wrap {bordersTags.length ? '' : 'hidden'}">
     {#each bordersTags as tag}
