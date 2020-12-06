@@ -32,9 +32,9 @@ module.exports = {
     });
   },
   addCommand(command) {
-    return addCommand(command).then((result) => {
-      this.notify("twitch.addCommand", command);
-      return result;
+    return addCommand(command).then(({ dataValues }) => {
+      this.notify("twitch.addCommand", dataValues);
+      return dataValues;
     });
   },
   updateCommand(command) {
