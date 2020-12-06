@@ -3,9 +3,16 @@ const colors = require("./colors");
 const purge = process.argv.includes("--prod");
 
 module.exports = {
+  future: {
+    purgeLayersByDefault: true,
+    removeDeprecatedGapUtilities: true,
+  },
   purge: {
     enabled: process.argv.includes("--prod"),
     content: ["front-src/**/*.svelte", "front-src/**/*.js"],
+    options: {
+      whitelistPatterns: [/^rounded-/],
+    },
   },
   theme: {
     extend: {
