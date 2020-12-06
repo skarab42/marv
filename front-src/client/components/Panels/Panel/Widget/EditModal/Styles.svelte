@@ -34,12 +34,34 @@
   let borderSize = borderSizes[0].val;
   let borderPosition = borderPositions[0].val;
 
-  $: selectedBorders = `rounded-${borderSize}-${borderPosition}`;
+  $: selectedBorders = ["rounded", borderSize, borderPosition]
+    .filter((tag) => tag.length)
+    .join("-");
 
   let positionItems = ["top", "bottom"].map(_capitalize);
   let alignItems = ["left", "center", "right"].map(_capitalize);
 
   $: bordersTags = widget.borders.split(" ").filter((tag) => tag.length);
+
+  function formatTag(tag) {
+    tag = tag.replace("rounded-", "");
+
+    const [pos, size] = tag.split("-");
+
+    let sizeTag = borders.sizes.find((tag) => [pos, size].includes(tag.val));
+    let posTag = borders.positions.find((tag) => pos === tag.val);
+
+    if (posTag && !sizeTag) {
+      sizeTag = borders.sizes.find((tag) => "" === tag.val);
+    } else if (sizeTag && !posTag) {
+      posTag = borders.positions.find((tag) => "" === tag.val);
+    } else {
+      sizeTag = borders.sizes.find((tag) => "" === tag.val);
+      posTag = borders.positions.find((tag) => "" === tag.val);
+    }
+
+    return `${posTag.key} ${sizeTag.key}`;
+  }
 
   function set(key, value) {
     widget[key] = value;
@@ -86,7 +108,10 @@
   }
 
   function removeBorderTag(tag) {
-    set("borders", widget.borders.replace(tag, "").trim());
+    const borders = widget.borders
+      .split(" ")
+      .filter((border) => border !== tag);
+    set("borders", borders.join(" "));
   }
 </script>
 
@@ -123,7 +148,7 @@
     label="{labelWord} | {_('words.position')}"
     on:change="{onUpdate.bind(null, 'labelPosition')}"
   />
-  <div class="flex space-x-1">
+  <div class="flex flex-wrap space-x-1">
     <Select
       object="{true}"
       value="{borderSize}"
@@ -140,12 +165,12 @@
     />
     <Button class="flex-auto bg-secondary" on:click="{onBorderAdd}">Add</Button>
   </div>
-  <div class="flex space-x-2">
+  <div class="flex flex-wrap {bordersTags.length ? '' : 'hidden'}">
     {#each bordersTags as tag}
       <div
-        class="flex items-center bg-black bg-opacity-50 rounded overflow-hidden"
+        class="m-1 flex items-center bg-black bg-opacity-50 rounded overflow-hidden"
       >
-        <div class="px-2 flex-auto">{tag}</div>
+        <div class="px-2 flex-auto">{formatTag(tag)}</div>
         <span
           on:click="{removeBorderTag.bind(null, tag)}"
           class="p-1 bg-red-600 cursor-pointer"

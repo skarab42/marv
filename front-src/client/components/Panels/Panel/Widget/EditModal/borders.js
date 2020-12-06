@@ -1,5 +1,6 @@
 module.exports = {
   positions: [
+    { key: "all", val: "" },
     { key: "top", val: "t" },
     { key: "left", val: "l" },
     { key: "right", val: "r" },
@@ -10,10 +11,12 @@ module.exports = {
     { key: "bottom right", val: "br" },
   ],
   sizes: [
-    { key: "small", val: "sm" },
-    { key: "medium", val: "md" },
-    { key: "large", val: "lg" },
-    { key: "extra large", val: "xl" },
-    { key: "full", val: "full" },
+    { key: "2px", val: "sm" },
+    { key: "4px", val: "" },
+    { key: "8px", val: "md" },
+    { key: "16px", val: "lg" },
+    { key: "42px", val: "xl" },
+    { key: "50%", val: "half" },
+    { key: "100%", val: "full" },
   ],
 };
