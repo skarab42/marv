@@ -1,7 +1,7 @@
 <script>
-  import api from "@/api/twitch";
+  // import api from "@/api/twitch";
   import { _ } from "@/libs/i18next";
-  import Switch from "@/components/UI/Switch.svelte";
+  // import Switch from "@/components/UI/Switch.svelte";
 
   export let reward;
 

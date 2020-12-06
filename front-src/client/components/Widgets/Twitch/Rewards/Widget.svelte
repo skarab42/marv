@@ -2,7 +2,7 @@
   import api from "@/api/twitch";
   import { _ } from "@/libs/i18next";
   import Reward from "./Reward.svelte";
-  import { rewards } from "@/stores/twitch";
+  import { rewards, user } from "@/stores/twitch";
   import Button from "@/components/UI/Button.svelte";
   import MdRefresh from "svelte-icons/md/MdRefresh.svelte";
   import WidgetWrapper from "@/components/Widgets/WidgetWrapper.svelte";
@@ -10,7 +10,9 @@
   export let widget;
 
   async function onRefresh() {
-    $rewards = await api.getRewardList();
+    if ($user.broadcaster_type.length) {
+      $rewards = await api.getRewardList();
+    }
   }
 </script>
 

@@ -54,7 +54,9 @@ export default async function load() {
   commands.set(await api.getCommandList());
 
   if (state.user) {
-    rewards.set(await api.getRewardList());
+    if (state.user.broadcaster_type.length) {
+      rewards.set(await api.getRewardList());
+    }
     followers.set(await api.getLastFollowers());
   }
 
