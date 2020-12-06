@@ -12,7 +12,6 @@ const twitch = require("./libs/twitch");
 const socket = require("./libs/socket.io");
 const { i18next } = require("./libs/i18next");
 const { getSystemFonts } = require("./libs/files");
-const initTwitchEvents = require("./libs/twitch/initEvents");
 const twitchAuthMiddleware = require("./libs/twitch/authMiddleware");
 const missingKeyHandler = require("./libs/i18next/missingKeyHandler");
 const {
@@ -83,7 +82,6 @@ async function start() {
       if (error) return onError(error);
       socket(server);
       twitchAutoConnect();
-      initTwitchEvents();
       obsAutoConnect();
       printBanner();
     });

@@ -1,5 +1,4 @@
 const updateFollowsPlugin = require("./updateFollowsPlugin");
-const { isFirstStart } = require("../../../../utils");
 const streamStatePlugin = require("./streamState");
 const followsPlugin = require("./followsPlugin");
 
@@ -10,10 +9,7 @@ module.exports = async function install() {
 
   installLock = true;
 
-  if (isFirstStart) {
-    await updateFollowsPlugin();
-  }
-
+  await updateFollowsPlugin();
   streamStatePlugin();
   followsPlugin();
 };

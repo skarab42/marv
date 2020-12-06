@@ -1,10 +1,10 @@
 const state = require("./state");
-const installPlugings = require("./plugins/install");
+const initEvents = require("./initEvents");
 const getConnectedUser = require("./api/getConnectedUser");
 
 module.exports = async function login() {
   const user = await getConnectedUser();
   state.set("user", user);
-  installPlugings();
+  initEvents();
   return user;
 };
