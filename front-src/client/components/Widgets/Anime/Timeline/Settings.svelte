@@ -14,9 +14,7 @@
   let timelineOpened = false;
 
   get(widget.id).then(({ items } = {}) => {
-    if (items) {
-      initialItems = items;
-    }
+    if (items) initialItems = items;
   });
 
   function openTimeline() {
@@ -28,13 +26,11 @@
   }
 
   function onAnimeUpdate({ detail: anime }) {
-    initialItems = anime.items;
     update({ widget, anime });
   }
 
   async function onTextFileChange({ detail }) {
     await filesAPI.update(detail.item.target.filename, detail.text);
-    initialItems = initialItems;
   }
 </script>
 
