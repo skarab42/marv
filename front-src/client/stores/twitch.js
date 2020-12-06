@@ -6,9 +6,9 @@ export const store = writable(null);
 export const stream = writable(null);
 export const user = writable(null);
 export const chat = writable(null);
-export const commands = writable(null);
-export const rewards = writable(null);
-export const followers = writable(null);
+export const commands = writable([]);
+export const rewards = writable([]);
+export const followers = writable([]);
 
 let loaded = false;
 
@@ -39,22 +39,24 @@ async function loadOnce() {
     });
   });
 
-  const _followers = await api.getLastFollowers();
-  const _commands = await api.getCommandList();
-  const _rewards = await api.getRewardList();
-
-  followers.set(_followers);
-  commands.set(_commands);
-  rewards.set(_rewards);
-
   loaded = true;
 }
 
 export default async function load() {
   store.set(await getStore());
+
   const state = await getState();
+
   stream.set(state.stream);
   user.set(state.user);
   chat.set(state.chat);
+
+  commands.set(await api.getCommandList());
+
+  if (state.user) {
+    rewards.set(await api.getRewardList());
+    followers.set(await api.getLastFollowers());
+  }
+
   await loadOnce();
 }
