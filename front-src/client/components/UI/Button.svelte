@@ -9,7 +9,7 @@
   export let iconSize = null;
   export let iconColor = null;
   export let textColor = null;
-  export let padding = "px-4 py-2";
+  export let padding = "p-2";
 
   let _textColor = dark ? "text-light" : "text-dark";
 
