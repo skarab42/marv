@@ -4,8 +4,8 @@ const purge = process.argv.includes("--prod");
 
 module.exports = {
   purge: {
-    enabled: purge,
-    content: ["app/client/**/*.html", "app/client/**/*.js"],
+    enabled: process.argv.includes("--prod"),
+    content: ["front-src/**/*.svelte", "front-src/**/*.js"],
   },
   theme: {
     extend: {
