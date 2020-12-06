@@ -43,7 +43,8 @@
     "loading-fonts-list": "Loading fonts list",
     "double-click-to-edit": "Click me twice",
     "edit-mode": "Edit mode",
-    "add-panel": "Add panel"
+    "add-panel": "Add panel",
+    "command-name-must-be-unique": "Command name must be unique."
   },
   "words": {
     "settings": "settings",

@@ -43,7 +43,8 @@
     "loading-fonts-list": "Chargement des polices",
     "double-click-to-edit": "clique moi 2x",
     "edit-mode": "Mode édition",
-    "add-panel": "Ajouter un panneau"
+    "add-panel": "Ajouter un panneau",
+    "command-name-must-be-unique": "Le nom de la command dois être unique."
   },
   "words": {
     "settings": "options",
