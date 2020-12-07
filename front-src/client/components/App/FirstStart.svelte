@@ -1,35 +1,18 @@
 <script>
-  import axios from "axios";
   import api from "@/api/app";
   import { _ } from "@/libs/i18next";
   import { store } from "@/stores/app";
+  import getLastRelease from "./getLastRelease";
   import Modal from "@/components/UI/Modal.svelte";
   import Checkbox from "@/components/UI/Checkbox.svelte";
 
   let showModal = $store.showFirstStartInfo;
   $: checked = !$store.showFirstStartInfo;
 
-  const url =
-    "https://api.github.com/repos/palakis/obs-websocket/releases/latest";
+  const repo = "palakis/obs-websocket";
 
-  const extsToOS = {
-    deb: "linux",
-    exe: "win32",
-    pkg: "darwin",
-  };
-
-  function getURL() {
-    return axios.get(url).then(async (res) => {
-      const exts = {};
-
-      res.data.assets.forEach((asset) => {
-        const url = asset.browser_download_url;
-        const ext = url.split(".").pop();
-        exts[extsToOS[ext]] = url;
-      });
-
-      return exts[await api.getOS()];
-    });
+  async function getURL() {
+    return (await getLastRelease(repo)).url;
   }
 
   function onCheckboxChange() {
