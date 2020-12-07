@@ -7,6 +7,7 @@
   import OpenOnStartup from "@/components/App/OpenOnStartup.svelte";
   import LanguageSelect from "@/components/App/LanguageSelect.svelte";
   import OBSConnectAtStartup from "@/components/OBS/ConnectAtStartup.svelte";
+  import CheckUpdateCheckbox from "@/components/App/CheckUpdateCheckbox.svelte";
   import TwitchConnectAtStartup from "@/components/Twitch/ConnectAtStartup.svelte";
 
   let top = electron ? 29 : 0;
@@ -25,5 +26,6 @@
     <OpenOnStartup />
     <OBSConnectAtStartup />
     <TwitchConnectAtStartup />
+    <CheckUpdateCheckbox />
   </div>
 {/if}
