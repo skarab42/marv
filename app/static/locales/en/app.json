@@ -166,7 +166,8 @@
       "onSubExtend": "Sub extend",
       "onSubGift": "Sub gift",
       "onCommand": "Command",
-      "onRedemption": "Redemption"
+      "onRedemption": "Redemption",
+      "onBits": "Bits"
     }
   },
   "labels": {
