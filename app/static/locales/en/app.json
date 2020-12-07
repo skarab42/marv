@@ -44,7 +44,9 @@
     "double-click-to-edit": "Click me twice",
     "edit-mode": "Edit mode",
     "add-panel": "Add panel",
-    "command-name-must-be-unique": "Command name must be unique."
+    "command-name-must-be-unique": "Command name must be unique.",
+    "check-update-at-startup": "Check update at startup.",
+    "new-version-available": "A new version is available."
   },
   "words": {
     "settings": "settings",
