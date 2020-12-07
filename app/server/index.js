@@ -19,10 +19,10 @@ const {
   uploadPath,
   clientPath,
   staticPath,
+  fingerprint,
 } = require("../utils");
 
 let { host, port } = stores.server.getAll();
-const appFingerprint = stores.app.get("fingerprint");
 
 const staticPaths = [clientPath, staticPath, uploadPath];
 
@@ -32,7 +32,7 @@ let portChangeMaxCount = 10;
 function printBanner() {
   const serverURL = `http://${host}:${port}`;
   // eslint-disable-next-line no-console
-  console.log(`> ${appFingerprint} | running on ${serverURL}`);
+  console.log(`> ${fingerprint} | running on ${serverURL}`);
 }
 
 function onError(error) {

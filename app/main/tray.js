@@ -1,9 +1,9 @@
 const getTrayIconByPlatform = require("./window/trayIcon");
+const { staticPath, fingerprint } = require("../utils");
 const mainWindow = require("./window/mainWindow");
 const chatWindow = require("./window/chatWindow");
 const { _ } = require("../server/libs/i18next");
 const { Tray, Menu } = require("electron");
-const { staticPath } = require("../utils");
 const capitalize = require("capitalize");
 const stores = require("../stores");
 const quit = require("./quit");
@@ -11,8 +11,6 @@ const path = require("path");
 const open = require("open");
 
 const icon = getTrayIconByPlatform();
-const { name, version } = require("../package");
-const fingerprint = `${capitalize(name)} v${version}`;
 
 let tray = null;
 

@@ -1,9 +1,11 @@
 const { name, version } = require("./package");
+const capitalize = require("capitalize");
 const envPaths = require("env-paths");
 const fs = require("fs-extra");
 const path = require("path");
 
 const app = { name, version };
+const fingerprint = `${capitalize(name)} v${version}`;
 
 const appPath = __dirname;
 const userPath = envPaths(name).data;
@@ -28,6 +30,7 @@ module.exports = {
   storesPath,
   staticPath,
   clientPath,
+  fingerprint,
   databasePath,
   databaseFilename,
   isFirstStart,
