@@ -1,12 +1,13 @@
 <script>
   import api from "@/api/twitch";
-  import cloneDeep from "clone-deep";
   import { _ } from "@/libs/i18next";
+  import cloneDeep from "clone-deep";
   import capitalize from "capitalize";
-  import { commands, rewards } from "@/stores/twitch";
+  import { localeSort } from "@/libs/utils";
   import widgets from "@/components/Widgets";
   import Button from "@/components/UI/Button.svelte";
   import Select from "@/components/UI/Select.svelte";
+  import { commands, rewards } from "@/stores/twitch";
   import MdDelete from "svelte-icons/md/MdDeleteForever.svelte";
   import { update, removeWidgetComponent } from "@/libs/panels";
 
@@ -31,9 +32,10 @@
   });
 
   api.getEventNames().then((names) => {
-    eventNames = ["none", ...names].map((val) => {
-      return { key: _(`twitch.events.${val}`), val };
-    });
+    eventNames = names
+      .map((val) => ({ key: _(`twitch.events.${val}`), val }))
+      .sort((a, b) => localeSort(a.key, b.key));
+    eventNames.unshift({ key: none, val: "none" });
   });
 
   $: data = { panel, widget };
