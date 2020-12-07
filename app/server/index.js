@@ -10,10 +10,12 @@ const initDB = require("./db/init");
 const { json } = require("body-parser");
 const twitch = require("./libs/twitch");
 const socket = require("./libs/socket.io");
+const { getServerURL } = require("./utils");
 const { i18next } = require("./libs/i18next");
 const { getSystemFonts } = require("./libs/files");
 const twitchAuthMiddleware = require("./libs/twitch/authMiddleware");
 const missingKeyHandler = require("./libs/i18next/missingKeyHandler");
+
 const {
   isFirstStart,
   uploadPath,
@@ -22,7 +24,7 @@ const {
   fingerprint,
 } = require("../utils");
 
-let { host, port } = stores.server.getAll();
+let port = stores.server.get("port");
 
 const staticPaths = [clientPath, staticPath, uploadPath];
 
@@ -30,9 +32,8 @@ let portChangeCount = 0;
 let portChangeMaxCount = 10;
 
 function printBanner() {
-  const serverURL = `http://${host}:${port}`;
   // eslint-disable-next-line no-console
-  console.log(`> ${fingerprint} | running on ${serverURL}`);
+  console.log(`> ${fingerprint} | running on ${getServerURL()}`);
 }
 
 function onError(error) {

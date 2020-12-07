@@ -1,13 +1,11 @@
 const openLinkInBrowser = require("./openLinkInBrowser");
+const { getServerURL } = require("../../server/utils");
 const { staticPath, watch } = require("../../utils");
 const webPreferences = require("./webPreferences");
 const { BrowserWindow } = require("electron");
 const storeBounds = require("./storeBounds");
 const hideOnClose = require("./hideOnClose");
-const stores = require("../../stores");
 const path = require("path");
-
-const { host, port } = stores.server.getAll();
 
 let win = null;
 
@@ -34,6 +32,6 @@ module.exports = function createWindow({ showOnLoad = true } = {}) {
   });
 
   win.removeMenu();
-  win.loadURL(`http://${host}:${port}?electron`);
+  win.loadURL(`${getServerURL()}?electron`);
   watch && win.webContents.openDevTools();
 };

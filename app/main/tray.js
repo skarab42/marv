@@ -1,5 +1,6 @@
 const getTrayIconByPlatform = require("./window/trayIcon");
 const { staticPath, fingerprint } = require("../utils");
+const { getServerURL } = require("../server/utils");
 const mainWindow = require("./window/mainWindow");
 const chatWindow = require("./window/chatWindow");
 const { _ } = require("../server/libs/i18next");
@@ -15,8 +16,7 @@ const icon = getTrayIconByPlatform();
 let tray = null;
 
 function openInBrowser() {
-  const { host, port } = stores.server.getAll();
-  open(`http://${host}:${port}`);
+  open(getServerURL());
 }
 
 function createMenu() {

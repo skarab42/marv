@@ -1,17 +1,14 @@
 const openLinkInBrowser = require("./openLinkInBrowser");
+const { getServerURL } = require("../../server/utils");
 const { staticPath, watch } = require("../../utils");
 const webPreferences = require("./webPreferences");
 const { BrowserWindow } = require("electron");
 const storeBounds = require("./storeBounds");
 const hideOnClose = require("./hideOnClose");
-const stores = require("../../stores");
 const path = require("path");
 
 let win = null;
 let currentChannel = null;
-
-const { host, port } = stores.server.getAll();
-const marvURL = `http://${host}:${port}`;
 
 function loadChat(win, channel) {
   if (currentChannel === channel) return;
@@ -89,7 +86,7 @@ module.exports = function chatWindow({ channel, showOnLoad = true } = {}) {
       const $cross = document.createElement('div');
       const $iconSVG = document.createElement('img');
       $titlebar.setAttribute('id', 'electron-titlebar');
-      $iconSVG.setAttribute('src', '${marvURL}/icon.svg');
+      $iconSVG.setAttribute('src', '${getServerURL()}/icon.svg');
       $iconSVG.setAttribute('height', '16px');
       $icon.classList.add('icon');
       $title.classList.add('title');
