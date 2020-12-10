@@ -46,7 +46,9 @@
     "add-panel": "Add panel",
     "command-name-must-be-unique": "Command name must be unique.",
     "check-update-at-startup": "Check update at startup.",
-    "new-version-available": "A new version is available."
+    "new-version-available": "A new version is available.",
+    "close-marv-before-update": "Close Marv before launching the update!",
+    "close-app": "Close Marv!"
   },
   "words": {
     "settings": "settings",

@@ -46,7 +46,9 @@
     "add-panel": "Ajouter un panneau",
     "command-name-must-be-unique": "Le nom de la command dois être unique.",
     "check-update-at-startup": "Vérifier la mise à jour au démarrage.",
-    "new-version-available": "Une nouvelle version est disponible."
+    "new-version-available": "Une nouvelle version est disponible.",
+    "close-marv-before-update": "Fermez Marv avent de lancer la mise à jour!",
+    "close-app": "Fermer Marv!"
   },
   "words": {
     "settings": "options",
