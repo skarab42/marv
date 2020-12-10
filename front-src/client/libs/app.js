@@ -3,11 +3,13 @@ import api from "@/api/app";
 
 const extsToOS = {
   deb: "linux",
+  AppImage: "linux",
   exe: "win32",
+  dmg: "darwin",
   pkg: "darwin",
 };
 
-export default function getLastRelease(repo) {
+export function getLastRelease(repo) {
   const url = `https://api.github.com/repos/${repo}/releases/latest`;
   return axios.get(url).then(async (res) => {
     const exts = {};

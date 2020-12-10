@@ -2,8 +2,8 @@
   import api from "@/api/app";
   import { _ } from "@/libs/i18next";
   import { store } from "@/stores/app";
+  import { getLastRelease } from "@/libs/app";
   import { version } from "../../../../package";
-  import getLastRelease from "./getLastRelease";
   import compareVersions from "compare-versions";
   import Modal from "@/components/UI/Modal.svelte";
   import CheckUpdateCheckbox from "./CheckUpdateCheckbox.svelte";

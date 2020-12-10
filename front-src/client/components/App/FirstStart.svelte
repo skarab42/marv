@@ -2,7 +2,7 @@
   import api from "@/api/app";
   import { _ } from "@/libs/i18next";
   import { store } from "@/stores/app";
-  import getLastRelease from "./getLastRelease";
+  import { getLastRelease } from "@/libs/app";
   import Modal from "@/components/UI/Modal.svelte";
   import Checkbox from "@/components/UI/Checkbox.svelte";
 
