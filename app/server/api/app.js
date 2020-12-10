@@ -1,6 +1,9 @@
 const { getSystemFonts, getUsedFonts } = require("../libs/files");
 
 module.exports = {
+  quit: () => {
+    process.exit(42);
+  },
   getOS: () => {
     return process.platform;
   },

@@ -1,5 +1,6 @@
 const { fork } = require("child_process");
 const { watch } = require("../utils");
+const quit = require("./quit");
 const chalk = require("chalk");
 const path = require("path");
 
@@ -35,6 +36,7 @@ function start() {
 
   server.on("close", (code) => {
     stdout(`exited with code ${code || 0}`);
+    code === 42 && quit();
   });
 }
 
