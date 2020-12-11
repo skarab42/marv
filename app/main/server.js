@@ -25,11 +25,11 @@ function stderr(buffer) {
   console.error(colors.redBright("[server]"), bufferToString(buffer));
 }
 
-function start() {
+function start(onStared = null) {
   if (server) return server;
 
   const argv = process.argv.slice(2);
-  server = fork(serverBin, argv, { stdio: "pipe" });
+  server = fork(serverBin, argv, { stdio: ["pipe", "pipe", "pipe", "ipc"] });
 
   server.stderr.on("data", stderr);
   server.stdout.on("data", stdout);
@@ -37,6 +37,10 @@ function start() {
   server.on("close", (code) => {
     stdout(`exited with code ${code || 0}`);
     code === 42 && quit();
+  });
+
+  server.on("message", (message) => {
+    if (message === "started") onStared();
   });
 }
 

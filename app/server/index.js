@@ -63,6 +63,12 @@ function uriDecode(req, res, next) {
   next();
 }
 
+function onStarted() {
+  if (typeof process.send === "function") {
+    process.send("started");
+  }
+}
+
 async function start() {
   isFirstStart && (await initDB());
 
@@ -85,6 +91,7 @@ async function start() {
       twitchAutoConnect();
       obsAutoConnect();
       printBanner();
+      onStarted();
     });
 }
 
