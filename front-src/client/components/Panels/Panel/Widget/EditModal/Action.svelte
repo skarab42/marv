@@ -32,6 +32,9 @@
   });
 
   api.getEventNames().then((names) => {
+    if (Array.isArray(config.hasEvent)) {
+      names = config.hasEvent;
+    }
     eventNames = names
       .map((val) => ({ key: _(`twitch.events.${val}`), val }))
       .sort((a, b) => localeSort(a.key, b.key));
