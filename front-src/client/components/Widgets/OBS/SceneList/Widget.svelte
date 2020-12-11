@@ -18,8 +18,7 @@
       type: "obs",
       widget,
       data: {
-        eventName: "SetCurrentScene",
-        args: { "scene-name": scene.name },
+        scene: scene.name,
       },
     }).catch((error) => {
       console.log("Error:", error);

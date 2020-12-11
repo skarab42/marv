@@ -3,6 +3,7 @@ const { push } = require("../actions");
 
 const types = {
   AnimeTimeline: "anime",
+  SceneList: "obs",
   ToggleScene: "obs",
   GoToScene: "obs",
 };

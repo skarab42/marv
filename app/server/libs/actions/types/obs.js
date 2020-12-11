@@ -17,6 +17,10 @@ const actions = {
     const { scene } = action.widget.component.props;
     return obs.send("SetCurrentScene", { "scene-name": scene });
   },
+  SceneList(action) {
+    const { scene } = action.data || action.eventProps || "undefined";
+    return obs.send("SetCurrentScene", { "scene-name": scene });
+  },
   Send(action) {
     return obs.send(action.data.eventName, action.data.args);
   },
