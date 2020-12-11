@@ -47,10 +47,14 @@ module.exports = async function onCommand({ channel, command, nick, message }) {
   const argList = argNames.map((arg) => `[${arg}]`).join(" ");
   const usage = `${command.prefix}${command.name} ${argList}`;
 
-  if (command.args.length > argNames.length) {
-    throw new Error(`${_("twitch.command-too-much-argument", { usage })}`);
-  } else if (command.args.length < argNames.length) {
+  if (command.args.length < argNames.length) {
     throw new Error(`${_("twitch.command-not-enough-argument", { usage })}`);
+  }
+
+  if (command.args.length > argNames.length) {
+    const i = argNames.length - 1;
+    const rest = command.args.splice(i, command.args.length - i);
+    command.args.push(rest.join(" "));
   }
 
   argNames.forEach((arg, i) => {
