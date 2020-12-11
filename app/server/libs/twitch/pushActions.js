@@ -3,6 +3,8 @@ const { push } = require("../actions");
 
 const types = {
   AnimeTimeline: "anime",
+  ToggleScene: "obs",
+  GoToScene: "obs",
 };
 
 function isInvalidCommand(widget, eventProps) {
@@ -20,7 +22,7 @@ module.exports = function pushActions(eventName, eventProps) {
 
       const type = types[widget.component.name];
 
-      if (type !== "anime") return;
+      if (!["anime", "obs"].includes(type)) return;
       if (widget.eventName !== eventName) return;
       if (isInvalidReward(widget, eventProps)) return;
       if (isInvalidCommand(widget, eventProps)) return;

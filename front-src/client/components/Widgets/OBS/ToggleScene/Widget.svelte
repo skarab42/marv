@@ -1,7 +1,7 @@
 <script>
-  import api from "@/api/obs";
   import { _ } from "@/libs/i18next";
   import { state } from "@/stores/obs";
+  import { push } from "@/libs/actions";
   import WidgetWrapper from "@/components/Widgets/OBS/WidgetWrapper.svelte";
 
   export let widget;
@@ -17,13 +17,14 @@
   $: hasScenes = scene1 && scene2;
   $: cls = hasScenes ? "cursor-pointer" : "cursor-not-allowed";
 
+  function triggerAction() {
+    push({ type: "obs", widget }).catch((error) => {
+      console.log(">>>Error:", error);
+    });
+  }
+
   function onClick() {
-    if (!hasScenes) return;
-    if ($state.currentScene === scene1) {
-      api.emit("SetCurrentScene", { "scene-name": scene2 });
-    } else {
-      api.emit("SetCurrentScene", { "scene-name": scene1 });
-    }
+    if (hasScenes) triggerAction();
   }
 </script>
 

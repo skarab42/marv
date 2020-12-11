@@ -1,7 +1,7 @@
 <script>
-  import api from "@/api/obs";
   import { _ } from "@/libs/i18next";
   import { state } from "@/stores/obs";
+  import { push } from "@/libs/actions";
   import WidgetWrapper from "@/components/Widgets/OBS/WidgetWrapper.svelte";
 
   export let widget;
@@ -14,8 +14,14 @@
     return scene === scene2 ? selectedClass : "";
   }
 
+  function triggerAction() {
+    push({ type: "obs", widget }).catch((error) => {
+      console.log(">>>Error:", error);
+    });
+  }
+
   function onClick() {
-    scene && api.emit("SetCurrentScene", { "scene-name": scene });
+    scene && triggerAction();
   }
 
   $: cls = scene ? "cursor-pointer" : "cursor-not-allowed";
