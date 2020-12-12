@@ -5,7 +5,7 @@ const { Sequelize } = require("sequelize");
 const commandsTable = {
   id: {
     type: Sequelize.INTEGER,
-    allowNull: false,
+    autoIncrement: true,
     primaryKey: true,
   },
   name: {
@@ -31,18 +31,18 @@ const commandsTable = {
   },
   createdAt: {
     type: Sequelize.DATE,
-    allowNull: false,
+    defaultValue: Sequelize.NOW,
   },
   updatedAt: {
     type: Sequelize.DATE,
-    allowNull: false,
+    defaultValue: Sequelize.NOW,
   },
 };
 
 const settingsTable = {
   id: {
     type: Sequelize.INTEGER,
-    allowNull: false,
+    autoIncrement: true,
     primaryKey: true,
   },
   key: {
@@ -60,11 +60,11 @@ const settingsTable = {
   },
   createdAt: {
     type: Sequelize.DATE,
-    allowNull: false,
+    defaultValue: Sequelize.NOW,
   },
   updatedAt: {
     type: Sequelize.DATE,
-    allowNull: false,
+    defaultValue: Sequelize.NOW,
   },
 };
 
@@ -92,11 +92,11 @@ const viewersTable = {
   },
   createdAt: {
     type: Sequelize.DATE,
-    allowNull: false,
+    defaultValue: Sequelize.NOW,
   },
   updatedAt: {
     type: Sequelize.DATE,
-    allowNull: false,
+    defaultValue: Sequelize.NOW,
   },
 };
 
