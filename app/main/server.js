@@ -39,9 +39,10 @@ function start(onStared = null) {
     code === 42 && quit();
   });
 
-  server.on("message", (message) => {
-    if (message === "started") onStared();
-  });
+  onStared &&
+    server.on("message", (message) => {
+      if (message === "started") onStared();
+    });
 }
 
 function restart() {
