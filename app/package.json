@@ -31,6 +31,7 @@
     "twitch-auth": "^4.3.1",
     "twitch-chat-client": "^4.3.1",
     "twitch-pubsub-client": "^4.3.2",
+    "umzug": "^3.0.0-beta.12",
     "uuid": "^8.3.1"
   }
 }
