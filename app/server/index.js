@@ -6,7 +6,7 @@ const sirv = require("sirv");
 const http = require("http");
 const polka = require("polka");
 const stores = require("../stores");
-const initDB = require("./db/init");
+const umzug = require("./db/umzug");
 const { json } = require("body-parser");
 const twitch = require("./libs/twitch");
 const socket = require("./libs/socket.io");
@@ -16,13 +16,7 @@ const { getSystemFonts } = require("./libs/files");
 const twitchAuthMiddleware = require("./libs/twitch/authMiddleware");
 const missingKeyHandler = require("./libs/i18next/missingKeyHandler");
 
-const {
-  isFirstStart,
-  uploadPath,
-  clientPath,
-  staticPath,
-  fingerprint,
-} = require("../utils");
+const { uploadPath, clientPath, staticPath, fingerprint } = require("../utils");
 
 let port = stores.server.get("port");
 
@@ -70,7 +64,7 @@ function onStarted() {
 }
 
 async function start() {
-  isFirstStart && (await initDB());
+  await umzug.up();
 
   const server = http.createServer();
 

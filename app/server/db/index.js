@@ -1,14 +1,8 @@
-const { databasePath, databaseFilename } = require("../../utils");
+const { databasePath } = require("../../utils");
 const { Sequelize } = require("sequelize");
+const config = require("./config");
 const fs = require("fs-extra");
-const path = require("path");
 
 fs.ensureDirSync(databasePath);
 
-const sequelize = new Sequelize({
-  logging: false,
-  dialect: "sqlite",
-  storage: path.join(databasePath, databaseFilename),
-});
-
-module.exports = sequelize;
+module.exports = new Sequelize(config);
