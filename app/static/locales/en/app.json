@@ -118,7 +118,8 @@
     "top left": "top left",
     "top right": "top right",
     "bottom left": "bottom left",
-    "bottom right": "bottom right"
+    "bottom right": "bottom right",
+    "error": "error"
   },
   "obs": {
     "scene-list": "OBS | Scene list",
