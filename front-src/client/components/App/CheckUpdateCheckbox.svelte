@@ -6,7 +6,7 @@
 
   function onCheckboxChange() {
     $store.checkUpdateAtStartup = !$store.checkUpdateAtStartup;
-    api.set("checkUpdateAtStartup", $store.checkUpdateAtStartup);
+    api.setSetting("checkUpdateAtStartup", $store.checkUpdateAtStartup);
   }
 </script>
 

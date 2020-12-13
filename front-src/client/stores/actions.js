@@ -1,9 +1,9 @@
 import { writable } from "svelte/store";
-import { on, getState } from "@/libs/actions";
+import api from "@/api/actions";
 
 export const store = writable({});
 
 export default async function load() {
-  store.set(await getState());
-  on("state", store.set);
+  store.set(await api.getState());
+  api.on("state", store.set);
 }

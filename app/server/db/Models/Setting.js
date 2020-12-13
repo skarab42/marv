@@ -5,7 +5,7 @@ const getters = {
   string: (value) => `${value}`,
   integer: (value) => parseInt(value),
   float: (value) => parseFloat(value),
-  json: (value) => JSON.parse(value),
+  json: (value) => (value ? JSON.parse(value) : null),
   boolean: (value) => (value === "true" ? true : false),
 };
 
@@ -13,7 +13,7 @@ const setters = {
   string: (value) => `${value}`,
   integer: (value) => `${value}`,
   float: (value) => `${value}`,
-  json: (value) => JSON.stringify(value),
+  json: (value) => (value ? JSON.stringify(value) : null),
   boolean: (value) => (value ? "true" : "false"),
 };
 
@@ -21,10 +21,11 @@ const Setting = sequelize.define("Setting", {
   key: {
     type: DataTypes.STRING,
     allowNull: false,
+    unique: true,
   },
   value: {
     type: DataTypes.STRING,
-    allowNull: false,
+    allowNull: true,
     get() {
       const getter = getters[this.type] || getters.string;
       return getter(this.getDataValue("value"));

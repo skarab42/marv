@@ -12,7 +12,7 @@ const settings = require("./libs/settings");
 const { getServerURL } = require("./utils");
 const { getSystemFonts } = require("./libs/files");
 const { init: i18next } = require("./libs/i18next");
-const twitchAuthMiddleware = require("./libs/twitch/authMiddleware");
+const { init: twitchInit } = require("./libs/twitch");
 const missingKeyHandler = require("./libs/i18next/missingKeyHandler");
 const { uploadPath, clientPath, staticPath, fingerprint } = require("../utils");
 
@@ -21,7 +21,7 @@ const staticPaths = [clientPath, staticPath, uploadPath];
 let portChangeCount = 0;
 let portChangeMaxCount = 10;
 
-function printBanner() {
+async function printBanner() {
   // eslint-disable-next-line no-console
   console.log(`> ${fingerprint} | running on ${await getServerURL()}`);
 }
@@ -32,7 +32,7 @@ async function onError(error) {
     throw error;
   }
   let port = await settings.get("server.port");
-  settings.set("server.port", (port += 1));
+  await settings.set("server.port", (port += 1));
   portChangeCount++;
   start();
 }
@@ -63,6 +63,7 @@ function onStarted() {
 async function start() {
   await umzug.up();
   await i18next();
+  await twitchInit();
 
   let port = await settings.get("server.port");
 
@@ -77,7 +78,7 @@ async function start() {
     p.use(sirv(path, { dev: true }));
   });
 
-  p.use(twitchAuthMiddleware)
+  p.use(require("./libs/twitch/authMiddleware"))
     .post("/locales/add/:lng/:ns", missingKeyHandler)
     .listen(port, (error) => {
       if (error) return onError(error);

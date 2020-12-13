@@ -17,7 +17,7 @@
 
   function onCheckboxChange() {
     $store.showFirstStartInfo = !$store.showFirstStartInfo;
-    api.set("showFirstStartInfo", $store.showFirstStartInfo);
+    api.setSetting("showFirstStartInfo", $store.showFirstStartInfo);
   }
 
   function closeModal() {

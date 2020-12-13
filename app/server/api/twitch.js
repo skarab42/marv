@@ -1,4 +1,4 @@
-const stores = require("../../stores");
+const settings = require("../libs/settings");
 const state = require("../libs/twitch/state");
 const twitchLogin = require("../libs/twitch/login");
 const chatJoin = require("../libs/twitch/chat/join");
@@ -24,7 +24,7 @@ module.exports = {
           if (!alreadyJoined) {
             console.log(banner);
             // twitch.chat.say(user.display_name, banner);
-            stores.twitch.set("chatWindow.channel", user.display_name);
+            settings.set("twitch.currentChannel", user.display_name);
           }
         });
       });
@@ -62,6 +62,9 @@ module.exports = {
   getCommandPrefix: () => getCommandPrefix(),
   getLastFollowers: () => getLastFollowers(),
   getState: () => state.get(),
-  getStore: () => stores.twitch.getAll(),
   updateState: (state) => state.update(state),
+  getSettings: () => settings.getAll("twitch."),
+  setSetting: (key, value) => {
+    return settings.set(`twitch.${key}`, value);
+  },
 };

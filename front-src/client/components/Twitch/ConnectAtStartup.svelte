@@ -1,5 +1,5 @@
 <script>
-  import twitch from "@/api/twitch";
+  import api from "@/api/twitch";
   import { _ } from "@/libs/i18next";
   import { store } from "@/stores/twitch";
   import Checkbox from "@/components/UI/Checkbox.svelte";
@@ -9,7 +9,7 @@
   function onChange(event) {
     checked = event.target.checked;
     $store.connectOnStartup = checked;
-    twitch.set("connectOnStartup", checked);
+    api.setSetting("connectOnStartup", checked);
   }
 </script>
 

@@ -1,5 +1,4 @@
 import { writable } from "svelte/store";
-import { emit } from "@/libs/socket.io";
 import api from "@/api/files";
 
 export const store = writable([]);
@@ -22,6 +21,6 @@ function loadOnce() {
 }
 
 export default async function load() {
-  store.set(await emit("files.getFileList"));
+  store.set(await api.getFileList());
   loadOnce();
 }

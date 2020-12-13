@@ -1,6 +1,6 @@
 <script>
+  import api from "@/api/twitch";
   import { _ } from "@/libs/i18next";
-  import { login } from "@/libs/twitch";
   import { user } from "@/stores/twitch";
   import Icon from "@/components/UI/Icon.svelte";
   import TwitchIcon from "@/assets/images/Twitch_icon.svg";
@@ -8,7 +8,7 @@
 
   function onLogin() {
     if ($user) return;
-    login(true).catch((error) => {
+    api.login(true).catch((error) => {
       console.log("error:", error);
     });
   }

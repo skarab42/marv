@@ -2,7 +2,6 @@ import { emit, on } from "@/libs/socket.io";
 
 export default {
   getState: () => emit("twitch.getState"),
-  getStore: () => emit("twitch.getStore"),
   getEventNames: () => emit("twitch.getEventNames"),
   getRewardList: () => emit("twitch.getRewardList"),
   getCommandList: () => emit("twitch.getCommandList"),
@@ -15,6 +14,7 @@ export default {
   removeCommand: (command) => emit("twitch.removeCommand", command),
   updateState: (state) => emit("twitch.updateState", state),
   login: (email = false) => emit("twitch.login", email),
-  set: (key, val) => emit("stores.twitch", "set", key, val),
   on: (eventName, callback) => on(`twitch.${eventName}`, callback),
+  setSetting: (key, value) => emit("twitch.setSetting", key, value),
+  getSettings: () => emit("twitch.getSettings"),
 };

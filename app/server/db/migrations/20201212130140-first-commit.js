@@ -52,7 +52,7 @@ const settingsTable = {
   },
   value: {
     type: Sequelize.STRING,
-    allowNull: false,
+    allowNull: true,
   },
   type: {
     type: Sequelize.STRING,

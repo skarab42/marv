@@ -1,7 +1,7 @@
 <script>
-  import filesAPI from "@/api/files";
   import { _ } from "@/libs/i18next";
-  import { update, get } from "@/libs/actions";
+  import filesAPI from "@/api/files";
+  import actionsAPI from "@/api/actions";
   import Button from "@/components/UI/Button.svelte";
   import MdOpenInNew from "svelte-icons/md/MdOpenInNew.svelte";
   import Editor from "@/components/Anime/Timeline/Editor.svelte";
@@ -13,7 +13,7 @@
   let initialItems = [];
   let timelineOpened = false;
 
-  get(widget.id).then(({ items } = {}) => {
+  actionsAPI.get(widget.id).then(({ items } = {}) => {
     if (items) initialItems = items;
   });
 
@@ -26,7 +26,7 @@
   }
 
   function onAnimeUpdate({ detail: anime }) {
-    update({ widget, anime });
+    actionsAPI.update({ widget, anime });
   }
 
   async function onTextFileChange({ detail }) {

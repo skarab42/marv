@@ -1,6 +1,6 @@
 import { writable } from "svelte/store";
-import { emit } from "@/libs/socket.io";
 import { i18next } from "@/libs/i18next";
+import api from "@/api/i18next";
 
 export let store = writable(null);
 
@@ -11,13 +11,13 @@ export function update(props) {
 }
 
 export default async function load() {
-  const state = await emit("i18next.getConfig");
+  const state = await api.getConfig();
   store.set(state);
   return state;
 }
 
 export async function changeLanguage(language) {
-  await emit("i18next.changeLanguage", language);
   await i18next.changeLanguage(language);
+  await api.changeLanguage(language);
   update({ lng: language });
 }

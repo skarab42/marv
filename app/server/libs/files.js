@@ -7,8 +7,12 @@ const { filesPath } = require("../../utils");
 const getUsedFonts = require("./files/getUsedFonts");
 const getSystemFonts = require("./files/getSystemFonts");
 
-const language = settings.get("app.language", "en");
+let language = "en";
 const allowedMimeTypes = ["text", "image", "audio", "video", "font"];
+
+(async () => {
+  language = await settings.get("app.language", language);
+})();
 
 fs.ensureDirSync(filesPath);
 

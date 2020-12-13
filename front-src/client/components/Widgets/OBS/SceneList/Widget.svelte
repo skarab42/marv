@@ -1,6 +1,6 @@
 <script>
+  import api from "@/api/actions";
   import { state } from "@/stores/obs";
-  import { push } from "@/libs/actions";
   import WidgetWrapper from "@/components/Widgets/OBS/WidgetWrapper.svelte";
 
   export let widget = null;
@@ -14,15 +14,17 @@
   }
 
   function onSelect(scene) {
-    push({
-      type: "obs",
-      widget,
-      data: {
-        scene: scene.name,
-      },
-    }).catch((error) => {
-      console.log("Error:", error);
-    });
+    api
+      .push({
+        type: "obs",
+        widget,
+        data: {
+          scene: scene.name,
+        },
+      })
+      .catch((error) => {
+        console.log("Error:", error);
+      });
   }
 </script>
 

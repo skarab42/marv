@@ -3,7 +3,11 @@ const actions = require("./actions");
 const { v4: uuid } = require("uuid");
 const { _ } = require("./i18next");
 
-let panels = store.get("panels");
+let panels = getAll();
+
+function getAll() {
+  return store.get("panels");
+}
 
 function name(id) {
   return `${_("sentences.powers-group")} #${id.slice(0, 4)}`;
@@ -103,6 +107,7 @@ module.exports = {
   add,
   remove,
   update,
+  getAll,
   addWidget,
   removeWidget,
   removeWidgetComponent,

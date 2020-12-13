@@ -6,5 +6,6 @@ export default {
   getFonts: () => emit("app.getFonts"),
   loadFont: (url) => emit("app.loadFont", url),
   getUsedFonts: () => emit("app.getUsedFonts"),
-  set: (key, val) => emit("stores.app", "set", key, val),
+  getSettings: () => emit("app.getSettings"),
+  setSetting: (key, value) => emit("app.setSetting", key, value),
 };

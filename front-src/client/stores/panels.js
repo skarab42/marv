@@ -99,10 +99,10 @@ function loadOnce() {
 
 export default async function load() {
   const store = await api.getStore();
-  store.panels.forEach(makeGrid);
-  panels.set(store.panels);
+  store.forEach(makeGrid);
+  panels.set(store);
   const panelId = localStorage.getItem("currentPanel");
-  const panel = store.panels.find((panel) => panel.id === panelId);
-  setCurrentPanel(panel || store.panels[0]);
+  const panel = store.find((panel) => panel.id === panelId);
+  setCurrentPanel(panel || store[0]);
   loadOnce();
 }

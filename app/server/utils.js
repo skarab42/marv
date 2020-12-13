@@ -1,7 +1,7 @@
-const stores = require("../stores");
+const settings = require("./libs/settings");
 
-function getServerURL() {
-  const { host, port } = stores.server.getAll();
+async function getServerURL() {
+  const { host, port } = await settings.getAll("server.");
   return `http://${host}:${port}`;
 }
 

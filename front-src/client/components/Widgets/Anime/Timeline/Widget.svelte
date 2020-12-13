@@ -1,11 +1,11 @@
 <script>
-  import { push } from "@/libs/actions";
+  import api from "@/api/actions";
   import WidgetWrapper from "@/components/Widgets/WidgetWrapper.svelte";
 
   export let widget;
 
   function triggerAction() {
-    push({ type: "anime", widget }).catch((error) => {
+    api.push({ type: "anime", widget }).catch((error) => {
       console.log(">>>Error:", error);
     });
   }

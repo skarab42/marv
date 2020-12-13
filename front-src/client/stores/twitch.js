@@ -1,4 +1,3 @@
-import { getStore, getState, on } from "@/libs/twitch";
 import { writable } from "svelte/store";
 import api from "@/api/twitch";
 
@@ -15,17 +14,17 @@ let loaded = false;
 async function loadOnce() {
   if (loaded) return;
 
-  on("state.stream", stream.set);
-  on("state.user", user.set);
-  on("state.chat", chat.set);
+  api.on("state.stream", stream.set);
+  api.on("state.user", user.set);
+  api.on("state.chat", chat.set);
 
-  on("addCommand", (command) => {
+  api.on("addCommand", (command) => {
     commands.update((state) => {
       return [command, ...state];
     });
   });
 
-  on("updateCommand", (command) => {
+  api.on("updateCommand", (command) => {
     commands.update((state) => {
       return state.map((cmd) =>
         cmd.id === command.id ? { ...cmd, ...command } : cmd
@@ -33,7 +32,7 @@ async function loadOnce() {
     });
   });
 
-  on("removeCommand", (command) => {
+  api.on("removeCommand", (command) => {
     commands.update((state) => {
       return state.filter((cmd) => cmd.id !== command.id);
     });
@@ -43,9 +42,9 @@ async function loadOnce() {
 }
 
 export default async function load() {
-  store.set(await getStore());
+  store.set(await api.getSettings());
 
-  const state = await getState();
+  const state = await api.getState();
 
   stream.set(state.stream);
   user.set(state.user);

@@ -1,4 +1,5 @@
 const { getSystemFonts, getUsedFonts } = require("../libs/files");
+const settings = require("../libs/settings");
 
 module.exports = {
   quit: () => {
@@ -17,5 +18,11 @@ module.exports = {
   },
   getUsedFonts: () => {
     return getUsedFonts();
+  },
+  getSettings: () => {
+    return settings.getAll("app.");
+  },
+  setSetting: (key, value) => {
+    return settings.set(`app.${key}`, value);
   },
 };

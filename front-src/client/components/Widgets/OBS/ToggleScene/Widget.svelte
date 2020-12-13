@@ -1,7 +1,7 @@
 <script>
+  import api from "@/api/actions";
   import { _ } from "@/libs/i18next";
   import { state } from "@/stores/obs";
-  import { push } from "@/libs/actions";
   import WidgetWrapper from "@/components/Widgets/OBS/WidgetWrapper.svelte";
 
   export let widget;
@@ -18,7 +18,7 @@
   $: cls = hasScenes ? "cursor-pointer" : "cursor-not-allowed";
 
   function triggerAction() {
-    push({ type: "obs", widget }).catch((error) => {
+    api.push({ type: "obs", widget }).catch((error) => {
       console.log(">>>Error:", error);
     });
   }

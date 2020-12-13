@@ -1,5 +1,5 @@
 <script>
-  import app from "@/api/app";
+  import api from "@/api/app";
   import { _ } from "@/libs/i18next";
   import { store } from "@/stores/app";
   import Checkbox from "@/components/UI/Checkbox.svelte";
@@ -9,7 +9,7 @@
   function onChange(event) {
     checked = event.target.checked;
     $store.openOnStartup = !checked;
-    app.set("openOnStartup", !checked);
+    api.setSetting("openOnStartup", !checked);
   }
 </script>
 

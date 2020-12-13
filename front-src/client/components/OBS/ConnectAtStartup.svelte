@@ -1,5 +1,5 @@
 <script>
-  import obs from "@/api/obs";
+  import api from "@/api/obs";
   import { _ } from "@/libs/i18next";
   import { store } from "@/stores/obs";
   import Checkbox from "@/components/UI/Checkbox.svelte";
@@ -9,7 +9,7 @@
   function onChange(event) {
     checked = event.target.checked;
     $store.connectOnStartup = checked;
-    obs.set("connectOnStartup", checked);
+    api.setSetting("connectOnStartup", checked);
   }
 </script>
 

@@ -1,5 +1,5 @@
 const open = require("open");
-const stores = require("../../../stores");
+const settings = require("../settings");
 const { AccessToken } = require("twitch");
 
 const authBaseURL = "https://id.twitch.tv/oauth2/authorize?response_type=token";
@@ -16,6 +16,8 @@ function normalizeScopes(scopes) {
 module.exports = class AuthProvider {
   constructor({
     clientId,
+    scope = [],
+    accessToken = null,
     redirectURI = "http://localhost",
     forceVerify = false,
   } = {}) {
@@ -24,8 +26,10 @@ module.exports = class AuthProvider {
     this.forceVerify = forceVerify;
 
     this.tokenType = "user";
-    this.accessToken = stores.twitch.get("AccessToken", null);
-    this.currentScopes = stores.twitch.get("AccessToken.scope", []);
+    this.currentScopes = scope;
+    this.accessToken = accessToken
+      ? { access_token: accessToken, scope }
+      : null;
 
     if (this.accessToken && this.accessToken.access_token) {
       this.accessToken = new AccessToken(this.accessToken);
@@ -63,8 +67,8 @@ module.exports = class AuthProvider {
     this.__rejectToken = null;
   }
 
-  refresh() {
-    stores.twitch.set("AccessToken.access_token", null);
+  async refresh() {
+    await settings.set("twitch.accessToken", null);
     return this.getAccessToken(this.currentScopes, { refresh: true });
   }
 
@@ -82,11 +86,12 @@ module.exports = class AuthProvider {
       }
 
       this.__rejectToken = reject;
-      this.__resolveToken = ({ access_token }) => {
+      this.__resolveToken = async ({ access_token }) => {
         this.currentScopes = [...new Set([...this.currentScopes, ...scopes])];
         const accessToken = { access_token, scope: this.currentScopes };
         this.accessToken = new AccessToken(accessToken);
-        stores.twitch.set("AccessToken", accessToken);
+        await settings.set("twitch.scope", this.currentScopes);
+        await settings.set("twitch.accessToken", access_token);
         resolve(this.accessToken);
       };
 

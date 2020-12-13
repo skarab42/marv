@@ -1,6 +1,7 @@
 const panels = require("../libs/panels");
 
 module.exports = {
+  getAll: () => panels.getAll(),
   add() {
     const panel = panels.add();
     this.notify("panels.add", panel);

@@ -1,6 +1,6 @@
 <script>
   import ms from "ms";
-  import { on } from "@/libs/actions";
+  import api from "@/api/actions";
   import { store } from "@/stores/actions";
   import Label from "./WidgetLabel.svelte";
   import Progressbar from "@/components/UI/Progressbar.svelte";
@@ -57,7 +57,7 @@
     elapsedPercent = percent(totalElapsedTime, totalDuration);
   }
 
-  on("push", (action) => {
+  api.on("push", (action) => {
     if (!isOwner(action)) return;
     if (isImmediat(action)) {
       clearCountdownInterval();
@@ -68,12 +68,12 @@
     }
   });
 
-  on("start", (action) => {
+  api.on("start", (action) => {
     if (!isOwner(action)) return;
     countdownInterval(action.duration, 100, onTick);
   });
 
-  on("end", (action) => {
+  api.on("end", (action) => {
     if (!isOwner(action)) return;
     if (!isImmediat(action)) {
       clearCountdownInterval();

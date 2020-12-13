@@ -15,7 +15,7 @@ function loadOnce() {
 }
 
 export default async function load() {
-  store.set(await api.getStore());
+  store.set(await api.getSettings());
   state.set(await api.getState());
   loadOnce();
 }
