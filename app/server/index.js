@@ -13,6 +13,7 @@ const socket = require("./libs/socket.io");
 const { getServerURL } = require("./utils");
 const { i18next } = require("./libs/i18next");
 const { getSystemFonts } = require("./libs/files");
+const { init: i18next } = require("./libs/i18next");
 const twitchAuthMiddleware = require("./libs/twitch/authMiddleware");
 const missingKeyHandler = require("./libs/i18next/missingKeyHandler");
 
@@ -65,6 +66,7 @@ function onStarted() {
 
 async function start() {
   await umzug.up();
+  await i18next();
 
   const server = http.createServer();
 

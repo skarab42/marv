@@ -1,9 +1,9 @@
+const { init: i18next, _ } = require("../server/libs/i18next");
 const getTrayIconByPlatform = require("./window/trayIcon");
 const { staticPath, fingerprint } = require("../utils");
 const { getServerURL } = require("../server/utils");
 const mainWindow = require("./window/mainWindow");
 const chatWindow = require("./window/chatWindow");
-const { _ } = require("../server/libs/i18next");
 const { Tray, Menu } = require("electron");
 const capitalize = require("capitalize");
 const stores = require("../stores");
@@ -43,6 +43,7 @@ function createMenu() {
 }
 
 function createTray() {
+  await i18next();
   tray = new Tray(path.join(staticPath, icon));
 
   tray.setToolTip(fingerprint);
