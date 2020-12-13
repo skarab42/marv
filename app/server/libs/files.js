@@ -2,12 +2,12 @@ const path = require("path");
 const mime = require("mime");
 const fs = require("fs-extra");
 const { _ } = require("./i18next");
-const stores = require("../../stores");
+const settings = require("./settings");
 const { filesPath } = require("../../utils");
 const getUsedFonts = require("./files/getUsedFonts");
 const getSystemFonts = require("./files/getSystemFonts");
 
-const language = stores.app.get("language", "en");
+const language = settings.get("app.language", "en");
 const allowedMimeTypes = ["text", "image", "audio", "video", "font"];
 
 fs.ensureDirSync(filesPath);

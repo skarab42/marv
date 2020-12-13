@@ -2,11 +2,11 @@ const { init: i18next, _ } = require("../server/libs/i18next");
 const getTrayIconByPlatform = require("./window/trayIcon");
 const { staticPath, fingerprint } = require("../utils");
 const { getServerURL } = require("../server/utils");
+const settings = require("../server/libs/settings");
 const mainWindow = require("./window/mainWindow");
 const chatWindow = require("./window/chatWindow");
 const { Tray, Menu } = require("electron");
 const capitalize = require("capitalize");
-const stores = require("../stores");
 const quit = require("./quit");
 const path = require("path");
 const open = require("open");
@@ -33,8 +33,10 @@ function createMenu() {
     },
     {
       label: _("sentences.open-twitch-chat-window"),
-      click: () => {
-        chatWindow({ channel: stores.twitch.get("chatWindow.channel", "") });
+      click: async () => {
+        chatWindow({
+          channel: await settings.get("twitch.currentChannel", ""),
+        });
       },
     },
     { type: "separator" },
@@ -42,8 +44,9 @@ function createMenu() {
   ]);
 }
 
-function createTray() {
+async function createTray() {
   await i18next();
+
   tray = new Tray(path.join(staticPath, icon));
 
   tray.setToolTip(fingerprint);

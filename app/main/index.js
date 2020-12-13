@@ -1,13 +1,14 @@
 "use strict";
 
-const mainWindow = require("./window/mainWindow");
 const { app } = require("electron");
 const server = require("./server");
-const store = require("../stores");
-const tray = require("./tray");
 
-function preloadMainWindow() {
-  mainWindow({ showOnLoad: store.app.get("openOnStartup") });
+async function onServerReady() {
+  const tray = require("./tray");
+  const mainWindow = require("./window/mainWindow");
+  const settings = require("../server/libs/settings");
+  mainWindow({ showOnLoad: await settings.get("app.openOnStartup") });
+  tray();
 }
 
 function init() {
@@ -16,8 +17,7 @@ function init() {
   });
 
   app.whenReady().then(() => {
-    server.start(preloadMainWindow);
-    tray();
+    server.start(onServerReady);
   });
 }
 
