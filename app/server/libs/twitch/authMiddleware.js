@@ -1,3 +1,5 @@
+const { authProvider } = require("./index");
+
 function twitchAuth(req, res) {
   if (req.query.error) {
     this.rejectToken(req.query);
@@ -34,6 +36,4 @@ function authMiddleware(req, res, next) {
   next();
 }
 
-module.exports = (authProvider) => {
-  return authMiddleware.bind(authProvider);
-};
+module.exports = authMiddleware.bind(authProvider);

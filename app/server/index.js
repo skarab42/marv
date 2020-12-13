@@ -77,8 +77,8 @@ async function start() {
     p.use(sirv(path, { dev: true }));
   });
 
-  p.use(twitchAuthMiddleware(twitch.authProvider))
-    .post("/locales/add/:lng/:ns", missingKeyHandler(i18next))
+  p.use(twitchAuthMiddleware)
+    .post("/locales/add/:lng/:ns", missingKeyHandler)
     .listen(port, (error) => {
       if (error) return onError(error);
       socket(server);
