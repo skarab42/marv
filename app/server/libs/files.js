@@ -2,17 +2,11 @@ const path = require("path");
 const mime = require("mime");
 const fs = require("fs-extra");
 const { _ } = require("./i18next");
-const settings = require("./settings");
 const { filesPath } = require("../../utils");
 const getUsedFonts = require("./files/getUsedFonts");
 const getSystemFonts = require("./files/getSystemFonts");
 
-let language = "en";
 const allowedMimeTypes = ["text", "image", "audio", "video", "font"];
-
-(async () => {
-  language = await settings.get("app.language", language);
-})();
 
 fs.ensureDirSync(filesPath);
 
@@ -94,7 +88,7 @@ function remove(file) {
 }
 
 function localeSort(a, b) {
-  return a.localeCompare(b, language, {
+  return a.localeCompare(b, {
     numeric: true,
     ignorePunctuation: true,
   });
