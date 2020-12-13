@@ -11,6 +11,10 @@ input:focus {
   outline: 0;
 }
 
+[data-tippy-root] {
+  z-index: 49 !important;
+}
+
 .tippy-box[data-theme~="marv"] {
   background-color: tomato;
   color: yellow;
