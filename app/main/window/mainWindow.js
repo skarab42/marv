@@ -9,7 +9,7 @@ const path = require("path");
 
 let win = null;
 
-module.exports = function createWindow({ showOnLoad = true } = {}) {
+module.exports = async function createWindow({ showOnLoad = true } = {}) {
   if (win) {
     return win.show();
   }
@@ -32,6 +32,6 @@ module.exports = function createWindow({ showOnLoad = true } = {}) {
   });
 
   win.removeMenu();
-  win.loadURL(`${getServerURL()}?electron`);
+  win.loadURL(`${await getServerURL()}?electron`);
   watch && win.webContents.openDevTools();
 };

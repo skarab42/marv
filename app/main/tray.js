@@ -15,8 +15,8 @@ const icon = getTrayIconByPlatform();
 
 let tray = null;
 
-function openInBrowser() {
-  open(getServerURL());
+async function openInBrowser() {
+  open(await getServerURL());
 }
 
 function createMenu() {

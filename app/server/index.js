@@ -23,7 +23,7 @@ let portChangeMaxCount = 10;
 
 function printBanner() {
   // eslint-disable-next-line no-console
-  console.log(`> ${fingerprint} | running on ${getServerURL()}`);
+  console.log(`> ${fingerprint} | running on ${await getServerURL()}`);
 }
 
 async function onError(error) {

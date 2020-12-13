@@ -35,7 +35,9 @@ module.exports = function chatWindow({ channel, showOnLoad = true } = {}) {
   openLinkInBrowser(win);
   storeBounds({ win, name: "chat" });
 
-  win.webContents.on("did-finish-load", () => {
+  win.webContents.on("did-finish-load", async () => {
+    const serverURL = await getServerURL();
+
     win.webContents.insertCSS(`
       #root > div.tw-top-0 {
         top: 30px !important;
@@ -86,7 +88,7 @@ module.exports = function chatWindow({ channel, showOnLoad = true } = {}) {
       const $cross = document.createElement('div');
       const $iconSVG = document.createElement('img');
       $titlebar.setAttribute('id', 'electron-titlebar');
-      $iconSVG.setAttribute('src', '${getServerURL()}/icon.svg');
+      $iconSVG.setAttribute('src', '${serverURL}/icon.svg');
       $iconSVG.setAttribute('height', '16px');
       $icon.classList.add('icon');
       $title.classList.add('title');
