@@ -29,7 +29,7 @@ module.exports = {
       setting("obs.password", "", "string"),
       setting("obs.connectOnStartup", "false", "boolean"),
 
-      setting("twitch.connectOnStartup", false, "boolean"),
+      setting("twitch.connectOnStartup", "false", "boolean"),
       setting("twitch.currentChannel", "", "string"),
       setting("twitch.accessToken", "", "string"),
       setting("twitch.scope", JSON.stringify(scope), "json"),
