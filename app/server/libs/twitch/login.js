@@ -8,9 +8,9 @@ module.exports = async function login() {
   if (user) return user;
 
   user = await getConnectedUser();
-
   state.set("user", user);
-  initEvents();
+
+  await initEvents();
 
   return user;
 };
