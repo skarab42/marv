@@ -10,9 +10,11 @@ export default function pannable(node) {
   function handleMousedown(event) {
     updateCoords(event);
 
-    node.dispatchEvent(new CustomEvent("panstart", {
-      detail: { x, y }
-    }));
+    node.dispatchEvent(
+      new CustomEvent("panstart", {
+        detail: { x, y },
+      })
+    );
 
     window.addEventListener("mousemove", handleMousemove);
     window.addEventListener("mouseup", handleMouseup);
@@ -24,17 +26,21 @@ export default function pannable(node) {
 
     updateCoords(event);
 
-    node.dispatchEvent(new CustomEvent("panmove", {
-      detail: { x, y, dx, dy }
-    }));
+    node.dispatchEvent(
+      new CustomEvent("panmove", {
+        detail: { x, y, dx, dy },
+      })
+    );
   }
 
   function handleMouseup(event) {
     updateCoords(event);
 
-    node.dispatchEvent(new CustomEvent("panend", {
-      detail: { x, y }
-    }));
+    node.dispatchEvent(
+      new CustomEvent("panend", {
+        detail: { x, y },
+      })
+    );
 
     window.removeEventListener("mousemove", handleMousemove);
     window.removeEventListener("mouseup", handleMouseup);
@@ -45,6 +51,6 @@ export default function pannable(node) {
   return {
     destroy() {
       node.removeEventListener("mousedown", handleMousedown);
-    }
+    },
   };
 }

@@ -14,12 +14,15 @@
 </script>
 
 {#if visible}
-  <div on:click={toggle} class="flex bg-primary-dark cursor-pointer">
+  <div on:click="{toggle}" class="flex bg-primary-dark cursor-pointer">
     <div class="p-2 flex-auto truncate">
       <slot name="title" />
     </div>
     <div class="p-2">
-      <Icon icon={expended ? MdExpandLess : MdExpandMore} class="ml-2 flex-shrink-0" />
+      <Icon
+        icon="{expended ? MdExpandLess : MdExpandMore}"
+        class="ml-2 flex-shrink-0"
+      />
     </div>
   </div>
   <div class="{divide} {!expended ? 'hidden' : ''}">

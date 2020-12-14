@@ -16,39 +16,41 @@
 </script>
 
 <style>
-.timeline-grid {
-  display: grid;
-}
+  .timeline-grid {
+    display: grid;
+  }
 
-.timeline-grid > :global(div) {
-  border-right: 1px rgba(0,200,242,0.2) solid;
-  border-bottom: 1px rgba(0,200,242,0.2) solid;
-}
+  .timeline-grid > :global(div) {
+    border-right: 1px rgba(0, 200, 242, 0.2) solid;
+    border-bottom: 1px rgba(0, 200, 242, 0.2) solid;
+  }
 
-.timeline-grid :global(.bg-0) {
-  background-color: rgba(0,0,0,0.1);
-}
+  .timeline-grid :global(.bg-0) {
+    background-color: rgba(0, 0, 0, 0.1);
+  }
 
-.timeline-grid :global(.bg-1) {
-  background-color: rgba(0,0,0,0.2);
-}
+  .timeline-grid :global(.bg-1) {
+    background-color: rgba(0, 0, 0, 0.2);
+  }
 </style>
 
 <div class="relative flex flex-col h-full overflow-hidden">
-  <div class="timeline-grid whitespace-no-wrap bg-primary-dark grid" style={gridTemplate}>
-    <slot name="header"></slot>
+  <div
+    class="timeline-grid whitespace-no-wrap bg-primary-dark grid"
+    style="{gridTemplate}"
+  >
+    <slot name="header" />
   </div>
   <div class="flex-auto overflow-x-hidden overflow-y-auto">
-    <div class="timeline-grid whitespace-no-wrap" style={gridTemplate}>
+    <div class="timeline-grid whitespace-no-wrap" style="{gridTemplate}">
       <slot />
     </div>
   </div>
   <div
     use:pannable
-    on:panmove={onSplitterPan}
+    on:panmove="{onSplitterPan}"
     on:mousedown|stopPropagation
-    style={splitterStyle}
+    style="{splitterStyle}"
     class="absolute top-0 bottom-0 select-none"
-  >
-  </div>
+  ></div>
 </div>

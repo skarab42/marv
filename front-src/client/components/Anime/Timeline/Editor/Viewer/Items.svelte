@@ -6,5 +6,5 @@
 </script>
 
 {#each $items as item (item.id)}
-<svelte:component this={components[item.target.type]} {item} />
+  <svelte:component this="{components[item.target.type]}" item="{item}" />
 {/each}
