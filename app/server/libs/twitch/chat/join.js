@@ -10,8 +10,13 @@ module.exports = function join(channel) {
 
   joinedChannels.push(channel);
 
-  return chat.join(channel).catch((error) => {
-    state.set("chat.joinedChannels", [...new Set(joinedChannels)]);
-    return Promise.reject(error);
-  });
+  return chat
+    .join(channel)
+    .then(() => {
+      return Promise.resolve({ alreadyJoined: false });
+    })
+    .catch((error) => {
+      state.set("chat.joinedChannels", [...new Set(joinedChannels)]);
+      return Promise.reject(error);
+    });
 };
