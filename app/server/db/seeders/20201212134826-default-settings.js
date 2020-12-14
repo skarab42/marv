@@ -32,7 +32,7 @@ module.exports = {
 
       setting("twitch.connectOnStartup", "false", "boolean"),
       setting("twitch.currentChannel", "", "string"),
-      setting("twitch.accessToken", "42", "string"),
+      setting("twitch.accessToken", " ", "string"),
       setting("twitch.scope", JSON.stringify(scope), "json"),
     ]);
   },

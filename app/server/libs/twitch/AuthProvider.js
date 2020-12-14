@@ -26,13 +26,11 @@ module.exports = class AuthProvider {
     this.forceVerify = forceVerify;
 
     this.tokenType = "user";
+    this.accessToken = null;
     this.currentScopes = scope;
-    this.accessToken = accessToken
-      ? { access_token: accessToken, scope }
-      : null;
 
-    if (this.accessToken && this.accessToken.access_token) {
-      this.accessToken = new AccessToken(this.accessToken);
+    if (accessToken) {
+      this.accessToken = new AccessToken({ access_token: accessToken, scope });
     }
 
     this.__resolveToken = null;
@@ -68,7 +66,7 @@ module.exports = class AuthProvider {
   }
 
   async refresh() {
-    await settings.set("twitch.accessToken", null);
+    await settings.set("twitch.accessToken", " ");
     return this.getAccessToken(this.currentScopes, { refresh: true });
   }
 
