@@ -6,6 +6,7 @@ const scope = [
   "chat:edit",
   "channel:read:redemptions",
   "channel:manage:redemptions",
+  "bits:read",
 ];
 
 function setting(key, value, type) {
