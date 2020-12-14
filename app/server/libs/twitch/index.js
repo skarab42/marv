@@ -17,7 +17,9 @@ api.init = async function init() {
 
   api.authProvider = new AuthProvider({ ...config, accessToken, scope });
   api.api = new ApiClient({ authProvider: api.authProvider });
-  api.chat = new ChatClient(api.authProvider);
+  api.chat = new ChatClient(api.authProvider, {
+    requestMembershipEvents: true,
+  });
 };
 
 module.exports = api;
