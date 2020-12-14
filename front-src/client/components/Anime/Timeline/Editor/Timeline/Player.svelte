@@ -30,7 +30,7 @@
   }
 
   function resetAnime() {
-    $seek = 0;
+    seek.set(0);
     $paused = true;
     anime && anime.reset();
   }
