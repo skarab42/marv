@@ -17,19 +17,18 @@ const getLastFollowers = require("../libs/twitch/api/getLastFollowers");
 const banner = "🤖 Marv est dans la place !";
 
 module.exports = {
-  login() {
-    return twitchLogin().then((user) => {
-      chatConnect().then(() => {
-        chatJoin(user.display_name).then(({ alreadyJoined } = {}) => {
-          if (!alreadyJoined) {
-            console.log(banner);
-            // twitch.chat.say(user.display_name, banner);
-            settings.set("twitch.currentChannel", user.display_name);
-          }
-        });
-      });
-      return user;
-    });
+  async login() {
+    const user = await twitchLogin();
+    await chatConnect();
+    const join = await chatJoin(user.display_name);
+
+    if (!join.alreadyJoined) {
+      console.log(banner);
+      // twitch.chat.say(user.display_name, banner);
+      settings.set("twitch.currentChannel", user.display_name);
+    }
+
+    return user;
   },
   addCommand(command) {
     return addCommand(command).then(({ dataValues }) => {
