@@ -1,7 +1,6 @@
 const pushActions = require("../../pushActions");
 
 module.exports = function onResub(channel, user, subInfo) {
-  console.log(">>> onResub:", { channel, user, subInfo });
   const {
     displayName,
     plan,
@@ -11,6 +10,7 @@ module.exports = function onResub(channel, user, subInfo) {
     months,
     message,
   } = subInfo;
+
   pushActions("onResub", {
     user: displayName,
     plan: planName,

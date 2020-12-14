@@ -1,7 +1,6 @@
 const pushActions = require("../../pushActions");
 
 module.exports = function onSubGift(channel, user, subInfo) {
-  console.log(">>> onSubGift:", { channel, user, subInfo });
   const {
     toUser: displayName,
     fromUser: gifter,
@@ -14,6 +13,7 @@ module.exports = function onSubGift(channel, user, subInfo) {
     planName,
     streak,
   } = subInfo;
+
   pushActions("onSubGift", {
     toUser: displayName,
     fromUser: gifter,

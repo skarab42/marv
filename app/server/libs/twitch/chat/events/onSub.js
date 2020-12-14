@@ -1,7 +1,6 @@
 const pushActions = require("../../pushActions");
 
 module.exports = function onSub(channel, user, subInfo) {
-  console.log(">>> onSub:", { channel, user, subInfo });
   const {
     displayName,
     isPrime,
@@ -11,6 +10,7 @@ module.exports = function onSub(channel, user, subInfo) {
     planName,
     streak,
   } = subInfo;
+
   pushActions("onSub", {
     user: displayName,
     plan: planName,
