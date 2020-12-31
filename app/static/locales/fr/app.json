@@ -131,7 +131,8 @@
     "first-start-install-sentence": "Pour connecter Marv à OBS, tu dois installer OBS WebSocket.",
     "overlay-install-sentence": "Pour installer Marv, créer une source navigateur dans OBS avec l'url ci-dessous.",
     "check-disable-source-not-visible": "Coche la case: Désactiver la source quand elle n'est pas visible.",
-    "check-refresh-browser-on-activate": "Coche la case: Rafraîchir le navigateur lorsque la scène devient active."
+    "check-refresh-browser-on-activate": "Coche la case: Rafraîchir le navigateur lorsque la scène devient active.",
+    "overlay-not-found": "Overlay non trouvé"
   },
   "anime": {
     "timeline": "Anime | Timeline"
@@ -217,8 +218,8 @@
   },
   "docs": {
     "get-started": {
-      "obs": "docs.get-started.obs",
-      "overlay": "docs.get-started.overlay"
+      "obs": "Installer OBS Websocket.",
+      "overlay": "Installer l'overlay de Marv dans OBS."
     }
   }
 }
