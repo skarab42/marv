@@ -3,6 +3,7 @@
   import { electron } from "@/stores/app";
   import { drawer, hide } from "@/stores/drawer";
   import clickoutside from "@/libs/svelte/click-outside";
+  import HelpLinks from "@/components/App/HelpLinks.svelte";
   import OpenOnStartup from "@/components/App/OpenOnStartup.svelte";
   import LanguageSelect from "@/components/App/LanguageSelect.svelte";
   import OBSConnectAtStartup from "@/components/OBS/ConnectAtStartup.svelte";
@@ -25,5 +26,6 @@
     <OBSConnectAtStartup />
     <TwitchConnectAtStartup />
     <CheckUpdateCheckbox />
+    <HelpLinks />
   </div>
 {/if}
