@@ -24,8 +24,10 @@ module.exports = (server) => {
 
   adminNamespace.on("connection", (overlaySocket) => {
     io.__overlaySocket = overlaySocket;
+    io.emit("overlay.connected");
     overlaySocket.on("disconnect", () => {
       io.__overlaySocket = null;
+      io.emit("overlay.disconnected");
     });
   });
 

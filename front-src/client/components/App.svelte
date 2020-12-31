@@ -6,6 +6,7 @@
   import filesStore from "@/stores/files";
   import panelsStore from "@/stores/panels";
   import twitchStore from "@/stores/twitch";
+  import overlayStore from "@/stores/overlay";
   import actionsStore from "@/stores/actions";
   import i18nextStore from "@/stores/i18next";
   import { loadUsedFonts } from "../../libs/fonts";
@@ -21,6 +22,7 @@
   async function initialize() {
     await i18next(await i18nextStore());
     await actionsStore();
+    await overlayStore();
     await panelsStore();
     await twitchStore();
     await filesStore();
