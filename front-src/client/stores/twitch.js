@@ -7,7 +7,7 @@ export const user = writable(null);
 export const chat = writable(null);
 export const commands = writable([]);
 export const rewards = writable([]);
-// export const followers = writable([]);
+export const followers = writable([]);
 
 let loaded = false;
 
@@ -56,7 +56,7 @@ export default async function load() {
     if (state.user.broadcaster_type.length) {
       rewards.set(await api.getRewardList());
     }
-    // followers.set(await api.getLastFollowers());
+    followers.set(await api.getLastFollowers());
   }
 
   await loadOnce();

@@ -1,20 +1,9 @@
 const Viewer = require("../../../db/Models/Viewer");
-const { Op } = require("sequelize");
-const twitch = require("../index");
-const login = require("../login");
 
-module.exports = async function getLastFollowers() {
-  const user = await login();
-  const stream = await twitch.api.helix.streams.getStreamByUserName(user);
-  const startDate = stream ? new Date(stream._data["started_at"]) : new Date();
-
+module.exports = async function getLastFollowers({ limit = 42 } = {}) {
   return Viewer.findAll({
-    where: {
-      [Op.or]: {
-        followedAt: {
-          [Op.gte]: startDate,
-        },
-      },
-    },
+    where: { isFollowing: 1 },
+    order: [["followedAt", "DESC"]],
+    limit,
   });
 };
