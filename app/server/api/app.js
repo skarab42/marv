@@ -19,8 +19,10 @@ module.exports = {
   getUsedFonts: () => {
     return getUsedFonts();
   },
-  getSettings: () => {
-    return settings.getAll("app.");
+  getSettings: async () => {
+    const app = await settings.getAll("app.");
+    const server = await settings.getAll("server.");
+    return { ...app, server };
   },
   setSetting: (key, value) => {
     return settings.set(`app.${key}`, value);
