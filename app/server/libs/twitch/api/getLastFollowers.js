@@ -11,7 +11,6 @@ module.exports = async function getLastFollowers() {
   return Viewer.findAll({
     where: {
       [Op.or]: {
-        offlineFollow: true,
         followedAt: {
           [Op.gte]: startDate,
         },
