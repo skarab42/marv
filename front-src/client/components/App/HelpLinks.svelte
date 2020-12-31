@@ -1,18 +1,7 @@
 <script>
   import { _ } from "@/libs/i18next";
-  import { store } from "@/stores/app";
+  import { links, url } from "@/libs/docs";
   import MdHelp from "svelte-icons/md/MdHelp.svelte";
-
-  $: docsURL = `http://localhost:3000/${$store.language}/docs`;
-
-  function url(uri) {
-    return `${docsURL}/${uri}`;
-  }
-
-  const links = [
-    { url: "get-started#obs", label: "docs.get-started.obs" },
-    { url: "get-started#overlay", label: "docs.get-started.overlay" },
-  ];
 </script>
 
 <div class="p-2 flex space-x-2 font-bold tracking-wider bg-secondary">
