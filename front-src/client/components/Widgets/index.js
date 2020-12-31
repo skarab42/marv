@@ -6,7 +6,7 @@ import * as TwitchChat from "./Twitch/Chat";
 import * as TwitchStream from "./Twitch/Stream";
 import * as TwitchRewards from "./Twitch/Rewards";
 import * as TwitchCommands from "./Twitch/Commands";
-import * as TwitchFollowers from "./Twitch/Followers";
+// import * as TwitchFollowers from "./Twitch/Followers";
 
 const widgets = {
   SceneList,
@@ -17,7 +17,7 @@ const widgets = {
   TwitchStream,
   TwitchRewards,
   TwitchCommands,
-  TwitchFollowers,
+  // TwitchFollowers,
 };
 
 export default widgets;
