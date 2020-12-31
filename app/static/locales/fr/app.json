@@ -119,7 +119,8 @@
     "top right": "haut droite",
     "bottom left": "bas gauche",
     "bottom right": "bas droite",
-    "error": "erreur"
+    "error": "erreur",
+    "help": "aide"
   },
   "obs": {
     "scene-list": "OBS | Liste des scènes",
@@ -127,7 +128,10 @@
     "toggle-scene": "OBS | Basculer entre deux scènes",
     "no-scene-selected": "Aucune scène sélectionnée",
     "connect-at-startup": "Connecter OBS au démarrage",
-    "first-start-install-sentence": "Pour connecter Marv à OBS, tu dois installer OBS WebSocket."
+    "first-start-install-sentence": "Pour connecter Marv à OBS, tu dois installer OBS WebSocket.",
+    "overlay-install-sentence": "Pour installer Marv, créer une source navigateur dans OBS avec l'url ci-dessous.",
+    "check-disable-source-not-visible": "Coche la case: Désactiver la source quand elle n'est pas visible.",
+    "check-refresh-browser-on-activate": "Coche la case: Rafraîchir le navigateur lorsque la scène devient active."
   },
   "anime": {
     "timeline": "Anime | Timeline"
@@ -210,5 +214,11 @@
     "perspective": "point de vue",
     "height": "hauteur",
     "text-shadow": "ombre"
+  },
+  "docs": {
+    "get-started": {
+      "obs": "docs.get-started.obs",
+      "overlay": "docs.get-started.overlay"
+    }
   }
 }
