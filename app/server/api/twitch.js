@@ -11,7 +11,6 @@ const removeCommand = require("../libs/twitch/api/removeCommand");
 const getRewardList = require("../libs/twitch/api/getRewardList");
 const getCommandList = require("../libs/twitch/api/getCommandList");
 const getCommandNames = require("../libs/twitch/api/getCommandNames");
-const getCommandPrefix = require("../libs/twitch/api/getCommandPrefix");
 const getLastFollowers = require("../libs/twitch/api/getLastFollowers");
 
 const banner = "🤖 Marv est dans la place !";
@@ -58,7 +57,6 @@ module.exports = {
   getRewardList: () => getRewardList(),
   getCommandList: () => getCommandList(),
   getCommandNames: () => getCommandNames(),
-  getCommandPrefix: () => getCommandPrefix(),
   getLastFollowers: () => getLastFollowers(),
   getState: () => state.get(),
   updateState: (state) => state.update(state),

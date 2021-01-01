@@ -4,9 +4,9 @@
   import Icon from "@/components/UI/Icon.svelte";
   import MdEdit from "svelte-icons/md/MdEdit.svelte";
   import Switch from "@/components/UI/Switch.svelte";
+  import { command as commandStore } from "@/stores/command";
   import MdDeleteForever from "svelte-icons/md/MdDeleteForever.svelte";
 
-  export let prefix;
   export let command;
 
   let showEditModal = false;
@@ -47,7 +47,7 @@
   <div class="p-1 flex flex-auto flex-wrap items-center">
     <div class="p-1">
       <div class="px-2 bg-black bg-opacity-25 rounded">
-        <span class="opacity-75">{prefix}</span>{command.name}
+        <span class="opacity-75">{$commandStore.prefix}</span>{command.name}
         {#if usage}<span class="opacity-50">{usage}</span>{/if}
       </div>
     </div>

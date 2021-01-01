@@ -6,6 +6,7 @@
   import filesStore from "@/stores/files";
   import panelsStore from "@/stores/panels";
   import twitchStore from "@/stores/twitch";
+  import commandStore from "@/stores/command";
   import overlayStore from "@/stores/overlay";
   import actionsStore from "@/stores/actions";
   import i18nextStore from "@/stores/i18next";
@@ -23,6 +24,7 @@
     await i18next(await i18nextStore());
     await actionsStore();
     await overlayStore();
+    await commandStore();
     await panelsStore();
     await twitchStore();
     await filesStore();

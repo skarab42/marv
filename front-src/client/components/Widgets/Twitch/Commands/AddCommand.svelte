@@ -1,11 +1,10 @@
 <script>
   import api from "@/api/twitch";
   import { _ } from "@/libs/i18next";
+  import { command } from "@/stores/command";
   import Input from "@/components/UI/Input.svelte";
   import Notify from "@/components/UI/Notify.svelte";
   import Button from "@/components/UI/Button.svelte";
-
-  export let prefix;
 
   let value = "";
   let errorMessage = null;
@@ -31,7 +30,7 @@
 <Notify type="error" bind:message="{errorMessage}" />
 
 <div class="flex items-center">
-  <div class="p-2 px-4 bg-gray-600 bg-opacity-25">{prefix}</div>
+  <div class="p-2 px-4 bg-gray-600 bg-opacity-25">{$command.prefix}</div>
   <Input
     label="{false}"
     value="{value}"

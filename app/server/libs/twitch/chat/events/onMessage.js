@@ -1,5 +1,5 @@
-const getCommandPrefix = require("../../api/getCommandPrefix");
 const pushActions = require("../../pushActions");
+const settings = require("../../../settings");
 const onCommand = require("../onCommand");
 
 const chalk = require("chalk");
@@ -25,7 +25,7 @@ module.exports = async function onMessage(channel, nick, message, data) {
   pushActions("onMessage", { user: nick, message });
   terminalChat(channel, nick, message, data);
 
-  const prefix = getCommandPrefix();
+  const prefix = await settings.get("command.prefix");
   if (!isCommand(prefix, message)) return;
   const command = parseCommand(prefix, message);
 
