@@ -1,4 +1,4 @@
-"use strict";
+const setting = require("../setting");
 
 const scope = [
   "user:read:email",
@@ -8,11 +8,6 @@ const scope = [
   "channel:manage:redemptions",
   "bits:read",
 ];
-
-function setting(key, value, type) {
-  const now = new Date();
-  return { key, value, type, createdAt: now, updatedAt: now };
-}
 
 module.exports = {
   up: async ({ context }) => {
