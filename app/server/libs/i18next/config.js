@@ -5,7 +5,7 @@ module.exports = {
   ns: "app",
   defaultNS: "app",
   fallbackLng: "en",
-  supportedLngs: ["en", "fr"],
+  supportedLngs: ["en", "fr", "es"],
   saveMissingTo: "all",
   saveMissing: watch,
 };

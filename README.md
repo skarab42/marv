@@ -53,3 +53,9 @@ npm run app:build
 ```
 
 Credit: thermo74 :)
+
+## Translations
+
+- Spanish by TerminabloxHD
+- French by Skarab42
+- English by Skarab42
