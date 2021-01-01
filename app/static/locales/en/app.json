@@ -120,7 +120,8 @@
     "bottom left": "bottom left",
     "bottom right": "bottom right",
     "error": "error",
-    "help": "help"
+    "help": "help",
+    "prefix": "prefix"
   },
   "obs": {
     "scene-list": "OBS | Scene list",
