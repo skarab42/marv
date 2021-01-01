@@ -2,8 +2,6 @@
   import { url } from "@/libs/docs";
   import { _ } from "@/libs/i18next";
   import { connected } from "@/stores/overlay";
-
-  $: console.log($connected);
 </script>
 
 {#if !$connected}
