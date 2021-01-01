@@ -7,7 +7,11 @@
 {#if !$connected}
   <div class="p-2 flex space-x-2 bg-red-600">
     <div>{_('obs.overlay-not-found')}</div>
-    <a class="underline text-sm" href="{url('get-started#overlay')}">
+    <a
+      target="_blank"
+      class="underline text-sm"
+      href="{url('get-started#overlay')}"
+    >
       (
       {_('docs.get-started.overlay')}
       )

@@ -12,5 +12,5 @@
 </div>
 
 {#each links as link}
-  <a class="p-2" href="{url(link.url)}">{_(link.label)}</a>
+  <a class="p-2" href="{url(link.url)}" target="_blank">{_(link.label)}</a>
 {/each}
