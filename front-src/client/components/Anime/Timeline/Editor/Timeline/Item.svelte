@@ -12,6 +12,7 @@
 
   export let item;
   export let pos;
+  export let widget;
 
   const { items, selectedItem, selectedKeyframe, pixelPerMs } = getContext(
     "Editor"
@@ -169,6 +170,7 @@
 
 {#if showTextEditor}
   <TextEditor
+    widget="{widget}"
     item="{$selectedItem}"
     on:close="{closeTextEditor}"
     on:textFileChange

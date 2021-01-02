@@ -41,6 +41,7 @@
 {#if timelineOpened}
   <FullScreenModal>
     <Editor
+      widget="{widget}"
       initialItems="{initialItems}"
       on:close="{closeTimeline}"
       on:update="{onAnimeUpdate}"

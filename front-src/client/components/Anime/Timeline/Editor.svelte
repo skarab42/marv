@@ -18,6 +18,7 @@
   import getTrans from "./libs/getTrans";
 
   export let initialItems = [];
+  export let widget;
 
   const dispatch = createEventDispatcher();
 
@@ -139,6 +140,11 @@
     <Settings />
   </div>
   <div slot="bottomPane" class="bg-primary-dark h-full shadow">
-    <Timeline on:file="{addFile}" on:remove="{onRemove}" on:textFileChange />
+    <Timeline
+      widget="{widget}"
+      on:file="{addFile}"
+      on:remove="{onRemove}"
+      on:textFileChange
+    />
   </div>
 </Layout>

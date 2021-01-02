@@ -34,6 +34,8 @@
   api.getEventNames().then((names) => {
     if (Array.isArray(config.hasEvent)) {
       names = config.hasEvent;
+    } else {
+      names = names.map((event) => event.name);
     }
     eventNames = names
       .map((val) => ({ key: _(`twitch.events.${val}`), val }))

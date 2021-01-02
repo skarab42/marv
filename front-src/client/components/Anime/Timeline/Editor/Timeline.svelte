@@ -14,6 +14,8 @@
   import FileManager from "@/components/FileManager/Main.svelte";
   import MdInsertDriveFile from "svelte-icons/md/MdInsertDriveFile.svelte";
 
+  export let widget;
+
   const { anime, items } = getContext("Editor");
   const dispatch = createEventDispatcher();
 
@@ -94,7 +96,13 @@
     <Ruler />
   </div>
   {#each $items as item, pos (item.id)}
-    <Item bind:item pos="{pos}" on:remove="{onRemove}" on:textFileChange />
+    <Item
+      widget="{widget}"
+      bind:item
+      pos="{pos}"
+      on:remove="{onRemove}"
+      on:textFileChange
+    />
   {/each}
   <Cursor min="{splitter.x}" />
 </Grid>
