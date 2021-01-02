@@ -48,7 +48,8 @@
     "check-update-at-startup": "Check update at startup.",
     "new-version-available": "A new version is available.",
     "close-marv-before-update": "Close Marv before launching the update!",
-    "close-app": "Close Marv!"
+    "close-app": "Close Marv!",
+    "file-upload-progress": "Upload in progress"
   },
   "words": {
     "settings": "settings",
