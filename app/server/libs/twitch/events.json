@@ -1,0 +1,49 @@
+[
+  { "name": "onAction", "tags": ["user", "message", "date"] },
+  { "name": "onBan", "tags": ["user"] },
+  { "name": "onBits", "tags": ["user", "message", "amount", "total"] },
+  { "name": "onBitsBadgeUpgrade", "tags": ["user", "threshold"] },
+  { "name": "onCommand", "tags": [] },
+  { "name": "onCommunityPayForward", "tags": ["fromUser", "toUser"] },
+  { "name": "onCommunitySub", "tags": ["user", "count", "total", "tiers"] },
+  { "name": "onFollow", "tags": ["user"] },
+  { "name": "onGiftPaidUpgrade", "tags": ["fromUser", "toUser", "tiers"] },
+  { "name": "onHosted", "tags": ["channel", "viewerCount"] },
+  { "name": "onJoin", "tags": ["user"] },
+  { "name": "onMessage", "tags": ["user", "message"] },
+  { "name": "onPart", "tags": ["user"] },
+  { "name": "onPrimeCommunityGift", "tags": ["user", "name"] },
+  { "name": "onPrimePaidUpgrade", "tags": ["user", "tiers"] },
+  { "name": "onRaid", "tags": ["channel", "viewerCount"] },
+  { "name": "onRedemption", "tags": ["id", "user", "reward", "message"] },
+  {
+    "name": "onResub",
+    "tags": ["user", "plan", "streak", "isPrime", "months", "message", "tiers"]
+  },
+  {
+    "name": "onRewardGift",
+    "tags": ["count", "domain", "type", "user", "total"]
+  },
+  { "name": "onRitual", "tags": ["ritualName", "message"] },
+  { "name": "onStandardPayForward", "tags": ["user", "fromUser", "toUser"] },
+  {
+    "name": "onSub",
+    "tags": ["user", "plan", "streak", "isPrime", "months", "message", "tiers"]
+  },
+  { "name": "onSubExtend", "tags": ["user", "months", "endMonth", "tiers"] },
+  {
+    "name": "onSubGift",
+    "tags": [
+      "toUser",
+      "fromUser",
+      "total",
+      "duration",
+      "isPrime",
+      "message",
+      "months",
+      "plan",
+      "planName",
+      "streak"
+    ]
+  }
+]
