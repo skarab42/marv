@@ -49,7 +49,8 @@
     "new-version-available": "Una nueva versión esta disponible.",
     "close-marv-before-update": "Cierre Marv antes de iniciar la actualización !",
     "close-app": "Cierre Marv !",
-    "file-upload-progress": "Subida en curso"
+    "file-upload-progress": "Subida en curso",
+    "insert-text-file": " Inserta archivo de texto"
   },
   "words": {
     "settings": "opciones",
@@ -121,7 +122,10 @@
     "bottom left": "abajo izquierda",
     "bottom right": "abajo derecha",
     "error": "error",
-    "help": "ayuda"
+    "help": "ayuda",
+    "save": "guardar",
+    "cancel": "cancelar",
+    "filename": "nombre del archivo"
   },
   "obs": {
     "scene-list": "OBS | Lista de escenas",
