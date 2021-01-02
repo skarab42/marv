@@ -125,7 +125,8 @@
     "help": "ayuda",
     "save": "guardar",
     "cancel": "cancelar",
-    "filename": "nombre del archivo"
+    "filename": "nombre del archivo",
+    "donate": "donar"
   },
   "obs": {
     "scene-list": "OBS | Lista de escenas",

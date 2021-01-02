@@ -126,7 +126,8 @@
     "prefix": "préfixe",
     "save": "sauver",
     "cancel": "annuler",
-    "filename": "nom du fichier"
+    "filename": "nom du fichier",
+    "donate": "dons"
   },
   "obs": {
     "scene-list": "OBS | Liste des scènes",
