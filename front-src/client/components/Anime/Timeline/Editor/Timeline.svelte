@@ -36,6 +36,7 @@
   function onFileSelect({ detail: file }) {
     closeFileManager();
     dispatch("file", file);
+    console.log(file);
   }
 
   function onRemove({ detail: item }) {
