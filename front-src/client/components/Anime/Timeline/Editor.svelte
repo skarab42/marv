@@ -108,7 +108,7 @@
     createAnimeFromFile(file)
       .then(addItem)
       .catch((error) => {
-        console.warn("addFile:", error.message, file);
+        console.warn("addFile:", error.message || error, file);
       });
   }
 
