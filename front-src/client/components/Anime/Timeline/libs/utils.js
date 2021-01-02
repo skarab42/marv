@@ -3,7 +3,7 @@ const mediaPath = "/files";
 export function createImage(src) {
   return new Promise((resolve, reject) => {
     const img = new Image();
-    img.onerror = reject;
+    img.onerror = () => reject(new Error(`Invalid image ${src}`));
     img.onload = () => resolve(img);
     img.src = `${mediaPath}/${src}`;
   });
