@@ -19,7 +19,7 @@ function getFileInfo(filename, buffer) {
   const mimeType = mime.getType(filename);
 
   if (!ext || !mimeType) {
-    return false;
+    throw new Error("No extension and/or mime type");
   }
 
   const type = mimeType.split("/")[0];
@@ -54,7 +54,7 @@ async function upload({ name, buffer }) {
     const fileInfo = getFileInfo(filename, buffer);
     const filePath = path.join(filesPath, filename);
 
-    if (!fileInfo.size) {
+    if (!fileInfo.size && fileInfo.type !== "text") {
       return reject(_("sentences.file-is-empty"));
     }
 
