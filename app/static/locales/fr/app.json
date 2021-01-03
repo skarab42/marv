@@ -45,7 +45,7 @@
     "edit-mode": "Mode édition",
     "add-panel": "Ajouter un panneau",
     "command-name-must-be-unique": "Le nom de la commande doit être unique.",
-    "check-update-at-startup": "Vérifier la mise à jour au démarrage.",
+    "check-update-at-startup": "Vérifier la mise à jour au démarrage",
     "new-version-available": "Une nouvelle version est disponible.",
     "close-marv-before-update": "Fermez Marv avant de lancer la mise à jour !",
     "close-app": "Fermer Marv !",
