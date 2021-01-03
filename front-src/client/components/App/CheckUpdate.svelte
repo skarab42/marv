@@ -27,6 +27,7 @@
   function download() {
     downloded = true;
     window.open(newRelease.url);
+    setTimeout(closeApp, 500);
   }
 
   function closeApp() {
