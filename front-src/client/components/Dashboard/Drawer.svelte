@@ -1,7 +1,7 @@
 <script>
   import { _ } from "@/libs/i18next";
   import { electron } from "@/stores/app";
-  import Donate from "./Drawer/Donate.svelte";
+  import Donate from "../App/Donate.svelte";
   import { drawer, hide } from "@/stores/drawer";
   import clickoutside from "@/libs/svelte/click-outside";
   import HelpLinks from "@/components/App/HelpLinks.svelte";
