@@ -1,8 +1,5 @@
-import { store } from "@/stores/app";
+import { store, siteURL } from "@/stores/app";
 import { get } from "svelte/store";
-
-// TODO get from db settings
-let docsURL = `https://marv-site.web.app/`;
 
 const languages = ["en", "fr"];
 
@@ -14,7 +11,7 @@ const getStartedLinks = {
 export function url(uri) {
   let lang = get(store).language;
   lang = languages.includes(lang) ? lang : languages[0];
-  return `${docsURL}/${lang}/docs/${uri}`;
+  return `${get(siteURL)}/${lang}/docs/${uri}`;
 }
 
 export function getStartURL() {
