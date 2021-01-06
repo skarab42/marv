@@ -50,7 +50,8 @@
     "close-marv-before-update": "Cierre Marv antes de iniciar la actualización !",
     "close-app": "Cierre Marv !",
     "file-upload-progress": "Subida en curso",
-    "insert-text-file": " Inserta archivo de texto"
+    "insert-text-file": " Inserta archivo de texto",
+    "get-started": "Inicio rápido"
   },
   "words": {
     "settings": "opciones",
@@ -221,11 +222,5 @@
     "perspective": "punto de vista",
     "height": "altura",
     "text-shadow": "sombra"
-  },
-  "docs": {
-    "get-started": {
-      "obs": "Instalar OBS Websocket.",
-      "overlay": "Instalar el overlay de Marv en OBS."
-    }
   }
 }
