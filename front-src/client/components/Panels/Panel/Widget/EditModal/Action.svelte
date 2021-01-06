@@ -88,7 +88,10 @@
 
 {#if component}
   <div class="p-2 font-bold bg-dark-lighter">{_(component.label)}</div>
-  <div class="p-2 flex flex-col space-y-2">
+  <div class="mt-2 flex">
+    <svelte:component this="{widgets[component.name].Settings}" data="{data}" />
+  </div>
+  <div class="p-2 pt-0 flex flex-col space-y-2">
     {#if config.hasTrigger}
       <Select
         object="{true}"
@@ -124,7 +127,6 @@
       {/if}
     {/if}
   </div>
-  <svelte:component this="{widgets[component.name].Settings}" data="{data}" />
   <Button icon="{MdDelete}" class="bg-red-600" on:click="{onRemoveAction}">
     {_('words.remove')}
   </Button>

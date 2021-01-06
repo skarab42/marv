@@ -22,7 +22,7 @@
   }
 </script>
 
-<div class="p-2 pt-0 space-y-2 flex flex-col">
+<div class="p-2 pt-0 space-y-2 flex flex-auto flex-col">
   <Input
     label="{_('words.channel')}"
     value="{props.channel}"

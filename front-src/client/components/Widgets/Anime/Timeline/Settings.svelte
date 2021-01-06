@@ -34,7 +34,11 @@
   }
 </script>
 
-<Button icon="{MdOpenInNew}" class="bg-secondary" on:click="{openTimeline}">
+<Button
+  icon="{MdOpenInNew}"
+  class="bg-secondary flex-auto mb-2"
+  on:click="{openTimeline}"
+>
   <div>{_('sentences.open-anime-timeline')}</div>
 </Button>
 

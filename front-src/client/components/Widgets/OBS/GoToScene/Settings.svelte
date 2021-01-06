@@ -18,7 +18,7 @@
   }
 </script>
 
-<div class="p-2 pt-0">
+<div class="p-2 pt-0 flex-auto">
   <Select
     label="{_('words.scene')}"
     value="{props.scene}"
