@@ -11,18 +11,22 @@
 
 <Selector />
 
-{#if $editMode && $currentPanel}
+{#if $editMode}
   <div
     class="py-2 divide-x divide-gray-800 flex items-center bg-secondary-darker text-light"
   >
     <div class="flex px-2 space-x-2">
       <AddPanel />
-      <RenameInput />
-      <RemoveButton />
+      {#if $currentPanel}
+        <RenameInput />
+        <RemoveButton />
+      {/if}
     </div>
-    <div class="px-2">
-      <AddButton />
-    </div>
+    {#if $currentPanel}
+      <div class="px-2">
+        <AddButton />
+      </div>
+    {/if}
     <div class="px-2">
       <OpenEditMode />
     </div>

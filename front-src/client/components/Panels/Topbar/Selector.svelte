@@ -17,8 +17,8 @@
   }
 </script>
 
-<div class="p-2 flex space-x-2 items-center bg-dark text-light">
-  {#if $panels.length}
+{#if $panels.length}
+  <div class="p-2 flex space-x-2 items-center bg-dark text-light">
     <HorizontalScroller bind:this="{scroller}" gap="2" arrowClass="bg-dark">
       {#each $panels as panel}
         <Button
@@ -30,5 +30,5 @@
         </Button>
       {/each}
     </HorizontalScroller>
-  {/if}
-</div>
+  </div>
+{/if}
