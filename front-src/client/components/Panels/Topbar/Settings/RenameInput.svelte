@@ -9,8 +9,4 @@
   }
 </script>
 
-<Input
-  label="{_('words.rename')}"
-  value="{$currentPanel.name}"
-  on:update="{onUpdate}"
-/>
+<Input value="{$currentPanel.name}" on:update="{onUpdate}" />

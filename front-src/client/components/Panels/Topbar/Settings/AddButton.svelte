@@ -22,9 +22,14 @@
 </script>
 
 <Tippy options="{addTippy}" disabled="{widgetsCount}">
-  <Button padding="p-2" icon="{MdAddToPhotos}" on:click="{addWidget}">
+  <Button
+    class="bg-primary"
+    padding="p-2"
+    icon="{MdAddToPhotos}"
+    on:click="{addWidget}"
+  >
     <span
-      class="hidden md:inline md:ml-2"
+      class="hidden lg:inline lg:ml-2"
     >{_('sentences.add-grid-widget')}</span>
   </Button>
 </Tippy>
