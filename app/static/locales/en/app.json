@@ -128,7 +128,9 @@
     "save": "save",
     "cancel": "cancel",
     "filename": "filename",
-    "donate": "donate"
+    "donate": "donate",
+    "recording": "Rec.:",
+    "live": "Live:"
   },
   "obs": {
     "scene-list": "OBS | Scene list",

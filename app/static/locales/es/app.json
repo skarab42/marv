@@ -127,7 +127,9 @@
     "save": "guardar",
     "cancel": "cancelar",
     "filename": "nombre del archivo",
-    "donate": "donar"
+    "donate": "donar",
+    "recording": "Rec.:",
+    "live": "Live:"
   },
   "obs": {
     "scene-list": "OBS | Lista de escenas",
