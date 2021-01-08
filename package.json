@@ -16,11 +16,17 @@
     "watch": "concurrently -k -n tailwind,client,app -c red,magenta,yellow \"yarn tailwind:build\" \"yarn client:watch\" \"yarn app:watch\"",
     "build": "yarn client:build && yarn tailwind:build --prod",
     "prettify": "prettier --write ./app ./front-src",
-    "lint": "eslint ./app ./front-src --fix && yarn prettify"
+    "lint": "eslint ./app ./front-src --fix && yarn prettify",
+    "commit": "cz"
   },
   "build": {
     "productName": "Marv",
     "icon": "app/static/icon.png"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   },
   "devDependencies": {
     "@rollup/plugin-alias": "^3.1.1",
@@ -34,6 +40,7 @@
     "clone-deep": "^4.0.1",
     "compare-versions": "^3.6.0",
     "concurrently": "^5.3.0",
+    "cz-conventional-changelog": "3.3.0",
     "electron": "^11.0.3",
     "electron-builder": "^22.9.1",
     "electron-rebuild": "^2.3.2",
