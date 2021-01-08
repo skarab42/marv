@@ -3,9 +3,11 @@
 const { app } = require("electron");
 const server = require("./server");
 
+let mainWindow;
+
 async function onServerReady() {
   const tray = require("./tray");
-  const mainWindow = require("./window/mainWindow");
+  mainWindow = require("./window/mainWindow");
   const settings = require("../server/libs/settings");
   mainWindow({ showOnLoad: await settings.get("app.openOnStartup") });
   tray();
@@ -22,3 +24,5 @@ function init() {
 }
 
 app.requestSingleInstanceLock() ? init() : app.quit();
+
+app.on("second-instance", () => mainWindow());
