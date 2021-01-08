@@ -1,6 +1,7 @@
 const panels = require("../libs/panels");
 
 module.exports = {
+  getAll: () => panels.getAll(),
   add() {
     const panel = panels.add();
     this.notify("panels.add", panel);
@@ -25,6 +26,11 @@ module.exports = {
   removeWidget(targetPanel, widget) {
     const payload = panels.removeWidget(targetPanel, widget);
     this.notify("panels.removeWidget", payload);
+    this.notify("panels.update", payload.panel);
+    return payload;
+  },
+  removeWidgetComponent(panel, widget) {
+    const payload = panels.removeWidgetComponent(panel, widget);
     this.notify("panels.update", payload.panel);
     return payload;
   },

@@ -1,19 +1,22 @@
-const { _ } = require("../server/libs/i18next");
+const { init: i18next, _ } = require("../server/libs/i18next");
+const getTrayIconByPlatform = require("./window/trayIcon");
+const { staticPath, fingerprint } = require("../utils");
+const { getServerURL } = require("../server/utils");
+const settings = require("../server/libs/settings");
+const mainWindow = require("./window/mainWindow");
+const chatWindow = require("./window/chatWindow");
 const { Tray, Menu } = require("electron");
-const createWindow = require("./window");
 const capitalize = require("capitalize");
-const store = require("../stores");
 const quit = require("./quit");
+const path = require("path");
 const open = require("open");
 
-const { name, version, icon } = store.app.getAll();
-const fingerprint = `${capitalize(name)} v${version}`;
+const icon = getTrayIconByPlatform();
 
 let tray = null;
 
-function openInBrowser() {
-  const { host, port } = store.server.getAll();
-  open(`http://${host}:${port}`);
+async function openInBrowser() {
+  open(await getServerURL());
 }
 
 function createMenu() {
@@ -26,17 +29,28 @@ function createMenu() {
     },
     {
       label: _("sentences.open-in-window"),
-      click: () => createWindow(),
+      click: () => mainWindow(),
+    },
+    {
+      label: _("sentences.open-twitch-chat-window"),
+      click: async () => {
+        chatWindow({
+          channel: await settings.get("twitch.currentChannel", ""),
+        });
+      },
     },
     { type: "separator" },
     { label: capitalize(_("words.quit")), click: () => quit() },
   ]);
 }
 
-function createTray() {
-  tray = new Tray(icon);
+async function createTray() {
+  await i18next();
+
+  tray = new Tray(path.join(staticPath, icon));
 
   tray.setToolTip(fingerprint);
+  tray.on("click", mainWindow);
   tray.setContextMenu(createMenu());
   tray.setIgnoreDoubleClickEvents(true);
 

@@ -7,14 +7,17 @@ import cleaner from "rollup-plugin-cleaner";
 import svelte from "rollup-plugin-svelte";
 import alias from "@rollup/plugin-alias";
 import css from "rollup-plugin-css-only";
+import json from "@rollup/plugin-json";
 
 const watch = process.env.ROLLUP_WATCH;
 
-const clientDir = "client-src";
-const overlayDir = "overlay-src";
+const frontDir = "front-src";
 const publicDir = "app/client";
+
 const jsDir = `${publicDir}/js`;
 const cssDir = `${publicDir}/css`;
+const clientDir = `${frontDir}/client`;
+const overlayDir = `${frontDir}/overlay`;
 
 export default {
   input: [`${clientDir}/index.js`, `${overlayDir}/overlay.js`],
@@ -24,6 +27,7 @@ export default {
     sourcemap: true,
   },
   plugins: [
+    json(),
     alias({
       entries: [{ find: "@", replacement: `${__dirname}/${clientDir}` }],
     }),

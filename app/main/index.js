@@ -2,15 +2,23 @@
 
 const { app } = require("electron");
 const server = require("./server");
-const tray = require("./tray");
 
-app.requestSingleInstanceLock() || app.quit();
-
-app.on("window-all-closed", (event) => {
-  event.preventDefault();
-});
-
-app.whenReady().then(() => {
-  server.start();
+async function onServerReady() {
+  const tray = require("./tray");
+  const mainWindow = require("./window/mainWindow");
+  const settings = require("../server/libs/settings");
+  mainWindow({ showOnLoad: await settings.get("app.openOnStartup") });
   tray();
-});
+}
+
+function init() {
+  app.on("window-all-closed", (event) => {
+    event.preventDefault();
+  });
+
+  app.whenReady().then(() => {
+    server.start(onServerReady);
+  });
+}
+
+app.requestSingleInstanceLock() ? init() : app.quit();

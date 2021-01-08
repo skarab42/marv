@@ -1,9 +1,10 @@
-const stores = require("../../stores");
-const { i18next } = require("../libs/i18next");
+const settings = require("../libs/settings");
+const { i18next, getConfig } = require("../libs/i18next");
 
 module.exports = {
+  getConfig: async () => await getConfig(),
   changeLanguage: (language) => {
     i18next.changeLanguage(language);
-    stores.i18next.set("lng", language);
+    settings.set("app.language", language);
   },
 };
