@@ -1,3 +1,11 @@
+<script context="module">
+  let element = null;
+
+  export function scrollTop() {
+    element && element.scrollTo({ top: 0, behavior: "smooth" });
+  }
+</script>
+
 <script>
   import { onMount } from "svelte";
   import Icon from "./Icon.svelte";
@@ -8,8 +16,6 @@
   const dispatch = createEventDispatcher();
 
   export let closable = false;
-
-  let element = null;
 
   let top = electron ? 29 : 0;
   let content = "flex overflow-auto";
