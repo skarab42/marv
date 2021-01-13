@@ -51,7 +51,8 @@
     "close-app": "Cierre Marv !",
     "file-upload-progress": "Subida en curso",
     "insert-text-file": " Inserta archivo de texto",
-    "get-started": "Inicio rápido"
+    "get-started": "Inicio rápido",
+    "ask-remove-action": "Eliminar \"{{action}}\"?"
   },
   "words": {
     "settings": "opciones",

@@ -51,7 +51,8 @@
     "close-app": "Close Marv!",
     "file-upload-progress": "Upload in progress",
     "insert-text-file": "Insert text file",
-    "get-started": "Get started"
+    "get-started": "Get started",
+    "ask-remove-action": "Are you sure you want to delete \"{{action}}\"?"
   },
   "words": {
     "settings": "settings",
