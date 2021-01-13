@@ -155,8 +155,6 @@
     "followers": "Followers",
     "connect-at-startup": "Connect Twitch at startup",
     "empty-command-list": "Empty command list",
-    "command-not-found": "Command \"{{command}}\" not found",
-    "command-disabled": "Command \"{{command}}\" disabled",
     "command-cooldown": "Cooldown \"{{command}}\" -> ~{{rest}}",
     "command-too-much-argument": "Too much argument! Usage: {{usage}}",
     "command-not-enough-argument": "Not enough argument! Usage: {{usage}}",

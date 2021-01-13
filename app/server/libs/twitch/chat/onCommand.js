@@ -15,20 +15,12 @@ function parseUsage(usage) {
 
 module.exports = async function onCommand({ channel, command, nick, message }) {
   const commandEntry = await getCommandByName(command.name);
+
+  if (!commandEntry || !commandEntry.enabled) {
+    return;
+  }
+
   const now = Date.now();
-
-  if (!commandEntry) {
-    throw new Error(
-      `${_("twitch.command-not-found", { command: command.name })}`
-    );
-  }
-
-  if (!commandEntry.enabled) {
-    throw new Error(
-      `${_("twitch.command-disabled", { command: command.name })}`
-    );
-  }
-
   const lastCall = cooldowns[command.name] || 0;
   const cooldown = commandEntry.cooldown * 1000;
   const elapsedTime = now - lastCall;
