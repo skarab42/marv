@@ -6,9 +6,15 @@ const path = require("path");
 
 const app = { name, version };
 const fingerprint = `${capitalize(name)} v${version}`;
+const watch = process.argv.includes("--watch") || process.argv.includes("-w");
 
 const appPath = __dirname;
-const userPath = envPaths(name).data;
+let userPath = envPaths(name).data;
+
+if (watch) {
+  userPath += "-dev";
+}
+
 const clientPath = path.join(appPath, "client");
 const staticPath = path.join(appPath, "static");
 const uploadPath = path.join(userPath, "upload");
@@ -18,7 +24,6 @@ const databasePath = path.join(userPath, "database");
 const databaseFilename = "marv.sqlite";
 
 const isFirstStart = !fs.existsSync(path.join(databasePath, databaseFilename));
-const watch = process.argv.includes("--watch") || process.argv.includes("-w");
 
 module.exports = {
   app,
