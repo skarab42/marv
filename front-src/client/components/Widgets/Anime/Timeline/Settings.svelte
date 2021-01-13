@@ -9,13 +9,17 @@
 
   export let data;
 
-  let { widget } = data;
   let initialItems = [];
+  let widget = data.widget;
   let timelineOpened = false;
 
-  actionsAPI.get(widget.id).then(({ items } = {}) => {
-    if (items) initialItems = items;
-  });
+  fetchItems();
+
+  function fetchItems() {
+    actionsAPI.get(widget.id).then(({ items } = {}) => {
+      if (items) initialItems = items;
+    });
+  }
 
   function openTimeline() {
     timelineOpened = true;
@@ -23,6 +27,7 @@
 
   function closeTimeline() {
     timelineOpened = false;
+    fetchItems();
   }
 
   function onAnimeUpdate({ detail: anime }) {
