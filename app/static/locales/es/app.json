@@ -154,8 +154,6 @@
     "followers": "Partidarios",
     "connect-at-startup": "Conectar a Twitch durante el inicio",
     "empty-command-list": "Ningun comando",
-    "command-not-found": "El comando \"{{command}}\" no ha sido encontrado",
-    "command-disabled": "El comando \"{{command}}\" ha sido desactivado",
     "command-cooldown": "Cooldown \"{{command}}\" -> ~{{rest}}",
     "command-too-much-argument": "Demasiados argunmentos! Utilización: {{usage}}",
     "command-not-enough-argument": "No hay suficientes argunmentos! Utilización: {{usage}}",
