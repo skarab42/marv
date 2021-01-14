@@ -17,6 +17,7 @@
     "build": "yarn client:build && yarn tailwind:build --prod",
     "prettify": "prettier --write ./app ./front-src",
     "lint": "eslint ./app ./front-src --fix && yarn prettify",
+    "change": "conventional-changelog -p angular -i CHANGELOG.md -s",
     "commit": "cz"
   },
   "build": {
@@ -40,6 +41,7 @@
     "clone-deep": "^4.0.1",
     "compare-versions": "^3.6.0",
     "concurrently": "^5.3.0",
+    "conventional-changelog-cli": "^2.1.1",
     "cz-conventional-changelog": "3.3.0",
     "electron": "^11.0.3",
     "electron-builder": "^22.9.1",
