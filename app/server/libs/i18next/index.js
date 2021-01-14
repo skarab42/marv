@@ -17,7 +17,7 @@ function getLocale() {
 }
 
 async function getConfig() {
-  const isFirstStart = await settings.get("app.language");
+  const isFirstStart = await settings.get("app.showFirstStartInfo", true);
 
   if (isFirstStart) {
     await settings.set("app.language", getLocale());
