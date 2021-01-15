@@ -9,19 +9,19 @@
   import OpenEditMode from "@/components/Panels/OpenEditMode.svelte";
 </script>
 
-<Selector />
-
 {#if $editMode}
   <div
     class="py-2 divide-x divide-gray-800 flex items-center bg-secondary-darker text-light"
   >
-    <div class="flex px-2 space-x-2">
+    <div class="px-2">
       <AddPanel />
-      {#if $currentPanel}
+    </div>
+    {#if $currentPanel}
+      <div class="flex px-2 space-x-2">
         <RenameInput />
         <RemoveButton />
-      {/if}
-    </div>
+      </div>
+    {/if}
     {#if $currentPanel}
       <div class="px-2">
         <AddButton />
@@ -32,3 +32,5 @@
     </div>
   </div>
 {/if}
+
+<Selector />
