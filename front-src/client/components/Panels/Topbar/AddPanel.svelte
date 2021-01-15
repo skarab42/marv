@@ -15,7 +15,7 @@
 <Tippy options="{addTippy}" disabled="{$panels.length}">
   <Button padding="p-2" icon="{MdAdd}" on:click="{api.add}" class="bg-primary">
     <span
-      class="hidden md:inline md:ml-2 truncate"
+      class="hidden lg:inline lg:ml-2 truncate"
     >{_('sentences.add-panel')}</span>
   </Button>
 </Tippy>
