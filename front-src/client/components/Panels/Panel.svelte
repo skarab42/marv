@@ -23,7 +23,7 @@
   }
 
   function onDoubleClick() {
-    $editMode && addWidget();
+    $currentPanel && $editMode && addWidget();
   }
 </script>
 

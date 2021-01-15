@@ -4,7 +4,7 @@
   import Button from "./Button.svelte";
   import HorizontalScroller from "@/components/UI/HorizontalScroller.svelte";
 
-  import { panels } from "@/stores/panels";
+  import { panels, currentPanel } from "@/stores/panels";
 
   let scroller = null;
 
@@ -20,7 +20,7 @@
   }
 </script>
 
-{#if $panels.length}
+{#if $currentPanel}
   <div class="p-2 flex space-x-2 panels-center bg-dark text-light">
     <HorizontalScroller bind:this="{scroller}" gap="2" arrowClass="bg-dark">
       {#each $panels as panel, index (panel.id)}
