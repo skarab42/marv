@@ -32,13 +32,14 @@
   {...$$restProps}
   on:contextmenu|preventDefault|stopPropagation="{openMenu}"
 >
-  <slot />
+  <slot opened="{opened}" />
 </div>
 
 {#if opened}
   <Portal target="body">
     <div
       use:clickoutside
+      on:click="{closeMenu}"
       on:clickoutside="{closeMenu}"
       style="top:{top}px;left:{left}px;"
       class="absolute z-50"
