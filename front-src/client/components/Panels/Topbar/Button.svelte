@@ -10,6 +10,9 @@
   export let panel;
   export let index;
 
+  let cls = "";
+  export { cls as class };
+
   let isDragOver = false;
 
   const dispatch = createEventDispatcher();
@@ -55,7 +58,7 @@
   <Button
     padding="p-2"
     on:click="{setCurrentPanel.bind(null, panel)}"
-    class="flex-shrink-0 {isActiveClass($currentPanel, panel)} truncate"
+    class="flex-shrink-0 {cls || isActiveClass($currentPanel, panel)} truncate"
   >
     {panel.name}
   </Button>
