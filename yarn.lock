@@ -5429,6 +5429,11 @@ svelte-icons@^2.1.0:
   resolved "https://registry.yarnpkg.com/svelte-icons/-/svelte-icons-2.1.0.tgz#6f2ec72f1d5c8b2de1a4b8a822c95bcb2f701aca"
   integrity sha512-rHPQjweEc9fGSnvM0/4gA3pDHwyZyYsC5KhttCZRhSMJfLttJST5Uq0B16Czhw+HQ+HbSOk8kLigMlPs7gZtfg==
 
+svelte-portal@^2.1.1:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/svelte-portal/-/svelte-portal-2.1.1.tgz#7285d19cffffc25bd1d28f98fb5d8173643c326d"
+  integrity sha512-B61Bem/3cqgPGVMRM09RhEmZKBGbv3EFVO15GWbFWltNy9dN6sdLK5rV5VEOdZRDNaqgYai9caCHMDuYMpW/1w==
+
 svelte@^3.29.4:
   version "3.29.4"
   resolved "https://registry.yarnpkg.com/svelte/-/svelte-3.29.4.tgz#d0f80cb58109ef52963855c23496f7153bb2eb7e"
