@@ -3,6 +3,7 @@
   import { _ } from "@/libs/i18next";
   import Button from "./Button.svelte";
   import RenameModal from "./RenameModal.svelte";
+  import RemoveModal from "./RemoveModal.svelte";
   import Menu from "@/components/UI/Menu.svelte";
   import MdEdit from "svelte-icons/md/MdEdit.svelte";
   import { panels, currentPanel } from "@/stores/panels";
@@ -14,6 +15,7 @@
   let scroller = null;
   let selectedPanel = null;
   let renameModalOpened = false;
+  let removeModalOpened = false;
 
   api.on("add", (panel, { owner }) => {
     owner && scroller && scroller.scrollRight();
@@ -29,6 +31,11 @@
   function openRenameModal(panel) {
     selectedPanel = panel;
     renameModalOpened = true;
+  }
+
+  function openRemoveModal(panel) {
+    selectedPanel = panel;
+    removeModalOpened = true;
   }
 </script>
 
@@ -51,7 +58,12 @@
               >
                 {_('words.rename')}
               </MenuItem>
-              <MenuItem icon="{MdDeleteForever}">{_('words.remove')}</MenuItem>
+              <MenuItem
+                icon="{MdDeleteForever}"
+                on:click="{openRemoveModal.bind(null, panel)}"
+              >
+                {_('words.remove')}
+              </MenuItem>
             </Menu>
           </div>
         </ContextMenu>
@@ -61,3 +73,4 @@
 {/if}
 
 <RenameModal panel="{selectedPanel}" bind:opened="{renameModalOpened}" />
+<RemoveModal panel="{selectedPanel}" bind:opened="{removeModalOpened}" />
