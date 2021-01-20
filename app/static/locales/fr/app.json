@@ -10,7 +10,7 @@
     "click-to-add-panel": "Clique sur '+' pour ajouter ton premier panneau.",
     "click-to-add-widget": "Clique sur '+' pour ajouter ton premier widget.",
     "powers-group": "Panneau",
-    "ask-for-panel-deletion": "Supprimer le \"{{name}}\" ?",
+    "ask-for-panel-deletion": "Supprimer le panneau \"{{name}}\" ainsi que tous ses widgets ?",
     "no-widget-found": "Aucun bouton trouvé o_O !",
     "add-grid-widget": "Ajouter un bouton",
     "ask-for-widget-deletion": "Supprimer le bouton \"{{name}}\" ?",
