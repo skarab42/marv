@@ -52,7 +52,8 @@
     "file-upload-progress": "Upload in progress",
     "insert-text-file": "Insert text file",
     "get-started": "Get started",
-    "ask-remove-action": "Are you sure you want to delete \"{{action}}\"?"
+    "ask-remove-action": "Are you sure you want to delete \"{{action}}\"?",
+    "edit-grid": "Edit the grid"
   },
   "words": {
     "settings": "settings",

@@ -52,7 +52,8 @@
     "file-upload-progress": "Téléversement en cours",
     "insert-text-file": "Insérer un fichier",
     "get-started": "Démarrage rapide",
-    "ask-remove-action": "Supprimer \"{{action}}\" ?"
+    "ask-remove-action": "Supprimer \"{{action}}\" ?",
+    "edit-grid": "Editer la grille"
   },
   "words": {
     "settings": "options",
