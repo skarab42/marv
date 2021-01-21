@@ -25,7 +25,7 @@
     "polka": "^0.5.2",
     "sequelize": "^6.3.5",
     "sirv": "^1.0.7",
-    "socket.io": "^2.3.0",
+    "socket.io": "^2.4.0",
     "sqlite3": "^5.0.0",
     "twitch": "^4.3.1",
     "twitch-auth": "^4.3.1",
