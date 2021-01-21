@@ -53,7 +53,8 @@
     "insert-text-file": "Insérer un fichier",
     "get-started": "Démarrage rapide",
     "ask-remove-action": "Supprimer \"{{action}}\" ?",
-    "edit-grid": "Editer la grille"
+    "edit-grid": "Editer la grille",
+    "right-click-to-show-menu": "Clique droit pour afficher le menu."
   },
   "words": {
     "settings": "options",
