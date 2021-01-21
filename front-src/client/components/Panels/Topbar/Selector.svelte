@@ -52,11 +52,13 @@
           <div slot="items">
             <MenuItem
               icon="{MdEdit}"
+              class="capitalize"
               on:click="{openRenameModal.bind(null, panel)}"
             >
               {_('words.rename')}
             </MenuItem>
             <MenuItem
+              class="capitalize"
               icon="{MdDeleteForever}"
               on:click="{openRemoveModal.bind(null, panel)}"
             >
