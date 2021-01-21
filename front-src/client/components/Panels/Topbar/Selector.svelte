@@ -7,6 +7,7 @@
   import MdEdit from "svelte-icons/md/MdEdit.svelte";
   import { panels, currentPanel } from "@/stores/panels";
   import MenuItem from "@/components/UI/MenuItem.svelte";
+  import Separator from "@/components/UI/Separator.svelte";
   import ContextMenu from "@/components/app/ContextMenu.svelte";
   import MdDeleteForever from "svelte-icons/md/MdDeleteForever.svelte";
   import HorizontalScroller from "@/components/UI/HorizontalScroller.svelte";
@@ -64,6 +65,7 @@
             >
               {_('words.remove')}
             </MenuItem>
+            <Separator />
           </div>
         </ContextMenu>
       {/each}
