@@ -2,7 +2,7 @@
   import { currentPanel } from "@/stores/panels";
   import { _ } from "@/libs/i18next";
 
-  $: hasWidgets = $currentPanel.widgets.length;
+  $: hasWidgets = $currentPanel && $currentPanel.widgets.length;
 </script>
 
 {#if !hasWidgets}
