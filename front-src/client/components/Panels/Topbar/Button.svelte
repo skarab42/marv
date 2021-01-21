@@ -21,7 +21,7 @@
     return p1.id === p2.id ? "bg-secondary" : "bg-black bg-opacity-25";
   }
 
-  function onDragStart({ target, dataTransfer }) {
+  function onDragStart({ dataTransfer }) {
     dataTransfer.setData("from", index);
     dragIndex = index;
   }

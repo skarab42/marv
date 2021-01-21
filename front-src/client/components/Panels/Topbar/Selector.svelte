@@ -4,7 +4,6 @@
   import Button from "./Button.svelte";
   import RenameModal from "./RenameModal.svelte";
   import RemoveModal from "./RemoveModal.svelte";
-  import Menu from "@/components/UI/Menu.svelte";
   import MdEdit from "svelte-icons/md/MdEdit.svelte";
   import { panels, currentPanel } from "@/stores/panels";
   import MenuItem from "@/components/UI/MenuItem.svelte";

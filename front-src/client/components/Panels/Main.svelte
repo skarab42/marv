@@ -3,7 +3,6 @@
   import MenuItem from "@/components/UI/MenuItem.svelte";
   import Topbar from "./Topbar.svelte";
   import Panel from "./Panel.svelte";
-  import { _ } from "@/libs/i18next";
 </script>
 
 <ContextMenu>
