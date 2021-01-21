@@ -1,9 +1,8 @@
 <script>
   import { _ } from "@/libs/i18next";
-  import addWidget from "./addWidget";
-  import { currentPanel } from "@/stores/panels";
   import MdAdd from "svelte-icons/md/MdAdd.svelte";
   import MenuItem from "@/components/UI/MenuItem.svelte";
+  import { currentPanel, addWidget } from "@/stores/panels";
 </script>
 
 {#if $currentPanel}

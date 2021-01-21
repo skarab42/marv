@@ -41,6 +41,16 @@ export function setCurrentPanel(panel) {
   localStorage.setItem("currentPanel", panel && panel.id);
 }
 
+export async function addWidget() {
+  const cp = get(currentPanel);
+  const cols = get(gridOptions).cols;
+  const grid = cp.grid;
+  const item = gridHelper.item(get(itemOptions));
+  const pos = gridHelper.findSpaceForItem(item, grid, cols);
+  await api.addWidget(cp, { w: item.w, h: item.h, ...pos });
+  setEditMode(true);
+}
+
 function onAdd(panel, { owner }) {
   panels.update((state) => [...state, panel]);
   if (owner || !get(currentPanel)) {
