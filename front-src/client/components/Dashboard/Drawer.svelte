@@ -2,10 +2,10 @@
   import { electron } from "@/stores/app";
   import Donate from "../App/Donate.svelte";
   import { drawer, hide } from "@/stores/drawer";
+  import OpenEditMode from "./Drawer/OpenEditMode.svelte";
   import clickoutside from "@/libs/svelte/click-outside";
   import HelpLinks from "@/components/App/HelpLinks.svelte";
   import OpenOnStartup from "@/components/App/OpenOnStartup.svelte";
-  import OpenEditMode from "@/components/Panels/OpenEditMode.svelte";
   import LanguageSelect from "@/components/App/LanguageSelect.svelte";
   import OBSConnectAtStartup from "@/components/OBS/ConnectAtStartup.svelte";
   import CheckUpdateCheckbox from "@/components/App/CheckUpdateCheckbox.svelte";

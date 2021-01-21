@@ -21,7 +21,7 @@
   icon="{$editMode ? MdDone : MdEdit}"
   class="{$editMode ? 'bg-green-600 hover:bg-green-500' : 'bg-yellow-600 hover:bg-yellow-500'}"
 >
-  <span
-    class="hidden lg:inline lg:ml-2 truncate"
-  >{$editMode ? _('words.done') : _('sentences.edit-mode')}</span>
+  <span class="truncate">
+    {$editMode ? _('words.done') : _('sentences.edit-mode')}
+  </span>
 </Button>
