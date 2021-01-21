@@ -3,11 +3,11 @@
   import MenuItem from "@/components/UI/MenuItem.svelte";
   import { _ } from "@/libs/i18next";
 
-  import MdCheck from "svelte-icons/md/MdCheck.svelte";
-  import MdEdit from "svelte-icons/md/MdEdit.svelte";
+  import MdGridOff from "svelte-icons/md/MdGridOff.svelte";
+  import MdGridOn from "svelte-icons/md/MdGridOn.svelte";
 
-  $: editModeLabel = $editMode ? _("words.done") : _("sentences.edit-mode");
-  $: editModeIcon = $editMode ? MdCheck : MdEdit;
+  $: editModeLabel = $editMode ? _("words.done") : _("sentences.edit-grid");
+  $: editModeIcon = $editMode ? MdGridOff : MdGridOn;
 </script>
 
 <MenuItem icon="{editModeIcon}" on:click="{toggleEditMode}">

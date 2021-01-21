@@ -1,7 +1,9 @@
 <script>
-  import ContextMenu from "@/components/UI/ContextMenu.svelte";
-  import EditModeItem from "./EditModeItem.svelte";
   import Menu from "@/components/UI/Menu.svelte";
+  import ContextMenu from "@/components/UI/ContextMenu.svelte";
+  import EditGridItem from "./ContextMenu/EditGridItem.svelte";
+  import AddPanelItem from "./ContextMenu/AddPanelItem.svelte";
+  import AddWidgetItem from "./ContextMenu/AddWidgetItem.svelte";
 </script>
 
 <ContextMenu let:opened class="flex flex-col h-full">
@@ -9,8 +11,9 @@
   <div slot="menu">
     <Menu>
       <slot name="items" />
-      <hr class="border-b-1 border-gray-800 border-opacity-50" />
-      <EditModeItem />
+      <EditGridItem />
+      <AddPanelItem />
+      <AddWidgetItem />
     </Menu>
   </div>
 </ContextMenu>
