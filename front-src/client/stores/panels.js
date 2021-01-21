@@ -17,6 +17,11 @@ export const gridOptions = writable({
 
 let loaded = false;
 
+export function setPanels(newPanels) {
+  panels.set(newPanels);
+  api.set(newPanels);
+}
+
 export function updateEditMode() {
   panels.update((state) => {
     return state.map((panel) => {
@@ -99,9 +104,14 @@ function onUpdate(panel) {
   }
 }
 
+function onSet(newPanels) {
+  panels.set(newPanels);
+}
+
 function loadOnce() {
   if (loaded) return;
   api.on("add", onAdd);
+  api.on("set", onSet);
   api.on("remove", onRemove);
   api.on("update", onUpdate);
   loaded = true;
