@@ -49,6 +49,11 @@ function add() {
   return panel;
 }
 
+function set(panels) {
+  store.set("panels", panels);
+  return panels;
+}
+
 function update(panel) {
   panels = panels.map((p) => {
     if (p.id === panel.id) {
@@ -105,6 +110,7 @@ function removeWidget(panel, widget) {
 
 module.exports = {
   add,
+  set,
   remove,
   update,
   getAll,

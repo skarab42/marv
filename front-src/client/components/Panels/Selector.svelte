@@ -2,13 +2,13 @@
   import api from "@/api/panels";
   import { _ } from "@/libs/i18next";
   import Button from "./Selector/Button.svelte";
+  import MdEdit from "svelte-icons/md/MdEdit.svelte";
+  import MenuItem from "@/components/UI/MenuItem.svelte";
   import RenameModal from "./Selector/RenameModal.svelte";
   import RemoveModal from "./Selector/RemoveModal.svelte";
-  import MdEdit from "svelte-icons/md/MdEdit.svelte";
-  import { panels, currentPanel } from "@/stores/panels";
-  import MenuItem from "@/components/UI/MenuItem.svelte";
   import Separator from "@/components/UI/Separator.svelte";
   import ContextMenu from "@/components/app/ContextMenu.svelte";
+  import { panels, currentPanel, setPanels } from "@/stores/panels";
   import MdDeleteForever from "svelte-icons/md/MdDeleteForever.svelte";
   import HorizontalScroller from "@/components/UI/HorizontalScroller.svelte";
 
@@ -25,7 +25,7 @@
     const { from, to } = detail;
     if (from === to) return;
     $panels.splice(to, 0, $panels.splice(from, 1)[0]);
-    $panels = $panels;
+    setPanels($panels);
   }
 
   function openRenameModal(panel) {
