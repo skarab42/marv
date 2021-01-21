@@ -1,6 +1,7 @@
 <script>
-  import { editMode, toggleEditMode } from "@/stores/panels";
+  import { currentPanel, editMode, toggleEditMode } from "@/stores/panels";
   import MenuItem from "@/components/UI/MenuItem.svelte";
+  import capitalize from "capitalize";
   import { _ } from "@/libs/i18next";
 
   import MdGridOff from "svelte-icons/md/MdGridOff.svelte";
@@ -10,6 +11,8 @@
   $: editModeIcon = $editMode ? MdGridOff : MdGridOn;
 </script>
 
-<MenuItem icon="{editModeIcon}" on:click="{toggleEditMode}">
-  {editModeLabel}
-</MenuItem>
+{#if $currentPanel && $currentPanel.widgets.length}
+  <MenuItem icon="{editModeIcon}" on:click="{toggleEditMode}">
+    {capitalize(editModeLabel)}
+  </MenuItem>
+{/if}

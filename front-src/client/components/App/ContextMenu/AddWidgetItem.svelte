@@ -15,6 +15,8 @@
   }
 </script>
 
-<MenuItem icon="{MdAdd}" on:click="{addWidget}">
-  {_('sentences.add-grid-widget')}
-</MenuItem>
+{#if $currentPanel}
+  <MenuItem icon="{MdAdd}" on:click="{addWidget}">
+    {_('sentences.add-grid-widget')}
+  </MenuItem>
+{/if}
