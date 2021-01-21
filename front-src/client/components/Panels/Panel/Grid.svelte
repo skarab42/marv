@@ -5,7 +5,7 @@
   import { gridOptions } from "@/stores/panels";
   // import MenuItem from "@/components/UI/MenuItem.svelte";
   // import Separator from "@/components/UI/Separator.svelte";
-  import ContextMenu from "@/components/app/ContextMenu.svelte";
+  import ContextMenu from "@/components/App/ContextMenu.svelte";
 
   export let panel;
 
