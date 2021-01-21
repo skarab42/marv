@@ -3,7 +3,8 @@
   import Widget from "./Widget.svelte";
   import { update } from "@/libs/panels";
   import { gridOptions } from "@/stores/panels";
-  import MenuItem from "@/components/UI/MenuItem.svelte";
+  // import MenuItem from "@/components/UI/MenuItem.svelte";
+  // import Separator from "@/components/UI/Separator.svelte";
   import ContextMenu from "@/components/app/ContextMenu.svelte";
 
   export let panel;
@@ -28,11 +29,11 @@
 >
   <ContextMenu>
     <Widget item="{item}" panel="{panel}" />
-    <div slot="items">
-      <MenuItem>{item.id}</MenuItem>
+    <!-- <div slot="items">
       <MenuItem>kapoué 2</MenuItem>
       <MenuItem>kapoué 3</MenuItem>
       <MenuItem>kapoué 4</MenuItem>
-    </div>
+      <Separator />
+    </div> -->
   </ContextMenu>
 </Grid>
