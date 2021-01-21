@@ -9,10 +9,12 @@ export default function clickoutside(node) {
   }
 
   document.addEventListener("click", onClick);
+  document.addEventListener("contextmenu", onClick);
 
   return {
     destroy() {
       document.removeEventListener("click", onClick);
+      document.removeEventListener("contextmenu", onClick);
     },
   };
 }

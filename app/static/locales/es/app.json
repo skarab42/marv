@@ -52,7 +52,8 @@
     "file-upload-progress": "Subida en curso",
     "insert-text-file": " Inserta archivo de texto",
     "get-started": "Inicio rápido",
-    "ask-remove-action": "Eliminar \"{{action}}\"?"
+    "ask-remove-action": "Eliminar \"{{action}}\"?",
+    "edit-grid": "Editar la cuadrícula"
   },
   "words": {
     "settings": "opciones",

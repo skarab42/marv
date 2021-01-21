@@ -1,5 +1,4 @@
 <script>
-  import { _ } from "@/libs/i18next";
   import { electron } from "@/stores/app";
   import Donate from "../App/Donate.svelte";
   import { drawer, hide } from "@/stores/drawer";

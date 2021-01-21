@@ -45,8 +45,8 @@
   {/if}
 
   {#if $state.connected}
-    <div class="{badge}">{_("words.recording")} {recordingTimecode}</div>
-    <div class="{badge}">{_("words.live")} {streamingTimecode}</div>
+    <div class="{badge}">{_('words.recording')} {recordingTimecode}</div>
+    <div class="{badge}">{_('words.live')} {streamingTimecode}</div>
   {/if}
 
   {#if $state.connected && $state.streaming}

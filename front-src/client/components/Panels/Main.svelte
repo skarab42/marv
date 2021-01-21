@@ -1,7 +1,10 @@
 <script>
+  import ContextMenu from "@/components/app/ContextMenu.svelte";
   import Topbar from "./Topbar.svelte";
   import Panel from "./Panel.svelte";
 </script>
 
-<Topbar />
-<Panel />
+<ContextMenu>
+  <Topbar />
+  <Panel />
+</ContextMenu>
