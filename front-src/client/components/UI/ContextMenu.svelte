@@ -6,21 +6,35 @@
   import clickoutside from "@/libs/svelte/click-outside";
   import Portal from "svelte-portal";
 
+  let opacity = 0;
   let opened = false;
+  let menuElement = null;
 
   let top = 0;
   let left = 0;
 
   function setPosition(e) {
-    top = e.pageY;
-    left = e.pageX;
+    let x = e.pageX;
+    let y = e.pageY;
+
+    const { width, height } = menuElement.getBoundingClientRect();
+    const xOverflow = window.innerWidth - (x + width);
+    const yOverflow = window.innerHeight - (y + height);
+
+    if (xOverflow < 0) x += xOverflow;
+    if (yOverflow < 0) y += yOverflow;
+
+    top = Math.max(0, y);
+    left = Math.max(0, x);
+    opacity = 1;
   }
 
   function openMenu(e) {
     closeAllMenu();
     closeAllMenu = closeMenu;
-    setPosition(e);
+    opacity = 0;
     opened = true;
+    setTimeout(() => setPosition(e));
   }
 
   function closeMenu() {
@@ -41,7 +55,8 @@
       use:clickoutside
       on:click="{closeMenu}"
       on:clickoutside="{closeMenu}"
-      style="top:{top}px;left:{left}px;"
+      bind:this="{menuElement}"
+      style="top:{top}px;left:{left}px;opacity:{opacity};"
       class="absolute z-50"
     >
       <slot name="menu" />
