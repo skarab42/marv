@@ -7,7 +7,7 @@
   import RenameModal from "./Selector/RenameModal.svelte";
   import RemoveModal from "./Selector/RemoveModal.svelte";
   import Separator from "@/components/UI/Separator.svelte";
-  import ContextMenu from "@/components/app/ContextMenu.svelte";
+  import ContextMenu from "@/components/App/ContextMenu.svelte";
   import { panels, currentPanel, setPanels } from "@/stores/panels";
   import MdDeleteForever from "svelte-icons/md/MdDeleteForever.svelte";
   import HorizontalScroller from "@/components/UI/HorizontalScroller.svelte";
