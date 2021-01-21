@@ -8,7 +8,7 @@
   import MdEdit from "svelte-icons/md/MdEdit.svelte";
   import { panels, currentPanel } from "@/stores/panels";
   import MenuItem from "@/components/UI/MenuItem.svelte";
-  import ContextMenu from "@/components/UI/ContextMenu.svelte";
+  import ContextMenu from "@/components/app/ContextMenu.svelte";
   import MdDeleteForever from "svelte-icons/md/MdDeleteForever.svelte";
   import HorizontalScroller from "@/components/UI/HorizontalScroller.svelte";
 
@@ -50,21 +50,19 @@
             panel="{panel}"
             on:move="{onMove}"
           />
-          <div slot="menu">
-            <Menu>
-              <MenuItem
-                icon="{MdEdit}"
-                on:click="{openRenameModal.bind(null, panel)}"
-              >
-                {_('words.rename')}
-              </MenuItem>
-              <MenuItem
-                icon="{MdDeleteForever}"
-                on:click="{openRemoveModal.bind(null, panel)}"
-              >
-                {_('words.remove')}
-              </MenuItem>
-            </Menu>
+          <div slot="items">
+            <MenuItem
+              icon="{MdEdit}"
+              on:click="{openRenameModal.bind(null, panel)}"
+            >
+              {_('words.rename')}
+            </MenuItem>
+            <MenuItem
+              icon="{MdDeleteForever}"
+              on:click="{openRemoveModal.bind(null, panel)}"
+            >
+              {_('words.remove')}
+            </MenuItem>
           </div>
         </ContextMenu>
       {/each}
