@@ -7,7 +7,7 @@
   export let command;
 
   function update(key, { target }) {
-    command[key] = target.value;
+    command[key] = target.value.trim();
     api.updateCommand(command);
   }
 </script>
@@ -22,7 +22,7 @@
         on:change="{update.bind(null, 'name')}"
       />
       <Input
-        label="{_('words.usage')}"
+        label="{_('words.variables')}"
         value="{command.usage}"
         on:change="{update.bind(null, 'usage')}"
       />
@@ -38,6 +38,14 @@
         value="{command.cooldown}"
         on:change="{update.bind(null, 'cooldown')}"
       />
+      <div class="p-2 text-gray-700 uppercase text-xl font-bold">
+        {_('words.message')}
+      </div>
+      <textarea
+        class="p-2 text-dark"
+        on:change="{update.bind(null, 'message')}"
+        style="min-width:50vw; min-height:250px"
+      >{command.message || ''}</textarea>
     </div>
   </div>
 </Modal>
