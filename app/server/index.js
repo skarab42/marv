@@ -80,9 +80,10 @@ async function start() {
 
   p.use(require("./libs/twitch/authMiddleware"))
     .post("/locales/add/:lng/:ns", missingKeyHandler)
-    .listen(port, (error) => {
+    .listen(port, async (error) => {
       if (error) return onError(error);
-      socket(server);
+      const origins = [await getServerURL()];
+      await socket(server, origins);
       twitchAutoConnect();
       obsAutoConnect();
       printBanner();

@@ -1,3 +1,4 @@
+const { getServerURL } = require("../../utils");
 const socket = require("socket.io");
 
 let io = null;
@@ -9,10 +10,10 @@ const options = {
   transports: ["websocket"],
 };
 
-module.exports = (server) => {
+module.exports = (server, origins) => {
   if (io) return io;
 
-  io = socket(server, options);
+  io = socket(server, { ...options, origins });
 
   io.on("connection", (clientSocket) => {
     clientSocket.use(require("./api")(clientSocket));
