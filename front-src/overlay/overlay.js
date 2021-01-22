@@ -69,7 +69,7 @@ function runAnime(action, cb) {
 
         if (element.innerText !== "") {
           Object.entries(action.eventProps).forEach(([key, val]) => {
-            element.innerText = element.innerText.replace(`$${key}`, val);
+            element.innerText = element.innerText.replaceAll(`$${key}`, val);
           });
         }
 
