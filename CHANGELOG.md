@@ -1,3 +1,58 @@
+## [1.2.2](https://github.com/skarab42/marv/compare/v1.2.1...v1.2.2) (2021-01-22)
+
+
+### Bug Fixes
+
+* **socketio:** Fix socket.io CORS origins ([717460e](https://github.com/skarab42/marv/commit/717460ed6c841a069b31743bf5a2c56a024bfbe3))
+
+
+
+## [1.2.1](https://github.com/skarab42/marv/compare/v1.2.0...v1.2.1) (2021-01-21)
+
+
+### Bug Fixes
+
+* **locale:** Fix language selection ([d579fa1](https://github.com/skarab42/marv/commit/d579fa14f6ab5f75587f57140d7f4a8e73261225))
+* **panel:** Fix undefined current panel when last is removed ([560dc74](https://github.com/skarab42/marv/commit/560dc7430c9bcf1acd00409eaecff51473462a66))
+* **path:** Fix app directory case ([0047b90](https://github.com/skarab42/marv/commit/0047b90ead7a8201c28dbb76a4cc3ba016d5b008))
+* **ui:** Fix undefined currentPanel ([0918334](https://github.com/skarab42/marv/commit/091833423737f32df0b6116386f7047d71ca58d8))
+* **ui:** Fix unsaved change ([e2280af](https://github.com/skarab42/marv/commit/e2280afed52756be19da794cd985e27609c6d567))
+
+
+### Features
+
+* **dep:** Add svelte-portal ([21ca4b5](https://github.com/skarab42/marv/commit/21ca4b518f87745ae372a324b255f55388468fed))
+* **locale:** Add edit grid sentences ([901daea](https://github.com/skarab42/marv/commit/901daea04b89ad334a0e7ecbaf48990b9ed022ad))
+* **locale:** Add right click sentences ([5265493](https://github.com/skarab42/marv/commit/526549352a3d243dfe5fc8e037b55606ffd4ad01))
+* **locale:** Update sentences ([82c8e0a](https://github.com/skarab42/marv/commit/82c8e0a3c630193b3a8e34878fe0f6503affbaaf))
+* **panels:** Add set (panels) method ([9fabd36](https://github.com/skarab42/marv/commit/9fabd3679824cda479e1624bc411c9dcffcd847c))
+* **ui:** Add class prop ([e4c2911](https://github.com/skarab42/marv/commit/e4c2911147da15dfd5adf08ed1b18a66958b62ff))
+* **ui:** Add class prop ([01f569b](https://github.com/skarab42/marv/commit/01f569b1b7b6ae3b12a22a4edd631472fe8faa3a))
+* **ui:** Add click to open right menu message ([548c540](https://github.com/skarab42/marv/commit/548c5407efd031af5062aa9b84be5beda4181ee4))
+* **ui:** Add ContexMenu and RenameModal ([4b3624a](https://github.com/skarab42/marv/commit/4b3624a9d4169f7108851ebddeec7838340563dd))
+* **ui:** Add ContextMenu component ([8646a1b](https://github.com/skarab42/marv/commit/8646a1bdefb0abc30ec8b2717269d204bea1e4c0))
+* **ui:** Add ContextMenu component ([c297c25](https://github.com/skarab42/marv/commit/c297c254b2f3b1337aa2964e74c3feee2b98f108))
+* **ui:** Add ContextMenu component ([9afe803](https://github.com/skarab42/marv/commit/9afe803f194490a7b24420d18938c1c04b10d075))
+* **ui:** Add contextmenu event ([1d20103](https://github.com/skarab42/marv/commit/1d20103095bfbd6acfc23c2161b546982ebd8b81))
+* **ui:** Add item separator ([f189d18](https://github.com/skarab42/marv/commit/f189d189137d8c47045016996c3444a362a1612e))
+* **ui:** Add Menu and MenuItem components ([ff8a8da](https://github.com/skarab42/marv/commit/ff8a8da8d65115e181fbf9c3817883e9dce1889c))
+* **ui:** Add Modal and RenameModal ([0723858](https://github.com/skarab42/marv/commit/07238583230bbef8c14063a8cb7ceae698e943a0))
+* **ui:** Add remove panel in context menu ([8d75c26](https://github.com/skarab42/marv/commit/8d75c262729320e90bdd3b8915a485951309444c))
+* **ui:** Add RemoveModal component ([4dcc2f7](https://github.com/skarab42/marv/commit/4dcc2f73a464fdfc52d7ce83eb3f991200b46431))
+* **ui:** Add Separator component ([668c178](https://github.com/skarab42/marv/commit/668c178cd08d014acf318d836a8bc3a27b8bd8d0))
+* **ui:** Allows changing the order of the panels ([f67689c](https://github.com/skarab42/marv/commit/f67689c65eb685799e158aadbafcc3c0c5291193))
+* **ui:** Capitalize menu item ([35759a1](https://github.com/skarab42/marv/commit/35759a103bd879fad2a3eeeb85f9266ccfdb1b53))
+* **ui:** Constrains context menu in the window ([824fa61](https://github.com/skarab42/marv/commit/824fa61cc126bddb77b00316ac535b6480b5712f))
+* **ui:** Create/Add widget on panel creation ([faed14d](https://github.com/skarab42/marv/commit/faed14de678826e8590a3bd2549cb01305964f71))
+* **ui:** Global context menu ([ca2c0f8](https://github.com/skarab42/marv/commit/ca2c0f87dc5b06bac1e0ba4f17e4ddf1eeec6c4e))
+* **ui:** Hide context menu item when not usable ([e90af9d](https://github.com/skarab42/marv/commit/e90af9d133b97354bdd7b539348f8cbb32620ed2))
+* **ui:** Remove sample code ([f788c42](https://github.com/skarab42/marv/commit/f788c4269197836bb70ff240cd6d8f80a4a321fd))
+* **ui:** Remove the edit topbar ([29fa74d](https://github.com/skarab42/marv/commit/29fa74d7de3f2b2ff3e290dfb35e826d64829eb7))
+* **ui:** Switch topbars order ([bb53ead](https://github.com/skarab42/marv/commit/bb53eadcd24b55ce12faa79a2a65aae0885c4c6d))
+* **ui:** Use app ContextMenu ([e5ec039](https://github.com/skarab42/marv/commit/e5ec0393fdb0d8aaa7afa5114a139c5c5cc9345c))
+
+
+
 # [1.1.0](https://github.com/skarab42/marv/compare/v1.0.1...v1.1.0) (2021-01-13)
 
 
