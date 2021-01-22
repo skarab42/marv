@@ -49,10 +49,17 @@ module.exports = async function onCommand({ channel, command, nick, message }) {
     command.args.push(rest.join(" "));
   }
 
+  let chatMessage = (commandEntry.message || "").trim();
+
   argNames.forEach((arg, i) => {
     args[arg] = command.args[i] || `$${arg}`;
+    chatMessage = chatMessage.replaceAll(`$${arg}`, args[arg]);
   });
 
   cooldowns[command.name] = now;
   pushActions("onCommand", { user: nick, message, command, ...args });
+
+  if (chatMessage.length) {
+    this.say(channel, chatMessage);
+  }
 };
