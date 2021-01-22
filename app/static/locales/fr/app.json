@@ -133,7 +133,9 @@
     "filename": "nom du fichier",
     "donate": "dons",
     "recording": "Rec. :",
-    "live": "Live :"
+    "live": "Live :",
+    "variables": "variables",
+    "message": "message"
   },
   "obs": {
     "scene-list": "OBS | Liste des scènes",
