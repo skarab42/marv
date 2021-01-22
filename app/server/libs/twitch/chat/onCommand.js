@@ -56,6 +56,8 @@ module.exports = async function onCommand({ channel, command, nick, message }) {
     chatMessage = chatMessage.replaceAll(`$${arg}`, args[arg]);
   });
 
+  chatMessage = chatMessage.replaceAll(`$user`, nick);
+
   cooldowns[command.name] = now;
   pushActions("onCommand", { user: nick, message, command, ...args });
 
