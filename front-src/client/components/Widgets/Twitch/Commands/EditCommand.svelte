@@ -45,7 +45,7 @@
         class="p-2 text-dark"
         on:change="{update.bind(null, 'message')}"
         style="min-width:50vw; min-height:250px"
-      >{command.message}</textarea>
+      >{command.message || ''}</textarea>
     </div>
   </div>
 </Modal>
