@@ -1,6 +1,7 @@
 const getCommandByName = require("../api/getCommandByName");
 const pushActions = require("../pushActions");
 const { _ } = require("../../i18next");
+const ejs = require("ejs");
 const ms = require("ms");
 
 const cooldowns = {};
@@ -49,19 +50,20 @@ module.exports = async function onCommand({ channel, command, nick, message }) {
     command.args.push(rest.join(" "));
   }
 
-  let chatMessage = (commandEntry.message || "").trim();
-
   argNames.forEach((arg, i) => {
-    args[arg] = command.args[i] || `$${arg}`;
-    chatMessage = chatMessage.replaceAll(`$${arg}`, args[arg]);
+    const value = command.args[i] || `$${arg}`;
+    const float = parseFloat(value);
+    args[arg] = isNaN(value) ? value : float;
   });
 
-  chatMessage = chatMessage.replaceAll(`$user`, nick);
+  args.user = nick;
 
   cooldowns[command.name] = now;
   pushActions("onCommand", { user: nick, message, command, ...args });
 
+  let chatMessage = (commandEntry.message || "").trim();
+
   if (chatMessage.length) {
-    this.say(channel, chatMessage);
+    this.say(channel, ejs.render(chatMessage, args));
   }
 };

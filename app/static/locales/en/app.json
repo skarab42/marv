@@ -54,7 +54,8 @@
     "get-started": "Get started",
     "ask-remove-action": "Are you sure you want to delete \"{{action}}\"?",
     "edit-grid": "Edit the grid",
-    "right-click-to-show-menu": "Right click to display the menu."
+    "right-click-to-show-menu": "Right click to display the menu.",
+    "supports-ejs-syntax": "Supports EJS syntax"
   },
   "words": {
     "settings": "settings",

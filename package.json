@@ -39,6 +39,7 @@
     "capitalize": "^2.0.3",
     "chalk": "^4.1.0",
     "clone-deep": "^4.0.1",
+    "codemirror": "^5.59.2",
     "compare-versions": "^3.6.0",
     "concurrently": "^5.3.0",
     "conventional-changelog-cli": "^2.1.1",

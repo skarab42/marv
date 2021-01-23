@@ -54,7 +54,8 @@
     "get-started": "Démarrage rapide",
     "ask-remove-action": "Supprimer \"{{action}}\" ?",
     "edit-grid": "Editer la grille",
-    "right-click-to-show-menu": "Clique droit pour afficher le menu."
+    "right-click-to-show-menu": "Clique droit pour afficher le menu.",
+    "supports-ejs-syntax": "Supporte la syntaxe EJS"
   },
   "words": {
     "settings": "options",
