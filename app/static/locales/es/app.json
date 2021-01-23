@@ -54,7 +54,8 @@
     "get-started": "Inicio rápido",
     "ask-remove-action": "Eliminar \"{{action}}\"?",
     "edit-grid": "Editar la cuadrícula",
-    "right-click-to-show-menu": "Haga clic con el botón derecho del ratón para mostrar el menú."
+    "right-click-to-show-menu": "Haga clic con el botón derecho del ratón para mostrar el menú.",
+    "supports-ejs-syntax": "Supports EJS syntax"
   },
   "words": {
     "settings": "opciones",
