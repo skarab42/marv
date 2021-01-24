@@ -69,7 +69,7 @@ function runAnime(action, cb) {
 
         if (element.innerText !== "") {
           Object.entries(action.eventProps).forEach(([key, val]) => {
-            const regexp = new RegExp(`$${key}`, "g");
+            const regexp = new RegExp(`\\$${key}`, "g");
             element.innerText = element.innerText.replace(regexp, val);
           });
         }
