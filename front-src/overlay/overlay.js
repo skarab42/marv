@@ -69,7 +69,8 @@ function runAnime(action, cb) {
 
         if (element.innerText !== "") {
           Object.entries(action.eventProps).forEach(([key, val]) => {
-            element.innerText = element.innerText.replaceAll(`$${key}`, val);
+            const regexp = new RegExp(`$${key}`, "g");
+            element.innerText = element.innerText.replace(regexp, val);
           });
         }
 
@@ -87,7 +88,7 @@ function runAnime(action, cb) {
       timeline.play();
     })
     .catch((error) => {
-      cb({ error, action });
+      cb({ error: error.stack, action });
       $anime.remove();
     });
 }

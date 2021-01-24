@@ -1,4 +1,3 @@
-const { getServerURL } = require("../../utils");
 const socket = require("socket.io");
 
 let io = null;
