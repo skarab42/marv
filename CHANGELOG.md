@@ -1,3 +1,22 @@
+# [1.3.0](https://github.com/skarab42/marv/compare/v1.2.2...v1.3.0) (2021-01-23)
+
+
+### Bug Fixes
+
+* **commands:** Fix empty command message ([57f1973](https://github.com/skarab42/marv/commit/57f1973231eae2ef1e8fcf6c584c210ab7e365d9))
+* **overlay:** Fix multiple variables replacement ([452287d](https://github.com/skarab42/marv/commit/452287d16ae46029cf148f3e2c3292bf17da4952))
+
+
+### Features
+
+* **chat-command:** Add EJS support ([6f8da9f](https://github.com/skarab42/marv/commit/6f8da9fc9fc9d87cb965055387b3d63007deb19c))
+* **commands:** Add $user tag for all chat commands ([3f4745c](https://github.com/skarab42/marv/commit/3f4745cbd6a7e96af039817375102c5bc694589b))
+* **commands:** Add chat commands ([65e28cb](https://github.com/skarab42/marv/commit/65e28cbae03b09e50a88ea661e2d3437bb3666f0))
+* **db:** Add message column to Commands table ([4686d5a](https://github.com/skarab42/marv/commit/4686d5a2c4b0a598bb2bbdff6be4274290f52805))
+* **locale:** Update locale ([dcc2e29](https://github.com/skarab42/marv/commit/dcc2e29147249c68f8d6cba426d5b638b1a5a5bc))
+
+
+
 ## [1.2.2](https://github.com/skarab42/marv/compare/v1.2.1...v1.2.2) (2021-01-22)
 
 
