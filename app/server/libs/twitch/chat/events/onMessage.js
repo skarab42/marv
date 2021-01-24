@@ -2,14 +2,6 @@ const pushActions = require("../../pushActions");
 const settings = require("../../../settings");
 const onCommand = require("../onCommand");
 
-const chalk = require("chalk");
-const colors = new chalk.Instance({ level: 3 });
-
-async function terminalChat(channel, nick, message, data) {
-  const color = colors.hex(data._tags.get("color"));
-  console.log("\x1b[35m%s\x1b[0m", "[chat]", color(`<${nick}>`), message);
-}
-
 function isCommand(prefix, message) {
   return message.startsWith(prefix);
 }
@@ -23,7 +15,6 @@ function parseCommand(prefix, message) {
 
 module.exports = async function onMessage(channel, nick, message, data) {
   pushActions("onMessage", { user: nick, message });
-  terminalChat(channel, nick, message, data);
 
   const prefix = await settings.get("command.prefix");
   if (!isCommand(prefix, message)) return;
