@@ -22,7 +22,10 @@
   },
   "build": {
     "productName": "Marv",
-    "icon": "app/static/icon.png"
+    "icon": "app/static/icon.png",
+    "linux": {
+      "category": "Streaming"
+    }
   },
   "config": {
     "commitizen": {
