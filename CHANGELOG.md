@@ -1,3 +1,12 @@
+## [1.3.1](https://github.com/skarab42/marv/compare/v1.3.0...v1.3.1) (2021-01-24)
+
+
+### Bug Fixes
+
+* **overlay:** Add missing escape in regexp ([#97](https://github.com/skarab42/marv/issues/97)) ([73e16e9](https://github.com/skarab42/marv/commit/73e16e9ddb5998a28493558f0b8fce2c5b6bf526))
+
+
+
 # [1.3.0](https://github.com/skarab42/marv/compare/v1.2.2...v1.3.0) (2021-01-23)
 
 
