@@ -9,10 +9,14 @@ const options = {
   transports: ["websocket"],
 };
 
-module.exports = (server, origins) => {
+module.exports = (server) => {
   if (io) return io;
 
-  io = socket(server, { ...options, origins });
+  io = socket(server, options);
+
+  io.origins((origin, callback) => {
+    callback(null, true);
+  });
 
   io.on("connection", (clientSocket) => {
     clientSocket.use(require("./api")(clientSocket));
