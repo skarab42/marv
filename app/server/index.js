@@ -82,8 +82,7 @@ async function start() {
     .post("/locales/add/:lng/:ns", missingKeyHandler)
     .listen(port, async (error) => {
       if (error) return onError(error);
-      const origins = [await getServerURL()];
-      await socket(server, origins);
+      await socket(server);
       twitchAutoConnect();
       obsAutoConnect();
       printBanner();
