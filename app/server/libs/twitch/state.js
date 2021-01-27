@@ -12,6 +12,9 @@ let state = {
     registered: false,
     joinedChannels: [],
   },
+  pubsub: {
+    connected: false,
+  },
 };
 
 function get(key = null, defaultValue = null) {

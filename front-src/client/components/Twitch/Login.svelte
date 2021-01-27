@@ -1,7 +1,9 @@
 <script>
   import api from "@/api/twitch";
   import { _ } from "@/libs/i18next";
-  import { user } from "@/stores/twitch";
+  import StatusLine from "./StatusLine.svelte";
+  import StatusSpinner from "./StatusSpinner.svelte";
+  import { user, chat, pubsub } from "@/stores/twitch";
   import TwitchIcon from "@/assets/images/Twitch_icon.svg";
 
   function onLogin() {
@@ -10,15 +12,43 @@
       console.log("error:", error);
     });
   }
+
+  let status = false;
+
+  function showStatus() {
+    status = true;
+  }
+
+  function hideStatus() {
+    status = false;
+  }
+
+  $: connected = $chat.connected && $pubsub.connected;
 </script>
 
 {#if $user}
-  <div class="flex px-2 py-1 items-center" on:click="{onLogin}">
+  <div
+    class="relative flex px-2 flex-shrink-0 py-1 items-center justify-center"
+    on:click="{onLogin}"
+    on:mouseenter="{showStatus}"
+    on:mouseleave="{hideStatus}"
+  >
+    <StatusSpinner connected="{connected}" />
     <img
-      class="w-8 h-8 rounded-full"
+      class="z-10 w-8 h-8 rounded-full"
       src="{$user.profile_image_url}"
       alt="{$user.display_name}"
     />
+    {#if status}
+      <div
+        on:mouseleave|stopPropagation
+        class="absolute p-2 whitespace-nowrap text-gray-800 bg-gray-300 rounded"
+        style="top:40px; right:0px; min-width:100px; z-index:500;"
+      >
+        <StatusLine label="Chat" status="{$chat}" />
+        <StatusLine label="PubSub" status="{$pubsub}" />
+      </div>
+    {/if}
   </div>
 {:else}
   <div
