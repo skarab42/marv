@@ -17,10 +17,14 @@ if (watch) {
 
 const clientPath = path.join(appPath, "client");
 const staticPath = path.join(appPath, "static");
+
+const logsPath = path.join(userPath, "logs");
 const uploadPath = path.join(userPath, "upload");
 const storesPath = path.join(userPath, "stores");
-const filesPath = path.join(uploadPath, "files");
 const databasePath = path.join(userPath, "database");
+
+const filesPath = path.join(uploadPath, "files");
+
 const databaseFilename = "marv.sqlite";
 
 const isFirstStart = !fs.existsSync(path.join(databasePath, databaseFilename));
@@ -30,6 +34,7 @@ module.exports = {
   watch,
   appPath,
   userPath,
+  logsPath,
   filesPath,
   uploadPath,
   storesPath,
