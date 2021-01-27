@@ -5,6 +5,7 @@ export const store = writable(null);
 export const stream = writable(null);
 export const user = writable(null);
 export const chat = writable(null);
+export const pubsub = writable(null);
 export const commands = writable([]);
 export const rewards = writable([]);
 export const followers = writable([]);
@@ -15,6 +16,7 @@ async function loadOnce() {
   if (loaded) return;
 
   api.on("state.stream", stream.set);
+  api.on("state.pubsub", pubsub.set);
   api.on("state.user", user.set);
   api.on("state.chat", chat.set);
 
@@ -47,6 +49,7 @@ export default async function load() {
   const state = await api.getState();
 
   stream.set(state.stream);
+  pubsub.set(state.pubsub);
   user.set(state.user);
   chat.set(state.chat);
 
