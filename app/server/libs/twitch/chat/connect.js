@@ -1,7 +1,27 @@
 const state = require("../state");
 const { chat } = require("../index");
 
-module.exports = function connect() {
+let connectId = null;
+const reconnectDelay = 5; // seconds
+
+function delayConnect() {
+  connectId && clearTimeout(connectId);
+  connectId = setTimeout(reconnect, reconnectDelay * 1000);
+}
+
+function reconnect() {
+  state.set("chat.connected", false);
+  connect().catch(() => {
+    delayConnect();
+  });
+}
+
+chat.onDisconnect((manually) => {
+  state.set("chat.connected", false);
+  if (!manually) delayConnect();
+});
+
+function connect() {
   if (state.get("chat.connected")) {
     return Promise.resolve({ alreadyConnected: true });
   }
@@ -28,4 +48,6 @@ module.exports = function connect() {
       state.set("chat.connected", false);
       return Promise.reject(error);
     });
-};
+}
+
+module.exports = connect;
