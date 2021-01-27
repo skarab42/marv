@@ -1,6 +1,6 @@
 {
   "name": "marv",
-  "version": "0.16.0",
+  "version": "1.3.1",
   "description": "Marv - Twitch Bot",
   "repository": "github:skarab42/marv",
   "author": "skarab42 <skarab42@users.noreply.github.com>",
@@ -16,11 +16,21 @@
     "watch": "concurrently -k -n tailwind,client,app -c red,magenta,yellow \"yarn tailwind:build\" \"yarn client:watch\" \"yarn app:watch\"",
     "build": "yarn client:build && yarn tailwind:build --prod",
     "prettify": "prettier --write ./app ./front-src",
-    "lint": "eslint ./app ./front-src --fix && yarn prettify"
+    "lint": "eslint ./app ./front-src --fix && yarn prettify",
+    "change": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0",
+    "commit": "cz"
   },
   "build": {
     "productName": "Marv",
-    "icon": "app/static/icon.png"
+    "icon": "app/static/icon.png",
+    "linux": {
+      "category": "Streaming"
+    }
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   },
   "devDependencies": {
     "@rollup/plugin-alias": "^3.1.1",
@@ -28,12 +38,15 @@
     "@rollup/plugin-json": "^4.1.0",
     "@rollup/plugin-node-resolve": "^9.0.0",
     "animejs": "^3.2.1",
-    "axios": "^0.21.0",
+    "axios": "^0.21.1",
     "capitalize": "^2.0.3",
     "chalk": "^4.1.0",
     "clone-deep": "^4.0.1",
+    "codemirror": "^5.59.2",
     "compare-versions": "^3.6.0",
     "concurrently": "^5.3.0",
+    "conventional-changelog-cli": "^2.1.1",
+    "cz-conventional-changelog": "3.3.0",
     "electron": "^11.0.3",
     "electron-builder": "^22.9.1",
     "electron-rebuild": "^2.3.2",
@@ -56,6 +69,7 @@
     "svelte-color": "https://github.com/skarab42/svelte-color.git",
     "svelte-grid": "1.11.0",
     "svelte-icons": "^2.1.0",
+    "svelte-portal": "^2.1.1",
     "sveltejs-tippy": "^3.0.0",
     "tailwindcss": "^1.9.6",
     "throttle-debounce": "^3.0.1",

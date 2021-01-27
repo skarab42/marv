@@ -45,12 +45,17 @@
     "edit-mode": "Edit mode",
     "add-panel": "Add panel",
     "command-name-must-be-unique": "Command name must be unique.",
-    "check-update-at-startup": "Check update at startup.",
-    "new-version-available": "A new version is available.",
+    "check-update-at-startup": "Check update at startup",
+    "new-version-available": "A new version is available",
     "close-marv-before-update": "Close Marv before launching the update!",
     "close-app": "Close Marv!",
     "file-upload-progress": "Upload in progress",
-    "insert-text-file": "Insert text file"
+    "insert-text-file": "Insert text file",
+    "get-started": "Get started",
+    "ask-remove-action": "Are you sure you want to delete \"{{action}}\"?",
+    "edit-grid": "Edit the grid",
+    "right-click-to-show-menu": "Right click to display the menu.",
+    "supports-ejs-syntax": "Supports EJS syntax"
   },
   "words": {
     "settings": "settings",
@@ -127,7 +132,11 @@
     "save": "save",
     "cancel": "cancel",
     "filename": "filename",
-    "donate": "donate"
+    "donate": "donate",
+    "recording": "Rec.:",
+    "live": "Live:",
+    "variables": "variables",
+    "message": "message"
   },
   "obs": {
     "scene-list": "OBS | Scene list",
@@ -152,8 +161,6 @@
     "followers": "Followers",
     "connect-at-startup": "Connect Twitch at startup",
     "empty-command-list": "Empty command list",
-    "command-not-found": "Command \"{{command}}\" not found",
-    "command-disabled": "Command \"{{command}}\" disabled",
     "command-cooldown": "Cooldown \"{{command}}\" -> ~{{rest}}",
     "command-too-much-argument": "Too much argument! Usage: {{usage}}",
     "command-not-enough-argument": "Not enough argument! Usage: {{usage}}",
@@ -222,11 +229,5 @@
     "skewY": "skew Y",
     "perspective": "perspective",
     "text-shadow": "text shadow"
-  },
-  "docs": {
-    "get-started": {
-      "obs": "Install OBS Websocket.",
-      "overlay": "Install Marv overlay in OBS."
-    }
   }
 }

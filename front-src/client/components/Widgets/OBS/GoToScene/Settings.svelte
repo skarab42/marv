@@ -6,8 +6,8 @@
 
   export let data;
 
-  let { panel, widget } = data;
-
+  $: panel = data.panel;
+  $: widget = data.widget;
   $: scenes = $state.scenes || [];
   $: props = widget.component.props;
   $: items = [_("words.none"), ...scenes.map((s) => s.name)];
@@ -18,7 +18,7 @@
   }
 </script>
 
-<div class="p-2 pt-0">
+<div class="p-2 pt-0 flex-auto">
   <Select
     label="{_('words.scene')}"
     value="{props.scene}"

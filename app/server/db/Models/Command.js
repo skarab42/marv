@@ -15,6 +15,10 @@ const Command = sequelize.define("Command", {
     type: DataTypes.STRING,
     allowNull: true,
   },
+  message: {
+    type: DataTypes.STRING,
+    allowNull: true,
+  },
   cooldown: {
     type: DataTypes.INTEGER,
     defaultValue: 60,

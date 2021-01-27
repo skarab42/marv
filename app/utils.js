@@ -6,25 +6,35 @@ const path = require("path");
 
 const app = { name, version };
 const fingerprint = `${capitalize(name)} v${version}`;
+const watch = process.argv.includes("--watch") || process.argv.includes("-w");
 
 const appPath = __dirname;
-const userPath = envPaths(name).data;
+let userPath = envPaths(name).data;
+
+if (watch) {
+  userPath += "-dev";
+}
+
 const clientPath = path.join(appPath, "client");
 const staticPath = path.join(appPath, "static");
+
+const logsPath = path.join(userPath, "logs");
 const uploadPath = path.join(userPath, "upload");
 const storesPath = path.join(userPath, "stores");
-const filesPath = path.join(uploadPath, "files");
 const databasePath = path.join(userPath, "database");
+
+const filesPath = path.join(uploadPath, "files");
+
 const databaseFilename = "marv.sqlite";
 
 const isFirstStart = !fs.existsSync(path.join(databasePath, databaseFilename));
-const watch = process.argv.includes("--watch") || process.argv.includes("-w");
 
 module.exports = {
   app,
   watch,
   appPath,
   userPath,
+  logsPath,
   filesPath,
   uploadPath,
   storesPath,

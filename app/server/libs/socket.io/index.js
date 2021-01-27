@@ -14,6 +14,10 @@ module.exports = (server) => {
 
   io = socket(server, options);
 
+  io.origins((origin, callback) => {
+    callback(null, true);
+  });
+
   io.on("connection", (clientSocket) => {
     clientSocket.use(require("./api")(clientSocket));
     clientSocket.use(require("./unhandledEvent"));

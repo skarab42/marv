@@ -7,6 +7,11 @@ module.exports = {
     this.notify("panels.add", panel);
     return panel;
   },
+  set(newPanels) {
+    const results = panels.set(newPanels);
+    this.notify("panels.set", newPanels);
+    return results;
+  },
   remove(panel) {
     const pos = panels.remove(panel);
     this.notify("panels.remove", panel, pos);

@@ -1,22 +1,22 @@
 <script>
   import api from "@/api/app";
-  import { _ } from "@/libs/i18next";
-  import { store } from "@/stores/app";
+  import { _, i18next } from "@/libs/i18next";
   import { getLastRelease } from "@/libs/app";
   import { version } from "../../../../package";
   import compareVersions from "compare-versions";
   import Modal from "@/components/UI/Modal.svelte";
   import Button from "@/components/UI/Button.svelte";
+  import { store, siteURL, repo } from "@/stores/app";
   import CheckUpdateCheckbox from "./CheckUpdateCheckbox.svelte";
 
-  const repo = "skarab42/marv";
+  const downloadURL = `${$siteURL}/${i18next.language}/download`;
 
   let downloded = false;
   let newRelease = null;
   let hasNewVersion = false;
 
   async function checkUpdate() {
-    newRelease = await getLastRelease(repo);
+    newRelease = await getLastRelease($repo);
     hasNewVersion = compareVersions.compare(newRelease.version, version, ">");
   }
 
@@ -26,8 +26,8 @@
 
   function download() {
     downloded = true;
-    window.open(newRelease.url);
-    setTimeout(closeApp, 500);
+    window.open(downloadURL);
+    setTimeout(closeApp, 1000);
   }
 
   function closeApp() {

@@ -45,12 +45,17 @@
     "edit-mode": "Modo edición",
     "add-panel": "Añadir un panel",
     "command-name-must-be-unique": "El nombre del comando debe ser único.",
-    "check-update-at-startup": "Verifique actualizaciones al inicio.",
-    "new-version-available": "Una nueva versión esta disponible.",
+    "check-update-at-startup": "Verifique actualizaciones al inicio",
+    "new-version-available": "Una nueva versión esta disponible",
     "close-marv-before-update": "Cierre Marv antes de iniciar la actualización !",
     "close-app": "Cierre Marv !",
     "file-upload-progress": "Subida en curso",
-    "insert-text-file": " Inserta archivo de texto"
+    "insert-text-file": " Inserta archivo de texto",
+    "get-started": "Inicio rápido",
+    "ask-remove-action": "Eliminar \"{{action}}\"?",
+    "edit-grid": "Editar la cuadrícula",
+    "right-click-to-show-menu": "Haga clic con el botón derecho del ratón para mostrar el menú.",
+    "supports-ejs-syntax": "Supports EJS syntax"
   },
   "words": {
     "settings": "opciones",
@@ -126,7 +131,11 @@
     "save": "guardar",
     "cancel": "cancelar",
     "filename": "nombre del archivo",
-    "donate": "donar"
+    "donate": "donar",
+    "recording": "Rec.:",
+    "live": "Live:",
+    "variables": "variables",
+    "message": "message"
   },
   "obs": {
     "scene-list": "OBS | Lista de escenas",
@@ -151,8 +160,6 @@
     "followers": "Partidarios",
     "connect-at-startup": "Conectar a Twitch durante el inicio",
     "empty-command-list": "Ningun comando",
-    "command-not-found": "El comando \"{{command}}\" no ha sido encontrado",
-    "command-disabled": "El comando \"{{command}}\" ha sido desactivado",
     "command-cooldown": "Cooldown \"{{command}}\" -> ~{{rest}}",
     "command-too-much-argument": "Demasiados argunmentos! Utilización: {{usage}}",
     "command-not-enough-argument": "No hay suficientes argunmentos! Utilización: {{usage}}",
@@ -221,11 +228,5 @@
     "perspective": "punto de vista",
     "height": "altura",
     "text-shadow": "sombra"
-  },
-  "docs": {
-    "get-started": {
-      "obs": "Instalar OBS Websocket.",
-      "overlay": "Instalar el overlay de Marv en OBS."
-    }
   }
 }

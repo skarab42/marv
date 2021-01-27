@@ -1,6 +1,7 @@
 const getCommandByName = require("../api/getCommandByName");
 const pushActions = require("../pushActions");
 const { _ } = require("../../i18next");
+const ejs = require("ejs");
 const ms = require("ms");
 
 const cooldowns = {};
@@ -15,20 +16,12 @@ function parseUsage(usage) {
 
 module.exports = async function onCommand({ channel, command, nick, message }) {
   const commandEntry = await getCommandByName(command.name);
+
+  if (!commandEntry || !commandEntry.enabled) {
+    return;
+  }
+
   const now = Date.now();
-
-  if (!commandEntry) {
-    throw new Error(
-      `${_("twitch.command-not-found", { command: command.name })}`
-    );
-  }
-
-  if (!commandEntry.enabled) {
-    throw new Error(
-      `${_("twitch.command-disabled", { command: command.name })}`
-    );
-  }
-
   const lastCall = cooldowns[command.name] || 0;
   const cooldown = commandEntry.cooldown * 1000;
   const elapsedTime = now - lastCall;
@@ -58,9 +51,19 @@ module.exports = async function onCommand({ channel, command, nick, message }) {
   }
 
   argNames.forEach((arg, i) => {
-    args[arg] = command.args[i] || `$${arg}`;
+    const value = command.args[i] || `$${arg}`;
+    const float = parseFloat(value);
+    args[arg] = isNaN(value) ? value : float;
   });
+
+  args.user = nick;
 
   cooldowns[command.name] = now;
   pushActions("onCommand", { user: nick, message, command, ...args });
+
+  let chatMessage = (commandEntry.message || "").trim();
+
+  if (chatMessage.length) {
+    this.say(channel, ejs.render(chatMessage, args));
+  }
 };

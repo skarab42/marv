@@ -1,6 +1,7 @@
 <script>
   import api from "@/api/panels";
   import Grid from "./Panel/Grid.svelte";
+  import EditMessage from "./EditMessage.svelte";
   import gridHelper from "svelte-grid/src/utils/helper";
   import {
     editMode,
@@ -23,11 +24,12 @@
   }
 
   function onDoubleClick() {
-    $editMode && addWidget();
+    $currentPanel && $editMode && addWidget();
   }
 </script>
 
 <div class="relative flex flex-auto" on:dblclick="{onDoubleClick}">
+  <EditMessage />
   {#each $panels as panel}
     <div class="absolute inset-0 p-1 {invisible($currentPanel, panel)}">
       {#if panel.grid.length}

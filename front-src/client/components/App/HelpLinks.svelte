@@ -1,6 +1,6 @@
 <script>
   import { _ } from "@/libs/i18next";
-  import { links, url } from "@/libs/docs";
+  import { getStartURL } from "@/libs/docs";
   import MdHelp from "svelte-icons/md/MdHelp.svelte";
 </script>
 
@@ -12,11 +12,5 @@
 </div>
 
 <div class="flex flex-col p-1 space-y-1">
-  {#each links as link}
-    <a
-      class="px-2 hover:text-pink-600"
-      href="{url(link.url)}"
-      target="_blank"
-    >{_(link.label)}</a>
-  {/each}
+  <a href="{getStartURL()}" target="_blank">{_('sentences.get-started')}</a>
 </div>

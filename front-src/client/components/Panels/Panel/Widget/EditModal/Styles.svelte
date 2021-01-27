@@ -11,6 +11,9 @@
   import ColorPicker from "@/components/UI/ColorPicker.svelte";
   import MdDelete from "svelte-icons/md/MdDeleteForever.svelte";
   import FileManager from "@/components/FileManager/Main.svelte";
+  import { createEventDispatcher } from "svelte";
+
+  const dispatch = createEventDispatcher();
 
   export let panel;
   export let widget;
@@ -80,6 +83,7 @@
 
   function openFileManager() {
     fileManager = true;
+    dispatch("fileManagerOpen");
   }
 
   function closeFileManager() {

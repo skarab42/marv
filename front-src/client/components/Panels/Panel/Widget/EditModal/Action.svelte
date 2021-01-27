@@ -9,12 +9,14 @@
   import Select from "@/components/UI/Select.svelte";
   import { commands, rewards } from "@/stores/twitch";
   import MdDelete from "svelte-icons/md/MdDeleteForever.svelte";
+  import ConfirmModal from "@/components/UI/ConfirmModal.svelte";
   import { update, removeWidgetComponent } from "@/libs/panels";
 
   export let panel;
   export let widget;
 
   let eventNames = [];
+  let removeActionModal = false;
 
   const none = capitalize(_(`words.none`));
 
@@ -59,15 +61,21 @@
     update(panel);
   }
 
+  function onRemoveActionConfirmed({ detail: response }) {
+    removeActionModal = false;
+    response &&
+      removeWidgetComponent(panel, widget)
+        .then(() => {
+          widget.component = null;
+          update(panel);
+        })
+        .catch((error) => {
+          console.log("ERRRO:", error);
+        });
+  }
+
   function onRemoveAction() {
-    removeWidgetComponent(panel, widget)
-      .then(() => {
-        widget.component = null;
-        update(panel);
-      })
-      .catch((error) => {
-        console.log("ERRRO:", error);
-      });
+    removeActionModal = true;
   }
 
   function onEventChange({ detail: eventName }) {
@@ -88,7 +96,10 @@
 
 {#if component}
   <div class="p-2 font-bold bg-dark-lighter">{_(component.label)}</div>
-  <div class="p-2 flex flex-col space-y-2">
+  <div class="mt-2 flex">
+    <svelte:component this="{widgets[component.name].Settings}" data="{data}" />
+  </div>
+  <div class="p-2 pt-0 flex flex-col space-y-2">
     {#if config.hasTrigger}
       <Select
         object="{true}"
@@ -124,7 +135,6 @@
       {/if}
     {/if}
   </div>
-  <svelte:component this="{widgets[component.name].Settings}" data="{data}" />
   <Button icon="{MdDelete}" class="bg-red-600" on:click="{onRemoveAction}">
     {_('words.remove')}
   </Button>
@@ -139,3 +149,11 @@
     />
   </div>
 {/if}
+
+<ConfirmModal
+  question="{_('sentences.ask-remove-action', {
+    action: component && _(component.label),
+  })}"
+  visible="{removeActionModal}"
+  on:confirm="{onRemoveActionConfirmed}"
+/>

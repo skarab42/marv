@@ -7,7 +7,22 @@ const path = require("path");
 
 const locales = path.join(appPath, "static/locales");
 
+function getLocale() {
+  try {
+    return Intl.DateTimeFormat().resolvedOptions().locale.split("-")[0];
+  } catch (error) {
+    console.log("ERROR >>>", error);
+    return "en";
+  }
+}
+
 async function getConfig() {
+  const isFirstStart = await settings.get("app.showFirstStartInfo", true);
+
+  if (isFirstStart) {
+    await settings.set("app.language", getLocale());
+  }
+
   return { ...config, lng: await settings.get("app.language") };
 }
 

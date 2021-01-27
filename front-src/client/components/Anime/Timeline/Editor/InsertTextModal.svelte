@@ -11,7 +11,7 @@
   let title = _("sentences.insert-text-file");
 
   function insertText() {
-    dispatch("save", value);
+    value && dispatch("save", value);
   }
 
   function closeModal() {
@@ -19,7 +19,7 @@
   }
 
   function onUpdate({ detail }) {
-    value = detail;
+    value = detail.trim();
   }
 </script>
 
