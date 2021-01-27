@@ -4,6 +4,8 @@ const { ApiClient } = require("twitch");
 const AuthProvider = require("./AuthProvider");
 const { ChatClient } = require("twitch-chat-client");
 
+require("./logger-hook");
+
 const api = {
   config,
   authProvider: null,
