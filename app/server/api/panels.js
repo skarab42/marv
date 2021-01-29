@@ -28,6 +28,12 @@ module.exports = {
     this.notify("panels.update", payload.panel);
     return payload;
   },
+  duplicateWidget({ panel, widgetId, position }) {
+    const payload = panels.duplicateWidget({ panel, widgetId, position });
+    this.notify("panels.addWidget", payload);
+    this.notify("panels.update", payload.panel);
+    return payload;
+  },
   removeWidget(targetPanel, widget) {
     const payload = panels.removeWidget(targetPanel, widget);
     this.notify("panels.removeWidget", payload);

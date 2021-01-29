@@ -2,15 +2,19 @@
   import Grid from "svelte-grid";
   import Widget from "./Widget.svelte";
   import { update } from "@/libs/panels";
-  import { gridOptions } from "@/stores/panels";
-  // import MenuItem from "@/components/UI/MenuItem.svelte";
-  // import Separator from "@/components/UI/Separator.svelte";
+  import MenuItem from "@/components/UI/MenuItem.svelte";
+  import Separator from "@/components/UI/Separator.svelte";
+  import { duplicateWidget, gridOptions } from "@/stores/panels";
   import ContextMenu from "@/components/App/ContextMenu.svelte";
 
   export let panel;
 
   function onChange() {
     update(panel);
+  }
+
+  async function duplicate(item) {
+    await duplicateWidget({ panel, item });
   }
 </script>
 
@@ -29,11 +33,9 @@
 >
   <ContextMenu>
     <Widget item="{item}" panel="{panel}" />
-    <!-- <div slot="items">
-      <MenuItem>kapoué 2</MenuItem>
-      <MenuItem>kapoué 3</MenuItem>
-      <MenuItem>kapoué 4</MenuItem>
+    <div slot="items">
+      <MenuItem on:click="{duplicate.bind(null, item)}">Duplicate</MenuItem>
       <Separator />
-    </div> -->
+    </div>
   </ContextMenu>
 </Grid>

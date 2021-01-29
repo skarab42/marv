@@ -3,12 +3,11 @@
   import { _ } from "@/libs/i18next";
   import MdAdd from "svelte-icons/md/MdAdd.svelte";
   import MenuItem from "@/components/UI/MenuItem.svelte";
-  import { setEditMode, addWidget } from "@/stores/panels";
+  import { addWidget } from "@/stores/panels";
 
   async function addPanel() {
     await api.add();
     await addWidget();
-    setEditMode(true);
   }
 </script>
 
