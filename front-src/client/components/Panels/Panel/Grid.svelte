@@ -13,6 +13,8 @@
   import Separator from "@/components/UI/Separator.svelte";
   import ContextMenu from "@/components/App/ContextMenu.svelte";
   import PanelSelectModal from "./Widget/PanelSelectModal.svelte";
+  import MdContentCopy from "svelte-icons/md/MdContentCopy.svelte";
+  import MdArrowForward from "svelte-icons/md/MdArrowForward.svelte";
 
   export let panel;
 
@@ -54,10 +56,14 @@
   <ContextMenu>
     <Widget item="{item}" panel="{panel}" />
     <div slot="items">
-      <MenuItem on:click="{duplicate.bind(null, item)}" class="capitalize">
+      <MenuItem
+        icon="{MdContentCopy}"
+        on:click="{duplicate.bind(null, item)}"
+        class="capitalize"
+      >
         {_('words.duplicate')}
       </MenuItem>
-      <MenuItem on:click="{moveTo.bind(null, item)}">
+      <MenuItem icon="{MdArrowForward}" on:click="{moveTo.bind(null, item)}">
         {_('sentences.move-to')}
       </MenuItem>
       <Separator />
