@@ -1,23 +1,7 @@
 <script>
-  import api from "@/api/panels";
   import Grid from "./Panel/Grid.svelte";
   import EditMessage from "./EditMessage.svelte";
-  import gridHelper from "svelte-grid/src/utils/helper";
-  import {
-    editMode,
-    panels,
-    currentPanel,
-    gridOptions,
-    itemOptions,
-  } from "@/stores/panels";
-
-  function addWidget() {
-    const cols = $gridOptions.cols;
-    const grid = $currentPanel.grid;
-    const item = gridHelper.item($itemOptions);
-    const pos = gridHelper.findSpaceForItem(item, grid, cols);
-    api.addWidget($currentPanel, { w: item.w, h: item.h, ...pos });
-  }
+  import { panels, editMode, addWidget, currentPanel } from "@/stores/panels";
 
   function invisible(p1, p2) {
     return p1.id === p2.id ? "" : "invisible";

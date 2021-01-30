@@ -46,13 +46,33 @@ export function setCurrentPanel(panel) {
   localStorage.setItem("currentPanel", panel && panel.id);
 }
 
-export async function addWidget() {
-  const cp = get(currentPanel);
+function findSpaceForWidget(panel, props = {}) {
   const cols = get(gridOptions).cols;
-  const grid = cp.grid;
-  const item = gridHelper.item(get(itemOptions));
-  const pos = gridHelper.findSpaceForItem(item, grid, cols);
-  await api.addWidget(cp, { w: item.w, h: item.h, ...pos });
+  const item = { ...gridHelper.item(get(itemOptions)), ...props };
+  const pos = gridHelper.findSpaceForItem(item, panel.grid, cols);
+  return { w: item.w, h: item.h, ...pos };
+}
+
+export async function addWidget() {
+  const panel = get(currentPanel);
+  await api.addWidget(panel, findSpaceForWidget(panel));
+  setEditMode(true);
+}
+
+export async function duplicateWidget({ panel, item }) {
+  const position = findSpaceForWidget(panel, { w: item.w, h: item.h });
+  await api.duplicateWidget({ panel, widgetId: item.id, position });
+  setEditMode(true);
+}
+
+export async function moveWidgetToPanel({ panel, targetPanel, item }) {
+  const position = findSpaceForWidget(targetPanel, { w: item.w, h: item.h });
+  await api.moveWidgetToPanel({
+    panel,
+    targetPanel,
+    widgetId: item.id,
+    position,
+  });
   setEditMode(true);
 }
 

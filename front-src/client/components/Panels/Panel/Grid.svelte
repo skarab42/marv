@@ -1,16 +1,42 @@
 <script>
+  import {
+    gridOptions,
+    currentPanel,
+    duplicateWidget,
+    moveWidgetToPanel,
+  } from "@/stores/panels";
   import Grid from "svelte-grid";
+  import { _ } from "@/libs/i18next";
   import Widget from "./Widget.svelte";
   import { update } from "@/libs/panels";
-  import { gridOptions } from "@/stores/panels";
-  // import MenuItem from "@/components/UI/MenuItem.svelte";
-  // import Separator from "@/components/UI/Separator.svelte";
+  import MenuItem from "@/components/UI/MenuItem.svelte";
+  import Separator from "@/components/UI/Separator.svelte";
   import ContextMenu from "@/components/App/ContextMenu.svelte";
+  import PanelSelectModal from "./Widget/PanelSelectModal.svelte";
+  import MdContentCopy from "svelte-icons/md/MdContentCopy.svelte";
+  import MdArrowForward from "svelte-icons/md/MdArrowForward.svelte";
 
   export let panel;
 
+  let panelSelectModal = false;
+  let selectedItem = null;
+
   function onChange() {
     update(panel);
+  }
+
+  async function duplicate(item) {
+    await duplicateWidget({ panel, item });
+  }
+
+  async function moveTo(item) {
+    panelSelectModal = true;
+    selectedItem = item;
+  }
+
+  async function onPanelSelect({ detail: targetPanel }) {
+    await moveWidgetToPanel({ panel, targetPanel, item: selectedItem });
+    $currentPanel = targetPanel;
   }
 </script>
 
@@ -29,11 +55,23 @@
 >
   <ContextMenu>
     <Widget item="{item}" panel="{panel}" />
-    <!-- <div slot="items">
-      <MenuItem>kapoué 2</MenuItem>
-      <MenuItem>kapoué 3</MenuItem>
-      <MenuItem>kapoué 4</MenuItem>
+    <div slot="items">
+      <MenuItem
+        icon="{MdContentCopy}"
+        on:click="{duplicate.bind(null, item)}"
+        class="capitalize"
+      >
+        {_('words.duplicate')}
+      </MenuItem>
+      <MenuItem icon="{MdArrowForward}" on:click="{moveTo.bind(null, item)}">
+        {_('sentences.move-to')}
+      </MenuItem>
       <Separator />
-    </div> -->
+    </div>
   </ContextMenu>
 </Grid>
+
+<PanelSelectModal
+  bind:opened="{panelSelectModal}"
+  on:select="{onPanelSelect}"
+/>

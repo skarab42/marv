@@ -1,7 +1,7 @@
 <script>
   import api from "@/api/panels";
   import { _ } from "@/libs/i18next";
-  import Modal from "./Modal.svelte";
+  import Modal from "../Modal.svelte";
   import Input from "@/components/UI/Input.svelte";
   import Button from "@/components/UI/Button.svelte";
 
