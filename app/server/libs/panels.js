@@ -111,6 +111,37 @@ function duplicateWidget({ panel, widgetId, position }) {
   return { panel: update(oldPanel), widget, item: position };
 }
 
+function moveWidgetToPanel({ panel, targetPanel: tp, widgetId, position }) {
+  let widget = null;
+
+  let targetPanel = findPanelById(tp.id);
+  let sourcePanel = findPanelById(panel.id);
+
+  sourcePanel.grid = sourcePanel.grid.filter((w) => w.id !== widgetId);
+  sourcePanel.widgets = sourcePanel.widgets.filter((w) => {
+    if (w.id === widgetId) {
+      widget = w;
+      return false;
+    }
+    return true;
+  });
+
+  targetPanel.grid.push({ id: widget.id, ...position });
+  targetPanel.widgets.push(widget);
+
+  const action = actions.get(widgetId);
+
+  if (action) {
+    actions.remove(widgetId);
+    actions.update({ widget, anime: { ...cloneDeep(action), id: uuid() } });
+  }
+
+  return [
+    { panel: update(sourcePanel), widget },
+    { panel: update(targetPanel), widget },
+  ];
+}
+
 function removeWidgetComponent(panel, widget) {
   if (!widget.component) return;
   actions.remove(widget.id);
@@ -135,5 +166,6 @@ module.exports = {
   addWidget,
   removeWidget,
   duplicateWidget,
+  moveWidgetToPanel,
   removeWidgetComponent,
 };

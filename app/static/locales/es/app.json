@@ -55,7 +55,9 @@
     "ask-remove-action": "Eliminar \"{{action}}\"?",
     "edit-grid": "Editar la cuadrícula",
     "right-click-to-show-menu": "Haga clic con el botón derecho del ratón para mostrar el menú.",
-    "supports-ejs-syntax": "Supports EJS syntax"
+    "supports-ejs-syntax": "Supports EJS syntax",
+    "move-widget-to": "Mover el panel a",
+    "move-to": "Mover a"
   },
   "words": {
     "settings": "opciones",
@@ -135,7 +137,9 @@
     "recording": "Rec.:",
     "live": "Live:",
     "variables": "variables",
-    "message": "message"
+    "message": "message",
+    "move": "mover",
+    "duplicate": "duplicado"
   },
   "obs": {
     "scene-list": "OBS | Lista de escenas",

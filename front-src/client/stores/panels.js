@@ -65,6 +65,17 @@ export async function duplicateWidget({ panel, item }) {
   setEditMode(true);
 }
 
+export async function moveWidgetToPanel({ panel, targetPanel, item }) {
+  const position = findSpaceForWidget(targetPanel, { w: item.w, h: item.h });
+  await api.moveWidgetToPanel({
+    panel,
+    targetPanel,
+    widgetId: item.id,
+    position,
+  });
+  setEditMode(true);
+}
+
 function onAdd(panel, { owner }) {
   panels.update((state) => [...state, panel]);
   if (owner || !get(currentPanel)) {

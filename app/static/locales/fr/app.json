@@ -8,9 +8,9 @@
     "no-panel-found": "Aucun panneau trouvé o_O !",
     "open-edit-mode": "Passe en mode édition en cliquant sur l'crayon.",
     "click-to-add-panel": "Clique sur '+' pour ajouter ton premier panneau.",
-    "click-to-add-widget": "Clique sur '+' pour ajouter ton premier widget.",
+    "click-to-add-widget": "Clique sur '+' pour ajouter ton premier bouton.",
     "powers-group": "Panneau",
-    "ask-for-panel-deletion": "Supprimer le panneau \"{{name}}\" ainsi que tous ses widgets ?",
+    "ask-for-panel-deletion": "Supprimer le panneau \"{{name}}\" ainsi que tous ses boutons?",
     "no-widget-found": "Aucun bouton trouvé o_O !",
     "add-grid-widget": "Ajouter un bouton",
     "ask-for-widget-deletion": "Supprimer le bouton \"{{name}}\" ?",
@@ -55,7 +55,9 @@
     "ask-remove-action": "Supprimer \"{{action}}\" ?",
     "edit-grid": "Editer la grille",
     "right-click-to-show-menu": "Clique droit pour afficher le menu.",
-    "supports-ejs-syntax": "Supporte la syntaxe EJS"
+    "supports-ejs-syntax": "Supporte la syntaxe EJS",
+    "move-widget-to": "Déplacer le bouton vers",
+    "move-to": "Déplacer vers..."
   },
   "words": {
     "settings": "options",
@@ -136,7 +138,9 @@
     "recording": "Rec. :",
     "live": "Live :",
     "variables": "variables",
-    "message": "message"
+    "message": "message",
+    "move": "déplacer",
+    "duplicate": "dupliquer"
   },
   "obs": {
     "scene-list": "OBS | Liste des scènes",

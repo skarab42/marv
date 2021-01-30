@@ -28,11 +28,17 @@ module.exports = {
     this.notify("panels.update", payload.panel);
     return payload;
   },
-  duplicateWidget({ panel, widgetId, position }) {
-    const payload = panels.duplicateWidget({ panel, widgetId, position });
-    this.notify("panels.addWidget", payload);
-    this.notify("panels.update", payload.panel);
-    return payload;
+  duplicateWidget(payload) {
+    const result = panels.duplicateWidget(payload);
+    this.notify("panels.addWidget", result);
+    this.notify("panels.update", result.panel);
+    return result;
+  },
+  moveWidgetToPanel(payload) {
+    const results = panels.moveWidgetToPanel(payload);
+    this.notify("panels.update", results[0].panel);
+    this.notify("panels.update", results[1].panel);
+    return results;
   },
   removeWidget(targetPanel, widget) {
     const payload = panels.removeWidget(targetPanel, widget);

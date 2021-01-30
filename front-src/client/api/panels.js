@@ -8,8 +8,8 @@ export default {
   update: (panel) => emit("panels.update", panel),
   on: (eventName, callback) => on(`panels.${eventName}`, callback),
   addWidget: (panel, item) => emit("panels.addWidget", panel, item),
-  duplicateWidget: ({ panel, widgetId, position }) =>
-    emit("panels.duplicateWidget", { panel, widgetId, position }),
+  duplicateWidget: (payload) => emit("panels.duplicateWidget", payload),
+  moveWidgetToPanel: (payload) => emit("panels.moveWidgetToPanel", payload),
   removeWidget: (panel, widget) => emit("panels.removeWidget", panel, widget),
   removeWidgetComponent: (panel, widget) =>
     emit("panels.removeWidgetComponent", panel, widget),
