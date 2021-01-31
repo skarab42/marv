@@ -1,5 +1,6 @@
 <script>
   import {
+    editMode,
     gridOptions,
     currentPanel,
     duplicateWidget,
@@ -28,13 +29,20 @@
     update(panel);
   }
 
-  async function duplicate(item) {
-    await duplicateWidget({ panel, item });
+  function select(item) {
+    selectedItem = $editMode && item;
   }
 
-  async function moveTo(item) {
+  function unselect() {
+    selectedItem = null;
+  }
+
+  async function duplicate() {
+    await duplicateWidget({ panel, item: selectedItem });
+  }
+
+  async function moveTo() {
     panelSelectModal = true;
-    selectedItem = item;
   }
 
   async function onPanelSelect({ detail: targetPanel }) {
@@ -42,10 +50,11 @@
     $currentPanel = targetPanel;
   }
 
-  function remove(item) {
-    selectedItem = item;
+  function remove() {
     removeWidgetModal = true;
   }
+
+  $: if (!$editMode || (!panelSelectModal && !removeWidgetModal)) unselect();
 </script>
 
 <style>
@@ -61,24 +70,20 @@
   on:adjust="{onChange}"
   bind:items="{panel.grid}"
 >
-  <ContextMenu>
-    <Widget item="{item}" panel="{panel}" />
+  <ContextMenu on:open="{select.bind(null, item)}">
+    <Widget bind:selectedItem item="{item}" panel="{panel}" />
     <div slot="items">
       <MenuItem
         class="capitalize"
         icon="{MdContentCopy}"
-        on:click="{duplicate.bind(null, item)}"
+        on:click="{duplicate}"
       >
         {_('words.duplicate')}
       </MenuItem>
-      <MenuItem icon="{MdArrowForward}" on:click="{moveTo.bind(null, item)}">
+      <MenuItem icon="{MdArrowForward}" on:click="{moveTo}">
         {_('sentences.move-to')}
       </MenuItem>
-      <MenuItem
-        class="capitalize"
-        icon="{MdDeleteForever}"
-        on:click="{remove.bind(null, item)}"
-      >
+      <MenuItem class="capitalize" icon="{MdDeleteForever}" on:click="{remove}">
         {_('words.remove')}
       </MenuItem>
       <Separator />

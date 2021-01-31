@@ -6,7 +6,13 @@
   import AddWidgetItem from "./ContextMenu/AddWidgetItem.svelte";
 </script>
 
-<ContextMenu let:opened class="flex flex-col h-full">
+<ContextMenu
+  on:open
+  on:close
+  let:opened
+  {...$$restProps}
+  class="flex flex-col h-full"
+>
   <slot opened="{opened}" />
   <div slot="menu">
     <Menu>

@@ -6,6 +6,7 @@
 
   export let item;
   export let panel;
+  export let selectedItem;
 
   $: component = widget.component;
   $: widget = panel.widgets.find((i) => i.id === item.id);
@@ -14,11 +15,20 @@
     ? `background-image: url(files/${widget.backgroundImage});`
     : "";
   $: borders = widget.borders;
+  $: selected =
+    selectedItem && selectedItem.id === item.id
+      ? "border-2 border-pink-600"
+      : "";
+
+  function select() {
+    selectedItem = $editMode && item;
+  }
 </script>
 
 <div
   class="h-full {borders} bg-center bg-no-repeat bg-cover"
   style="{bgColor} {bgImage}"
+  on:mousedown="{select}"
 >
   {#if component}
     <svelte:component
@@ -40,6 +50,8 @@
         </div>
       </div>
     {/if}
-    <div class="absolute inset-0 cursor-move shadow-xl"></div>
+    <div
+      class="absolute inset-0 cursor-move shadow-xl {borders} {selected}"
+    ></div>
   {/if}
 </div>
