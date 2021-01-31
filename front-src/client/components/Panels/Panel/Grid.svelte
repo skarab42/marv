@@ -11,13 +11,16 @@
   import { update } from "@/libs/panels";
   import MenuItem from "@/components/UI/MenuItem.svelte";
   import Separator from "@/components/UI/Separator.svelte";
+  import RemoveWidgetModal from "./Widget/RemoveModal.svelte";
   import ContextMenu from "@/components/App/ContextMenu.svelte";
   import PanelSelectModal from "./Widget/PanelSelectModal.svelte";
   import MdContentCopy from "svelte-icons/md/MdContentCopy.svelte";
   import MdArrowForward from "svelte-icons/md/MdArrowForward.svelte";
+  import MdDeleteForever from "svelte-icons/md/MdDeleteForever.svelte";
 
   export let panel;
 
+  let removeWidgetModal = false;
   let panelSelectModal = false;
   let selectedItem = null;
 
@@ -38,6 +41,11 @@
     await moveWidgetToPanel({ panel, targetPanel, item: selectedItem });
     $currentPanel = targetPanel;
   }
+
+  function remove(item) {
+    selectedItem = item;
+    removeWidgetModal = true;
+  }
 </script>
 
 <style>
@@ -57,14 +65,21 @@
     <Widget item="{item}" panel="{panel}" />
     <div slot="items">
       <MenuItem
+        class="capitalize"
         icon="{MdContentCopy}"
         on:click="{duplicate.bind(null, item)}"
-        class="capitalize"
       >
         {_('words.duplicate')}
       </MenuItem>
       <MenuItem icon="{MdArrowForward}" on:click="{moveTo.bind(null, item)}">
         {_('sentences.move-to')}
+      </MenuItem>
+      <MenuItem
+        class="capitalize"
+        icon="{MdDeleteForever}"
+        on:click="{remove.bind(null, item)}"
+      >
+        {_('words.remove')}
       </MenuItem>
       <Separator />
     </div>
@@ -74,4 +89,10 @@
 <PanelSelectModal
   bind:opened="{panelSelectModal}"
   on:select="{onPanelSelect}"
+/>
+
+<RemoveWidgetModal
+  panel="{$currentPanel}"
+  widget="{selectedItem}"
+  bind:opened="{removeWidgetModal}"
 />
