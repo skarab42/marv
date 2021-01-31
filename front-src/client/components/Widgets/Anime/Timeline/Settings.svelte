@@ -3,9 +3,9 @@
   import filesAPI from "@/api/files";
   import actionsAPI from "@/api/actions";
   import Button from "@/components/UI/Button.svelte";
+  import Overlay from "@/components/UI/Overlay.svelte";
   import MdOpenInNew from "svelte-icons/md/MdOpenInNew.svelte";
   import Editor from "@/components/Anime/Timeline/Editor.svelte";
-  import FullScreenModal from "@/components/UI/FullScreenModal.svelte";
 
   export let data;
 
@@ -48,7 +48,7 @@
 </Button>
 
 {#if timelineOpened}
-  <FullScreenModal>
+  <Overlay>
     <Editor
       widget="{widget}"
       initialItems="{initialItems}"
@@ -56,5 +56,5 @@
       on:update="{onAnimeUpdate}"
       on:textFileChange="{onTextFileChange}"
     />
-  </FullScreenModal>
+  </Overlay>
 {/if}

@@ -23,25 +23,19 @@
   }
 </script>
 
-<Modal closable="{true}" on:close>
-  <div class="bg-dark text-light rounded">
-    <div class="px-5 py-2 font-bold bg-primary rounded-t">{title}</div>
-    <div class="p-5">
-      <Input label="{_('words.filename')}" on:update="{onUpdate}" />
-    </div>
-    <div class="p-5 pt-0 flex space-x-2">
-      <Button
-        on:click="{insertText}"
-        class="flex-auto justify-center bg-green-600"
-      >
-        {_('words.save')}
-      </Button>
-      <Button
-        on:click="{closeModal}"
-        class="flex-auto justify-center bg-red-600"
-      >
-        {_('words.cancel')}
-      </Button>
-    </div>
+<Modal on:close title="{title}" {...$$restProps}>
+  <div class="p-5">
+    <Input label="{_('words.filename')}" on:update="{onUpdate}" />
+  </div>
+  <div class="p-5 pt-0 flex space-x-2">
+    <Button
+      on:click="{insertText}"
+      class="flex-auto justify-center bg-green-600"
+    >
+      {_('words.save')}
+    </Button>
+    <Button on:click="{closeModal}" class="flex-auto justify-center bg-red-600">
+      {_('words.cancel')}
+    </Button>
   </div>
 </Modal>

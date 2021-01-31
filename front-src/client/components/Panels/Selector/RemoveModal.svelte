@@ -24,8 +24,4 @@
   }
 </script>
 
-<ConfirmModal
-  question="{question}"
-  visible="{opened}"
-  on:confirm="{onConfirm}"
-/>
+<ConfirmModal question="{question}" bind:opened on:confirm="{onConfirm}" />

@@ -5,9 +5,9 @@
   import Keyframe from "./Keyframe.svelte";
   import Keyframes from "./Keyframes.svelte";
   import AnimeIcon from "../AnimeIcon.svelte";
-  import TextEditor from "./TextEditor.svelte";
   import Icon from "@/components/UI/Icon.svelte";
   import MdEdit from "svelte-icons/md/MdEdit.svelte";
+  import TextEditorModal from "./TextEditorModal.svelte";
   import MdDeleteForever from "svelte-icons/md/MdDeleteForever.svelte";
 
   export let item;
@@ -21,7 +21,7 @@
   const dispatch = createEventDispatcher();
 
   let isDragOver = false;
-  let showTextEditor = false;
+  let showTextEditorModal = false;
 
   $: isSelected = $selectedItem && $selectedItem.id === item.id;
   $: selected = isSelected ? "bg-blue-600 bg-opacity-50" : "bg-primary-darker";
@@ -118,13 +118,13 @@
     $items = $items;
   }
 
-  function openTextEditor(item) {
+  function openTextEditorModal(item) {
     selectItem(item);
-    showTextEditor = true;
+    showTextEditorModal = true;
   }
 
-  function closeTextEditor() {
-    showTextEditor = false;
+  function closeTextEditorModal() {
+    showTextEditorModal = false;
     $items = $items;
   }
 </script>
@@ -143,7 +143,7 @@
   {#if item.target.type === 'text'}
     <div
       class="p-2 cursor-pointer hover:bg-secondary"
-      on:click="{openTextEditor.bind(null, item)}"
+      on:click="{openTextEditorModal.bind(null, item)}"
     >
       <Icon icon="{MdEdit}" />
     </div>
@@ -168,11 +168,10 @@
   {/each}
 </Keyframes>
 
-{#if showTextEditor}
-  <TextEditor
-    widget="{widget}"
-    item="{$selectedItem}"
-    on:close="{closeTextEditor}"
-    on:textFileChange
-  />
-{/if}
+<TextEditorModal
+  widget="{widget}"
+  item="{$selectedItem}"
+  bind:opened="{showTextEditorModal}"
+  on:close="{closeTextEditorModal}"
+  on:textFileChange
+/>

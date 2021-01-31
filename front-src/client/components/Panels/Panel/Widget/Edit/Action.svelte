@@ -154,6 +154,6 @@
   question="{_('sentences.ask-remove-action', {
     action: component && _(component.label),
   })}"
-  visible="{removeActionModal}"
+  bind:opened="{removeActionModal}"
   on:confirm="{onRemoveActionConfirmed}"
 />

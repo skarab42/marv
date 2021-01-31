@@ -57,7 +57,10 @@
     "right-click-to-show-menu": "Clique droit pour afficher le menu.",
     "supports-ejs-syntax": "Supporte la syntaxe EJS",
     "move-widget-to": "Déplacer le bouton vers",
-    "move-to": "Déplacer vers..."
+    "move-to": "Déplacer vers...",
+    "command-settings": "Paramètres de commande",
+    "edit-action": "sentences.edit-action",
+    "edit-styles": "sentences.edit-styles"
   },
   "words": {
     "settings": "options",
@@ -140,7 +143,9 @@
     "variables": "variables",
     "message": "message",
     "move": "déplacer",
-    "duplicate": "dupliquer"
+    "duplicate": "dupliquer",
+    "close": "fermer",
+    "confirm": "confirmer"
   },
   "obs": {
     "scene-list": "OBS | Liste des scènes",

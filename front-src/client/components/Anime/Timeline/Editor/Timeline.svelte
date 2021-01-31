@@ -11,7 +11,7 @@
   import InsertTextModal from "./InsertTextModal.svelte";
   import { getContext, createEventDispatcher } from "svelte";
   import MdFileUpload from "svelte-icons/md/MdFileUpload.svelte";
-  import FileManager from "@/components/FileManager/Main.svelte";
+  import FileManagerModal from "@/components/FileManager/Modal.svelte";
   import MdInsertDriveFile from "svelte-icons/md/MdInsertDriveFile.svelte";
 
   export let widget;
@@ -107,18 +107,15 @@
   <Cursor min="{splitter.x}" />
 </Grid>
 
-{#if fileManager}
-  <div class="absolute inset-0 z-50">
-    <div class="relative h-full">
-      <FileManager
-        accept="{accept}"
-        on:close="{closeFileManager}"
-        on:select="{onFileSelect}"
-      />
-    </div>
-  </div>
-{/if}
+<FileManagerModal
+  accept="{accept}"
+  bind:opened="{fileManager}"
+  on:close="{closeFileManager}"
+  on:select="{onFileSelect}"
+/>
 
-{#if insetTextModal}
-  <InsertTextModal on:save="{insertText}" on:close="{closeInsertTextModal}" />
-{/if}
+<InsertTextModal
+  bind:opened="{insetTextModal}"
+  on:save="{insertText}"
+  on:close="{closeInsertTextModal}"
+/>

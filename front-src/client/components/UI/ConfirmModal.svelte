@@ -1,32 +1,37 @@
 <script>
   import { _ } from "@/libs/i18next";
+  import capitalize from "capitalize";
   import { createEventDispatcher } from "svelte";
   import Modal from "@/components/UI/Modal.svelte";
   import Button from "@/components/UI/Button.svelte";
 
   const dispatch = createEventDispatcher();
 
-  export let visible = false;
-  export let question = `${_("words.confirm")}?`;
-  export let yesLabel = _("words.yes");
-  export let noLabel = _("words.no");
+  export let question;
+  export let opened = false;
 
   function confirm(response) {
     dispatch("confirm", response);
   }
 </script>
 
-{#if visible}
-  <Modal class="bg-dark rounded">
-    <div class="p-5 font-bold">{question}</div>
+<Modal bind:opened title="{capitalize(_('words.confirm'))}">
+  <div class="flex flex-col p-5 gap-5">
+    <div class="font-bold">{question}</div>
     <slot />
-    <div class="flex p-5 space-x-2">
-      <Button class="bg-primary" on:click="{confirm.bind(null, true)}">
-        {yesLabel}
+    <div class="flex gap-5">
+      <Button
+        class="flex-auto bg-primary"
+        on:click="{confirm.bind(null, true)}"
+      >
+        {_('words.yes')}
       </Button>
-      <Button class="bg-dark-darker" on:click="{confirm.bind(null, false)}">
-        {noLabel}
+      <Button
+        class="flex-auto bg-dark-darker"
+        on:click="{confirm.bind(null, false)}"
+      >
+        {_('words.no')}
       </Button>
     </div>
-  </Modal>
-{/if}
+  </div>
+</Modal>

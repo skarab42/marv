@@ -3,6 +3,7 @@
   import { _ } from "@/libs/i18next";
   import capitalize from "capitalize";
   import { update } from "@/libs/panels";
+  import { createEventDispatcher } from "svelte";
   import Icon from "@/components/UI/Icon.svelte";
   import Input from "@/components/UI/Input.svelte";
   import Select from "@/components/UI/Select.svelte";
@@ -10,8 +11,7 @@
   import MdClose from "svelte-icons/md/MdClose.svelte";
   import ColorPicker from "@/components/UI/ColorPicker.svelte";
   import MdDelete from "svelte-icons/md/MdDeleteForever.svelte";
-  import FileManager from "@/components/FileManager/Main.svelte";
-  import { createEventDispatcher } from "svelte";
+  import FileManagerModal from "@/components/FileManager/Modal.svelte";
 
   const dispatch = createEventDispatcher();
 
@@ -208,14 +208,9 @@
   </Button>
 </div>
 
-{#if fileManager}
-  <div class="absolute inset-0">
-    <div class="relative h-full">
-      <FileManager
-        accept="{['image']}"
-        on:close="{closeFileManager}"
-        on:select="{onFileSelect}"
-      />
-    </div>
-  </div>
-{/if}
+<FileManagerModal
+  accept="{['image']}"
+  bind:opened="{fileManager}"
+  on:close="{closeFileManager}"
+  on:select="{onFileSelect}"
+/>
