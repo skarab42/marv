@@ -57,7 +57,10 @@
     "right-click-to-show-menu": "Right click to display the menu.",
     "supports-ejs-syntax": "Supports EJS syntax",
     "move-widget-to": "Move widget to",
-    "move-to": "Move to"
+    "move-to": "Move to",
+    "command-settings": "Command settings",
+    "edit-action": "sentences.edit-action",
+    "edit-styles": "sentences.edit-styles"
   },
   "words": {
     "settings": "settings",
@@ -140,7 +143,9 @@
     "variables": "variables",
     "message": "message",
     "move": "move",
-    "duplicate": "duplicate"
+    "duplicate": "duplicate",
+    "close": "close",
+    "confirm": "confirm"
   },
   "obs": {
     "scene-list": "OBS | Scene list",

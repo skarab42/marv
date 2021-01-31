@@ -1,9 +1,9 @@
 <script>
   import api from "@/api/twitch";
-  import EditCommand from "./EditCommand.svelte";
   import Icon from "@/components/UI/Icon.svelte";
   import MdEdit from "svelte-icons/md/MdEdit.svelte";
   import Switch from "@/components/UI/Switch.svelte";
+  import EditCommandModal from "./EditCommandModal.svelte";
   import { command as commandStore } from "@/stores/command";
   import MdDeleteForever from "svelte-icons/md/MdDeleteForever.svelte";
 
@@ -21,10 +21,6 @@
 
   function openEditModal() {
     showEditModal = true;
-  }
-
-  function closeEditModal() {
-    showEditModal = false;
   }
 
   function parseUsage(usage) {
@@ -75,6 +71,4 @@
   </div>
 </div>
 
-{#if showEditModal}
-  <EditCommand command="{command}" on:close="{closeEditModal}" />
-{/if}
+<EditCommandModal bind:opened="{showEditModal}" command="{command}" />

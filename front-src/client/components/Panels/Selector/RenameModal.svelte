@@ -1,7 +1,7 @@
 <script>
   import api from "@/api/panels";
   import { _ } from "@/libs/i18next";
-  import Modal from "../Modal.svelte";
+  import Modal from "@/components/UI/Modal.svelte";
   import Input from "@/components/UI/Input.svelte";
   import Button from "@/components/UI/Button.svelte";
 
@@ -12,22 +12,16 @@
     api.update({ ...panel, name: detail });
   }
 
-  function onClose() {
+  function close() {
     opened = false;
   }
 </script>
 
-{#if opened}
-  <Modal title="{_('words.rename')}" closable="{true}" on:close="{onClose}">
-    <div class="flex flex-col gap-2">
-      <Input
-        value="{panel.name}"
-        on:update="{onUpdate}"
-        on:enterKey="{onClose}"
-      />
-      <Button class="flex bg-green-600" on:click="{onClose}">
-        {_('words.done')}
-      </Button>
-    </div>
-  </Modal>
-{/if}
+<Modal bind:opened title="{_('words.rename')}">
+  <div class="flex flex-col p-5 gap-5">
+    <Input value="{panel.name}" on:update="{onUpdate}" on:enterKey="{close}" />
+    <Button class="flex bg-green-600" on:click="{close}">
+      {_('words.done')}
+    </Button>
+  </div>
+</Modal>

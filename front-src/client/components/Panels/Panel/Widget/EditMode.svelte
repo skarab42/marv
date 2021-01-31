@@ -53,10 +53,13 @@
 
 <ConfirmModal
   question="{question}"
-  visible="{confirmModal}"
+  bind:opened="{confirmModal}"
   on:confirm="{onConfirm}"
 />
 
-{#if editModal}
-  <EditModal panel="{panel}" widget="{widget}" on:close="{closeEditModal}" />
-{/if}
+<EditModal
+  bind:opened="{editModal}"
+  panel="{panel}"
+  widget="{widget}"
+  on:close="{closeEditModal}"
+/>

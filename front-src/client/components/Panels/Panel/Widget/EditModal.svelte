@@ -1,18 +1,17 @@
 <script>
   import { _ } from "@/libs/i18next";
-  import Action from "./EditModal/Action.svelte";
-  import Styles from "./EditModal/Styles.svelte";
-  import Modal, { scrollTop } from "@/components/UI/Modal.svelte";
+  import EditAction from "./Edit/Action.svelte";
+  import EditStyles from "./Edit/Styles.svelte";
+  import Modal from "@/components/UI/Modal.svelte";
+
+  export let opened = false;
 </script>
 
-<Modal closable on:close class="bg-dark rounded">
+<Modal on:close opened="{opened}" title="{_('sentences.widget-settings')}">
   <div class="flex flex-col">
-    <div class="p-2 pr-10 font-bold bg-primary-darker rounded-t">
-      {_('sentences.widget-settings')}
-    </div>
     <div class="p-2 tracking-widest text-2xl font-bold">Action</div>
-    <Action {...$$restProps} />
+    <EditAction {...$$restProps} />
     <div class="p-2 tracking-widest text-2xl font-bold">Styles</div>
-    <Styles {...$$restProps} on:fileManagerOpen="{scrollTop}" />
+    <EditStyles {...$$restProps} />
   </div>
 </Modal>

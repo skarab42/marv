@@ -57,7 +57,10 @@
     "right-click-to-show-menu": "Haga clic con el botón derecho del ratón para mostrar el menú.",
     "supports-ejs-syntax": "Supports EJS syntax",
     "move-widget-to": "Mover el panel a",
-    "move-to": "Mover a"
+    "move-to": "Mover a",
+    "command-settings": "Ajustes de los comandos",
+    "edit-action": "sentences.edit-action",
+    "edit-styles": "sentences.edit-styles"
   },
   "words": {
     "settings": "opciones",
@@ -139,7 +142,9 @@
     "variables": "variables",
     "message": "message",
     "move": "mover",
-    "duplicate": "duplicado"
+    "duplicate": "duplicado",
+    "close": "cerrar",
+    "confirm": "confirmar"
   },
   "obs": {
     "scene-list": "OBS | Lista de escenas",

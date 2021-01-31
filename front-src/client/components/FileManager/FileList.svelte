@@ -78,7 +78,7 @@
   question="{_('sentences.ask-remove-file', {
     filename: currentFile && currentFile.filename,
   })}"
-  visible="{confirmRemoveModal}"
+  bind:opened="{confirmRemoveModal}"
   on:confirm="{onConfirmRemove}"
 >
   <div class="p-2 bg-orange-600">
