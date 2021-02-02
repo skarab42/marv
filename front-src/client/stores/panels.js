@@ -61,8 +61,9 @@ export async function addWidget() {
 
 export async function duplicateWidget({ panel, item }) {
   const position = findSpaceForWidget(panel, { w: item.w, h: item.h });
-  await api.duplicateWidget({ panel, widgetId: item.id, position });
+  const res = await api.duplicateWidget({ panel, widgetId: item.id, position });
   setEditMode(true);
+  return res;
 }
 
 export async function moveWidgetToPanel({ panel, targetPanel, item }) {

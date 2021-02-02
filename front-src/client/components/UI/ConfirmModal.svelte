@@ -15,7 +15,7 @@
   }
 </script>
 
-<Modal bind:opened title="{capitalize(_('words.confirm'))}">
+<Modal on:mousedown bind:opened title="{capitalize(_('words.confirm'))}">
   <div class="flex flex-col p-5 gap-5">
     <div class="font-bold">{question}</div>
     <slot />

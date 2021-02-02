@@ -25,4 +25,9 @@
   }
 </script>
 
-<ConfirmModal bind:opened question="{question}" on:confirm="{onConfirm}" />
+<ConfirmModal
+  on:mousedown
+  bind:opened
+  question="{question}"
+  on:confirm="{onConfirm}"
+/>
