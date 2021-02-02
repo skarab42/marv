@@ -5,6 +5,7 @@ import api from "@/api/panels";
 export const panels = writable([]);
 export const editMode = writable(false);
 export const currentPanel = writable(null);
+export const selectedWidget = writable(null);
 export const itemOptions = writable({ w: 2, h: 2 });
 export const gridOptions = writable({
   gap: 4,
@@ -61,8 +62,9 @@ export async function addWidget() {
 
 export async function duplicateWidget({ panel, item }) {
   const position = findSpaceForWidget(panel, { w: item.w, h: item.h });
-  await api.duplicateWidget({ panel, widgetId: item.id, position });
+  const res = await api.duplicateWidget({ panel, widgetId: item.id, position });
   setEditMode(true);
+  return res;
 }
 
 export async function moveWidgetToPanel({ panel, targetPanel, item }) {

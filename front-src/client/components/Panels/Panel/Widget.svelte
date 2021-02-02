@@ -1,48 +1,115 @@
 <script>
+  import {
+    panels,
+    currentPanel,
+    selectedWidget,
+    duplicateWidget,
+    moveWidgetToPanel,
+  } from "@/stores/panels";
   import { _ } from "@/libs/i18next";
-  import { editMode } from "@/stores/panels";
-  import widgets from "@/components/Widgets";
-  import EditMode from "./Widget/EditMode.svelte";
-  import MdAdd from "svelte-icons/md/MdAdd.svelte";
+  import Widget from "./Widget/Button.svelte";
+  import MdEdit from "svelte-icons/md/MdEdit.svelte";
+  import MdBrush from "svelte-icons/md/MdBrush.svelte";
+  import RemoveModal from "./Widget/RemoveModal.svelte";
+  import MenuItem from "@/components/UI/MenuItem.svelte";
+  import Separator from "@/components/UI/Separator.svelte";
+  import EditActionModal from "./Widget/EditActionModal.svelte";
+  import EditStylesModal from "./Widget/EditStylesModal.svelte";
+  import ContextMenu from "@/components/App/ContextMenu.svelte";
+  import PanelSelectModal from "./Widget/PanelSelectModal.svelte";
+  import MdContentCopy from "svelte-icons/md/MdContentCopy.svelte";
+  import MdArrowForward from "svelte-icons/md/MdArrowForward.svelte";
+  import MdDeleteForever from "svelte-icons/md/MdDeleteForever.svelte";
 
-  export let item;
   export let panel;
+  export let item;
 
-  $: component = widget.component;
+  let editActionModal = false;
+  let editStylesModal = false;
+  let panelSelectModal = false;
+  let removeWidgetModal = false;
+
   $: widget = panel.widgets.find((i) => i.id === item.id);
-  $: bgColor = `background-color: ${widget.backgroundColor};`;
-  $: bgImage = widget.backgroundImage
-    ? `background-image: url(files/${widget.backgroundImage});`
-    : "";
-  $: borders = widget.borders;
+
+  async function duplicate() {
+    const { widget } = await duplicateWidget({ panel, item });
+    $selectedWidget = widget;
+  }
+
+  function moveTo() {
+    panelSelectModal = true;
+  }
+
+  function remove() {
+    removeWidgetModal = true;
+  }
+
+  async function onPanelSelect({ detail: targetPanel }) {
+    await moveWidgetToPanel({ panel, targetPanel, item });
+    $currentPanel = targetPanel;
+    $selectedWidget = widget;
+  }
+
+  function editStyles() {
+    editStylesModal = true;
+  }
+
+  function editAction() {
+    editActionModal = true;
+  }
+
+  function stopPropagation(e) {
+    e.stopPropagation();
+  }
 </script>
 
-<div
-  class="h-full {borders} bg-center bg-no-repeat bg-cover"
-  style="{bgColor} {bgImage}"
->
-  {#if component}
-    <svelte:component
-      this="{widgets[component.name].Widget}"
-      widget="{widget}"
-    />
-  {/if}
+<ContextMenu>
+  <Widget widget="{widget}" />
+  <div slot="items" on:mousedown|stopPropagation>
+    <MenuItem class="capitalize" icon="{MdEdit}" on:click="{editAction}">
+      {_('sentences.edit-action')}
+    </MenuItem>
+    <MenuItem class="capitalize" icon="{MdBrush}" on:click="{editStyles}">
+      {_('sentences.edit-styles')}
+    </MenuItem>
+    <MenuItem class="capitalize" icon="{MdContentCopy}" on:click="{duplicate}">
+      {_('words.duplicate')}
+    </MenuItem>
+    {#if $panels.length > 1}
+      <MenuItem icon="{MdArrowForward}" on:click="{moveTo}">
+        {_('sentences.move-to')}
+      </MenuItem>
+    {/if}
+    <MenuItem class="capitalize" icon="{MdDeleteForever}" on:click="{remove}">
+      {_('words.remove')}
+    </MenuItem>
+    <Separator />
+  </div>
+</ContextMenu>
 
-  {#if !component && $editMode}
-    <div class="absolute inset-0 pointer-events-none">
-      <div class="flex w-full h-full opacity-50 pb-2">
-        <MdAdd />
-      </div>
-      <div class="absolute bottom-0 w-full text-center">
-        <span
-          class="text-xs opacity-50"
-        >{_('sentences.double-click-to-edit')}</span>
-      </div>
-    </div>
-    <EditMode panel="{panel}" widget="{widget}" />
-  {/if}
+<EditStylesModal
+  panel="{panel}"
+  widget="{widget}"
+  bind:opened="{editStylesModal}"
+  on:mousedown="{stopPropagation}"
+/>
 
-  {#if $editMode}
-    <EditMode panel="{panel}" widget="{widget}" />
-  {/if}
-</div>
+<EditActionModal
+  panel="{panel}"
+  widget="{widget}"
+  bind:opened="{editActionModal}"
+  on:mousedown="{stopPropagation}"
+/>
+
+<PanelSelectModal
+  on:select="{onPanelSelect}"
+  bind:opened="{panelSelectModal}"
+  on:mousedown="{stopPropagation}"
+/>
+
+<RemoveModal
+  panel="{panel}"
+  widget="{widget}"
+  on:mousedown="{stopPropagation}"
+  bind:opened="{removeWidgetModal}"
+/>

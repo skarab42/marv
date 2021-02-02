@@ -59,8 +59,8 @@
     "move-widget-to": "Déplacer le bouton vers",
     "move-to": "Déplacer vers...",
     "command-settings": "Paramètres de commande",
-    "edit-action": "sentences.edit-action",
-    "edit-styles": "sentences.edit-styles"
+    "edit-action": "Editer l'action",
+    "edit-styles": "Editer l'apparence"
   },
   "words": {
     "settings": "options",

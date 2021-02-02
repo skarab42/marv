@@ -23,7 +23,7 @@
 </script>
 
 {#if opened}
-  <Overlay on:click="{onClickOut}">
+  <Overlay on:mousedown on:click="{onClickOut}">
     <div on:click|stopPropagation class="m-auto" style="min-width:{minWidth}px">
       <div class="bg-dark text-light rounded">
         {#if title}

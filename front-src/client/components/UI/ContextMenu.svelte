@@ -4,7 +4,10 @@
 
 <script>
   import clickoutside from "@/libs/svelte/click-outside";
+  import { createEventDispatcher } from "svelte";
   import Portal from "svelte-portal";
+
+  const dispatch = createEventDispatcher();
 
   let opacity = 0;
   let opened = false;
@@ -34,11 +37,13 @@
     closeAllMenu = closeMenu;
     opacity = 0;
     opened = true;
+    dispatch("open");
     setTimeout(() => setPosition(e));
   }
 
   function closeMenu() {
     opened = false;
+    dispatch("close");
   }
 </script>
 

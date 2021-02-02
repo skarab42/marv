@@ -135,9 +135,15 @@
       {/if}
     {/if}
   </div>
-  <Button icon="{MdDelete}" class="bg-red-600" on:click="{onRemoveAction}">
-    {_('words.remove')}
-  </Button>
+  <div class="flex p-2 pt-0">
+    <Button
+      icon="{MdDelete}"
+      class="flex-auto bg-red-600"
+      on:click="{onRemoveAction}"
+    >
+      {_('words.remove')}
+    </Button>
+  </div>
 {:else}
   <div class="p-2">
     <Select

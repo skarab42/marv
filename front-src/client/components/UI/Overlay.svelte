@@ -11,6 +11,7 @@
 <Portal target="body">
   <div
     on:click
+    on:mousedown
     class="{content} {colors} {position}"
     style="margin-top:{top}px;height: calc(100% - {top}px)"
   >

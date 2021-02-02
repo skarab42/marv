@@ -34,7 +34,7 @@
   }
 </script>
 
-<Modal bind:opened title="{_('sentences.move-widget-to')}">
+<Modal on:mousedown bind:opened title="{_('sentences.move-widget-to')}">
   <div class="flex flex-col p-5 gap-5">
     <Select object="{true}" items="{_panels}" bind:value="{panelId}" />
     <div class="flex gap-5">
