@@ -1,7 +1,7 @@
 <script>
   import { _ } from "@/libs/i18next";
   import { editMode } from "@/stores/panels";
-  import DrawerToggle from "./Drawer/Toggle.svelte";
+  import DrawerToggle from "./DrawerToggle.svelte";
   import Flexbar from "@/components/UI/Flexbar.svelte";
   import OBSStatus from "@/components/OBS/Status.svelte";
   import OBSConnect from "@/components/OBS/Connect.svelte";
