@@ -3,9 +3,8 @@
   import { _ } from "@/libs/i18next";
   import Widget from "./Widget.svelte";
   import { update } from "@/libs/panels";
-  import { gridOptions } from "@/stores/panels";
-  import { contextKey, selectedWidget } from "./store";
-  import { onMount, onDestroy, setContext } from "svelte";
+  import { onMount, onDestroy } from "svelte";
+  import { gridOptions, selectedWidget } from "@/stores/panels";
 
   export let panel;
 
@@ -16,8 +15,6 @@
   function hide() {
     $selectedWidget = null;
   }
-
-  setContext(contextKey, { selectedWidget });
 
   onMount(() => document.addEventListener("mousedown", hide));
   onDestroy(() => document.removeEventListener("mousedown", hide));

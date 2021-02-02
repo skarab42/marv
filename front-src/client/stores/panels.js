@@ -5,6 +5,7 @@ import api from "@/api/panels";
 export const panels = writable([]);
 export const editMode = writable(false);
 export const currentPanel = writable(null);
+export const selectedWidget = writable(null);
 export const itemOptions = writable({ w: 2, h: 2 });
 export const gridOptions = writable({
   gap: 4,

@@ -1,14 +1,10 @@
 <script>
   import { _ } from "@/libs/i18next";
-  import { getContext } from "svelte";
-  import { contextKey } from "../store";
-  import { editMode } from "@/stores/panels";
   import widgets from "@/components/Widgets";
   import MdAdd from "svelte-icons/md/MdAdd.svelte";
+  import { editMode, selectedWidget } from "@/stores/panels";
 
   export let widget;
-
-  const { selectedWidget } = getContext(contextKey);
 
   $: component = widget.component;
   $: bgColor = `background-color: ${widget.backgroundColor};`;

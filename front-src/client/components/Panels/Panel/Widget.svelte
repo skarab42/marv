@@ -2,12 +2,11 @@
   import {
     panels,
     currentPanel,
+    selectedWidget,
     duplicateWidget,
     moveWidgetToPanel,
   } from "@/stores/panels";
   import { _ } from "@/libs/i18next";
-  import { getContext } from "svelte";
-  import { contextKey } from "./store";
   import Widget from "./Widget/Button.svelte";
   import MdEdit from "svelte-icons/md/MdEdit.svelte";
   import MdBrush from "svelte-icons/md/MdBrush.svelte";
@@ -21,8 +20,6 @@
   import MdContentCopy from "svelte-icons/md/MdContentCopy.svelte";
   import MdArrowForward from "svelte-icons/md/MdArrowForward.svelte";
   import MdDeleteForever from "svelte-icons/md/MdDeleteForever.svelte";
-
-  const { selectedWidget } = getContext(contextKey);
 
   export let panel;
   export let item;
