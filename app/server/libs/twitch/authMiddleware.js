@@ -1,4 +1,4 @@
-const { authProvider } = require("./index");
+const twitch = require("./index");
 
 function twitchAuth(req, res) {
   if (req.query.error) {
@@ -36,4 +36,4 @@ function authMiddleware(req, res, next) {
   next();
 }
 
-module.exports = authMiddleware.bind(authProvider);
+module.exports = () => authMiddleware.bind(twitch.authProvider);
