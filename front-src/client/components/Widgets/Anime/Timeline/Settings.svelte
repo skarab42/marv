@@ -9,11 +9,12 @@
 
   export let data;
 
+  let widget = null;
   let initialItems = [];
-  let widget = data.widget;
   let timelineOpened = false;
 
-  fetchItems();
+  $: widget = data.widget;
+  $: widget && fetchItems();
 
   function fetchItems() {
     actionsAPI.get(widget.id).then(({ items } = {}) => {
