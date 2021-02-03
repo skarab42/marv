@@ -5,13 +5,13 @@
   import { createEventDispatcher } from "svelte";
   import Modal from "@/components/UI/Modal.svelte";
   import Button from "@/components/UI/Button.svelte";
+  import CodeMirror from "@/components/UI/CodeMirror.svelte";
 
   export let item;
   export let widget;
   export let opened;
 
   let tags = [];
-  let text = `${_("words.loading")}...`;
   let textarea;
 
   api.getEventNames().then((names) => {
@@ -22,15 +22,14 @@
   const dispatch = createEventDispatcher();
 
   $: title = opened && item.target.filename;
-  $: opened && fetchText(item.target.filename).then((txt) => (text = txt));
-
-  function onChange({ target }) {
-    dispatch("textFileChange", { item, text: target.value });
-  }
 
   function insertTag(tag) {
     const [start, end] = [textarea.selectionStart, textarea.selectionEnd];
     textarea.setRangeText(`$${tag}`, start, end, "select");
+  }
+
+  function codeMirrorUpdate({ detail }) {
+    dispatch("textFileChange", { item, text: detail });
   }
 </script>
 
@@ -46,12 +45,11 @@
     {/each}
   </div>
   <div class="p-5">
-    <textarea
-      bind:this="{textarea}"
-      class="p-2 text-dark"
-      on:change="{onChange}"
-      style="min-width:50vw; min-height:250px"
-    >{text}</textarea>
+    {#await fetchText(item.target.filename)}
+      Loading....
+    {:then text}
+      <CodeMirror code="{text}" on:change="{codeMirrorUpdate}" />
+    {/await}
   </div>
   <div class="p-5 pt-0 flex">
     <Button

@@ -7,6 +7,7 @@ import getTrans from "@/components/Anime/Timeline/libs/getTrans";
 import { loadUsedFonts, loadFont } from "../libs/fonts";
 import { on } from "./libs/socket.io";
 import animejs from "animejs";
+import ejs from "./libs/ejs";
 
 (async () => await loadUsedFonts(false))();
 
@@ -72,6 +73,7 @@ function runAnime(action, cb) {
             const regexp = new RegExp(`\\$${key}`, "g");
             element.innerText = element.innerText.replace(regexp, val);
           });
+          element.innerText = ejs.render(element.innerText, action.eventProps);
         }
 
         return element;
