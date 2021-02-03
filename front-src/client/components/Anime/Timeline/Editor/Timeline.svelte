@@ -21,6 +21,7 @@
 
   let fileManager = false;
   let insetTextModal = false;
+  let fileManagerNotify = null;
   let splitter = { x: 200, width: 4, min: 100, max: 500 };
 
   const accept = ["image", "audio", "text", "video", "font"];
@@ -56,12 +57,10 @@
       .upload({ name, buffer })
       .then((uplodedFile) => {
         dispatch("file", uplodedFile);
+        closeInsertTextModal();
       })
       .catch((error) => {
-        console.log("ERROR >>>", error);
-      })
-      .then(() => {
-        closeInsertTextModal();
+        fileManagerNotify = { type: "error", message: error };
       });
   }
 
@@ -115,6 +114,7 @@
 />
 
 <InsertTextModal
+  notify="{fileManagerNotify}"
   bind:opened="{insetTextModal}"
   on:save="{insertText}"
   on:close="{closeInsertTextModal}"
