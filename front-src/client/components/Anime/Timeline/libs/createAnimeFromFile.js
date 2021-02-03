@@ -77,10 +77,13 @@ async function createTargetFromFile(file) {
 }
 
 export default async function createAnimeFromFile(file) {
+  const target = await createTargetFromFile(file);
+  const { duration } = target.info;
+  const props = duration === undefined ? {} : { duration };
   return {
     id: uuid(),
     type: "file",
-    target: await createTargetFromFile(file),
-    keyframes: [createKeyframe()],
+    target,
+    keyframes: [createKeyframe(props)],
   };
 }
