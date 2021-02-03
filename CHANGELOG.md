@@ -1,9 +1,20 @@
-## [1.3.1](https://github.com/skarab42/marv/compare/v1.3.0...v1.3.1) (2021-01-24)
+# [1.4.0](https://github.com/skarab42/marv/compare/v1.3.0...v1.4.0) (2021-02-03)
 
 
 ### Bug Fixes
 
+* Anime tags list ([#136](https://github.com/skarab42/marv/issues/136)) ([ad5c6e9](https://github.com/skarab42/marv/commit/ad5c6e9eb6afad5dd0da52cc149cac63f1018212))
+* **twitch-login:** Fix first login when server port is occupied ([#134](https://github.com/skarab42/marv/issues/134)) ([c2ee324](https://github.com/skarab42/marv/commit/c2ee324a9a97fbf78110122a20c24784c1d23900))
+* CORS Allow all origins ([#108](https://github.com/skarab42/marv/issues/108)) ([40fd249](https://github.com/skarab42/marv/commit/40fd249af146aa4cccd1a86732678838eda278fd))
 * **overlay:** Add missing escape in regexp ([#97](https://github.com/skarab42/marv/issues/97)) ([73e16e9](https://github.com/skarab42/marv/commit/73e16e9ddb5998a28493558f0b8fce2c5b6bf526))
+
+
+### Features
+
+* Add EJS support in anime text file ([#135](https://github.com/skarab42/marv/issues/135)) ([33a7519](https://github.com/skarab42/marv/commit/33a75190659291cd1ad214350d2033fd06456ea9))
+* Allow HTML from text file ([#137](https://github.com/skarab42/marv/issues/137)) ([e15cca2](https://github.com/skarab42/marv/commit/e15cca2af9bdf282b1c0bc9bfb16430ca4d8e7d2))
+* Twitch auto reconnect and status ([#110](https://github.com/skarab42/marv/issues/110)) ([797da5c](https://github.com/skarab42/marv/commit/797da5c686a74aaadd3e5ab03811fd7d4780dc7d))
+* **twitch-api:** Add global file/console logger ([#109](https://github.com/skarab42/marv/issues/109)) ([55e7a17](https://github.com/skarab42/marv/commit/55e7a17ae637e2ce1b1bbfc96c78da799e16f3aa))
 
 
 
