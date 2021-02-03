@@ -1,43 +1,26 @@
 <script>
   import api from "@/api/twitch";
-  import { onMount } from "svelte";
   import { _ } from "@/libs/i18next";
-  import CodeMirror from "codemirror";
-  import { debounce } from "throttle-debounce";
   import Modal from "@/components/UI/Modal.svelte";
   import Input from "@/components/UI/Input.svelte";
-
-  import "codemirror/mode/htmlembedded/htmlembedded";
-  import "codemirror/lib/codemirror.css";
-  import "codemirror/theme/material-palenight.css";
+  import CodeMirror from "@/components/UI/CodeMirror.svelte";
 
   export let command;
   export let opened = false;
 
-  let codeArea = null;
-
-  function update(key, { target }) {
-    command[key] = target.value.trim();
+  function updateKey(key, value) {
+    command[key] = value.trim();
     api.updateCommand(command);
   }
 
-  const updateDebounce = debounce(500, update);
-
-  function codeMirrorInit() {
-    const myCodeMirror = CodeMirror.fromTextArea(codeArea, {
-      mode: "application/x-ejs",
-      lineNumbers: true,
-      theme: "material-palenight",
-      tabSize: 2,
-    });
-
-    myCodeMirror.on("changes", () => {
-      const value = myCodeMirror.getValue();
-      updateDebounce("message", { target: { value } });
-    });
+  function update(key, { target }) {
+    updateKey(key, target.value);
   }
 
-  $: if (codeArea) codeMirrorInit();
+  function codeMirrorUpdate({ detail }) {
+    updateKey("message", detail);
+  }
+
   $: message = command.message || "";
 </script>
 
@@ -77,11 +60,6 @@
         )
       </div>
     </div>
-    <textarea
-      class="p-2 text-dark"
-      bind:this="{codeArea}"
-      on:change="{update.bind(null, 'message')}"
-      style="min-width:50vw; min-height:250px"
-    >{message}</textarea>
+    <CodeMirror code="{message}" on:change="{codeMirrorUpdate}" />
   </div>
 </Modal>
