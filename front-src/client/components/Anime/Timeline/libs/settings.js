@@ -15,6 +15,9 @@ export const defaultStyles = {
     "color",
     "opacity",
     "z-index",
+    "text-shadow",
+    "-webkit-text-stroke-width",
+    "-webkit-text-stroke-color",
   ],
   image: ["top", "left", "width", "height", "opacity", "z-index"],
   video: ["top", "left", "width", "height", "opacity", "z-index"],
@@ -63,7 +66,7 @@ export const styleDefs = {
     input: { type: "number", min: 1, step: 1 },
   },
   "font-size": {
-    default: 42,
+    default: 72,
     unit: "px",
     input: { type: "number", min: 0, step: 10 },
   },
@@ -81,7 +84,7 @@ export const styleDefs = {
     input: { type: "select", items: ["left", "center", "right"] },
   },
   "-webkit-text-stroke-width": {
-    default: 0,
+    default: 1,
     unit: "px",
     input: { type: "number", min: 0, step: 1 },
   },
@@ -90,11 +93,11 @@ export const styleDefs = {
     input: { type: "colorpicker" },
   },
   "text-shadow": {
-    default: "1px 1px 0 #111111",
+    default: "2px 2px 0 #111111",
     input: { type: "textshadow" },
   },
   color: {
-    default: "#420042",
+    default: "#eeeeee",
     input: { type: "colorpicker" },
   },
 };
