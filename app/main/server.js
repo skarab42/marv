@@ -1,3 +1,4 @@
+const { app } = require("electron");
 const { fork } = require("child_process");
 const { watch } = require("../utils");
 const quit = require("./quit");
@@ -43,6 +44,10 @@ function start(onStared = null) {
     server.on("message", (message) => {
       if (message === "started") onStared();
     });
+
+
+  // Kill Server on app Quit
+  app.on("quit", () => stop());
 }
 
 function restart() {
