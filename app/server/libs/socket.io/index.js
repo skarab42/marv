@@ -14,6 +14,10 @@ module.exports = (server) => {
 
   io = socket(server, options);
 
+  io.origins((origin, callback) => {
+    callback(null, true);
+  });
+
   io.on("connection", (clientSocket) => {
     clientSocket.use(require("./api")(clientSocket));
     clientSocket.use(require("./unhandledEvent"));
@@ -24,8 +28,10 @@ module.exports = (server) => {
 
   adminNamespace.on("connection", (overlaySocket) => {
     io.__overlaySocket = overlaySocket;
+    io.emit("overlay.connected");
     overlaySocket.on("disconnect", () => {
       io.__overlaySocket = null;
+      io.emit("overlay.disconnected");
     });
   });
 

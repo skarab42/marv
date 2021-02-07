@@ -5,6 +5,7 @@ module.exports = function create(action, data = null) {
     id: uuid(),
     type: null,
     widget: null,
+    eventProps: {},
     data,
     ...action,
   };

@@ -1,8 +1,9 @@
+const { storesPath } = require("../utils");
 const Conf = require("conf");
 
 class Store extends Conf {
   constructor(name, options = {}) {
-    super({ ...options, configName: name });
+    super({ ...options, configName: name, cwd: storesPath });
   }
 
   getAll() {

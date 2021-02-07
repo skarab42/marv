@@ -1,8 +1,14 @@
 const { panels: store } = require("../../stores");
+const cloneDeep = require("clone-deep");
+const actions = require("./actions");
 const { v4: uuid } = require("uuid");
 const { _ } = require("./i18next");
 
-let panels = store.get("panels");
+let panels = getAll();
+
+function getAll() {
+  return store.get("panels");
+}
 
 function name(id) {
   return `${_("sentences.powers-group")} #${id.slice(0, 4)}`;
@@ -23,6 +29,9 @@ function createWidget() {
     id: uuid(),
     component: null,
     trigger: "immediat",
+    eventName: "none",
+    commandName: "none",
+    rewardId: "none",
     label: null,
     labelSize: 16,
     labelPadding: 8,
@@ -41,6 +50,11 @@ function add() {
   return panel;
 }
 
+function set(panels) {
+  store.set("panels", panels);
+  return panels;
+}
+
 function update(panel) {
   panels = panels.map((p) => {
     if (p.id === panel.id) {
@@ -57,6 +71,9 @@ function remove(panel) {
   panels = panels.filter((p, i) => {
     if (p.id === panel.id) {
       pos = i;
+      panel.widgets.forEach((widget) => {
+        actions.remove(widget.id);
+      });
       return false;
     }
     return true;
@@ -69,6 +86,10 @@ function findPanelById(id) {
   return panels.find((p) => p.id === id);
 }
 
+function findWidgetById(panel, id) {
+  return panel.widgets.find((w) => w.id === id);
+}
+
 function addWidget(panel, item) {
   let widget = createWidget();
   const oldPanel = findPanelById(panel.id);
@@ -77,7 +98,59 @@ function addWidget(panel, item) {
   return { panel: update(oldPanel), widget, item };
 }
 
+function duplicateWidget({ panel, widgetId, position }) {
+  const oldPanel = findPanelById(panel.id);
+  const oldWidget = findWidgetById(panel, widgetId);
+  const widget = { ...cloneDeep(oldWidget), id: uuid() };
+  const action = actions.get(oldWidget.id);
+  if (action) {
+    actions.update({ widget, anime: { ...cloneDeep(action), id: uuid() } });
+  }
+  oldPanel.grid.push({ id: widget.id, ...position });
+  oldPanel.widgets.push(widget);
+  return { panel: update(oldPanel), widget, item: position };
+}
+
+function moveWidgetToPanel({ panel, targetPanel: tp, widgetId, position }) {
+  let widget = null;
+
+  let targetPanel = findPanelById(tp.id);
+  let sourcePanel = findPanelById(panel.id);
+
+  sourcePanel.grid = sourcePanel.grid.filter((w) => w.id !== widgetId);
+  sourcePanel.widgets = sourcePanel.widgets.filter((w) => {
+    if (w.id === widgetId) {
+      widget = w;
+      return false;
+    }
+    return true;
+  });
+
+  targetPanel.grid.push({ id: widget.id, ...position });
+  targetPanel.widgets.push(widget);
+
+  const action = actions.get(widgetId);
+
+  if (action) {
+    actions.remove(widgetId);
+    actions.update({ widget, anime: { ...cloneDeep(action), id: uuid() } });
+  }
+
+  return [
+    { panel: update(sourcePanel), widget },
+    { panel: update(targetPanel), widget },
+  ];
+}
+
+function removeWidgetComponent(panel, widget) {
+  if (!widget.component) return;
+  actions.remove(widget.id);
+  widget.component = null;
+  return { panel: update(panel), widget };
+}
+
 function removeWidget(panel, widget) {
+  removeWidgetComponent(panel, widget);
   const oldPanel = findPanelById(panel.id);
   oldPanel.grid = oldPanel.grid.filter((w) => w.id !== widget.id);
   oldPanel.widgets = oldPanel.widgets.filter((w) => w.id !== widget.id);
@@ -86,8 +159,13 @@ function removeWidget(panel, widget) {
 
 module.exports = {
   add,
+  set,
   remove,
   update,
+  getAll,
   addWidget,
   removeWidget,
+  duplicateWidget,
+  moveWidgetToPanel,
+  removeWidgetComponent,
 };

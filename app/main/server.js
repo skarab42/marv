@@ -1,10 +1,10 @@
 const { fork } = require("child_process");
-const store = require("../stores");
+const { watch } = require("../utils");
+const quit = require("./quit");
 const chalk = require("chalk");
 const path = require("path");
 
-const dev = !store.app.get("production");
-const colors = new chalk.Instance({ level: 2 });
+const colors = new chalk.Instance({ level: 3 });
 const rootPath = path.resolve(__dirname, "../..");
 const serverPath = path.join(__dirname, "../server");
 const serverBin = path.join(serverPath, "index.js");
@@ -25,18 +25,24 @@ function stderr(buffer) {
   console.error(colors.redBright("[server]"), bufferToString(buffer));
 }
 
-function start() {
+function start(onStared = null) {
   if (server) return server;
 
   const argv = process.argv.slice(2);
-  server = fork(serverBin, argv, { stdio: "pipe" });
+  server = fork(serverBin, argv, { stdio: ["pipe", "pipe", "pipe", "ipc"] });
 
   server.stderr.on("data", stderr);
   server.stdout.on("data", stdout);
 
   server.on("close", (code) => {
     stdout(`exited with code ${code || 0}`);
+    code === 42 && quit();
   });
+
+  onStared &&
+    server.on("message", (message) => {
+      if (message === "started") onStared();
+    });
 }
 
 function restart() {
@@ -53,7 +59,7 @@ function stop() {
   server = null;
 }
 
-if (dev) {
+if (watch) {
   const icon = colors.green("↺");
   const chokidar = require("chokidar");
   const watcher = chokidar.watch(path.join(serverPath, "**/*"));

@@ -13,5 +13,6 @@ module.exports = {
       return Promise.resolve(file);
     });
   },
+  update: (file, data) => files.update(file, data),
   getFileList: () => files.getFileList(),
 };

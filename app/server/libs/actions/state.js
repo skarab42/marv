@@ -8,20 +8,22 @@ function push(action) {
   let widgetState = state[action.widget.id];
 
   if (!widgetState) {
-    state[action.widget.id] = { inQueue: 1, running: false };
+    state[action.widget.id] = { ...action, inQueue: 1, running: false };
   } else {
     widgetState.inQueue++;
   }
 
+  io.emit("actions.push", state[action.widget.id]);
   io.emit("actions.state", state);
 
   return widgetState;
 }
 
-function update(action) {
+function update(type, action) {
   let widgetState = state[action.widget.id];
   state[action.widget.id] = { ...widgetState, ...action };
 
+  io.emit(`actions.${type}`, state[action.widget.id]);
   io.emit("actions.state", state);
 
   return widgetState;
@@ -31,7 +33,7 @@ function decrement(action) {
   let widgetState = state[action.widget.id];
   widgetState.inQueue--;
   state[action.widget.id] = { ...widgetState };
-  return widgetState;
+  return state[action.widget.id];
 }
 
 function getState() {

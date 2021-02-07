@@ -2,13 +2,13 @@ const path = require("path");
 const mime = require("mime");
 const fs = require("fs-extra");
 const { _ } = require("./i18next");
-const stores = require("../../stores");
+const { filesPath } = require("../../utils");
+const getUsedFonts = require("./files/getUsedFonts");
+const getSystemFonts = require("./files/getSystemFonts");
 
-const language = stores.i18next.get("lng", "en");
-const uploadPath = stores.server.get("uploadPath");
-const allowedMimeTypes = ["text", "image", "audio", "video"];
+const allowedMimeTypes = ["text", "image", "audio", "video", "font"];
 
-fs.ensureDirSync(uploadPath);
+fs.ensureDirSync(filesPath);
 
 function cleanFileName(name) {
   return name.replace(/[^a-z0-9_.]+/gi, "_");
@@ -19,7 +19,7 @@ function getFileInfo(filename, buffer) {
   const mimeType = mime.getType(filename);
 
   if (!ext || !mimeType) {
-    return false;
+    throw new Error("No extension and/or mime type");
   }
 
   const type = mimeType.split("/")[0];
@@ -29,23 +29,32 @@ function getFileInfo(filename, buffer) {
 }
 
 function getFileInfoFromFilename(filename) {
-  return getFileInfo(
-    filename,
-    fs.readFileSync(path.join(uploadPath, filename))
-  );
+  return getFileInfo(filename, fs.readFileSync(path.join(filesPath, filename)));
 }
 
 function isAllowedMimeType(type) {
   return allowedMimeTypes.includes(type);
 }
 
+async function update(filename, data) {
+  return new Promise((resolve, reject) => {
+    try {
+      fs.writeFileSync(path.join(filesPath, filename), data);
+    } catch (error) {
+      return reject(error);
+    }
+
+    return true;
+  });
+}
+
 async function upload({ name, buffer }) {
   return new Promise((resolve, reject) => {
     const filename = cleanFileName(name);
     const fileInfo = getFileInfo(filename, buffer);
-    const filePath = path.join(uploadPath, filename);
+    const filePath = path.join(filesPath, filename);
 
-    if (!fileInfo.size) {
+    if (!fileInfo.size && fileInfo.type !== "text") {
       return reject(_("sentences.file-is-empty"));
     }
 
@@ -70,7 +79,7 @@ async function upload({ name, buffer }) {
 function remove(file) {
   return new Promise((resolve, reject) => {
     try {
-      fs.unlinkSync(path.join(uploadPath, file.filename));
+      fs.unlinkSync(path.join(filesPath, file.filename));
       resolve(file);
     } catch (error) {
       reject(error);
@@ -79,7 +88,7 @@ function remove(file) {
 }
 
 function localeSort(a, b) {
-  return a.localeCompare(b, language, {
+  return a.localeCompare(b, {
     numeric: true,
     ignorePunctuation: true,
   });
@@ -88,7 +97,7 @@ function localeSort(a, b) {
 function getFileList() {
   return new Promise((resolve, reject) => {
     try {
-      const files = fs.readdirSync(uploadPath);
+      const files = fs.readdirSync(filesPath);
       const fileList = files
         .sort(localeSort)
         .map(getFileInfoFromFilename)
@@ -104,5 +113,8 @@ function getFileList() {
 module.exports = {
   upload,
   remove,
+  update,
   getFileList,
+  getUsedFonts,
+  getSystemFonts,
 };
