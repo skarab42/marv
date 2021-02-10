@@ -24,5 +24,9 @@ function init() {
 }
 
 app.requestSingleInstanceLock() ? init() : app.quit();
-
 app.on("second-instance", () => mainWindow());
+
+app.on("quit", () => server.stop());
+process.on("SIGINT", () => server.stop());
+process.on("SIGTERM", () => server.stop());
+process.on("SIGKILL", () => server.stop());
