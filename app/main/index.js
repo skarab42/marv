@@ -24,5 +24,6 @@ function init() {
 }
 
 app.requestSingleInstanceLock() ? init() : app.quit();
-
 app.on("second-instance", () => mainWindow());
+
+app.on("quit", () => server.stop());
