@@ -45,8 +45,6 @@ function start(onStared = null) {
       if (message === "started") onStared();
     });
 
-
-  // Kill Server on app Quit
   app.on("quit", () => stop());
 }
 
