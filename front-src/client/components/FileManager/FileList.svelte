@@ -1,9 +1,9 @@
 <script>
   import api from "@/api/files";
   import { _ } from "@/libs/i18next";
-  import { store } from "@/stores/files";
   import { fade } from "svelte/transition";
-  import { createEventDispatcher } from "svelte";
+  import { createEventDispatcher, onMount } from "svelte";
+  import { store, refresh } from "@/stores/files";
   import Button from "@/components/UI/Button.svelte";
   import FileIcon from "@/components/UI/FileIcon.svelte";
   import MdDelete from "svelte-icons/md/MdDeleteForever.svelte";
@@ -39,6 +39,8 @@
   function bgImage(file) {
     return `background-image: url(files/${file.filename});`;
   }
+
+  onMount(() => refresh());
 </script>
 
 {#each files as file}
