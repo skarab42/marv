@@ -19,6 +19,7 @@
   import EditActionModal from "./Widget/EditActionModal.svelte";
   import EditStylesModal from "./Widget/EditStylesModal.svelte";
   import ContextMenu from "@/components/App/ContextMenu.svelte";
+  import FaFileExport from "svelte-icons/fa/FaFileExport.svelte";
   import PanelSelectModal from "./Widget/PanelSelectModal.svelte";
   import MdContentCopy from "svelte-icons/md/MdContentCopy.svelte";
   import MdArrowForward from "svelte-icons/md/MdArrowForward.svelte";
@@ -89,7 +90,7 @@
         {capitalize(_('sentences.move-to'))}
       </MenuItem>
     {/if}
-    <MenuItem icon="{MdArrowForward}" on:click="{exportTo}">
+    <MenuItem icon="{FaFileExport}" on:click="{exportTo}">
       {capitalize(_('words.export'))}
     </MenuItem>
     <MenuItem icon="{MdDeleteForever}" on:click="{remove}">
