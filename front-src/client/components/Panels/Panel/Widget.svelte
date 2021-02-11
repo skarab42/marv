@@ -7,7 +7,10 @@
     moveWidgetToPanel,
   } from "@/stores/panels";
   import { _ } from "@/libs/i18next";
+  import capitalize from "capitalize";
+  import { saveAs } from "file-saver";
   import Widget from "./Widget/Button.svelte";
+  import { exportWidget } from "@/libs/panels";
   import MdEdit from "svelte-icons/md/MdEdit.svelte";
   import MdBrush from "svelte-icons/md/MdBrush.svelte";
   import RemoveModal from "./Widget/RemoveModal.svelte";
@@ -61,27 +64,36 @@
   function stopPropagation(e) {
     e.stopPropagation();
   }
+
+  async function exportTo() {
+    const { filename, buffer } = await exportWidget(widget);
+    const blob = new Blob([buffer], { type: "application/zip" });
+    saveAs(blob, filename);
+  }
 </script>
 
 <ContextMenu>
   <Widget widget="{widget}" />
   <div slot="items" on:mousedown|stopPropagation>
-    <MenuItem class="capitalize" icon="{MdEdit}" on:click="{editAction}">
-      {_('sentences.edit-action')}
+    <MenuItem icon="{MdEdit}" on:click="{editAction}">
+      {capitalize(_('sentences.edit-action'))}
     </MenuItem>
-    <MenuItem class="capitalize" icon="{MdBrush}" on:click="{editStyles}">
-      {_('sentences.edit-styles')}
+    <MenuItem icon="{MdBrush}" on:click="{editStyles}">
+      {capitalize(_('sentences.edit-styles'))}
     </MenuItem>
-    <MenuItem class="capitalize" icon="{MdContentCopy}" on:click="{duplicate}">
-      {_('words.duplicate')}
+    <MenuItem icon="{MdContentCopy}" on:click="{duplicate}">
+      {capitalize(_('words.duplicate'))}
     </MenuItem>
     {#if $panels.length > 1}
       <MenuItem icon="{MdArrowForward}" on:click="{moveTo}">
-        {_('sentences.move-to')}
+        {capitalize(_('sentences.move-to'))}
       </MenuItem>
     {/if}
-    <MenuItem class="capitalize" icon="{MdDeleteForever}" on:click="{remove}">
-      {_('words.remove')}
+    <MenuItem icon="{MdArrowForward}" on:click="{exportTo}">
+      {capitalize(_('words.export'))}
+    </MenuItem>
+    <MenuItem icon="{MdDeleteForever}" on:click="{remove}">
+      {capitalize(_('words.remove'))}
     </MenuItem>
     <Separator />
   </div>

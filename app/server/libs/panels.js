@@ -1,8 +1,13 @@
 const { panels: store } = require("../../stores");
+const { filesPath } = require("../../utils");
 const cloneDeep = require("clone-deep");
+const { humanId } = require("human-id");
 const actions = require("./actions");
 const { v4: uuid } = require("uuid");
 const { _ } = require("./i18next");
+const JSZip = require("jszip");
+const path = require("path");
+const fs = require("fs");
 
 let panels = getAll();
 
@@ -157,6 +162,36 @@ function removeWidget(panel, widget) {
   return { panel: update(oldPanel), widget };
 }
 
+function readAssetFile(filename) {
+  return fs.readFileSync(path.join(filesPath, filename));
+}
+
+async function exportWidget(widget) {
+  const filename = `${humanId()}.marv-widget`;
+  const action = await actions.get(widget.id);
+  const json = JSON.stringify({ widget, action });
+  const zip = new JSZip();
+
+  zip.file("store.json", json);
+
+  const addFile = (filename) =>
+    zip.file(`files/${filename}`, readAssetFile(filename));
+
+  if (widget.backgroundImage) {
+    addFile(widget.backgroundImage);
+  }
+
+  if (action) {
+    action.items.forEach(({ target }) => {
+      addFile(target.filename);
+    });
+  }
+
+  const buffer = await zip.generateAsync({ type: "nodebuffer" });
+
+  return { filename, buffer };
+}
+
 module.exports = {
   add,
   set,
@@ -165,6 +200,7 @@ module.exports = {
   getAll,
   addWidget,
   removeWidget,
+  exportWidget,
   duplicateWidget,
   moveWidgetToPanel,
   removeWidgetComponent,

@@ -11,3 +11,7 @@ export function update(panel) {
 export function removeWidgetComponent(panel, widget) {
   return api.removeWidgetComponent(panel, widget);
 }
+
+export function exportWidget(widget) {
+  return api.exportWidget(widget);
+}

@@ -13,4 +13,5 @@ export default {
   removeWidget: (panel, widget) => emit("panels.removeWidget", panel, widget),
   removeWidgetComponent: (panel, widget) =>
     emit("panels.removeWidgetComponent", panel, widget),
+  exportWidget: (widget) => emit("panels.exportWidget", widget),
 };

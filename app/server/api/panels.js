@@ -51,4 +51,7 @@ module.exports = {
     this.notify("panels.update", payload.panel);
     return payload;
   },
+  exportWidget(widget) {
+    return panels.exportWidget(widget);
+  },
 };
