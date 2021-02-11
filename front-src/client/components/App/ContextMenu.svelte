@@ -15,9 +15,8 @@
     importInput.click();
   }
 
-  async function onImportFile({ target }) {
+  async function importFile(file) {
     const jszip = new JSZip();
-    const file = target.files[0];
     const zip = await jszip.loadAsync(file);
     const store = await zip.file("store.json").async("string");
     const { bbox } = JSON.parse(store);
@@ -28,7 +27,13 @@
       buffer: file,
       position,
     });
+  }
 
+  async function onImportFiles({ target }) {
+    const files = [...target.files];
+    for (let i = 0, l = files.length; i < l; i++) {
+      await importFile(files[i]);
+    }
     importInput.value = null;
   }
 </script>
@@ -55,7 +60,8 @@
 <input
   type="file"
   class="hidden"
+  multiple="{true}"
   accept=".marv-widget"
   bind:this="{importInput}"
-  on:change="{onImportFile}"
+  on:change="{onImportFiles}"
 />
