@@ -20,7 +20,11 @@ function loadOnce() {
   loaded = true;
 }
 
-export default async function load() {
+export async function refresh() {
   store.set(await api.getFileList());
+}
+
+export default async function load() {
+  refresh();
   loadOnce();
 }
