@@ -29,7 +29,8 @@ function create() {
   };
 }
 
-function createWidget() {
+function createWidget(widget = {}) {
+  widget && delete widget.id;
   return {
     id: uuid(),
     component: null,
@@ -45,6 +46,7 @@ function createWidget() {
     backgroundColor: "#553C9A",
     backgroundImage: null,
     borders: "rounded",
+    ...widget,
   };
 }
 
@@ -95,8 +97,8 @@ function findWidgetById(panel, id) {
   return panel.widgets.find((w) => w.id === id);
 }
 
-function addWidget(panel, item) {
-  let widget = createWidget();
+function addWidget(panel, item, widget = {}) {
+  widget = createWidget(widget);
   const oldPanel = findPanelById(panel.id);
   oldPanel.grid.push({ id: widget.id, ...item });
   oldPanel.widgets.push(widget);
@@ -166,10 +168,11 @@ function readAssetFile(filename) {
   return fs.readFileSync(path.join(filesPath, filename));
 }
 
-async function exportWidget(widget) {
+async function exportWidget(panel, widget) {
   const filename = `${humanId()}.marv-widget`;
   const action = await actions.get(widget.id);
-  const json = JSON.stringify({ widget, action });
+  const bbox = panel.grid.find((item) => item.id === widget.id);
+  const json = JSON.stringify({ widget, bbox, action });
   const zip = new JSZip();
 
   zip.file("store.json", json);
@@ -192,6 +195,66 @@ async function exportWidget(widget) {
   return { filename, buffer };
 }
 
+async function saveWidgetAsset(relativePath, file) {
+  let filepath = path.join(filesPath, relativePath);
+  const buffer = await file.async("nodebuffer");
+  const renamed = fs.existsSync(filepath);
+  const oldPath = relativePath;
+  if (renamed) {
+    relativePath = `${humanId()}${path.extname(relativePath)}`;
+    filepath = path.join(filesPath, relativePath);
+  }
+  fs.writeFileSync(filepath, buffer);
+  return { renamed, oldPath, newPath: relativePath };
+}
+
+async function saveZipFiles(files) {
+  const promises = [];
+
+  files.forEach((relativePath, file) => {
+    promises.push(saveWidgetAsset(relativePath, file));
+  });
+
+  return await Promise.all(promises);
+}
+
+async function importWidget(panel, { buffer, position }) {
+  const jszip = new JSZip();
+  const zip = await jszip.loadAsync(buffer);
+  const store = await zip.file("store.json").async("string");
+  const files = await zip.folder("files");
+
+  const results = await saveZipFiles(files);
+  const { widget, action } = JSON.parse(store);
+
+  results.forEach(({ renamed, newPath, oldPath }) => {
+    if (!renamed) return;
+    if (widget.backgroundImage === oldPath) {
+      widget.backgroundImage = newPath;
+    }
+    if (action) {
+      action.items.forEach(({ target }) => {
+        if (target.filename === oldPath) {
+          target.filename = newPath;
+        }
+      });
+    }
+  });
+
+  const result = addWidget(panel, position, widget);
+  action && actions.update({ widget: result.widget, anime: action });
+
+  return result;
+}
+
+function importArchive(panel, archive) {
+  if (archive.filename.endsWith(".marv-widget")) {
+    return importWidget(panel, archive);
+  }
+
+  return { error: "Unsupported file format" };
+}
+
 module.exports = {
   add,
   set,
@@ -200,6 +263,7 @@ module.exports = {
   getAll,
   addWidget,
   removeWidget,
+  importArchive,
   exportWidget,
   duplicateWidget,
   moveWidgetToPanel,

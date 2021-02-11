@@ -67,7 +67,7 @@
   }
 
   async function exportTo() {
-    const { filename, buffer } = await exportWidget(widget);
+    const { filename, buffer } = await exportWidget(panel, widget);
     const blob = new Blob([buffer], { type: "application/zip" });
     saveAs(blob, filename);
   }
