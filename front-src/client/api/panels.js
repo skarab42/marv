@@ -13,4 +13,7 @@ export default {
   removeWidget: (panel, widget) => emit("panels.removeWidget", panel, widget),
   removeWidgetComponent: (panel, widget) =>
     emit("panels.removeWidgetComponent", panel, widget),
+  exportWidget: (panel, widget) => emit("panels.exportWidget", panel, widget),
+  exportPanel: (panel) => emit("panels.exportPanel", panel),
+  importArchive: (panel, widget) => emit("panels.importArchive", panel, widget),
 };

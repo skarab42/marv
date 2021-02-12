@@ -47,7 +47,7 @@ export function setCurrentPanel(panel) {
   localStorage.setItem("currentPanel", panel && panel.id);
 }
 
-function findSpaceForWidget(panel, props = {}) {
+export function findSpaceForWidget(panel, props = {}) {
   const cols = get(gridOptions).cols;
   const item = { ...gridHelper.item(get(itemOptions)), ...props };
   const pos = gridHelper.findSpaceForItem(item, panel.grid, cols);
@@ -79,6 +79,9 @@ export async function moveWidgetToPanel({ panel, targetPanel, item }) {
 }
 
 function onAdd(panel, { owner }) {
+  if (panel.grid.length) {
+    makeGrid(panel);
+  }
   panels.update((state) => [...state, panel]);
   if (owner || !get(currentPanel)) {
     setCurrentPanel(panel);
@@ -113,6 +116,8 @@ function makeGrid(panel) {
 }
 
 function onUpdate(panel) {
+  if (!panel) return;
+
   const cp = get(currentPanel);
 
   makeGrid(panel);

@@ -11,3 +11,15 @@ export function update(panel) {
 export function removeWidgetComponent(panel, widget) {
   return api.removeWidgetComponent(panel, widget);
 }
+
+export function exportWidget(panel, widget) {
+  return api.exportWidget(panel, widget);
+}
+
+export function importArchive(panel, widget) {
+  return api.importArchive(panel, widget);
+}
+
+export function exportPanel(panel) {
+  return api.exportPanel(panel);
+}

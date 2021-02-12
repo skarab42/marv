@@ -145,7 +145,9 @@
     "move": "déplacer",
     "duplicate": "dupliquer",
     "close": "fermer",
-    "confirm": "confirmer"
+    "confirm": "confirmer",
+    "export": "exporter",
+    "import": "importer"
   },
   "obs": {
     "scene-list": "OBS | Liste des scènes",
