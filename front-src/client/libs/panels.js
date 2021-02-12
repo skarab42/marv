@@ -19,3 +19,7 @@ export function exportWidget(panel, widget) {
 export function importArchive(panel, widget) {
   return api.importArchive(panel, widget);
 }
+
+export function exportPanel(panel) {
+  return api.exportPanel(panel);
+}

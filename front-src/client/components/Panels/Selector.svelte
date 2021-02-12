@@ -1,6 +1,8 @@
 <script>
   import api from "@/api/panels";
   import { _ } from "@/libs/i18next";
+  import { saveAs } from "file-saver";
+  import { exportPanel } from "@/libs/panels";
   import Button from "./Selector/Button.svelte";
   import MdEdit from "svelte-icons/md/MdEdit.svelte";
   import MenuItem from "@/components/UI/MenuItem.svelte";
@@ -8,6 +10,7 @@
   import RemoveModal from "./Selector/RemoveModal.svelte";
   import Separator from "@/components/UI/Separator.svelte";
   import ContextMenu from "@/components/App/ContextMenu.svelte";
+  import FaFileExport from "svelte-icons/fa/FaFileExport.svelte";
   import { panels, currentPanel, setPanels } from "@/stores/panels";
   import MdDeleteForever from "svelte-icons/md/MdDeleteForever.svelte";
   import HorizontalScroller from "@/components/UI/HorizontalScroller.svelte";
@@ -37,6 +40,12 @@
     selectedPanel = panel;
     removeModalOpened = true;
   }
+
+  async function onExportPanel(panel) {
+    const { filename, buffer } = await exportPanel(panel);
+    const blob = new Blob([buffer], { type: "application/zip" });
+    saveAs(blob, filename);
+  }
 </script>
 
 {#if $currentPanel}
@@ -64,6 +73,13 @@
               on:click="{openRemoveModal.bind(null, panel)}"
             >
               {_('words.remove')}
+            </MenuItem>
+            <MenuItem
+              class="capitalize"
+              icon="{FaFileExport}"
+              on:click="{onExportPanel.bind(null, panel)}"
+            >
+              {_('words.export')}
             </MenuItem>
             <Separator />
           </div>

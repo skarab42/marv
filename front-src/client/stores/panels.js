@@ -79,6 +79,9 @@ export async function moveWidgetToPanel({ panel, targetPanel, item }) {
 }
 
 function onAdd(panel, { owner }) {
+  if (panel.grid.length) {
+    makeGrid(panel);
+  }
   panels.update((state) => [...state, panel]);
   if (owner || !get(currentPanel)) {
     setCurrentPanel(panel);
@@ -113,6 +116,8 @@ function makeGrid(panel) {
 }
 
 function onUpdate(panel) {
+  if (!panel) return;
+
   const cp = get(currentPanel);
 
   makeGrid(panel);

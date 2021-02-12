@@ -22,11 +22,13 @@
     const { bbox } = JSON.parse(store);
     const position = findSpaceForWidget($currentPanel, bbox);
 
-    await importArchive($currentPanel, {
+    const result = await importArchive($currentPanel, {
       filename: file.name,
       buffer: file,
       position,
     });
+
+    result.error && console.log("ERROR >>>", result);
   }
 
   async function onImportFiles({ target }) {
@@ -61,7 +63,7 @@
   type="file"
   class="hidden"
   multiple="{true}"
-  accept=".marv-widget"
   bind:this="{importInput}"
   on:change="{onImportFiles}"
+  accept=".marv-widget,.marv-panel"
 />

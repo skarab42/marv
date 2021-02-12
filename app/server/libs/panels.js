@@ -19,13 +19,14 @@ function name(id) {
   return `${_("sentences.powers-group")} #${id.slice(0, 4)}`;
 }
 
-function create() {
+function create(panel = {}) {
   const id = uuid();
   return {
-    id,
     name: name(id),
     widgets: [],
     grid: [],
+    ...panel,
+    id,
   };
 }
 
@@ -50,8 +51,8 @@ function createWidget(widget = {}) {
   };
 }
 
-function add() {
-  let panel = create();
+function add(panel = {}) {
+  panel = create(panel);
   panels.push(panel);
   store.set("panels", panels);
   return panel;
@@ -100,7 +101,7 @@ function findWidgetById(panel, id) {
 function addWidget(panel, item, widget = {}) {
   widget = createWidget(widget);
   const oldPanel = findPanelById(panel.id);
-  oldPanel.grid.push({ id: widget.id, ...item });
+  oldPanel.grid.push({ ...item, id: widget.id });
   oldPanel.widgets.push(widget);
   return { panel: update(oldPanel), widget, item };
 }
@@ -168,31 +169,55 @@ function readAssetFile(filename) {
   return fs.readFileSync(path.join(filesPath, filename));
 }
 
-async function exportWidget(panel, widget) {
-  const filename = `${humanId()}.marv-widget`;
-  const action = await actions.get(widget.id);
-  const bbox = panel.grid.find((item) => item.id === widget.id);
-  const json = JSON.stringify({ widget, bbox, action });
+async function exportArchive(type, store, files) {
   const zip = new JSZip();
+  const filename = `${humanId()}.marv-${type}`;
 
-  zip.file("store.json", json);
+  zip.file("store.json", JSON.stringify(store));
 
-  const addFile = (filename) =>
-    zip.file(`files/${filename}`, readAssetFile(filename));
-
-  if (widget.backgroundImage) {
-    addFile(widget.backgroundImage);
-  }
-
-  if (action) {
-    action.items.forEach(({ target }) => {
-      addFile(target.filename);
-    });
-  }
+  files.forEach((filename) =>
+    zip.file(`files/${filename}`, readAssetFile(filename))
+  );
 
   const buffer = await zip.generateAsync({ type: "nodebuffer" });
-
   return { filename, buffer };
+}
+
+async function exportPanel(panel) {
+  let files = [];
+  let panelActions = {};
+
+  panel.widgets.forEach((widget) => {
+    const action = actions.get(widget.id);
+    action && (panelActions[widget.id] = action);
+    files = [...files, ...getWidgetFiles({ widget, action })];
+  });
+
+  return await exportArchive("panel", { panel, actions: panelActions }, files);
+}
+
+function getWidgetFiles({ widget, action }) {
+  const files = [];
+
+  if (widget.backgroundImage) {
+    files.push(widget.backgroundImage);
+  }
+
+  action &&
+    action.items.forEach(({ target }) => {
+      files.push(target.filename);
+    });
+
+  return files;
+}
+
+async function exportWidget(panel, widget) {
+  const bbox = panel.grid.find((item) => item.id === widget.id);
+  const action = actions.get(widget.id);
+  const store = { widget, bbox, action };
+  const files = getWidgetFiles(store);
+
+  return exportArchive("widget", store, files);
 }
 
 async function saveWidgetAsset(relativePath, file) {
@@ -218,38 +243,82 @@ async function saveZipFiles(files) {
   return await Promise.all(promises);
 }
 
-async function importWidget(panel, { buffer, position }) {
+async function loadArchive(buffer) {
   const jszip = new JSZip();
   const zip = await jszip.loadAsync(buffer);
   const store = await zip.file("store.json").async("string");
   const files = await zip.folder("files");
 
-  const results = await saveZipFiles(files);
-  const { widget, action } = JSON.parse(store);
+  return { store: JSON.parse(store), files };
+}
 
+function renameWidgetFiles(results, { widget, action }) {
   results.forEach(({ renamed, newPath, oldPath }) => {
     if (!renamed) return;
     if (widget.backgroundImage === oldPath) {
       widget.backgroundImage = newPath;
     }
     if (action) {
-      action.items.forEach(({ target }) => {
-        if (target.filename === oldPath) {
-          target.filename = newPath;
+      action.items = action.items.map((item) => {
+        if (item.target.filename === oldPath) {
+          item.target.filename = newPath;
         }
+        item.keyframes = item.keyframes.map((keyframe) => ({
+          ...keyframe,
+          id: uuid(),
+        }));
+        return { ...item, id: uuid() };
       });
     }
   });
+}
 
-  const result = addWidget(panel, position, widget);
-  action && actions.update({ widget: result.widget, anime: action });
+async function importWidget(panel, { buffer, position }) {
+  const { store, files } = await loadArchive(buffer);
+  const results = await saveZipFiles(files);
 
-  return result;
+  renameWidgetFiles(results, store);
+
+  const result = addWidget(panel, position, store.widget);
+
+  if (store.action) {
+    actions.update({ widget: result.widget, anime: store.action });
+  }
+
+  return { event: "update", ...result };
+}
+
+async function importPanel({ buffer }) {
+  const { store, files } = await loadArchive(buffer);
+  const results = await saveZipFiles(files);
+  let panel = add({ name: store.panel.name });
+
+  store.panel.widgets.forEach((widget) => {
+    const grid = store.panel.grid.find((item) => item.id === widget.id);
+    const action = store.actions[widget.id];
+
+    renameWidgetFiles(results, { widget, action });
+
+    const { x, y, w, h } = grid;
+    const result = addWidget(panel, { x, y, w, h }, widget);
+    panel = result.panel;
+
+    if (action) {
+      action.id = result.widget.id;
+      actions.update({ widget: result.widget, anime: action });
+    }
+  });
+
+  return { event: "add", panel };
 }
 
 function importArchive(panel, archive) {
   if (archive.filename.endsWith(".marv-widget")) {
     return importWidget(panel, archive);
+  }
+
+  if (archive.filename.endsWith(".marv-panel")) {
+    return importPanel(archive);
   }
 
   return { error: "Unsupported file format" };
@@ -262,6 +331,7 @@ module.exports = {
   update,
   getAll,
   addWidget,
+  exportPanel,
   removeWidget,
   importArchive,
   exportWidget,

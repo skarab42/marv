@@ -54,9 +54,12 @@ module.exports = {
   exportWidget(panel, widget) {
     return panels.exportWidget(panel, widget);
   },
+  exportPanel(panel) {
+    return panels.exportPanel(panel);
+  },
   async importArchive(panel, widget) {
     const payload = await panels.importArchive(panel, widget);
-    this.notify("panels.update", payload.panel);
+    this.notify(`panels.${payload.event}`, payload.panel);
     return payload;
   },
 };
