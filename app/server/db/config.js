@@ -4,5 +4,5 @@ const path = require("path");
 module.exports = {
   dialect: "sqlite",
   storage: path.join(databasePath, databaseFilename),
-  logging: false, // watch ? console.log : false,
+  logging: false,
 };

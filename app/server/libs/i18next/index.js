@@ -1,17 +1,19 @@
 const { appPath } = require("../../../utils");
 const backend = require("i18next-fs-backend");
 const settings = require("../settings");
+const loggers = require("../loggers");
 const config = require("./config");
 const i18next = require("i18next");
 const path = require("path");
 
 const locales = path.join(appPath, "static/locales");
+const logger = loggers.get("server");
 
 function getLocale() {
   try {
     return Intl.DateTimeFormat().resolvedOptions().locale.split("-")[0];
   } catch (error) {
-    console.log("ERROR >>>", error);
+    logger.warn("Unable to get default language, fallback to default: en");
     return "en";
   }
 }
