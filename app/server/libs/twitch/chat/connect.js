@@ -22,12 +22,8 @@ chat.onDisconnect((manually) => {
 });
 
 function connect() {
-  if (state.get("chat.connected")) {
+  if (state.get("chat.connected") || state.get("chat.connecting")) {
     return Promise.resolve({ alreadyConnected: true });
-  }
-
-  if (state.get("chat.connecting")) {
-    throw new Error("Twitch chat already connecting...");
   }
 
   state.set("chat.connecting", true);
