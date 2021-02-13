@@ -17,7 +17,7 @@
     "build": "yarn client:build && yarn tailwind:build --prod",
     "prettify": "prettier --write ./app ./front-src",
     "lint": "eslint ./app ./front-src --fix && yarn prettify",
-    "change": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0",
+    "change": "git sv cgl > CHANGELOG.md",
     "commit": "cz"
   },
   "build": {
