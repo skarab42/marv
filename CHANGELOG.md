@@ -1,5 +1,13 @@
 # Changelog
 
+## v1.5.1 (2021-02-13)
+
+### Bug Fixes
+
+- Chat already connected (#153) (e3af5da)
+
+---
+
 ## v1.5.0 (2021-02-13)
 
 ### Features
@@ -146,10 +154,6 @@
 - **timeline:** Fix timeline initial items loading (5943a86)
 - **timeline:** Fix empty file name (74b4796)
 - **client:** Fix file manager visibility when open from bottom (adbd287)
-
----
-
-## v1.0.1 (2021-01-07)
 
 ---
 
