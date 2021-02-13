@@ -1,9 +1,12 @@
 const OBSWebSocket = require("obs-websocket-js");
+const { watch } = require("../../utils");
 const socket = require("./socket.io");
+const loggers = require("./loggers");
 const { _ } = require("./i18next");
 
 let obs = null;
 const io = socket();
+const logger = loggers.get("obs");
 
 let connecting = false;
 let autoReconnect = true;
@@ -22,12 +25,6 @@ let state = {
   scenes: null,
   currentScene: null,
 };
-
-// TODO use logs lib
-function log(...args) {
-  // eslint-disable-next-line
-  console.log(">>> OBS:", ...args);
-}
 
 function getState() {
   return state;
@@ -108,22 +105,22 @@ function registerEvents(obs) {
   obs.on("ScenesChanged", updateSceneList);
 }
 
-// function onMessage(obs) {
-//   const onmessage = obs._socket.onmessage;
-//   obs._socket.onmessage = (msg) => {
-//     onmessage(msg);
-//     let { type, data } = msg;
-//     if (type !== "message") return;
-//     data = JSON.parse(data);
-//     const eventName = data["update-type"];
-//     eventName && log(eventName, data);
-//   };
-// }
+function onMessage(obs) {
+  const onmessage = obs._socket.onmessage;
+  obs._socket.onmessage = (msg) => {
+    onmessage(msg);
+    let { type, data } = msg;
+    if (type !== "message") return;
+    data = JSON.parse(data);
+    const eventName = data["update-type"];
+    eventName && logger.debug(eventName, data);
+  };
+}
 
 function reconnect(settings) {
   obs = null;
 
-  log(`Reconnecting in ${reconnectionTimeout / 1000} sec.`);
+  logger.info(`Reconnecting in ${reconnectionTimeout / 1000} sec.`);
   updateState({ connected: false, connecting: true });
 
   reconnectionTimeoutId = setTimeout(() => {
@@ -140,13 +137,13 @@ function connect({ host = "localhost", port = 4444, password = null } = {}) {
   const address = `${host}:${port}`;
 
   updateState({ connected: false, connecting: true });
-  log(`Connect (${address})`);
+  logger.info(`Connecting to ${address}`);
   emit("connect");
 
   function onConnectionClosed() {
+    logger.info("Connection closed");
     updateState({ connected: false, connecting: false });
     clearRecordingHeartbeat();
-    log("Connection closed");
     emit("disconnected");
     obs = null;
     if (autoReconnect) {
@@ -161,18 +158,18 @@ function connect({ host = "localhost", port = 4444, password = null } = {}) {
   obs
     .connect({ address, password })
     .then(() => {
-      log("Connected");
+      logger.info("Connected");
       connecting = false;
       updateState({ connected: true, connecting });
       obs.on("ConnectionClosed", onConnectionClosed);
+      watch && onMessage(obs);
       registerEvents(obs);
       updateStreamStatus();
       updateSceneList();
-      // onMessage(obs);
       emit("connected");
     })
     .catch((error) => {
-      log(`Error: ${error.code}`);
+      logger.error(`Code -> ${error.code}`);
       updateState({ connected: false, connecting: autoReconnect });
       if (autoReconnect) {
         reconnect({ host, port, password });

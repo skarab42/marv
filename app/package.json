@@ -4,6 +4,9 @@
   "description": "Marv - Twitch Bot",
   "repository": "github:skarab42/marv",
   "author": "skarab42 <skarab42@users.noreply.github.com>",
+  "bugs": {
+    "url": "https://github.com/skarab42/marv/issues"
+  },
   "license": "MIT",
   "main": "main/index.js",
   "dependencies": {
@@ -36,6 +39,8 @@
     "twitch-chat-client": "^4.3.1",
     "twitch-pubsub-client": "^4.3.2",
     "umzug": "^3.0.0-beta.12",
-    "uuid": "^8.3.1"
+    "uuid": "^8.3.1",
+    "winston": "^3.3.3",
+    "winston-daily-rotate-file": "^4.5.0"
   }
 }

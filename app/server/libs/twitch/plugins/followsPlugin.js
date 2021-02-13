@@ -8,9 +8,5 @@ module.exports = async function streamStatePlugin({ delay = 2 } = {}) {
     pushActions("onFollow", { user: viewer.name });
   });
 
-  if (follows.length) {
-    console.log("New follows:", follows.length);
-  }
-
   setTimeout(streamStatePlugin, delay * 1000);
 };

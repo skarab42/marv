@@ -1,3 +1,4 @@
+const loggers = require("../libs/loggers");
 const settings = require("../libs/settings");
 const state = require("../libs/twitch/state");
 const twitchLogin = require("../libs/twitch/login");
@@ -13,7 +14,7 @@ const getCommandList = require("../libs/twitch/api/getCommandList");
 const getCommandNames = require("../libs/twitch/api/getCommandNames");
 const getLastFollowers = require("../libs/twitch/api/getLastFollowers");
 
-const banner = "🤖 Marv est dans la place !";
+const logger = loggers.get("server");
 
 module.exports = {
   async login() {
@@ -22,8 +23,7 @@ module.exports = {
     const join = await chatJoin(user.display_name);
 
     if (!join.alreadyJoined) {
-      console.log(banner);
-      // twitch.chat.say(user.display_name, banner);
+      logger.info("Chat connected");
       settings.set("twitch.currentChannel", user.display_name);
     }
 
