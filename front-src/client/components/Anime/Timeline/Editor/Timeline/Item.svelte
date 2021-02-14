@@ -91,6 +91,7 @@
   <ItemMenu>
     <ItemButtons
       on:remove
+      on:duplicate
       on:fileUpdate
       on:textFileChange
       widget="{widget}"

@@ -1,4 +1,6 @@
 <script>
+  import { v4 as uuid } from "uuid";
+  import cloneDeep from "clone-deep";
   import { _ } from "@/libs/i18next";
   import createStore from "./libs/store";
   import { setContext, createEventDispatcher } from "svelte";
@@ -106,6 +108,15 @@
     }
   }
 
+  function onDuplicate({ detail: item }) {
+    const clone = cloneDeep(item);
+    clone.id = uuid();
+    clone.keyframes = clone.keyframes.map((keyframe) => {
+      return { ...keyframe, id: uuid() };
+    });
+    addItem(clone);
+  }
+
   function addFile({ detail: file }) {
     createAnimeFromFile(file)
       .then(addItem)
@@ -155,6 +166,7 @@
       on:textFileChange
       on:file="{addFile}"
       on:remove="{onRemove}"
+      on:duplicate="{onDuplicate}"
       on:fileUpdate="{onFileUpdate}"
     />
   </div>
