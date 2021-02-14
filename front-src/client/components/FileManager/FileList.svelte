@@ -1,9 +1,9 @@
 <script>
   import api from "@/api/files";
   import { _ } from "@/libs/i18next";
+  import { store } from "@/stores/files";
   import { fade } from "svelte/transition";
-  import { createEventDispatcher, onMount } from "svelte";
-  import { store, refresh } from "@/stores/files";
+  import { createEventDispatcher } from "svelte";
   import Button from "@/components/UI/Button.svelte";
   import FileIcon from "@/components/UI/FileIcon.svelte";
   import MdDelete from "svelte-icons/md/MdDeleteForever.svelte";
@@ -11,8 +11,8 @@
 
   export let acceptTypes;
 
-  let confirmRemoveModal = false;
   let currentFile = null;
+  let confirmRemoveModal = false;
 
   const dispatch = createEventDispatcher();
 
@@ -39,14 +39,13 @@
   function bgImage(file) {
     return `background-image: url(files/${file.filename});`;
   }
-
-  onMount(() => refresh());
 </script>
 
 {#each files as file}
   <div
     in:fade
     out:fade
+    title="{_('sentences.file-use-count', { count: file.useCount })}"
     class="flex items-center bg-dark-darker rounded cursor-pointer"
   >
     <div
@@ -56,7 +55,11 @@
       <div class="p-2">
         <FileIcon type="{file.type}" />
       </div>
-      <div class="p-2 flex-auto truncate">{file.filename}</div>
+      <div
+        class="p-2 flex-auto truncate {file.useCount ? '' : 'italic opacity-50'}"
+      >
+        {file.filename}
+      </div>
       {#if file.type === 'image'}
         <div
           style="{bgImage(file)}"
@@ -68,9 +71,7 @@
       icon="{MdDelete}"
       class="bg-red-600 rounded-r"
       on:click="{onRemoveFile.bind(null, file)}"
-    >
-      <span class="hidden md:inline-block">{_('words.delete')}</span>
-    </Button>
+    />
   </div>
 {:else}
   <div>{_('sentences.file-list-empty')}</div>
@@ -83,8 +84,10 @@
   bind:opened="{confirmRemoveModal}"
   on:confirm="{onConfirmRemove}"
 >
-  <div class="p-2 bg-orange-600">
-    <span class="uppercase font-bold">{_('words.warning')}:</span>
-    {_('sentences.file-can-be-used-by-other-widgets')}
-  </div>
+  {#if currentFile.useCount}
+    <div class="p-2 bg-orange-600">
+      <span class="uppercase font-bold">{_('words.warning')}:</span>
+      {_('sentences.file-use-count', { count: currentFile.useCount })}
+    </div>
+  {/if}
 </ConfirmModal>

@@ -2,9 +2,11 @@
   import api from "@/api/files";
   import { _ } from "@/libs/i18next";
   import FileList from "./FileList.svelte";
-  import { createEventDispatcher } from "svelte";
+  import { refresh } from "@/stores/files";
+  import PurgeButton from "./PurgeButton.svelte";
   import FilterButtons from "./FilterButtons.svelte";
   import Notify from "@/components/UI/Notify.svelte";
+  import { createEventDispatcher, onMount } from "svelte";
   import MdRefresh from "svelte-icons/md/MdRefresh.svelte";
   import FileInput from "@/components/UI/FileInput.svelte";
 
@@ -43,16 +45,19 @@
         notify = { type: "error", message: error };
       });
   }
+
+  onMount(() => refresh());
 </script>
 
 <div class="overflow-auto h-full">
   <div class="p-2 gap-2 flex items-center flex-wrap md:flex-no-wrap">
     <FileInput
       label="{_('sentences.upload-file')}"
-      class="bg-secondary rounded"
+      class="bg-secondary"
       accept="{inputAccept}"
       on:file="{onFile}"
     />
+    <PurgeButton />
     <FilterButtons accept="{accept}" bind:types="{acceptTypes}" />
   </div>
   {#if loading}

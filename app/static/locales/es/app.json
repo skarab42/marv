@@ -60,7 +60,10 @@
     "move-to": "Mover a",
     "command-settings": "Ajustes de los comandos",
     "edit-action": "Editar acción",
-    "edit-styles": "Editar apariencia"
+    "edit-styles": "Editar apariencia",
+    "file-use-count": "Archivo utilizado por {{count}} widget",
+    "file-use-count_plural": "Archivo utilizado por {{count}} widgets",
+    "ask-purge": "¿Borrar {{count}} archivos no utilizados?"
   },
   "words": {
     "settings": "opciones",
