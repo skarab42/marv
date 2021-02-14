@@ -94,11 +94,11 @@
   <div slot="header" class="bg-primary-dark">
     <Ruler />
   </div>
-  {#each $items as item, pos (item.id)}
+  {#each $items as item, index (item.id)}
     <Item
-      widget="{widget}"
       bind:item
-      pos="{pos}"
+      index="{index}"
+      widget="{widget}"
       on:remove="{onRemove}"
       on:textFileChange
     />
