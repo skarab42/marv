@@ -63,7 +63,8 @@
     "edit-styles": "Editar apariencia",
     "file-use-count": "Archivo utilizado por {{count}} widget",
     "file-use-count_plural": "Archivo utilizado por {{count}} widgets",
-    "ask-purge": "¿Borrar {{count}} archivos no utilizados?"
+    "ask-purge": "¿Borrar {{count}} archivos no utilizados?",
+    "ask-remove-asset": "¿Eliminar \"{{filename}}\" de la línea de tiempo?"
   },
   "words": {
     "settings": "opciones",

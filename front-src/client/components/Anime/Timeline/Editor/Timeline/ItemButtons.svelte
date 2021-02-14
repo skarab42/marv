@@ -1,9 +1,11 @@
 <script>
+  import { _ } from "@/libs/i18next";
   import Icon from "@/components/UI/Icon.svelte";
   import MdEdit from "svelte-icons/md/MdEdit.svelte";
   import TextEditorModal from "./TextEditorModal.svelte";
   import { getContext, createEventDispatcher } from "svelte";
   import MdFileUpload from "svelte-icons/md/MdFileUpload.svelte";
+  import ConfirmModal from "@/components/UI/ConfirmModal.svelte";
   import FileManagerModal from "@/components/FileManager/Modal.svelte";
   import MdDeleteForever from "svelte-icons/md/MdDeleteForever.svelte";
 
@@ -15,6 +17,7 @@
 
   let accept = [];
   let showFileManager = false;
+  let confirmRemoveModal = false;
   let showTextEditorModal = false;
 
   function selectItem(item) {
@@ -22,16 +25,6 @@
       $selectedKeyframe = null;
       $selectedItem = item;
     }
-  }
-
-  // TODO add confirm !!!
-  function onRemove(event) {
-    event.stopPropagation();
-    if ($selectedItem === item) {
-      $selectedItem = null;
-    }
-    $items = $items.filter(({ id }) => id !== item.id);
-    dispatch("remove", item);
   }
 
   function openTextEditorModal(item) {
@@ -58,6 +51,22 @@
     dispatch("fileUpdate", { item: $selectedItem, file });
     closeFileManager();
   }
+
+  function onRemoveItem(item) {
+    selectItem(item);
+    confirmRemoveModal = true;
+  }
+
+  function remove() {
+    $selectedItem = null;
+    $items = $items.filter(({ id }) => id !== item.id);
+    dispatch("remove", item);
+  }
+
+  function onConfirmRemove({ detail: confirm }) {
+    confirmRemoveModal = false;
+    confirm && remove();
+  }
 </script>
 
 {#if item.target.type === 'text'}
@@ -76,7 +85,10 @@
   <Icon icon="{MdFileUpload}" />
 </div>
 
-<div class="p-2 cursor-pointer hover:bg-red-600" on:click="{onRemove}">
+<div
+  class="p-2 cursor-pointer hover:bg-red-600"
+  on:click="{onRemoveItem.bind(null, item)}"
+>
   <Icon icon="{MdDeleteForever}" />
 </div>
 
@@ -93,4 +105,12 @@
   on:select="{onFileSelect}"
   on:close="{closeFileManager}"
   bind:opened="{showFileManager}"
+/>
+
+<ConfirmModal
+  question="{_('sentences.ask-remove-asset', {
+    filename: $selectedItem && $selectedItem.target.filename,
+  })}"
+  bind:opened="{confirmRemoveModal}"
+  on:confirm="{onConfirmRemove}"
 />

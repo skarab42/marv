@@ -63,7 +63,8 @@
     "edit-styles": "Edit styles",
     "file-use-count": "File used by {{count}} widget",
     "file-use-count_plural": "File used by {{count}} widgets",
-    "ask-purge": "Delete {{count}} files not in use?"
+    "ask-purge": "Delete {{count}} files not in use?",
+    "ask-remove-asset": "Remove \"{{filename}}\" from the timeline?"
   },
   "words": {
     "settings": "settings",
