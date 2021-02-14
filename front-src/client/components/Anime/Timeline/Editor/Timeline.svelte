@@ -6,7 +6,6 @@
   import Ruler from "./Timeline/Ruler.svelte";
   import Player from "./Timeline/Player.svelte";
   import Cursor from "./Timeline/Cursor.svelte";
-  import Icon from "@/components/UI/Icon.svelte";
   import Tippy from "@/components/UI/Tippy.svelte";
   import Button from "@/components/UI/Button.svelte";
   import InsertTextModal from "./InsertTextModal.svelte";
