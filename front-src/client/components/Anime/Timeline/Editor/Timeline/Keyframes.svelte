@@ -22,7 +22,7 @@
 
   function onWheel(event) {
     const { x } = wrapperElement.getBoundingClientRect();
-    const delta = event.deltaY / 100;
+    const delta = -event.deltaY / 100;
     const tx = (event.clientX - x - $left) / $scale;
     const newScale = $scale + delta / (zoom.sensitivity / $scale);
     $scale = Math.max(zoom.min, Math.min(newScale, zoom.max));

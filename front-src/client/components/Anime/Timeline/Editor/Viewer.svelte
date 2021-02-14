@@ -74,7 +74,7 @@
   }
 
   function onWheel(event) {
-    viewportZoom(event.deltaY / 100);
+    viewportZoom(-event.deltaY / 100);
   }
 
   function onDoubleClick() {
