@@ -3,8 +3,12 @@ const mime = require("mime");
 const fs = require("fs-extra");
 const { _ } = require("./i18next");
 const { filesPath } = require("../../utils");
+const { panels, actions } = require("../../stores");
 const getUsedFonts = require("./files/getUsedFonts");
 const getSystemFonts = require("./files/getSystemFonts");
+const getWidgetFiles = require("./files/getWidgetFiles");
+
+let allFiles = [];
 
 const allowedMimeTypes = ["text", "image", "audio", "video", "font"];
 
@@ -25,7 +29,9 @@ function getFileInfo(filename, buffer) {
   const type = mimeType.split("/")[0];
   const size = Buffer.byteLength(buffer);
 
-  return { filename, size, ext, type, mimeType };
+  const useCount = allFiles.filter((file) => file === filename).length;
+
+  return { filename, useCount, size, ext, type, mimeType };
 }
 
 function getFileInfoFromFilename(filename) {
@@ -94,15 +100,30 @@ function localeSort(a, b) {
   });
 }
 
+function getAllFiles() {
+  let files = [];
+
+  const actionsStore = actions.store.actions;
+
+  panels.store.panels.forEach((panel) => {
+    panel.widgets.forEach((widget) => {
+      const action = actionsStore[widget.id];
+      files = [...files, ...getWidgetFiles({ widget, action })];
+    });
+  });
+
+  return files;
+}
+
 function getFileList() {
   return new Promise((resolve, reject) => {
     try {
+      allFiles = getAllFiles();
       const files = fs.readdirSync(filesPath);
       const fileList = files
         .sort(localeSort)
         .map(getFileInfoFromFilename)
         .filter(({ type }) => isAllowedMimeType(type));
-
       resolve(fileList);
     } catch (error) {
       reject(error);
@@ -110,7 +131,15 @@ function getFileList() {
   });
 }
 
+async function purge() {
+  let files = await getFileList();
+  return Promise.all(
+    files.filter((file) => !file.useCount).map((file) => remove(file))
+  );
+}
+
 module.exports = {
+  purge,
   upload,
   remove,
   update,

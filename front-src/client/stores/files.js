@@ -13,10 +13,15 @@ function onRemove(file) {
   store.update((state) => state.filter((f) => f.filename !== file.filename));
 }
 
+function onUpdate({ files }) {
+  store.set(files);
+}
+
 function loadOnce() {
   if (loaded) return;
   api.on("add", onAdd);
   api.on("remove", onRemove);
+  api.on("update", onUpdate);
   loaded = true;
 }
 

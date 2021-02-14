@@ -15,4 +15,11 @@ module.exports = {
   },
   update: (file, data) => files.update(file, data),
   getFileList: () => files.getFileList(),
+  async purge() {
+    return files.purge().then(async (removedFiles) => {
+      const newFiles = await files.getFileList();
+      this.notify("files.update", { files: newFiles, removedFiles });
+      return Promise.resolve({ files: newFiles, removedFiles });
+    });
+  },
 };

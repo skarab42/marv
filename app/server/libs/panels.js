@@ -1,3 +1,4 @@
+const getWidgetFiles = require("./files/getWidgetFiles");
 const { panels: store } = require("../../stores");
 const { filesPath } = require("../../utils");
 const cloneDeep = require("clone-deep");
@@ -196,21 +197,6 @@ async function exportPanel(panel) {
   return await exportArchive("panel", { panel, actions: panelActions }, files);
 }
 
-function getWidgetFiles({ widget, action }) {
-  const files = [];
-
-  if (widget.backgroundImage) {
-    files.push(widget.backgroundImage);
-  }
-
-  action &&
-    action.items.forEach(({ target }) => {
-      files.push(target.filename);
-    });
-
-  return files;
-}
-
 async function exportWidget(panel, widget) {
   const bbox = panel.grid.find((item) => item.id === widget.id);
   const action = actions.get(widget.id);
@@ -335,6 +321,7 @@ module.exports = {
   removeWidget,
   importArchive,
   exportWidget,
+  getWidgetFiles,
   duplicateWidget,
   moveWidgetToPanel,
   removeWidgetComponent,
