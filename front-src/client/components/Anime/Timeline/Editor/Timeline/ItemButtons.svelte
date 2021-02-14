@@ -70,7 +70,7 @@
 {/if}
 
 <div
-  class="p-2 cursor-pointer hover:bg-red-600"
+  class="p-2 cursor-pointer hover:bg-secondary"
   on:click="{openFileManager.bind(null, item)}"
 >
   <Icon icon="{MdFileUpload}" />

@@ -22,7 +22,7 @@
   let fileManager = false;
   let insetTextModal = false;
   let fileManagerNotify = null;
-  let splitter = { x: 200, width: 4, min: 200, max: 500 };
+  let splitter = { x: 220, width: 4, min: 220, max: 500 };
 
   const accept = ["image", "audio", "text", "video", "font"];
 

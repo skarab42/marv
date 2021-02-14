@@ -1,6 +1,7 @@
 <script>
   import { getContext } from "svelte";
   import Keyframe from "./Keyframe.svelte";
+  import ItemMenu from "./ItemMenu.svelte";
   import Keyframes from "./Keyframes.svelte";
   import AnimeIcon from "../AnimeIcon.svelte";
   import ItemButtons from "./ItemButtons.svelte";
@@ -87,13 +88,15 @@
   <AnimeIcon type="{item.target.type}" />
   <div class="p-2 pl-0 truncate flex-1">{item.target.filename}</div>
 
-  <ItemButtons
-    on:remove
-    on:fileUpdate
-    on:textFileChange
-    widget="{widget}"
-    item="{item}"
-  />
+  <ItemMenu>
+    <ItemButtons
+      on:remove
+      on:fileUpdate
+      on:textFileChange
+      widget="{widget}"
+      item="{item}"
+    />
+  </ItemMenu>
 
   <div
     slot="dragOver"
