@@ -101,6 +101,7 @@
       index="{index}"
       widget="{widget}"
       on:remove="{onRemove}"
+      on:duplicate
       on:textFileChange
       on:fileUpdate
     />

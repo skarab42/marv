@@ -6,6 +6,7 @@
   import { getContext, createEventDispatcher } from "svelte";
   import MdFileUpload from "svelte-icons/md/MdFileUpload.svelte";
   import ConfirmModal from "@/components/UI/ConfirmModal.svelte";
+  import MdContentCopy from "svelte-icons/md/MdContentCopy.svelte";
   import FileManagerModal from "@/components/FileManager/Modal.svelte";
   import MdDeleteForever from "svelte-icons/md/MdDeleteForever.svelte";
 
@@ -15,7 +16,8 @@
   const dispatch = createEventDispatcher();
   const { items, selectedItem, selectedKeyframe } = getContext("Editor");
 
-  let accept = [];
+  const accept = ["image", "audio", "text", "video", "font"];
+
   let showFileManager = false;
   let confirmRemoveModal = false;
   let showTextEditorModal = false;
@@ -39,7 +41,6 @@
 
   function openFileManager(item) {
     selectItem(item);
-    accept = [item.target.type];
     showFileManager = true;
   }
 
@@ -67,6 +68,10 @@
     confirmRemoveModal = false;
     confirm && remove();
   }
+
+  function duplicateItem(item) {
+    dispatch("duplicate", item);
+  }
 </script>
 
 {#if item.target.type === 'text'}
@@ -77,6 +82,13 @@
     <Icon icon="{MdEdit}" />
   </div>
 {/if}
+
+<div
+  class="p-2 cursor-pointer hover:bg-secondary"
+  on:click="{duplicateItem.bind(null, item)}"
+>
+  <Icon icon="{MdContentCopy}" />
+</div>
 
 <div
   class="p-2 cursor-pointer hover:bg-secondary"
