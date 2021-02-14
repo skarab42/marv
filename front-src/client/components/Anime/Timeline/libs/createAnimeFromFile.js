@@ -1,5 +1,5 @@
 import { v4 as uuid } from "uuid";
-import { elementFactories } from "./utils";
+import getTargetInfo from "./getTargetInfo";
 import { createKeyframe } from "./createKeyframe";
 
 import {
@@ -10,37 +10,6 @@ import {
   attrsDefs,
   transDefs,
 } from "./settings";
-
-export async function createElementFromTarget(target) {
-  const factory = elementFactories[target.type];
-
-  if (!factory) {
-    throw new Error(`Undefined type "${target.type}"`);
-  }
-
-  return await factory(target.filename);
-}
-
-async function getTargetInfo(target) {
-  const element = await createElementFromTarget(target);
-  const info = {};
-
-  if (target.type === "image") {
-    info.width = element.width;
-    info.height = element.height;
-  } else if (target.type === "video") {
-    info.width = element.videoWidth;
-    info.height = element.videoHeight;
-  } else if (target.type === "text") {
-    info.length = element.innerText.length;
-  }
-
-  if (target.type === "audio" || target.type === "video") {
-    info.duration = Math.round(element.duration * 1000);
-  }
-
-  return info;
-}
 
 function getTargetProps(defaults, defs, { type, info }) {
   const names = defaults[type] || [];

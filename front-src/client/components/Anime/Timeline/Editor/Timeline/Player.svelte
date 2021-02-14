@@ -41,10 +41,14 @@
   $: iconClass = `${color} w-4 h-4 flex-shrink-0 cursor-pointer`;
 </script>
 
-<Icon class="{iconClass}" icon="{MdReplay}" on:click="{restartAnime}" />
-<Icon class="{iconClass}" icon="{MdSkipPrevious}" on:click="{resetAnime}" />
-{#if $paused}
-  <Icon class="{iconClass}" icon="{MdPlayArrow}" on:click="{playAnime}" />
-{:else}
-  <Icon class="{iconClass}" icon="{MdPause}" on:click="{pauseAnime}" />
-{/if}
+<div
+  class="flex px-2 py-1 bg-black bg-opacity-25 rounded-lg divide-x divide-opacity-25 divide-gray-500"
+>
+  <Icon class="{iconClass}" icon="{MdReplay}" on:click="{restartAnime}" />
+  <Icon class="{iconClass}" icon="{MdSkipPrevious}" on:click="{resetAnime}" />
+  {#if $paused}
+    <Icon class="{iconClass}" icon="{MdPlayArrow}" on:click="{playAnime}" />
+  {:else}
+    <Icon class="{iconClass}" icon="{MdPause}" on:click="{pauseAnime}" />
+  {/if}
+</div>

@@ -8,6 +8,7 @@
   import Cursor from "./Timeline/Cursor.svelte";
   import Icon from "@/components/UI/Icon.svelte";
   import Tippy from "@/components/UI/Tippy.svelte";
+  import Button from "@/components/UI/Button.svelte";
   import InsertTextModal from "./InsertTextModal.svelte";
   import { getContext, createEventDispatcher } from "svelte";
   import MdFileUpload from "svelte-icons/md/MdFileUpload.svelte";
@@ -22,7 +23,7 @@
   let fileManager = false;
   let insetTextModal = false;
   let fileManagerNotify = null;
-  let splitter = { x: 200, width: 4, min: 100, max: 500 };
+  let splitter = { x: 220, width: 4, min: 220, max: 500 };
 
   const accept = ["image", "audio", "text", "video", "font"];
 
@@ -74,33 +75,35 @@
 </script>
 
 <Grid bind:splitter>
-  <div slot="header" class="p-2 flex splace-x-2 bg-primary-dark">
+  <div slot="header" class="flex items-center gap-2 bg-primary-dark">
     <Tippy options="{tippy}" disabled="{false}">
-      <Icon
+      <Button
         icon="{MdFileUpload}"
+        textColor="text-secondary hover:text-light"
+        class="hover:bg-secondary"
         on:click="{openFileManager}"
-        class="text-secondary cursor-pointer"
       />
     </Tippy>
+    <div class="flex-auto"></div>
     <Player anime="{$anime}" />
     <div class="flex-auto"></div>
-    <div
+    <Button
+      class="hover:bg-secondary"
+      icon="{MdInsertDriveFile}"
       on:click="{openInsertTextModal}"
-      class="w-6 h-6 cursor-pointer opacity-75"
-    >
-      <MdInsertDriveFile />
-    </div>
+    />
   </div>
   <div slot="header" class="bg-primary-dark">
     <Ruler />
   </div>
-  {#each $items as item, pos (item.id)}
+  {#each $items as item, index (item.id)}
     <Item
-      widget="{widget}"
       bind:item
-      pos="{pos}"
+      index="{index}"
+      widget="{widget}"
       on:remove="{onRemove}"
       on:textFileChange
+      on:fileUpdate
     />
   {/each}
   <Cursor min="{splitter.x}" />

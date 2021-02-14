@@ -11,6 +11,7 @@
   import ViewerItems from "./Editor/Viewer/Items.svelte";
 
   import createAnimeFromFile from "./libs/createAnimeFromFile";
+  import getTargetInfo from "./libs/getTargetInfo";
 
   import animejs from "animejs/lib/anime.es.js";
   import { debounce } from "throttle-debounce";
@@ -125,6 +126,15 @@
     dispatch("update", { duration, items: $items });
     dispatch("close");
   }
+
+  async function onFileUpdate({ detail }) {
+    const target = { ...detail.item.target, ...detail.file };
+    target.info = await getTargetInfo(target);
+    detail.item.target = target;
+    $selectedItem = detail.item;
+    dispatch("update", { duration, items: $items });
+    $items = $items;
+  }
 </script>
 
 <Layout on:dropFiles="{onDropFiles}">
@@ -142,9 +152,10 @@
   <div slot="bottomPane" class="bg-primary-dark h-full shadow">
     <Timeline
       widget="{widget}"
+      on:textFileChange
       on:file="{addFile}"
       on:remove="{onRemove}"
-      on:textFileChange
+      on:fileUpdate="{onFileUpdate}"
     />
   </div>
 </Layout>
