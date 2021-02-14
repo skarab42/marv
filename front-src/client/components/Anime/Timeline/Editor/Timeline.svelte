@@ -101,6 +101,7 @@
       widget="{widget}"
       on:remove="{onRemove}"
       on:textFileChange
+      on:fileUpdate
     />
   {/each}
   <Cursor min="{splitter.x}" />

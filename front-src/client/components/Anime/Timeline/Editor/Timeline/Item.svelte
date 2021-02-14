@@ -8,6 +8,8 @@
   import TextEditorModal from "./TextEditorModal.svelte";
   import { getContext, createEventDispatcher } from "svelte";
   import { createKeyframe } from "../../libs/createKeyframe";
+  import MdFileUpload from "svelte-icons/md/MdFileUpload.svelte";
+  import FileManagerModal from "@/components/FileManager/Modal.svelte";
   import MdDeleteForever from "svelte-icons/md/MdDeleteForever.svelte";
 
   export let item;
@@ -20,6 +22,8 @@
 
   const dispatch = createEventDispatcher();
 
+  let accept = [];
+  let showFileManager = false;
   let showTextEditorModal = false;
 
   $: isSelected = $selectedItem && $selectedItem.id === item.id;
@@ -103,6 +107,21 @@
     showTextEditorModal = false;
     $items = $items;
   }
+
+  function openFileManager(item) {
+    selectItem(item);
+    accept = [item.target.type];
+    showFileManager = true;
+  }
+
+  function closeFileManager() {
+    showFileManager = false;
+  }
+
+  function onFileSelect({ detail: file }) {
+    dispatch("fileUpdate", { item: $selectedItem, file });
+    closeFileManager();
+  }
 </script>
 
 <SortableItem
@@ -120,6 +139,12 @@
       <Icon icon="{MdEdit}" />
     </div>
   {/if}
+  <div
+    class="p-2 cursor-pointer hover:bg-red-600"
+    on:click="{openFileManager.bind(null, item)}"
+  >
+    <Icon icon="{MdFileUpload}" />
+  </div>
   <div class="p-2 cursor-pointer hover:bg-red-600" on:click="{onRemove}">
     <Icon icon="{MdDeleteForever}" />
   </div>
@@ -148,4 +173,11 @@
   bind:opened="{showTextEditorModal}"
   on:close="{closeTextEditorModal}"
   on:textFileChange
+/>
+
+<FileManagerModal
+  accept="{accept}"
+  on:select="{onFileSelect}"
+  on:close="{closeFileManager}"
+  bind:opened="{showFileManager}"
 />

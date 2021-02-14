@@ -1,4 +1,4 @@
-import { createElementFromTarget } from "@/components/Anime/Timeline/libs/createAnimeFromFile";
+import createElementFromTarget from "@/components/Anime/Timeline/libs/createElementFromTarget";
 
 // import getAttrs from "@/components/Anime/Timeline/libs/getAttrs";
 import getStyle from "@/components/Anime/Timeline/libs/getStyle";
