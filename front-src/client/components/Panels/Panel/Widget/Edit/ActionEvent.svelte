@@ -1,99 +1,46 @@
 <script>
-  import { _ } from "@/libs/i18next";
-  import capitalize from "capitalize";
-  import ShortcutInput from "./ShortcutInput.svelte";
-  import Select from "@/components/UI/Select.svelte";
-  import Notify from "@/components/UI/Notify.svelte";
-  import { commands, rewards } from "@/stores/twitch";
+  import ActionEventSelect from "./ActionEventSelect.svelte";
   import { update, registerShortcut, unregisterShortcut } from "@/libs/panels";
 
   export let panel;
   export let widget;
-  export let eventNames = [];
+  export let eventNames;
 
   let showInvalidShortcutMessage = false;
 
-  const none = capitalize(_(`words.none`));
-  const noneObject = { key: none, val: null };
-  const rewardMap = (reward) => ({ val: reward.id, key: reward.title });
-
-  $: commandNames = [none, ...$commands.map((cmd) => cmd.name)];
-  $: rewardNames = $rewards
-    ? [noneObject, ...$rewards.map(rewardMap)]
-    : [noneObject];
-
-  function onEventChange({ detail: eventName }) {
-    widget.eventName = eventName;
-    onShortcutReset();
-  }
-
-  function onCommandChange({ detail: commandName }) {
-    widget.commandName = commandName;
+  function change(key, value) {
+    widget[key] = value;
     update(panel);
   }
 
-  async function onShortcutChange({ detail: shortcut }) {
+  async function onShortcutChange(shortcut) {
     const { result } = await registerShortcut(shortcut.accelerator);
-    widget.shortcutName = result ? shortcut.accelerator : "";
+    const shortcutName = result ? shortcut.accelerator : "";
     showInvalidShortcutMessage = !result;
-    update(panel);
+    change("shortcutName", shortcutName);
   }
 
   function onShortcutReset() {
-    widget.shortcutName = "";
-    update(panel);
+    change("shortcutName", "");
     unregisterShortcut();
   }
 
-  function onRewardChange({ detail: rewardId }) {
-    widget.rewardId = rewardId;
-    update(panel);
-  }
+  function onChange({ detail }) {
+    onShortcutReset();
 
-  function onInvalidMessageClose() {
-    showInvalidShortcutMessage = false;
+    if (detail.key === "shortcutName") {
+      onShortcutChange(detail.value);
+      return;
+    }
+
+    change(detail.key, detail.value);
   }
 </script>
 
-<Select
-  object="{true}"
-  items="{eventNames}"
-  value="{widget.eventName}"
-  label="{_('words.event')}"
-  on:change="{onEventChange}"
+<ActionEventSelect
+  event="{widget}"
+  eventNames="{eventNames}"
+  on:change="{onChange}"
+  on:shortcutReset="{onShortcutReset}"
+  bind:showInvalidShortcutMessage
 />
-
-{#if widget.eventName === 'onCommand'}
-  <Select
-    value="{widget.commandName}"
-    items="{commandNames}"
-    label="{_('words.command')}"
-    on:change="{onCommandChange}"
-  />
-{/if}
-
-{#if widget.eventName === 'onShortcut'}
-  {#if showInvalidShortcutMessage}
-    <Notify
-      type="warn"
-      message="{_('sentences.global-shortcut-reserved')}"
-      on:close="{onInvalidMessageClose}"
-    />
-  {:else}
-    <ShortcutInput
-      value="{widget.shortcutName}"
-      on:change="{onShortcutChange}"
-      on:reset="{onShortcutReset}"
-    />
-  {/if}
-{/if}
-
-{#if widget.eventName === 'onRedemption'}
-  <Select
-    object="{true}"
-    items="{rewardNames}"
-    value="{widget.rewardId}"
-    label="{_('words.reward')}"
-    on:change="{onRewardChange}"
-  />
-{/if}

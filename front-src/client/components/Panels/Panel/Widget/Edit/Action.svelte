@@ -52,14 +52,17 @@
     });
   }
 
-  function onComponentChange({ detail: name }) {
-    widget.component = cloneDeep(widgets[name].config);
+  function change(key, value) {
+    widget[key] = value;
     update(panel);
   }
 
+  function onComponentChange({ detail: name }) {
+    change("component", cloneDeep(widgets[name].config));
+  }
+
   function onShortcutReset() {
-    widget.shortcutName = "";
-    update(panel);
+    change("shortcutName", "");
     unregisterShortcut();
   }
 
@@ -69,8 +72,7 @@
       removeWidgetComponent(panel, widget)
         .then(() => {
           onShortcutReset();
-          widget.component = null;
-          update(panel);
+          change("component", null);
         })
         .catch((error) => {
           console.log("ERRRO:", error);
@@ -91,16 +93,16 @@
     {#if config.hasTrigger}
       <Select
         object="{true}"
+        items="{triggerTypes}"
         label="{_('words.trigger')}"
         bind:value="{widget.trigger}"
-        items="{triggerTypes}"
       />
     {/if}
     {#if config.hasEvent}
       <ActionEvent
-        eventNames="{eventNames}"
         panel="{panel}"
         widget="{widget}"
+        eventNames="{eventNames}"
       />
     {/if}
   </div>
