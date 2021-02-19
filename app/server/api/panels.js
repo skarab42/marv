@@ -62,4 +62,13 @@ module.exports = {
     this.notify(`panels.${payload.event}`, payload.panel);
     return payload;
   },
+  getShortcuts() {
+    return panels.getShortcuts();
+  },
+  registerShortcut(accelerator) {
+    return panels.registerShortcut(accelerator);
+  },
+  unregisterShortcut(accelerator) {
+    return panels.unregisterShortcut(accelerator);
+  },
 };

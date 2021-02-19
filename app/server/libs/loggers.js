@@ -29,6 +29,7 @@ function createLogger({ group, console = false } = {}) {
         dirname: logsPath,
         maxSize: "42m",
         maxFiles: "7d",
+        level: "debug",
       }),
     ],
   });

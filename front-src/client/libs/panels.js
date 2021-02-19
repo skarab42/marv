@@ -23,3 +23,15 @@ export function importArchive(panel, widget) {
 export function exportPanel(panel) {
   return api.exportPanel(panel);
 }
+
+export function getShortcuts() {
+  return api.getShortcuts();
+}
+
+export function registerShortcut(accelerator) {
+  return api.registerShortcut(accelerator);
+}
+
+export function unregisterShortcut(accelerator) {
+  return api.unregisterShortcut(accelerator);
+}

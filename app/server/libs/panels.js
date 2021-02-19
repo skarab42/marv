@@ -88,6 +88,7 @@ function remove(panel) {
     return true;
   });
   store.set("panels", panels);
+  unregisterShortcut(null);
   return pos;
 }
 
@@ -310,6 +311,53 @@ function importArchive(panel, archive) {
   return { error: "Unsupported file format" };
 }
 
+function getShortcuts() {
+  const shortcuts = [];
+
+  panels.forEach(({ widgets }) => {
+    widgets.forEach((widget) => {
+      if (widget.shortcutName && !shortcuts.includes(widget.shortcutName)) {
+        shortcuts.push(widget.shortcutName);
+      }
+    });
+  });
+
+  return shortcuts;
+}
+
+let registerShortcutId = null;
+let registerShortcutResolve = null;
+
+process.on("message", ({ type, data }) => {
+  if (type === "registerGlobalShortcut" && registerShortcutId === data.id) {
+    registerShortcutResolve(data);
+  }
+});
+
+function registerShortcut(accelerator) {
+  registerShortcutId = uuid();
+  const shortcuts = getShortcuts();
+  if (shortcuts.includes(accelerator)) {
+    return { id: registerShortcutId, result: true };
+  }
+  return new Promise((resolve) => {
+    registerShortcutResolve = resolve;
+    process.send({
+      type: "registerShortcut",
+      data: { id: registerShortcutId, accelerator },
+    });
+  });
+}
+
+function unregisterShortcut(accelerator) {
+  registerShortcutId = uuid();
+  process.send({
+    type: "unregisterShortcut",
+    data: { id: registerShortcutId, accelerator, shortcuts: getShortcuts() },
+  });
+  return { id: registerShortcutId, result: true };
+}
+
 module.exports = {
   add,
   set,
@@ -321,8 +369,11 @@ module.exports = {
   removeWidget,
   importArchive,
   exportWidget,
+  getShortcuts,
   getWidgetFiles,
   duplicateWidget,
   moveWidgetToPanel,
   removeWidgetComponent,
+  registerShortcut,
+  unregisterShortcut,
 };
