@@ -64,7 +64,9 @@
     "file-use-count": "Fichier utilisé par {{count}} widget",
     "file-use-count_plural": "Fichier utilisé par {{count}} widgets",
     "ask-purge": "Supprimer {{count}} fichiers non utiliser ?",
-    "ask-remove-asset": "Supprimer \"{{filename}}\" de la timeline ?"
+    "ask-remove-asset": "Supprimer \"{{filename}}\" de la timeline ?",
+    "global-shortcut-reserved": "Ce raccourci est réservé par le système!",
+    "type-shortcut-here": "Tapez le raccourci ici..."
   },
   "words": {
     "settings": "options",
@@ -151,7 +153,8 @@
     "close": "fermer",
     "confirm": "confirmer",
     "export": "exporter",
-    "import": "importer"
+    "import": "importer",
+    "shortcut": "shortcut"
   },
   "obs": {
     "scene-list": "OBS | Liste des scènes",
@@ -206,7 +209,8 @@
       "onSubGift": "Sub gift",
       "onCommand": "Command",
       "onRedemption": "Redemption",
-      "onBits": "Bits"
+      "onBits": "Bits",
+      "onShortcut": "Shortcut"
     }
   },
   "labels": {

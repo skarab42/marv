@@ -1,4 +1,5 @@
 [
+  { "name": "onShortcut", "tags": [] },
   { "name": "onAction", "tags": ["user", "message", "date"] },
   { "name": "onBan", "tags": ["user"] },
   { "name": "onBits", "tags": ["user", "message", "amount", "total"] },

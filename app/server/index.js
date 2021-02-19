@@ -61,7 +61,7 @@ function uriDecode(req, res, next) {
 
 function onStarted() {
   if (typeof process.send === "function") {
-    process.send("started");
+    require("./onStart");
   }
 }
 

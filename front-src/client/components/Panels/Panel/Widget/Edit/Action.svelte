@@ -5,21 +5,28 @@
   import capitalize from "capitalize";
   import { localeSort } from "@/libs/utils";
   import widgets from "@/components/Widgets";
+  import ShortcutInput from "./ShortcutInput.svelte";
   import Button from "@/components/UI/Button.svelte";
   import Select from "@/components/UI/Select.svelte";
+  import Notify from "@/components/UI/Notify.svelte";
   import { commands, rewards } from "@/stores/twitch";
   import MdDelete from "svelte-icons/md/MdDeleteForever.svelte";
   import ConfirmModal from "@/components/UI/ConfirmModal.svelte";
-  import { update, removeWidgetComponent } from "@/libs/panels";
+  import {
+    update,
+    removeWidgetComponent,
+    registerShortcut,
+    unregisterShortcut,
+  } from "@/libs/panels";
 
   export let panel;
   export let widget;
 
   let eventNames = [];
   let removeActionModal = false;
+  let showInvalidShortcutMessage = false;
 
   const none = capitalize(_(`words.none`));
-
   const noneObject = { key: none, val: null };
   const rewardMap = (reward) => ({ val: reward.id, key: reward.title });
   const widgetsList = [noneObject, ...getWidgetsList()];
@@ -66,6 +73,7 @@
     response &&
       removeWidgetComponent(panel, widget)
         .then(() => {
+          onShortcutReset();
           widget.component = null;
           update(panel);
         })
@@ -79,6 +87,7 @@
   }
 
   function onEventChange({ detail: eventName }) {
+    onShortcutReset();
     widget.eventName = eventName;
     update(panel);
   }
@@ -88,9 +97,26 @@
     update(panel);
   }
 
+  async function onShortcutChange({ detail: shortcut }) {
+    const { result } = await registerShortcut(shortcut.accelerator);
+    widget.shortcutName = result ? shortcut.accelerator : "";
+    showInvalidShortcutMessage = !result;
+    update(panel);
+  }
+
+  function onShortcutReset() {
+    widget.shortcutName = "";
+    update(panel);
+    unregisterShortcut();
+  }
+
   function onRewardChange({ detail: rewardId }) {
     widget.rewardId = rewardId;
     update(panel);
+  }
+
+  function onInvalidMessageClose() {
+    showInvalidShortcutMessage = false;
   }
 </script>
 
@@ -123,6 +149,21 @@
           label="{_('words.command')}"
           on:change="{onCommandChange}"
         />
+      {/if}
+      {#if widget.eventName === 'onShortcut'}
+        {#if showInvalidShortcutMessage}
+          <Notify
+            type="warn"
+            message="{_('sentences.global-shortcut-reserved')}"
+            on:close="{onInvalidMessageClose}"
+          />
+        {:else}
+          <ShortcutInput
+            value="{widget.shortcutName}"
+            on:change="{onShortcutChange}"
+            on:reset="{onShortcutReset}"
+          />
+        {/if}
       {/if}
       {#if widget.eventName === 'onRedemption'}
         <Select

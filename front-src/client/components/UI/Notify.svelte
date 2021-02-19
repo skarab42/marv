@@ -1,5 +1,6 @@
 <script>
   import { fade } from "svelte/transition";
+  import { createEventDispatcher } from "svelte";
   import Icon from "@/components/UI/Icon.svelte";
   import MdClose from "svelte-icons/md/MdClose.svelte";
 
@@ -7,6 +8,8 @@
   export let delay = 5000;
   export let type = "info";
   export let closable = true;
+
+  const dispatch = createEventDispatcher();
 
   const colors = {
     info: "bg-blue-600",
@@ -16,6 +19,7 @@
 
   function close() {
     message = null;
+    dispatch("close");
   }
 
   let timeoutId = null;

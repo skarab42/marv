@@ -1,15 +1,37 @@
 "use strict";
 
-const { app } = require("electron");
+const { app, globalShortcut } = require("electron");
 const server = require("./server");
 
 let mainWindow;
 
-async function onServerReady() {
+function registerGlobalShortcut(accelerator, id = null) {
+  const result = globalShortcut.register(accelerator, () => {
+    server.send({ type: "shortcut", accelerator });
+  });
+  server.send({ type: "registerGlobalShortcut", data: { id, result } });
+  return result;
+}
+
+function registerGlobalShortcuts(shortcuts) {
+  shortcuts.forEach(registerGlobalShortcut);
+}
+
+function onRegisterShortcut({ accelerator, id }) {
+  return registerGlobalShortcut(accelerator, id);
+}
+
+function onUnregisterShortcut({ shortcuts }) {
+  globalShortcut.unregisterAll();
+  registerGlobalShortcuts(shortcuts);
+}
+
+async function onServerReady(serverState) {
   const tray = require("./tray");
   mainWindow = require("./window/mainWindow");
   const settings = require("../server/libs/settings");
   mainWindow({ showOnLoad: await settings.get("app.openOnStartup") });
+  registerGlobalShortcuts(serverState.shortcuts);
   tray();
 }
 
@@ -19,14 +41,20 @@ function init() {
   });
 
   app.whenReady().then(() => {
-    server.start(onServerReady);
+    server.start({ onServerReady, onRegisterShortcut, onUnregisterShortcut });
   });
 }
 
-app.requestSingleInstanceLock() ? init() : app.quit();
-app.on("second-instance", () => mainWindow());
+function onQuit() {
+  globalShortcut.unregisterAll();
+  server.stop();
+}
 
-app.on("quit", () => server.stop());
-process.on("SIGINT", () => server.stop());
-process.on("SIGTERM", () => server.stop());
-process.on("SIGKILL", () => server.stop());
+app.requestSingleInstanceLock() ? init() : app.quit();
+
+app.on("second-instance", () => mainWindow());
+app.on("quit", onQuit);
+
+process.on("SIGINT", onQuit);
+process.on("SIGTERM", onQuit);
+process.on("SIGKILL", onQuit);

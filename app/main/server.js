@@ -9,6 +9,7 @@ const rootPath = path.resolve(__dirname, "../..");
 const serverPath = path.join(__dirname, "../server");
 const serverBin = path.join(serverPath, "index.js");
 
+let events = {};
 let server = null;
 
 function bufferToString(buffer) {
@@ -25,8 +26,10 @@ function stderr(buffer) {
   console.error(colors.redBright("[server]"), bufferToString(buffer));
 }
 
-function start(onStared = null) {
+function start(settings = {}) {
   if (server) return server;
+
+  events = { ...events, ...settings };
 
   const argv = process.argv.slice(2);
   server = fork(serverBin, argv, { stdio: ["pipe", "pipe", "pipe", "ipc"] });
@@ -39,10 +42,19 @@ function start(onStared = null) {
     code === 42 && quit();
   });
 
-  onStared &&
-    server.on("message", (message) => {
-      if (message === "started") onStared();
-    });
+  server.on("message", (event) => {
+    if (event.type === "registerShortcut") {
+      events.onRegisterShortcut(event.data);
+    } else if (event.type === "unregisterShortcut") {
+      events.onUnregisterShortcut(event.data);
+    } else if (event.type === "start") {
+      events.onServerReady(event.data);
+    }
+  });
+}
+
+function send(message) {
+  server && server.send(message);
 }
 
 function restart() {
@@ -75,5 +87,6 @@ if (watch) {
 module.exports = {
   start,
   stop,
+  send,
   restart,
 };

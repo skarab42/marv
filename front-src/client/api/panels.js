@@ -16,4 +16,9 @@ export default {
   exportWidget: (panel, widget) => emit("panels.exportWidget", panel, widget),
   exportPanel: (panel) => emit("panels.exportPanel", panel),
   importArchive: (panel, widget) => emit("panels.importArchive", panel, widget),
+  getShortcuts: () => emit("panels.getShortcuts"),
+  registerShortcut: (accelerator) =>
+    emit("panels.registerShortcut", accelerator),
+  unregisterShortcut: (accelerator) =>
+    emit("panels.unregisterShortcut", accelerator),
 };
