@@ -25,7 +25,6 @@
   const none = capitalize(_(`words.none`));
   const noneObject = { key: none, val: null };
   const widgetsList = [noneObject, ...getWidgetsList()];
-
   const triggerTypes = ["immediat", "queue", "asap"].map((val) => {
     return { val, key: capitalize(_(`words.${val}`)) };
   });
@@ -98,7 +97,11 @@
       />
     {/if}
     {#if config.hasEvent}
-      <ActionEvent panel="{panel}" widget="{widget}" />
+      <ActionEvent
+        eventNames="{eventNames}"
+        panel="{panel}"
+        widget="{widget}"
+      />
     {/if}
   </div>
   <div class="flex p-2 pt-0">

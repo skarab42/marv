@@ -1,8 +1,6 @@
 <script>
-  import api from "@/api/twitch";
   import { _ } from "@/libs/i18next";
   import capitalize from "capitalize";
-  import { localeSort } from "@/libs/utils";
   import widgets from "@/components/Widgets";
   import ShortcutInput from "./ShortcutInput.svelte";
   import Select from "@/components/UI/Select.svelte";
@@ -12,8 +10,8 @@
 
   export let panel;
   export let widget;
+  export let eventNames = [];
 
-  let eventNames = [];
   let showInvalidShortcutMessage = false;
 
   const none = capitalize(_(`words.none`));
@@ -25,26 +23,13 @@
     ? [noneObject, ...$rewards.map(rewardMap)]
     : [noneObject];
 
-  api.getEventNames().then((names) => {
-    if (Array.isArray(config.hasEvent)) {
-      names = config.hasEvent;
-    } else {
-      names = names.map((event) => event.name);
-    }
-    eventNames = names
-      .map((val) => ({ key: _(`twitch.events.${val}`), val }))
-      .sort((a, b) => localeSort(a.key, b.key));
-    eventNames.unshift({ key: none, val: "none" });
-  });
-
   $: component = widget.component;
   $: componentName = (component && component.name) || "";
   $: config = componentName ? widgets[componentName].config : {};
 
   function onEventChange({ detail: eventName }) {
-    onShortcutReset();
     widget.eventName = eventName;
-    update(panel);
+    onShortcutReset();
   }
 
   function onCommandChange({ detail: commandName }) {
