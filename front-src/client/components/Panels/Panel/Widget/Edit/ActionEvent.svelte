@@ -1,16 +1,16 @@
 <script>
+  import { createEventDispatcher } from "svelte";
   import ActionEventSelect from "./ActionEventSelect.svelte";
-  import { update, registerShortcut, unregisterShortcut } from "@/libs/panels";
+  import { registerShortcut, unregisterShortcut } from "@/libs/panels";
 
-  export let panel;
   export let widget;
   export let eventNames;
 
   let showInvalidShortcutMessage = false;
+  const dispatch = createEventDispatcher();
 
   function change(key, value) {
-    widget[key] = value;
-    update(panel);
+    dispatch("change", { key, value });
   }
 
   async function onShortcutChange(shortcut) {

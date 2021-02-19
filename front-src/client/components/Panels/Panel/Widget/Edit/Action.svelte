@@ -57,6 +57,10 @@
     update(panel);
   }
 
+  function onActionChange({ detail }) {
+    change(detail.key, detail.value);
+  }
+
   function onComponentChange({ detail: name }) {
     change("component", cloneDeep(widgets[name].config));
   }
@@ -103,6 +107,8 @@
         panel="{panel}"
         widget="{widget}"
         eventNames="{eventNames}"
+        on:change="{onActionChange}"
+      />
       />
     {/if}
   </div>
