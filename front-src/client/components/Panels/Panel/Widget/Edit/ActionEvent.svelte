@@ -1,7 +1,6 @@
 <script>
   import { _ } from "@/libs/i18next";
   import capitalize from "capitalize";
-  import widgets from "@/components/Widgets";
   import ShortcutInput from "./ShortcutInput.svelte";
   import Select from "@/components/UI/Select.svelte";
   import Notify from "@/components/UI/Notify.svelte";
@@ -22,10 +21,6 @@
   $: rewardNames = $rewards
     ? [noneObject, ...$rewards.map(rewardMap)]
     : [noneObject];
-
-  $: component = widget.component;
-  $: componentName = (component && component.name) || "";
-  $: config = componentName ? widgets[componentName].config : {};
 
   function onEventChange({ detail: eventName }) {
     widget.eventName = eventName;
