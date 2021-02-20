@@ -26,7 +26,7 @@ module.exports = {
 
         if (event.eventName === "onCommand") {
           event.commandName = widget.commandName;
-        } else if (event.eventName === "onReward") {
+        } else if (event.eventName === "onRedemption") {
           event.rewardId = widget.rewardId;
         } else if (event.eventName === "onShortcut") {
           event.shortcutName = widget.shortcutName;
