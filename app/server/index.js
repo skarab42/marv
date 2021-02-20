@@ -11,6 +11,7 @@ const loggers = require("./libs/loggers");
 const socket = require("./libs/socket.io");
 const settings = require("./libs/settings");
 const { getServerURL } = require("./utils");
+const migrateStore = require("../stores/migrate");
 const { getSystemFonts } = require("./libs/files");
 const errorHandler = require("./libs/errorHandler");
 const { init: i18next } = require("./libs/i18next");
@@ -71,6 +72,7 @@ async function start() {
   await umzug.up();
   await i18next();
   await twitchInit();
+  await migrateStore.up();
 
   let port = await settings.get("server.port");
 
