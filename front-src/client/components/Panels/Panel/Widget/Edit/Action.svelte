@@ -10,7 +10,6 @@
   import capitalize from "capitalize";
   import { localeSort } from "@/libs/utils";
   import widgets from "@/components/Widgets";
-  import ActionEvent from "./ActionEvent.svelte";
   import ActionEvents from "./ActionEvents.svelte";
   import Button from "@/components/UI/Button.svelte";
   import Select from "@/components/UI/Select.svelte";
@@ -58,10 +57,6 @@
     update(panel);
   }
 
-  function onActionChange({ detail }) {
-    change(detail.key, detail.value);
-  }
-
   function onComponentChange({ detail: name }) {
     change("component", cloneDeep(widgets[name].config));
   }
@@ -104,13 +99,6 @@
       />
     {/if}
     {#if config.hasEvent}
-      <div class="p-2 flex flex-col gap-2 bg-gray-700">
-        <ActionEvent
-          event="{widget}"
-          eventNames="{eventNames}"
-          on:change="{onActionChange}"
-        />
-      </div>
       <ActionEvents
         panel="{panel}"
         widget="{widget}"

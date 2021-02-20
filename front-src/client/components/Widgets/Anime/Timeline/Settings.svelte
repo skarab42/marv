@@ -42,7 +42,7 @@
 
 <Button
   icon="{MdOpenInNew}"
-  class="bg-secondary flex-auto mb-2"
+  class="bg-secondary flex-auto m-2 mt-0"
   on:click="{openTimeline}"
 >
   <div>{_('sentences.open-anime-timeline')}</div>
