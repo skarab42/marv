@@ -35,8 +35,8 @@
 </script>
 
 {#each widget.events as event, index}
-  <div class="relative p-2 mt-5 flex gap-2 bg-gray-700">
-    <div class="flex-auto flex flex-col gap-2">
+  <div class="flex gap-2">
+    <div class="flex-auto">
       <ActionEvent
         event="{event}"
         eventNames="{eventNames}"
@@ -44,11 +44,8 @@
       />
     </div>
     <Button
-      iconSize="sm"
       icon="{MdClose}"
-      padding="p-1"
-      style="top:-6px;right:-6px;"
-      class="w-6 h-6 absolute bg-red-600 rounded-full"
+      class="bg-red-600"
       on:click="{onRemove.bind(null, index)}"
     />
   </div>
