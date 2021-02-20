@@ -9,11 +9,13 @@
   export let rootClass = "";
   export let labelClass = "p-2";
   export let inputClass = "p-2";
+  export let labelMinWidth = "50%";
   export let textColor = "text-light";
   export let bgColor = "bg-dark-lighter";
 
   $: color = `${bgColor} ${textColor}`;
   $: inputHidden = type === "checkbox" ? "hidden" : "";
+  $: labelStyle = labelMinWidth ? `min-width:${labelMinWidth}` : "";
 
   const dispatch = createEventDispatcher();
   const debounceUpdate = debounce(500, update);
@@ -37,7 +39,7 @@
 <!-- svelte-ignore a11y-label-has-associated-control -->
 <label class="flex flex-wrap items-center {color} {rootClass}">
   {#if label}
-    <div class="flex font-medium uppercase {labelClass}">
+    <div style="{labelStyle}" class="flex font-medium uppercase {labelClass}">
       {#if icon}
         <Icon icon="{icon}" class="mr-2" />
       {/if}

@@ -12,11 +12,13 @@
   export let colapsed = true;
   export let previewClass = "";
   export let position = "left";
+  export let labelMinWidth = "50%";
 
   let cls = "flex-auto";
   export { cls as class };
 
   let pos = position === "left" ? "left-0" : "right-0";
+  $: labelStyle = labelMinWidth ? `min-width:${labelMinWidth}` : "";
 
   function onColor(event) {
     color = event.detail.hex;
@@ -38,7 +40,12 @@
 <div use:clickoutside on:clickoutside="{hide}" class="relative {cls}">
   <div class="flex cursor-pointer" on:click="{toggle}">
     {#if label}
-      <div class="p-2 uppercase font-medium bg-dark-lighter">{label}</div>
+      <div
+        style="{labelStyle}"
+        class="p-2 uppercase font-medium bg-dark-lighter"
+      >
+        {label}
+      </div>
     {/if}
     <div class="p-2 text-dark flex-auto {previewClass}" style="{style}"></div>
   </div>

@@ -7,11 +7,13 @@
   export let object = false;
   export let rootClass = "";
   export let inputClass = "p-2";
+  export let labelMinWidth = "50%";
   export let textColor = "text-light";
   export let bgColor = "bg-dark-lighter";
   export let labelClass = "p-2 font-medium uppercase";
 
   $: color = `${bgColor} ${textColor}`;
+  $: labelStyle = labelMinWidth ? `min-width:${labelMinWidth}` : "";
 
   const dispatch = createEventDispatcher();
 
@@ -21,9 +23,9 @@
 </script>
 
 <!-- svelte-ignore a11y-label-has-associated-control -->
-<label class="{rootClass} flex flex-wrap items-center {color}">
+<label class="{rootClass} flex items-center {color}">
   {#if label}
-    <div class="{labelClass}">{label}</div>
+    <div style="{labelStyle}" class="{labelClass}">{label}</div>
   {/if}
   <div class="flex-auto">
     <!-- svelte-ignore a11y-no-onchange -->

@@ -69,13 +69,15 @@
   });
 </script>
 
-<label class="flex flex-wrap items-center bg-dark-lighter text-light">
-  <div class="p-2 font-medium uppercase">{_('words.shortcut')}</div>
+<div class="flex items-center bg-dark-lighter text-light">
+  <div style="min-width:50%" class="p-2 font-medium uppercase">
+    {_('words.shortcut')}
+  </div>
   <input
     type="text"
     bind:this="{input}"
     placeholder="{placeholder}"
-    class="p-2 flex-auto text-dark {lastShortcut.length ? 'hidden' : ''}"
+    class="p-2 w-full text-dark {lastShortcut.length ? 'hidden' : ''}"
   />
   {#if lastShortcut.length}
     <div class="flex flex-auto text-center bg-green-600 overflow-hidden">
@@ -83,4 +85,4 @@
       <Button class="bg-orange-600" icon="{MdKeyboard}" on:click="{onReset}" />
     </div>
   {/if}
-</label>
+</div>
