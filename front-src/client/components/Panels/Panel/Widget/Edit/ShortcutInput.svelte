@@ -1,7 +1,7 @@
 <script>
   import { _ } from "@/libs/i18next";
   import Button from "@/components/UI/Button.svelte";
-  import MdClose from "svelte-icons/md/MdClose.svelte";
+  import MdKeyboard from "svelte-icons/md/MdKeyboard.svelte";
   import { onDestroy, onMount, createEventDispatcher } from "svelte";
 
   export let value = "";
@@ -69,16 +69,18 @@
   });
 </script>
 
-{#if lastShortcut.length}
-  <div class="flex text-center bg-green-600 rounded overflow-hidden">
-    <div class="p-2 flex-auto">{getAccelerator(lastShortcut)}</div>
-    <Button class="bg-red-600" icon="{MdClose}" on:click="{onReset}" />
-  </div>
-{/if}
-
-<input
-  type="text"
-  bind:this="{input}"
-  placeholder="{placeholder}"
-  class="p-2 text-dark {lastShortcut.length ? 'hidden' : ''}"
-/>
+<label class="flex flex-wrap items-center bg-dark-lighter text-light">
+  <div class="p-2 font-medium uppercase">{_('words.shortcut')}</div>
+  <input
+    type="text"
+    bind:this="{input}"
+    placeholder="{placeholder}"
+    class="p-2 flex-auto text-dark {lastShortcut.length ? 'hidden' : ''}"
+  />
+  {#if lastShortcut.length}
+    <div class="flex flex-auto text-center bg-green-600 overflow-hidden">
+      <div class="p-2 flex-auto">{getAccelerator(lastShortcut)}</div>
+      <Button class="bg-orange-600" icon="{MdKeyboard}" on:click="{onReset}" />
+    </div>
+  {/if}
+</label>

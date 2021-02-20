@@ -1,41 +1,30 @@
 <script>
+  import {
+    update,
+    unregisterShortcut,
+    removeWidgetComponent,
+  } from "@/libs/panels";
   import api from "@/api/twitch";
   import { _ } from "@/libs/i18next";
   import cloneDeep from "clone-deep";
   import capitalize from "capitalize";
   import { localeSort } from "@/libs/utils";
   import widgets from "@/components/Widgets";
-  import ShortcutInput from "./ShortcutInput.svelte";
+  import ActionEvents from "./ActionEvents.svelte";
   import Button from "@/components/UI/Button.svelte";
   import Select from "@/components/UI/Select.svelte";
-  import Notify from "@/components/UI/Notify.svelte";
-  import { commands, rewards } from "@/stores/twitch";
   import MdDelete from "svelte-icons/md/MdDeleteForever.svelte";
   import ConfirmModal from "@/components/UI/ConfirmModal.svelte";
-  import {
-    update,
-    removeWidgetComponent,
-    registerShortcut,
-    unregisterShortcut,
-  } from "@/libs/panels";
 
   export let panel;
   export let widget;
 
   let eventNames = [];
   let removeActionModal = false;
-  let showInvalidShortcutMessage = false;
 
   const none = capitalize(_(`words.none`));
   const noneObject = { key: none, val: null };
-  const rewardMap = (reward) => ({ val: reward.id, key: reward.title });
   const widgetsList = [noneObject, ...getWidgetsList()];
-
-  $: commandNames = [none, ...$commands.map((cmd) => cmd.name)];
-  $: rewardNames = $rewards
-    ? [noneObject, ...$rewards.map(rewardMap)]
-    : [noneObject];
-
   const triggerTypes = ["immediat", "queue", "asap"].map((val) => {
     return { val, key: capitalize(_(`words.${val}`)) };
   });
@@ -63,9 +52,18 @@
     });
   }
 
-  function onComponentChange({ detail: name }) {
-    widget.component = cloneDeep(widgets[name].config);
+  function change(key, value) {
+    widget[key] = value;
     update(panel);
+  }
+
+  function onComponentChange({ detail: name }) {
+    change("component", cloneDeep(widgets[name].config));
+  }
+
+  function onShortcutReset() {
+    change("shortcutName", "");
+    unregisterShortcut();
   }
 
   function onRemoveActionConfirmed({ detail: response }) {
@@ -74,8 +72,7 @@
       removeWidgetComponent(panel, widget)
         .then(() => {
           onShortcutReset();
-          widget.component = null;
-          update(panel);
+          change("component", null);
         })
         .catch((error) => {
           console.log("ERRRO:", error);
@@ -84,39 +81,6 @@
 
   function onRemoveAction() {
     removeActionModal = true;
-  }
-
-  function onEventChange({ detail: eventName }) {
-    onShortcutReset();
-    widget.eventName = eventName;
-    update(panel);
-  }
-
-  function onCommandChange({ detail: commandName }) {
-    widget.commandName = commandName;
-    update(panel);
-  }
-
-  async function onShortcutChange({ detail: shortcut }) {
-    const { result } = await registerShortcut(shortcut.accelerator);
-    widget.shortcutName = result ? shortcut.accelerator : "";
-    showInvalidShortcutMessage = !result;
-    update(panel);
-  }
-
-  function onShortcutReset() {
-    widget.shortcutName = "";
-    update(panel);
-    unregisterShortcut();
-  }
-
-  function onRewardChange({ detail: rewardId }) {
-    widget.rewardId = rewardId;
-    update(panel);
-  }
-
-  function onInvalidMessageClose() {
-    showInvalidShortcutMessage = false;
   }
 </script>
 
@@ -129,51 +93,17 @@
     {#if config.hasTrigger}
       <Select
         object="{true}"
+        items="{triggerTypes}"
         label="{_('words.trigger')}"
         bind:value="{widget.trigger}"
-        items="{triggerTypes}"
       />
     {/if}
     {#if config.hasEvent}
-      <Select
-        object="{true}"
-        items="{eventNames}"
-        value="{widget.eventName}"
-        label="{_('words.event')}"
-        on:change="{onEventChange}"
+      <ActionEvents
+        panel="{panel}"
+        widget="{widget}"
+        eventNames="{eventNames}"
       />
-      {#if widget.eventName === 'onCommand'}
-        <Select
-          value="{widget.commandName}"
-          items="{commandNames}"
-          label="{_('words.command')}"
-          on:change="{onCommandChange}"
-        />
-      {/if}
-      {#if widget.eventName === 'onShortcut'}
-        {#if showInvalidShortcutMessage}
-          <Notify
-            type="warn"
-            message="{_('sentences.global-shortcut-reserved')}"
-            on:close="{onInvalidMessageClose}"
-          />
-        {:else}
-          <ShortcutInput
-            value="{widget.shortcutName}"
-            on:change="{onShortcutChange}"
-            on:reset="{onShortcutReset}"
-          />
-        {/if}
-      {/if}
-      {#if widget.eventName === 'onRedemption'}
-        <Select
-          object="{true}"
-          items="{rewardNames}"
-          value="{widget.rewardId}"
-          label="{_('words.reward')}"
-          on:change="{onRewardChange}"
-        />
-      {/if}
     {/if}
   </div>
   <div class="flex p-2 pt-0">
