@@ -13,7 +13,18 @@
   function setShowAddButton(events) {
     if (!events.length) return true;
     const lastEvent = events[events.length - 1];
-    return lastEvent && lastEvent.eventName && lastEvent.eventName !== "none";
+    const eventName = lastEvent && lastEvent.eventName;
+    if (!eventName || eventName === "none") return false;
+    if (eventName === "onCommand" && !lastEvent.commandName) {
+      return false;
+    }
+    if (eventName === "onRedemption" && !lastEvent.rewardId) {
+      return false;
+    }
+    if (eventName === "onShortcut" && !lastEvent.shortcutName) {
+      return false;
+    }
+    return true;
   }
 
   $: showAddButton = setShowAddButton(widget.events);
