@@ -66,7 +66,8 @@
     "ask-purge": "¿Borrar {{count}} archivos no utilizados?",
     "ask-remove-asset": "¿Eliminar \"{{filename}}\" de la línea de tiempo?",
     "global-shortcut-reserved": "Este acceso directo está reservado por el sistema!",
-    "type-shortcut-here": "Escriba el acceso directo aquí..."
+    "type-shortcut-here": "Escriba el acceso directo aquí...",
+    "add-event": "Añadir evento"
   },
   "words": {
     "settings": "opciones",

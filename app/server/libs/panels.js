@@ -40,6 +40,8 @@ function createWidget(widget = {}) {
     eventName: "none",
     commandName: "none",
     rewardId: "none",
+    shortcutName: "",
+    events: [],
     label: null,
     labelSize: 16,
     labelPadding: 8,
@@ -314,10 +316,19 @@ function importArchive(panel, archive) {
 function getShortcuts() {
   const shortcuts = [];
 
+  const pushEvent = (event) => {
+    if (event.shortcutName && !shortcuts.includes(event.shortcutName)) {
+      shortcuts.push(event.shortcutName);
+    }
+  };
+
   panels.forEach(({ widgets }) => {
     widgets.forEach((widget) => {
-      if (widget.shortcutName && !shortcuts.includes(widget.shortcutName)) {
-        shortcuts.push(widget.shortcutName);
+      pushEvent(widget);
+      if (widget.events) {
+        widget.events.forEach((event) => {
+          pushEvent(event);
+        });
       }
     });
   });

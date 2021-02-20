@@ -11,18 +11,28 @@ const types = {
   AnimeTimeline: "anime",
 };
 
-function isInvalidShortcut(widget, eventProps) {
+function isInvalidShortcut(event, eventProps) {
   return (
-    eventProps.accelerator && widget.shortcutName !== eventProps.accelerator
+    eventProps.accelerator && event.shortcutName !== eventProps.accelerator
   );
 }
 
-function isInvalidCommand(widget, eventProps) {
-  return eventProps.command && widget.commandName !== eventProps.command.name;
+function isInvalidCommand(event, eventProps) {
+  return eventProps.command && event.commandName !== eventProps.command.name;
 }
 
-function isInvalidReward(widget, eventProps) {
-  return eventProps.reward && widget.rewardId !== eventProps.reward.id;
+function isInvalidReward(event, eventProps) {
+  return eventProps.reward && event.rewardId !== eventProps.reward.id;
+}
+
+function getValidEvents(widget, eventName) {
+  let events = widget.events.filter((event) => event.eventName === eventName);
+
+  if (widget.eventName === eventName) {
+    events.push(widget);
+  }
+
+  return events;
 }
 
 module.exports = function pushActions(eventName, eventProps) {
@@ -35,12 +45,14 @@ module.exports = function pushActions(eventName, eventProps) {
       const type = types[widget.component.name];
 
       if (!["anime", "obs"].includes(type)) return;
-      if (widget.eventName !== eventName) return;
-      if (isInvalidReward(widget, eventProps)) return;
-      if (isInvalidCommand(widget, eventProps)) return;
-      if (isInvalidShortcut(widget, eventProps)) return;
 
-      push({ type, widget, eventProps });
+      getValidEvents(widget, eventName).forEach((event) => {
+        if (isInvalidReward(event, eventProps)) return;
+        if (isInvalidCommand(event, eventProps)) return;
+        if (isInvalidShortcut(event, eventProps)) return;
+
+        push({ type, widget, event, eventProps });
+      });
     });
   });
 };

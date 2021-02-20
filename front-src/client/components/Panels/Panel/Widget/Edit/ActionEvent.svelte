@@ -3,7 +3,7 @@
   import ActionEventSelect from "./ActionEventSelect.svelte";
   import { registerShortcut, unregisterShortcut } from "@/libs/panels";
 
-  export let widget;
+  export let event;
   export let eventNames;
 
   let showInvalidShortcutMessage = false;
@@ -38,7 +38,7 @@
 </script>
 
 <ActionEventSelect
-  event="{widget}"
+  event="{event}"
   eventNames="{eventNames}"
   on:change="{onChange}"
   on:shortcutReset="{onShortcutReset}"
