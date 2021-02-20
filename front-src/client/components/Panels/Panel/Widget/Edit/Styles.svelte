@@ -154,7 +154,7 @@
     label="{labelWord} | {_('words.position')}"
     on:change="{onUpdate.bind(null, 'labelPosition')}"
   />
-  <div class="flex flex-wrap space-x-1">
+  <div class="flex space-x-1">
     <Select
       object="{true}"
       value="{borderSize}"
@@ -173,7 +173,7 @@
       {_('words.add')}
     </Button>
   </div>
-  <div class="flex flex-wrap {bordersTags.length ? '' : 'hidden'}">
+  <div class="flex {bordersTags.length ? '' : 'hidden'}">
     {#each bordersTags as tag}
       <div
         class="m-1 flex items-center bg-black bg-opacity-50 rounded overflow-hidden"
