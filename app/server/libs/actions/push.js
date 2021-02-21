@@ -75,6 +75,11 @@ module.exports = function push(action) {
 
   action = create(action);
 
+  action.eventProps.eventName = action.event
+    ? action.event.eventName
+    : "onClick";
+
+
   state.push(action);
 
   if (action.widget.trigger === "immediat") {
