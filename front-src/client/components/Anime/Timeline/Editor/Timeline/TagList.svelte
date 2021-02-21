@@ -1,13 +1,23 @@
 <script>
   import api from "@/api/twitch";
   import { _ } from "@/libs/i18next";
+  import { getContext } from "svelte";
   import Select from "@/components/UI/Select.svelte";
+
+  const { fakeEvent } = getContext("Editor");
 
   export let widget;
 
   let events = {};
   let eventName = null;
   let eventsNames = [];
+
+  function setEventName(name) {
+    eventName = name;
+    const data = {};
+    events[eventName].forEach((e) => (data[e] = e));
+    $fakeEvent = { eventName: `on${name}`, ...data };
+  }
 
   api.getEventNames().then((names) => {
     widget.events.forEach((e) => {
@@ -18,11 +28,11 @@
         events[name] = result.tags;
       }
     });
-    eventName = eventsNames[0];
+    setEventName(eventsNames[0]);
   });
 
   function onEventChange({ detail }) {
-    eventName = detail;
+    setEventName(detail);
   }
 </script>
 

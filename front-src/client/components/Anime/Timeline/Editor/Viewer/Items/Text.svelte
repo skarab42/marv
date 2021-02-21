@@ -1,16 +1,27 @@
 <script>
+  import ejs from "../../../../../../../libs/ejs";
   import { fetchText } from "../../../libs/utils";
   import getStyle from "../../../libs/getStyle";
   import getTrans from "../../../libs/getTrans";
+  import { getContext } from "svelte";
 
   export let item;
+
+  const { fakeEvent } = getContext("Editor");
 
   $: style = getStyle(item.target.style);
   $: trans = getTrans(item.target.trans);
 
-  let text = "Loading...";
+  let html = "Loading...";
 
-  $: fetchText(item.target.filename).then((txt) => (text = txt));
+  $: fetchText(item.target.filename).then((rawText) => {
+    const data = $fakeEvent || { eventName: "animePreview" };
+    try {
+      html = ejs.render(rawText, data);
+    } catch (error) {
+      html = `<pre>${error}</pre>`;
+    }
+  });
 </script>
 
 <div
@@ -18,5 +29,5 @@
   id="item-{item.id}"
   style="{style};{trans};"
 >
-  {text}
+  {@html html}
 </div>

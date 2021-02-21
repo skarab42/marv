@@ -1,18 +1,14 @@
 import createElementFromTarget from "@/components/Anime/Timeline/libs/createElementFromTarget";
-
-// import getAttrs from "@/components/Anime/Timeline/libs/getAttrs";
 import getStyle from "@/components/Anime/Timeline/libs/getStyle";
 import getTrans from "@/components/Anime/Timeline/libs/getTrans";
-
 import { loadUsedFonts, loadFont } from "../libs/fonts";
 import { on } from "./libs/socket.io";
 import animejs from "animejs";
-import ejs from "./libs/ejs";
+import ejs from "../libs/ejs";
 
 (async () => await loadUsedFonts(false))();
 
 const playables = ["audio", "video"];
-
 const $main = document.querySelector("main");
 
 function runAnime(action, cb) {

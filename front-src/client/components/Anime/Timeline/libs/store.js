@@ -13,5 +13,6 @@ export default function create() {
     paused: writable(false),
     seek: writable(0),
     pixelPerMs: 10,
+    fakeEvent: writable(null),
   };
 }
