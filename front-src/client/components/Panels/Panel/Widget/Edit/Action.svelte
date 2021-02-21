@@ -29,7 +29,7 @@
     return { val, key: capitalize(_(`words.${val}`)) };
   });
 
-  api.getEventNames().then((names) => {
+  api.getEvents().then((names) => {
     if (Array.isArray(config.hasEvent)) {
       names = config.hasEvent;
     } else {
