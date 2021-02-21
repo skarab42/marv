@@ -2,12 +2,14 @@
   import { _ } from "@/libs/i18next";
   import { onMount, onDestroy } from "svelte";
   import pannable from "@/libs/svelte/pannable.js";
+  import EventSelect from "./Timeline/EventSelect.svelte";
   import ColorPicker from "@/components/UI/ColorPicker.svelte";
 
   const localSize = JSON.parse(
     localStorage.getItem("anime.viewer.size") || "{}"
   );
 
+  export let widget;
   export let size = {
     width: localSize.width || window.screen.width,
     height: localSize.height || window.screen.height,
@@ -97,8 +99,9 @@
 </script>
 
 <div class="h-full flex flex-col flex-auto">
-  <div class="flex bg-secondary-dark">
+  <div class="flex items-center bg-secondary-dark">
     <slot name="header" />
+    <EventSelect widget="{widget}" showLabel="{false}" />
     <div class="flex">
       <ColorPicker
         label="{_('words.color')}"
@@ -107,7 +110,7 @@
         color="{bgColor}"
       />
     </div>
-    <div class="p-2 flex space-x-2">
+    <div class="p-2 flex flex-nowrap gap-2">
       <span>{_('words.width')}</span>
       <input
         type="number"
@@ -118,7 +121,7 @@
         on:change="{viewportFitToScreen}"
       />
     </div>
-    <div class="p-2 flex space-x-2">
+    <div class="p-2 flex flex-nowrap gap-2">
       <span>{_('words.height')}</span>
       <input
         type="number"
