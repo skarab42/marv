@@ -150,7 +150,7 @@
 
 <Layout on:dropFiles="{onDropFiles}">
   <div slot="leftPane" class="relative h-full overflow-hidden shadow">
-    <Viewer>
+    <Viewer widget="{widget}">
       <div slot="header" class="bg-primary">
         <Button on:click="{onClose}">{_('words.back')}</Button>
       </div>

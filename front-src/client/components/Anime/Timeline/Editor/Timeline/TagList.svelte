@@ -1,9 +1,9 @@
 <script>
   import api from "@/api/twitch";
   import { _ } from "@/libs/i18next";
-  import { getContext, onMount } from "svelte";
+  import { getContext } from "svelte";
+  import EventSelect from "./EventSelect.svelte";
   import Input from "@/components/UI/Input.svelte";
-  import Select from "@/components/UI/Select.svelte";
 
   const { fakeEvent } = getContext("Editor");
 
@@ -11,35 +11,15 @@
 
   let events = {};
   let eventName = null;
-  let eventsNames = [];
 
   let tagValue = "";
-  let tagInput = null;
   let selectedTag = "";
   let showTagInput = false;
 
-  function setEventName(name) {
-    eventName = name;
-    $fakeEvent = { eventName: `on${name}`, ...events[eventName] };
-  }
-
-  function updateEvents() {
-    api.getEvents().then((names) => {
-      widget.events.forEach((e) => {
-        const result = names.find((event) => event.name === e.eventName);
-        if (result) {
-          const name = result.name.slice(2);
-          eventsNames = [...eventsNames, name];
-          events[name] = result.tags;
-        }
-      });
-      setEventName(eventsNames[0]);
-    });
-  }
-
-  function onEventChange({ detail }) {
-    setEventName(detail);
+  function onEventUpdate({ detail }) {
     showTagInput = false;
+    events = detail.events;
+    eventName = detail.eventName;
   }
 
   function onEditTag(tag) {
@@ -51,7 +31,8 @@
     selectedTag = tag;
     tagValue = events[eventName][tag];
     setTimeout(() => {
-      document.getElementById("tag-input").focus();
+      const el = document.getElementById("tag-input");
+      el && el.focus();
     }, 42);
   }
 
@@ -60,17 +41,9 @@
     $fakeEvent = { eventName: `on${eventName}`, ...events[eventName] };
     api.setEvent({ name: `on${eventName}`, tags: events[eventName] });
   }
-
-  onMount(() => updateEvents());
 </script>
 
-{#if eventsNames.length}
-  <Select
-    items="{eventsNames}"
-    label="{_('words.event')}"
-    on:change="{onEventChange}"
-  />
-{/if}
+<EventSelect widget="{widget}" on:update="{onEventUpdate}" />
 
 {#if eventName}
   <div class="pt-5 px-5 flex gap-2">
