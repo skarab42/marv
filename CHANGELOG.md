@@ -1,5 +1,20 @@
 # Changelog
 
+## v1.6.0 (2021-02-23)
+
+### Features
+
+- **timeline:** Anime preview by event type (#163) (e37e5b1)
+- Improved input/select UI (#162) (49874ca)
+- Widget multi events support (#161) (c56cec8)
+- Add global shortcuts to trigger action (#160) (7346786)
+- **timeline:** Duplicate asset (#159) (16a1fa0)
+- **timeline:** Invert zoom direction (#157) (5a2c08c)
+- **timeline:** Update asset (#156) (d558065)
+- Remove unused files option (#155) (9944bc1)
+
+---
+
 ## v1.5.1 (2021-02-13)
 
 ### Bug Fixes
@@ -132,28 +147,6 @@
 - **ui:** Fix undefined currentPanel (0918334)
 - **panel:** Fix undefined current panel when last is removed (560dc74)
 - **locale:** Fix language selection (d579fa1)
-
----
-
-## v1.1.0 (2021-01-13)
-
-### Features
-
-- **widget:** Add remove action confirmation modal (f8c4e32)
-- **locale:** Add remove action confirmation sentences (b15b8c4)
-- **twitch-auth:** Set redirect URL from database (5b3715a)
-- **path:** Change dev user path (3d358c0)
-- **locale:** Remove undefined/disabled command messages (a29c887)
-- **command:** Remove feedback on undefined/disabled command (fcb5acb)
-- **localization:** Remove trailing dot in titles/buttons translations (a02879e)
-- **server:** Detect OS language on first start (76ff78a)
-- **electron:** Show main window on second instance (e0c21de)
-
-### Bug Fixes
-
-- **timeline:** Fix timeline initial items loading (5943a86)
-- **timeline:** Fix empty file name (74b4796)
-- **client:** Fix file manager visibility when open from bottom (adbd287)
 
 ---
 
