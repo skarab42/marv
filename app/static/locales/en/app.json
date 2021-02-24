@@ -155,7 +155,8 @@
     "confirm": "confirm",
     "export": "export",
     "import": "import",
-    "shortcut": "shortcut"
+    "shortcut": "shortcut",
+    "conditions": "conditions"
   },
   "obs": {
     "scene-list": "OBS | Scene list",
