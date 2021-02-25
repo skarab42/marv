@@ -156,7 +156,11 @@
     "export": "exporter",
     "import": "importer",
     "shortcut": "shortcut",
-    "conditions": "conditions"
+    "conditions": "conditions",
+    "rule": "règle",
+    "group": "groupe",
+    "and": "et",
+    "or": "ou"
   },
   "obs": {
     "scene-list": "OBS | Liste des scènes",
@@ -250,5 +254,17 @@
     "perspective": "point de vue",
     "height": "hauteur",
     "text-shadow": "ombre"
+  },
+  "condition-builder": {
+    "rules": {
+      "==": "égal",
+      "<": "inférieur",
+      ">": "supérieur",
+      "!=": "différent",
+      "<=": "inférieur ou égal",
+      ">=": "supérieur ou égal",
+      "range<": "plage exclusive",
+      "range<=": "plage inclusive"
+    }
   }
 }

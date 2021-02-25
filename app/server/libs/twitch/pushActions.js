@@ -1,3 +1,4 @@
+const jsonLogic = require("json-logic-js");
 const stores = require("../../../stores");
 const { push } = require("../actions");
 const loggers = require("../loggers");
@@ -25,6 +26,14 @@ function isInvalidReward(event, eventProps) {
   return eventProps.reward && event.rewardId !== eventProps.reward.id;
 }
 
+function isInvalidRules(event, eventProps) {
+  return (
+    event.rules &&
+    event.rules.length &&
+    !jsonLogic.apply(event.rules[0], eventProps)
+  );
+}
+
 function getValidEvents(widget, eventName) {
   let events = widget.events.filter((event) => event.eventName === eventName);
 
@@ -50,6 +59,7 @@ module.exports = function pushActions(eventName, eventProps) {
         if (isInvalidReward(event, eventProps)) return;
         if (isInvalidCommand(event, eventProps)) return;
         if (isInvalidShortcut(event, eventProps)) return;
+        if (isInvalidRules(event, eventProps)) return;
 
         push({ type, widget, event, eventProps });
       });

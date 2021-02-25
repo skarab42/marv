@@ -13,6 +13,7 @@
   export let eventNames;
 
   let selectedEvent = null;
+  let selectedEventIndex = null;
   let conditionModalOpened = false;
 
   function setShowAddButton(events) {
@@ -49,9 +50,17 @@
     update(panel);
   }
 
-  function onEditCondition(event) {
+  function onEditCondition({ index, event }) {
     selectedEvent = event;
+    selectedEventIndex = index;
     conditionModalOpened = true;
+  }
+
+  function onSelectedEventUpdate({ detail }) {
+    widget.events = widget.events.map((event, index) => {
+      return index === selectedEventIndex ? detail : event;
+    });
+    update(panel);
   }
 </script>
 
@@ -67,7 +76,7 @@
     <Button
       icon="{MdCode}"
       class="bg-blue-600"
-      on:click="{onEditCondition.bind(null, event)}"
+      on:click="{onEditCondition.bind(null, { index, event })}"
     />
     <Button
       icon="{MdClose}"
@@ -83,4 +92,8 @@
   </Button>
 {/if}
 
-<ConditionModal event="{selectedEvent}" bind:opened="{conditionModalOpened}" />
+<ConditionModal
+  event="{selectedEvent}"
+  on:update="{onSelectedEventUpdate}"
+  bind:opened="{conditionModalOpened}"
+/>

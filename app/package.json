@@ -25,6 +25,7 @@
     "human-id": "^2.0.1",
     "i18next": "^19.8.3",
     "i18next-fs-backend": "^1.0.7",
+    "json-logic-js": "^2.0.0",
     "jszip": "^3.6.0",
     "mime": "^2.4.6",
     "obs-websocket-js": "^4.0.2",

@@ -156,7 +156,11 @@
     "export": "export",
     "import": "import",
     "shortcut": "shortcut",
-    "conditions": "conditions"
+    "conditions": "conditions",
+    "rule": "rule",
+    "group": "group",
+    "and": "and",
+    "or": "or"
   },
   "obs": {
     "scene-list": "OBS | Scene list",
@@ -250,5 +254,17 @@
     "skewY": "skew Y",
     "perspective": "perspective",
     "text-shadow": "text shadow"
+  },
+  "condition-builder": {
+    "rules": {
+      "==": "equal",
+      "<": "less",
+      ">": "greater",
+      "!=": "not equal",
+      "<=": "less or equal",
+      ">=": "greater or equal",
+      "range<": "range exclusive",
+      "range<=": "range inclusive"
+    }
   }
 }
