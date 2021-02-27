@@ -2,8 +2,10 @@
   import { _ } from "@/libs/i18next";
   import { getContext } from "svelte";
   import Select from "./Select.svelte";
+  import RangeInput from "./RangeInput.svelte";
   import { createEventDispatcher } from "svelte";
   import RemoveCross from "./RemoveCross.svelte";
+  import Switch from "@/components/UI/Switch.svelte";
 
   const { tags, rules } = getContext("condition-builder");
 
@@ -21,14 +23,21 @@
 
   const dispatch = createEventDispatcher();
 
+  $: isBool = tag.match(/^is[A-Z]/);
   $: isRange = values.length === 3;
+
   $: if (!isRange) {
     tag = values[0].var;
     value = values[1];
   } else {
     tag = values[1].var;
-    value = [values[0], values[2]];
+    value = [values[0] || 0, values[2] || 0];
     rule = `range${rule.replace("range", "")}`;
+  }
+
+  $: onChange("rule", isBool ? "!!" : rules[0]);
+  $: if (isBool && !["0", "1"].includes(value)) {
+    onChange("value", "0");
   }
 
   function onRemove() {
@@ -69,51 +78,57 @@
     },
   };
 
-  function onChange(key, { target }) {
-    change[key](target.value);
+  function onChange(key, value) {
+    change[key](value);
     const cleanRule = rule.replace("range", "");
     dispatch("update", { [cleanRule]: values });
+  }
+
+  function onInputChange(key, { target }) {
+    onChange(key, target.value);
+  }
+
+  function onRangeChange({ detail }) {
+    onChange(detail.key, detail.value);
+  }
+
+  function onSwitchChange({ detail }) {
+    onChange("value", detail ? "1" : "0");
   }
 </script>
 
 <div
   on:mouseenter="{showRemoveButton}"
   on:mouseleave="{hideRemoveButton}"
-  class="text-dark p-2 flex gap-2 bg-gray-600 bg-opacity-25 rounded"
+  class="items-center text-dark p-2 flex gap-2 bg-gray-600 bg-opacity-25 rounded"
 >
   <Select
     value="{tag}"
     values="{$tags}"
-    on:change="{onChange.bind(null, 'tag')}"
+    on:change="{onInputChange.bind(null, 'tag')}"
   />
-  <Select
-    value="{rule}"
-    values="{_rules}"
-    isObject="{true}"
-    on:change="{onChange.bind(null, 'rule')}"
-  />
-  {#if values.length === 2}
+
+  {#if !isBool}
+    <Select
+      value="{rule}"
+      values="{_rules}"
+      isObject="{true}"
+      on:change="{onInputChange.bind(null, 'rule')}"
+    />
+  {/if}
+
+  {#if isBool}
+    <Switch enabled="{parseInt(value)}" on:change="{onSwitchChange}" />
+  {:else if isRange}
+    <RangeInput value="{value}" on:change="{onRangeChange}" />
+  {:else}
     <input
       type="text"
       value="{value}"
-      on:change="{onChange.bind(null, 'value')}"
-    />
-  {:else}
-    <input
-      class="w-20"
-      type="number"
-      max="{value[1]}"
-      value="{value[0]}"
-      on:change="{onChange.bind(null, 'minValue')}"
-    />
-    <input
-      class="w-20"
-      type="number"
-      min="{value[0]}"
-      value="{value[1]}"
-      on:change="{onChange.bind(null, 'maxValue')}"
+      on:change="{onInputChange.bind(null, 'value')}"
     />
   {/if}
+
   <div class="flex-auto"></div>
   <RemoveCross visible="{removeButtonVisible}" on:click="{onRemove}" />
 </div>

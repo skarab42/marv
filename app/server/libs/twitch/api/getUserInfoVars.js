@@ -5,8 +5,8 @@ function getDefaultVars() {
   return {
     isBroadcaster: "0",
     isMod: "0",
-    isSubscriber: "0",
     isVip: "0",
+    isSubscriber: "0",
     timestamp: Date.now(),
   };
 }
@@ -18,8 +18,8 @@ function getChatUserInfoVars(data) {
     ...getDefaultVars(),
     isBroadcaster,
     isMod,
-    isSubscriber,
     isVip,
+    isSubscriber,
   };
 }
 
@@ -48,8 +48,8 @@ async function getPubSubUserInfoVars(user) {
     ...getDefaultVars(),
     isBroadcaster,
     isMod,
-    isSubscriber,
     isVip,
+    isSubscriber,
   };
 }
 
