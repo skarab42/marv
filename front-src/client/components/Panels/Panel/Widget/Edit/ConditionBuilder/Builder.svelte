@@ -11,7 +11,18 @@
 
   const tags = writable([]);
   const defaultRule = writable(null);
-  const rules = ["==", "!=", "<", ">", "<=", ">=", "range<", "range<="];
+  const rules = [
+    "==",
+    "!=",
+    "<",
+    ">",
+    "<=",
+    ">=",
+    "range<",
+    "range<=",
+    "^",
+    "$",
+  ];
   const buttonClass =
     "uppercase text-xs cursor-pointer px-2 bg-black bg-opacity-25";
 

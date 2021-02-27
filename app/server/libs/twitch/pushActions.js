@@ -1,5 +1,5 @@
-const jsonLogic = require("json-logic-js");
 const stores = require("../../../stores");
+const jsonLogic = require("./jsonLogic");
 const { push } = require("../actions");
 const loggers = require("../loggers");
 

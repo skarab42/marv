@@ -264,7 +264,9 @@
       "<=": "inférieur ou égal",
       ">=": "supérieur ou égal",
       "range<": "plage exclusive",
-      "range<=": "plage inclusive"
+      "range<=": "plage inclusive",
+      "^": "commence par",
+      "$": "fini par"
     }
   }
 }

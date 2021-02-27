@@ -263,7 +263,9 @@
       "<=": "menos o igual",
       ">=": "mayor o igual",
       "range<": "range exclusive",
-      "range<=": "range inclusive"
+      "range<=": "range inclusive",
+      "^": "comienza con",
+      "$": "termina con"
     }
   }
 }

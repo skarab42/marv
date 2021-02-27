@@ -264,7 +264,9 @@
       "<=": "less or equal",
       ">=": "greater or equal",
       "range<": "range exclusive",
-      "range<=": "range inclusive"
+      "range<=": "range inclusive",
+      "^": "starts with",
+      "$": "ends with"
     }
   }
 }
