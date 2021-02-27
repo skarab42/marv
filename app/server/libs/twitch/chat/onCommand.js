@@ -14,7 +14,13 @@ function parseUsage(usage) {
     .filter((arg) => arg.length);
 }
 
-module.exports = async function onCommand({ channel, command, nick, message }) {
+module.exports = async function onCommand({
+  channel,
+  command,
+  nick,
+  message,
+  userVars,
+}) {
   const commandEntry = await getCommandByName(command.name);
 
   if (!commandEntry || !commandEntry.enabled) {
@@ -59,7 +65,14 @@ module.exports = async function onCommand({ channel, command, nick, message }) {
   args.user = nick;
 
   cooldowns[command.name] = now;
-  pushActions("onCommand", { user: nick, message, command, ...args });
+
+  pushActions("onCommand", {
+    user: nick,
+    message,
+    command,
+    ...args,
+    ...userVars,
+  });
 
   let chatMessage = (commandEntry.message || "").trim();
 

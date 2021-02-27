@@ -1,6 +1,8 @@
 const pushActions = require("../../pushActions");
+const api = require("../../api/getUserInfoVars");
 
-module.exports = function onResub(channel, user, subInfo) {
+module.exports = function onResub(channel, user, subInfo, data) {
+  const userVars = api.getChatUserInfoVars(data);
   const {
     displayName,
     plan,
@@ -19,5 +21,6 @@ module.exports = function onResub(channel, user, subInfo) {
     months,
     message,
     tiers: plan,
+    ...userVars,
   });
 };

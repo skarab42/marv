@@ -30,7 +30,7 @@
     if (event.eventName === "onCommand") {
       const commands = await api.getCommandList();
       const command = commands.find((c) => c.name === event.commandName);
-      if (command) {
+      if (command && command.usage) {
         tags.update((state) => [...state, ...command.usage.split(" ")]);
       }
     }
