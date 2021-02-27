@@ -20,16 +20,14 @@
     change("shortcutName", shortcutName);
   }
 
-  function onShortcutReset() {
-    change("shortcutName", "");
-    unregisterShortcut();
+  async function onShortcutReset() {
+    await unregisterShortcut();
+    change("shortcutName", null);
   }
 
-  function onChange({ detail }) {
-    onShortcutReset();
-
+  async function onChange({ detail }) {
     if (detail.key === "shortcutName") {
-      onShortcutChange(detail.value);
+      await onShortcutChange(detail.value);
       return;
     }
 

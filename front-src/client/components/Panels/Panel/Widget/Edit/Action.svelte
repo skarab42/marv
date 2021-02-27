@@ -38,7 +38,7 @@
     eventNames = names
       .map((val) => ({ key: _(`twitch.events.${val}`), val }))
       .sort((a, b) => localeSort(a.key, b.key));
-    eventNames.unshift({ key: none, val: "none" });
+    eventNames.unshift(noneObject);
   });
 
   $: data = { panel, widget };
@@ -61,17 +61,12 @@
     change("component", cloneDeep(widgets[name].config));
   }
 
-  function onShortcutReset() {
-    change("shortcutName", "");
-    unregisterShortcut();
-  }
-
   function onRemoveActionConfirmed({ detail: response }) {
     removeActionModal = false;
     response &&
       removeWidgetComponent(panel, widget)
         .then(() => {
-          onShortcutReset();
+          unregisterShortcut();
           change("component", null);
         })
         .catch((error) => {

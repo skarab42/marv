@@ -10,12 +10,15 @@
   export let iconColor = null;
   export let textColor = null;
   export let padding = "p-2";
+  export let disabled = false;
 
   let _textColor = dark ? "text-light" : "text-dark";
 
   $: if (!textColor) {
     textColor = _textColor;
   }
+
+  $: disabledClass = disabled ? "opacity-50 cursor-not-allowed" : "";
 </script>
 
 <style>
@@ -25,7 +28,8 @@
 </style>
 
 <button
-  class="flex items-center justify-center space-x-2 {padding} font-medium uppercase {textColor} {cls}"
+  disabled="{disabled}"
+  class="flex items-center justify-center space-x-2 {padding} font-medium uppercase {textColor} {disabledClass} {cls}"
   {...$$restProps}
   on:click
 >

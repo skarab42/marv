@@ -23,7 +23,7 @@
 </script>
 
 <!-- svelte-ignore a11y-label-has-associated-control -->
-<label class="{rootClass} flex items-center {color}">
+<label class="{rootClass} flex flex-auto items-center {color}">
   {#if label}
     <div style="{labelStyle}" class="{labelClass}">{label}</div>
   {/if}

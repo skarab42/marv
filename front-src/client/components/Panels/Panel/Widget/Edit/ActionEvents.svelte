@@ -7,6 +7,7 @@
   import Button from "@/components/UI/Button.svelte";
   import MdClose from "svelte-icons/md/MdClose.svelte";
   import ConditionModal from "./ConditionBuilder/Modal.svelte";
+  import { unregisterShortcut } from "@/libs/panels";
 
   export let panel;
   export let widget;
@@ -16,21 +17,24 @@
   let selectedEventIndex = null;
   let conditionModalOpened = false;
 
-  function setShowAddButton(events) {
-    if (!events.length) return true;
-    const lastEvent = events[events.length - 1];
-    const eventName = lastEvent && lastEvent.eventName;
-    if (!eventName || eventName === "none") return false;
-    if (eventName === "onCommand" && !lastEvent.commandName) {
+  function isValidEvent(event) {
+    const eventName = event && event.eventName;
+    if (!eventName) return false;
+    if (eventName === "onCommand" && !event.commandName) {
       return false;
     }
-    if (eventName === "onRedemption" && !lastEvent.rewardId) {
+    if (eventName === "onRedemption" && !event.rewardId) {
       return false;
     }
-    if (eventName === "onShortcut" && !lastEvent.shortcutName) {
+    if (eventName === "onShortcut" && !event.shortcutName) {
       return false;
     }
     return true;
+  }
+
+  function setShowAddButton(events) {
+    if (!events.length) return true;
+    return isValidEvent(events[events.length - 1]);
   }
 
   $: showAddButton = setShowAddButton(widget.events);
@@ -41,12 +45,13 @@
   }
 
   function addEvent() {
-    widget.events = [...widget.events, {}];
+    widget.events = [...widget.events, { eventName: null }];
     update(panel);
   }
 
-  function onRemove(index) {
+  async function onRemove(index) {
     widget.events = widget.events.filter((item, id) => id !== index);
+    await unregisterShortcut();
     update(panel);
   }
 
@@ -66,18 +71,21 @@
 
 {#each widget.events as event, index}
   <div class="flex gap-2">
-    <div class="flex-auto">
+    <div class="flex flex-auto gap-2">
       <ActionEvent
         event="{event}"
         eventNames="{eventNames}"
         on:change="{onChange.bind(null, index)}"
       />
     </div>
-    <Button
-      icon="{MdCode}"
-      class="bg-blue-600"
-      on:click="{onEditCondition.bind(null, { index, event })}"
-    />
+    {#if event.eventName !== 'onShortcut'}
+      <Button
+        icon="{MdCode}"
+        class="bg-blue-600"
+        disabled="{!isValidEvent(event)}"
+        on:click="{onEditCondition.bind(null, { index, event })}"
+      />
+    {/if}
     <Button
       icon="{MdClose}"
       class="bg-red-600"
