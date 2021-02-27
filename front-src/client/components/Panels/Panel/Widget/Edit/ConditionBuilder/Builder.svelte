@@ -14,14 +14,16 @@
   const rules = [
     "==",
     "!=",
+    "^",
+    "$",
     "<",
+    "has",
+    "hasNot",
     ">",
     "<=",
     ">=",
     "range<",
     "range<=",
-    "^",
-    "$",
   ];
   const buttonClass =
     "uppercase text-xs cursor-pointer px-2 bg-black bg-opacity-25";

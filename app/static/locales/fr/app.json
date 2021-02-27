@@ -266,7 +266,9 @@
       "range<": "plage exclusive",
       "range<=": "plage inclusive",
       "^": "commence par",
-      "$": "fini par"
+      "$": "finit par",
+      "has": "contient",
+      "hasNot": "contient pas"
     }
   }
 }

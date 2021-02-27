@@ -266,7 +266,9 @@
       "range<": "range exclusive",
       "range<=": "range inclusive",
       "^": "starts with",
-      "$": "ends with"
+      "$": "ends with",
+      "has": "has",
+      "hasNot": "has not"
     }
   }
 }

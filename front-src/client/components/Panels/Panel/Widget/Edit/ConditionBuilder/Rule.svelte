@@ -35,9 +35,11 @@
     rule = `range${rule.replace("range", "")}`;
   }
 
-  $: onChange("rule", isBool ? "!!" : rules[0]);
-  $: if (isBool && !["0", "1"].includes(value)) {
+  $: if (isBool && rule !== "!!") {
+    onChange("rule", "!!");
     onChange("value", "0");
+  } else if (!isBool && rule === "!!") {
+    onChange("rule", rules[0]);
   }
 
   function onRemove() {

@@ -7,7 +7,7 @@ function getDefaultVars() {
     isMod: "0",
     isVip: "0",
     isSubscriber: "0",
-    timestamp: Date.now(),
+    // timestamp: Date.now(),
   };
 }
 
