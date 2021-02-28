@@ -27,6 +27,10 @@ const Command = sequelize.define("Command", {
     type: DataTypes.BOOLEAN,
     defaultValue: true,
   },
+  rules: {
+    type: DataTypes.JSON,
+    allowNull: true,
+  },
 });
 
 module.exports = Command;
