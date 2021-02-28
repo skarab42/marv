@@ -1,3 +1,4 @@
+const api = require("../../api/getUserInfoVars");
 const pushActions = require("../../pushActions");
 const settings = require("../../../settings");
 const onCommand = require("../onCommand");
@@ -14,7 +15,8 @@ function parseCommand(prefix, message) {
 }
 
 module.exports = async function onMessage(channel, nick, message, data) {
-  pushActions("onMessage", { user: nick, message });
+  const userVars = api.getChatUserInfoVars(data);
+  pushActions("onMessage", { user: nick, message, ...userVars });
 
   const prefix = await settings.get("command.prefix");
   if (!isCommand(prefix, message)) return;
@@ -22,7 +24,7 @@ module.exports = async function onMessage(channel, nick, message, data) {
 
   try {
     const _onCommand = onCommand.bind(this);
-    await _onCommand({ command, channel, nick, message, data });
+    await _onCommand({ command, channel, nick, message, userVars });
   } catch (error) {
     this.say(channel, error.message);
   }

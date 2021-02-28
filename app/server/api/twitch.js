@@ -1,9 +1,10 @@
-const { events } = require("../../stores");
 const loggers = require("../libs/loggers");
 const settings = require("../libs/settings");
 const state = require("../libs/twitch/state");
 const twitchLogin = require("../libs/twitch/login");
 const chatJoin = require("../libs/twitch/chat/join");
+const setEvent = require("../libs/twitch/api/setEvent");
+const getEvents = require("../libs/twitch/api/getEvents");
 const chatConnect = require("../libs/twitch/chat/connect");
 const addCommand = require("../libs/twitch/api/addCommand");
 const updateReward = require("../libs/twitch/api/updateReward");
@@ -53,15 +54,8 @@ module.exports = {
       return result;
     });
   },
-  getEvents: () => events.get("events"),
-  setEvent: (event) => {
-    events.set(
-      "events",
-      events.get("events").map((e) => {
-        return e.name === event.name ? { ...e, ...event } : e;
-      })
-    );
-  },
+  getEvents: () => getEvents(),
+  setEvent: (event) => setEvent(event),
   getRewardList: () => getRewardList(),
   getCommandList: () => getCommandList(),
   getCommandNames: () => getCommandNames(),

@@ -1,6 +1,7 @@
 const pushActions = require("../../pushActions");
+const api = require("../../api/getUserInfoVars");
 
-module.exports = function onAction(channel, user, message) {
-  const date = new Intl.DateTimeFormat("fr-FR").format(Date.now());
-  pushActions("onAction", { user, message, date });
+module.exports = function onAction(channel, user, message, data) {
+  const userVars = api.getChatUserInfoVars(data);
+  pushActions("onAction", { user, message, ...userVars });
 };

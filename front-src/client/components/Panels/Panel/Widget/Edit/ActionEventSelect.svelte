@@ -17,7 +17,14 @@
   const noneObject = { key: none, val: null };
   const rewardMap = (reward) => ({ val: reward.id, key: reward.title });
 
-  $: commandNames = [none, ...$commands.map((cmd) => cmd.name)];
+  $: commandNames = [
+    noneObject,
+    ...$commands.map((cmd) => ({
+      key: cmd.name,
+      val: cmd.name,
+    })),
+  ];
+
   $: rewardNames = $rewards
     ? [noneObject, ...$rewards.map(rewardMap)]
     : [noneObject];
@@ -27,6 +34,7 @@
   }
 
   function onChange(key, { detail: value }) {
+    value = value === "null" ? null : value;
     dispatch("change", { key, value });
   }
 
@@ -37,8 +45,9 @@
 
 {#if event.eventName === 'onCommand'}
   <Select
-    value="{event.commandName}"
+    object="{true}"
     items="{commandNames}"
+    value="{event.commandName}"
     label="{_('words.command')}"
     on:change="{onChange.bind(null, 'commandName')}"
   />

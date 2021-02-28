@@ -154,7 +154,12 @@
     "confirm": "confirmar",
     "export": "exportar",
     "import": "importar",
-    "shortcut": "shortcut"
+    "shortcut": "shortcut",
+    "conditions": "condiciones",
+    "regla": "regla",
+    "grupo": "grupo",
+    "and": "and",
+    "or": "or"
   },
   "obs": {
     "scene-list": "OBS | Lista de escenas",
@@ -248,5 +253,21 @@
     "perspective": "punto de vista",
     "height": "altura",
     "text-shadow": "sombra"
+  },
+  "condition-builder": {
+    "rules": {
+      "==": "igual",
+      "<": "menos",
+      ">": "mayor",
+      "!=": "No es igual",
+      "<=": "menos o igual",
+      ">=": "mayor o igual",
+      "range<": "range exclusive",
+      "range<=": "range inclusive",
+      "^": "comienza con",
+      "$": "termina con",
+      "tiene": "tiene",
+      "hasNot": "no tiene"
+    }
   }
 }

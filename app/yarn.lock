@@ -1368,6 +1368,11 @@ jsbn@~0.1.0:
   resolved "https://registry.yarnpkg.com/jsbn/-/jsbn-0.1.1.tgz#a5e654c2e5a2deb5f201d96cefbca80c0ef2f513"
   integrity sha1-peZUwuWi3rXyAdls77yoDA7y9RM=
 
+json-logic-js@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/json-logic-js/-/json-logic-js-2.0.0.tgz#bd83ade3f1e46e4544062e61f9f7c035052b101d"
+  integrity sha512-cQBDOXgFtFladCg99wnQ7YfN+nv1+Sznj4K6bp3CTgDJNJKgEXJE2VCXzVBjEU2e1UagDHSek52IQk5Ha38n7Q==
+
 json-schema-traverse@^0.4.1:
   version "0.4.1"
   resolved "https://registry.yarnpkg.com/json-schema-traverse/-/json-schema-traverse-0.4.1.tgz#69f6a87d9513ab8bb8fe63bdb0979c448e684660"

@@ -69,20 +69,29 @@
   });
 </script>
 
-<div class="flex items-center bg-dark-lighter text-light">
-  <div style="min-width:50%" class="p-2 font-medium uppercase">
+<div class="flex flex-auto items-center text-light">
+  <div style="width:50%" class="p-2 font-medium uppercase bg-dark-lighter">
     {_('words.shortcut')}
   </div>
   <input
     type="text"
+    style="width:50%"
     bind:this="{input}"
     placeholder="{placeholder}"
-    class="p-2 w-full text-dark {lastShortcut.length ? 'hidden' : ''}"
+    class="p-2 text-dark {lastShortcut.length ? 'hidden' : ''}"
   />
   {#if lastShortcut.length}
-    <div class="flex flex-auto text-center bg-green-600 overflow-hidden">
-      <div class="p-2 flex-auto">{getAccelerator(lastShortcut)}</div>
-      <Button class="bg-orange-600" icon="{MdKeyboard}" on:click="{onReset}" />
+    <div class="flex gap-2 flex-auto text-center overflow-hidden">
+      <div class="p-2 flex-auto bg-green-600">
+        {getAccelerator(lastShortcut)}
+      </div>
     </div>
   {/if}
 </div>
+
+<Button
+  class="bg-pink-700"
+  icon="{MdKeyboard}"
+  on:click="{onReset}"
+  disabled="{!lastShortcut.length}"
+/>

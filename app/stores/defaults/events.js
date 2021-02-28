@@ -19,7 +19,10 @@ module.exports = {
       name: "onBitsBadgeUpgrade",
       tags: { user: "user", threshold: "threshold" },
     },
-    { name: "onCommand", tags: {} },
+    {
+      name: "onCommand",
+      tags: { user: "user" },
+    },
     {
       name: "onCommunityPayForward",
       tags: { fromUser: "fromUser", toUser: "toUser" },
