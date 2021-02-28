@@ -28,9 +28,11 @@ function onUnregisterShortcut({ shortcuts }) {
 
 async function onServerReady(serverState) {
   const tray = require("./tray");
-  mainWindow = require("./window/mainWindow");
+  const win = require("./window/mainWindow");
   const settings = require("../server/libs/settings");
-  mainWindow({ showOnLoad: await settings.get("app.openOnStartup") });
+  mainWindow = await win({
+    showOnLoad: await settings.get("app.openOnStartup"),
+  });
   registerGlobalShortcuts(serverState.shortcuts);
   tray();
 }
@@ -51,8 +53,8 @@ function onQuit() {
 }
 
 app.requestSingleInstanceLock() ? init() : app.quit();
+app.on("second-instance", () => mainWindow.show());
 
-app.on("second-instance", () => mainWindow());
 app.on("quit", onQuit);
 
 process.on("SIGINT", onQuit);
