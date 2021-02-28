@@ -174,7 +174,7 @@
     "check-disable-source-not-visible": "Marque la casilla: Desactivar la fuente en la que no este visible.",
     "check-refresh-browser-on-activate": "Marque la casilla: Recargar el navegador cuando la escena sea activa.",
     "overlay-not-found": "Overlay no encontrado",
-    "no-source-selected": "obs.no-source-selected"
+    "no-source-selected": "No se seleccionó ninguna fuente"
   },
   "anime": {
     "timeline": "Animación"

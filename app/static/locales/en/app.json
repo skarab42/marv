@@ -175,7 +175,7 @@
     "check-disable-source-not-visible": "Check: Shutdown source when not visible.",
     "check-refresh-browser-on-activate": "Check: Refresh browser when scene becomes active.",
     "overlay-not-found": "Overlay not found",
-    "no-source-selected": "obs.no-source-selected"
+    "no-source-selected": "No source selected"
   },
   "anime": {
     "timeline": "Animation"

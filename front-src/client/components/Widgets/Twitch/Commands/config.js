@@ -3,4 +3,8 @@ export default {
   label: "twitch.commands",
   hasTrigger: false,
   hasEvent: false,
+  minSize: {
+    w: 3,
+    h: 4,
+  },
 };
