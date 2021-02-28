@@ -9,6 +9,7 @@ const types = {
   SceneList: "obs",
   GoToScene: "obs",
   ToggleScene: "obs",
+  ToggleAudio: "obs",
   AnimeTimeline: "anime",
 };
 

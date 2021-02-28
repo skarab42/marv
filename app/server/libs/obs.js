@@ -16,6 +16,8 @@ let reconnectionTimeoutId = null;
 let recordingHeartbeatId = null;
 let recordingHeartbeatTimeout = 2000;
 
+let sourceTypes = [];
+
 let state = {
   connected: false,
   connecting: false,
@@ -63,6 +65,24 @@ function updateSceneList() {
   });
 }
 
+function updateSourceTypesList() {
+  return send("GetSourceTypesList").then(({ types }) => {
+    sourceTypes = types;
+  });
+}
+
+function updateSourcesList() {
+  return send("GetSourcesList").then(({ sources }) => {
+    sources = sources.map((source) => {
+      const sourceType = sourceTypes.find(
+        (type) => type.typeId === source.typeId
+      );
+      return sourceType ? { ...source, caps: sourceType.caps } : source;
+    });
+    updateState({ sources });
+  });
+}
+
 function recordingHeartbeat() {
   recordingHeartbeatId = setTimeout(() => {
     updateStreamStatus();
@@ -103,6 +123,14 @@ function registerEvents(obs) {
   });
 
   obs.on("ScenesChanged", updateSceneList);
+
+  obs.on("SourceVolumeChanged", ({ sourceName, volume }) => {
+    emit(`source.volume`, { sourceName, volume });
+  });
+
+  obs.on("SourceMuteStateChanged", ({ sourceName, muted }) => {
+    emit(`source.muted`, { sourceName, muted });
+  });
 }
 
 function onMessage(obs) {
@@ -157,14 +185,16 @@ function connect({ host = "localhost", port = 4444, password = null } = {}) {
 
   obs
     .connect({ address, password })
-    .then(() => {
+    .then(async () => {
       logger.info("Connected");
       connecting = false;
       updateState({ connected: true, connecting });
       obs.on("ConnectionClosed", onConnectionClosed);
       watch && onMessage(obs);
       registerEvents(obs);
+      await updateSourceTypesList();
       updateStreamStatus();
+      updateSourcesList();
       updateSceneList();
       emit("connected");
     })
