@@ -61,6 +61,10 @@
     change("component", cloneDeep(widgets[name].config));
   }
 
+  function onTriggerChange({ detail: trigger }) {
+    change("trigger", trigger);
+  }
+
   function onRemoveActionConfirmed({ detail: response }) {
     removeActionModal = false;
     response &&
@@ -89,8 +93,9 @@
       <Select
         object="{true}"
         items="{triggerTypes}"
+        value="{widget.trigger}"
         label="{_('words.trigger')}"
-        bind:value="{widget.trigger}"
+        on:change="{onTriggerChange}"
       />
     {/if}
     {#if config.hasEvent}
