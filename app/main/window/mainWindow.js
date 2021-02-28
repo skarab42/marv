@@ -10,9 +10,7 @@ const path = require("path");
 let win = null;
 
 module.exports = async function createWindow({ showOnLoad = true } = {}) {
-  if (win) {
-    return win.show();
-  }
+  if (win) return win;
 
   win = new BrowserWindow({
     width: 800,
@@ -34,4 +32,6 @@ module.exports = async function createWindow({ showOnLoad = true } = {}) {
   win.removeMenu();
   win.loadURL(`${await getServerURL()}?electron`);
   watch && win.webContents.openDevTools();
+
+  return win;
 };

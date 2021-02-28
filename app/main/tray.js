@@ -29,7 +29,7 @@ function createMenu() {
     },
     {
       label: _("sentences.open-in-window"),
-      click: () => mainWindow(),
+      click: async () => (await mainWindow()).show(),
     },
     {
       label: _("sentences.open-twitch-chat-window"),
@@ -50,9 +50,9 @@ async function createTray() {
   tray = new Tray(path.join(staticPath, icon));
 
   tray.setToolTip(fingerprint);
-  tray.on("click", mainWindow);
   tray.setContextMenu(createMenu());
   tray.setIgnoreDoubleClickEvents(true);
+  tray.on("click", async () => (await mainWindow()).show());
 
   return tray;
 }
