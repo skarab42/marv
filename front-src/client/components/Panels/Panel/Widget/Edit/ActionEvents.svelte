@@ -7,7 +7,7 @@
   import Button from "@/components/UI/Button.svelte";
   import { unregisterShortcut } from "@/libs/panels";
   import MdClose from "svelte-icons/md/MdClose.svelte";
-  import ConditionModal from "./ConditionBuilder/Modal.svelte";
+  import ConditionModal from "@/components/ConditionBuilder/Modal.svelte";
   import MdSettingsEthernet from "svelte-icons/md/MdSettingsEthernet.svelte";
 
   export let panel;
