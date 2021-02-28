@@ -6,6 +6,11 @@ function create(action) {
 }
 
 const actions = {
+  ToggleAudio(action) {
+    const { source } = action.widget.component.props;
+
+    return obs.send("ToggleMute", { source });
+  },
   ToggleScene(action) {
     const { currentScene } = obs.getState();
     const { scene1, scene2 } = action.widget.component.props;

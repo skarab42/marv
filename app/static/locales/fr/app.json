@@ -160,29 +160,32 @@
     "rule": "règle",
     "group": "groupe",
     "and": "et",
-    "or": "ou"
+    "or": "ou",
+    "source": "source"
   },
   "obs": {
     "scene-list": "OBS | Liste des scènes",
     "go-to-scene": "OBS | Aller à la scène",
     "toggle-scene": "OBS | Basculer entre deux scènes",
+    "toggle-audio": "OBS | Basculer source audio",
     "no-scene-selected": "Aucune scène sélectionnée",
     "connect-at-startup": "Connecter OBS au démarrage",
     "first-start-install-sentence": "Pour connecter Marv à OBS, tu dois installer OBS WebSocket.",
     "overlay-install-sentence": "Pour installer Marv, créer une source navigateur dans OBS avec l'url ci-dessous.",
     "check-disable-source-not-visible": "Coche la case: Désactiver la source quand elle n'est pas visible.",
     "check-refresh-browser-on-activate": "Coche la case: Rafraîchir le navigateur lorsque la scène devient active.",
-    "overlay-not-found": "Overlay non trouvé"
+    "overlay-not-found": "Overlay non trouvé",
+    "no-source-selected": "obs.no-source-selected"
   },
   "anime": {
-    "timeline": "Anime | Timeline"
+    "timeline": "Animation"
   },
   "twitch": {
-    "chat": "Twitch chat",
-    "stream": "Twitch stream",
+    "chat": "Twitch | Chat",
+    "stream": "Twitch | Stream",
+    "rewards": "Twitch | Récompenses",
+    "followers": "Twitch | Supporters",
     "commands": "Commandes",
-    "rewards": "Récompenses",
-    "followers": "Supporters",
     "connect-at-startup": "Connecter Twitch au démarrage",
     "empty-command-list": "Aucune commande",
     "command-cooldown": "Cooldown \"{{command}}\" -> ~{{rest}}",

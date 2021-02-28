@@ -6,14 +6,16 @@
 
   export let data;
 
+  let none = _("words.none");
+
   $: panel = data.panel;
   $: widget = data.widget;
   $: scenes = $state.scenes || [];
   $: props = widget.component.props;
-  $: items = [_("words.none"), ...scenes.map((s) => s.name)];
+  $: items = [none, ...scenes.map((s) => s.name)];
 
-  function onChange({ detail: scene }) {
-    props.scene = scene;
+  function onChange({ detail }) {
+    props.scene = detail === none ? null : detail;
     update(panel);
   }
 </script>

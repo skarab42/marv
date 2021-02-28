@@ -6,12 +6,15 @@
 
   export let data;
 
+  let sources = [];
   let { panel, widget } = data;
   let none = _("words.none");
 
-  $: scenes = $state.scenes || [];
+  $: if ($state.sources) {
+    sources = $state.sources.filter((source) => source.caps.hasAudio);
+    sources = [none, ...sources.map((source) => source.name)];
+  }
   $: props = widget.component.props;
-  $: items = [none, ...scenes.map((s) => s.name)];
 
   function onChange(key, { detail }) {
     props[key] = detail === none ? null : detail;
@@ -21,15 +24,9 @@
 
 <div class="p-2 pt-0 space-y-2 flex flex-auto flex-col">
   <Select
-    label="{_('words.scene')} n°1"
-    value="{props.scene1}"
-    items="{items}"
-    on:change="{onChange.bind(null, 'scene1')}"
-  />
-  <Select
-    label="{_('words.scene')} n°2"
-    value="{props.scene2}"
-    items="{items}"
-    on:change="{onChange.bind(null, 'scene2')}"
+    items="{sources}"
+    value="{props.source}"
+    label="{_('words.source')}"
+    on:change="{onChange.bind(null, 'source')}"
   />
 </div>
