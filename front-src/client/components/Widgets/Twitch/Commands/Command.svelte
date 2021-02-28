@@ -4,6 +4,7 @@
   import MdEdit from "svelte-icons/md/MdEdit.svelte";
   import Switch from "@/components/UI/Switch.svelte";
   import MdCode from "svelte-icons/md/MdCode.svelte";
+  import ItemMenu from "@/components/UI/ItemMenu.svelte";
   import EditCommandModal from "./EditCommandModal.svelte";
   import { command as commandStore } from "@/stores/command";
   import MdDeleteForever from "svelte-icons/md/MdDeleteForever.svelte";
@@ -51,6 +52,8 @@
   function onSelectedCommandUpdate({ detail }) {
     api.updateCommand({ ...command, ...detail });
   }
+
+  let buttonClass = "p-2 cursor-pointer hover:bg-secondary";
 </script>
 
 <div class="flex items-center hover:bg-opacity-50 hover:bg-black" style="{ts}">
@@ -66,27 +69,20 @@
     {/if}
   </div>
 
-  <div class="p-1 flex items-center space-x-1">
+  <div class="flex items-center gap-2">
+    <ItemMenu>
+      <div class="{buttonClass}" on:click="{openEditModal}">
+        <Icon icon="{MdEdit}" />
+      </div>
+      <div class="{buttonClass}" on:click="{openConditionBuilderModal}">
+        <Icon icon="{rulesIcon}" />
+      </div>
+      <div class="{buttonClass}" on:click="{removeCommand}">
+        <Icon icon="{MdDeleteForever}" />
+      </div>
+    </ItemMenu>
     <div class="p-1">
       <Switch enabled="{command.enabled}" on:change="{onSwitchChange}" />
-    </div>
-    <div
-      class="p-1 opacity-50 hover:opacity-100 hover:bg-secondary hover:text-light cursor-pointer rounded-full"
-      on:click="{openEditModal}"
-    >
-      <Icon icon="{MdEdit}" />
-    </div>
-    <div
-      class="p-1 opacity-50 hover:opacity-100 hover:bg-secondary hover:text-light cursor-pointer rounded-full"
-      on:click="{openConditionBuilderModal}"
-    >
-      <Icon icon="{rulesIcon}" />
-    </div>
-    <div
-      class="p-1 opacity-50 hover:opacity-100 hover:bg-red-600 hover:text-light cursor-pointer rounded-full"
-      on:click="{removeCommand}"
-    >
-      <Icon icon="{MdDeleteForever}" />
     </div>
   </div>
 </div>

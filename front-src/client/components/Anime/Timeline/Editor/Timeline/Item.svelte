@@ -1,11 +1,11 @@
 <script>
   import { getContext } from "svelte";
   import Keyframe from "./Keyframe.svelte";
-  import ItemMenu from "./ItemMenu.svelte";
   import Keyframes from "./Keyframes.svelte";
   import AnimeIcon from "../AnimeIcon.svelte";
   import ItemButtons from "./ItemButtons.svelte";
   import SortableItem from "./SortableItem.svelte";
+  import ItemMenu from "@/components/UI/ItemMenu.svelte";
   import { createKeyframe } from "../../libs/createKeyframe";
 
   export let item;
