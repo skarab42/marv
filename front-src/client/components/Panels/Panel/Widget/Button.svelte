@@ -32,14 +32,9 @@
 
   {#if $editMode}
     {#if !component}
-      <div class="absolute inset-0">
-        <div class="flex w-full h-full opacity-50 pb-2">
-          <MdAdd />
-        </div>
-        <div class="absolute bottom-0 w-full text-center">
-          <span
-            class="text-xs opacity-50"
-          >{_('sentences.double-click-to-edit')}</span>
+      <div class="flex absolute inset-0">
+        <div class="m-auto p-2 text-xs opacity-50">
+          {_('sentences.right-click-to-show-menu')}
         </div>
       </div>
     {/if}

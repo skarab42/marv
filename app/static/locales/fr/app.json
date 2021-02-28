@@ -175,7 +175,7 @@
     "check-disable-source-not-visible": "Coche la case: Désactiver la source quand elle n'est pas visible.",
     "check-refresh-browser-on-activate": "Coche la case: Rafraîchir le navigateur lorsque la scène devient active.",
     "overlay-not-found": "Overlay non trouvé",
-    "no-source-selected": "obs.no-source-selected"
+    "no-source-selected": "Aucune source sélectionnée"
   },
   "anime": {
     "timeline": "Animation"

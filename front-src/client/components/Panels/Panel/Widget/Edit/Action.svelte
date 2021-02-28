@@ -13,6 +13,7 @@
   import ActionEvents from "./ActionEvents.svelte";
   import Button from "@/components/UI/Button.svelte";
   import Select from "@/components/UI/Select.svelte";
+  import { findSpaceForWidget } from "@/stores/panels";
   import MdDelete from "svelte-icons/md/MdDeleteForever.svelte";
   import ConfirmModal from "@/components/UI/ConfirmModal.svelte";
 
@@ -58,6 +59,21 @@
   }
 
   function onComponentChange({ detail: name }) {
+    const { minSize } = widgets[name].config;
+
+    if (minSize) {
+      let oldSpace = {};
+      panel.grid = panel.grid.filter((space) => {
+        if (space.id === widget.id) {
+          oldSpace = space;
+          return false;
+        }
+        return true;
+      });
+      const space = findSpaceForWidget(panel, minSize);
+      panel.grid = [...panel.grid, { ...oldSpace, ...space }];
+    }
+
     change("component", cloneDeep(widgets[name].config));
   }
 
