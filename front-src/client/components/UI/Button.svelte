@@ -29,7 +29,7 @@
 
 <button
   disabled="{disabled}"
-  class="flex items-center justify-center space-x-2 {padding} font-medium uppercase {textColor} {disabledClass} {cls}"
+  class="flex items-center justify-center gap-2 {padding} font-medium uppercase {textColor} {disabledClass} {cls}"
   {...$$restProps}
   on:click
 >

@@ -5,9 +5,10 @@
   import MdAdd from "svelte-icons/md/MdAdd.svelte";
   import MdCode from "svelte-icons/md/MdCode.svelte";
   import Button from "@/components/UI/Button.svelte";
+  import { unregisterShortcut } from "@/libs/panels";
   import MdClose from "svelte-icons/md/MdClose.svelte";
   import ConditionModal from "./ConditionBuilder/Modal.svelte";
-  import { unregisterShortcut } from "@/libs/panels";
+  import MdSettingsEthernet from "svelte-icons/md/MdSettingsEthernet.svelte";
 
   export let panel;
   export let widget;
@@ -80,10 +81,10 @@
     </div>
     {#if event.eventName !== 'onShortcut'}
       <Button
-        icon="{MdCode}"
-        class="bg-blue-600"
+        icon="{event.rules && event.rules.length ? MdSettingsEthernet : MdCode}"
         disabled="{!isValidEvent(event)}"
         on:click="{onEditCondition.bind(null, { index, event })}"
+        class="bg-blue-600"
       />
     {/if}
     <Button
