@@ -1,13 +1,5 @@
 const setting = require("../setting");
-
-const scope = [
-  "user:read:email",
-  "chat:read",
-  "chat:edit",
-  "channel:read:redemptions",
-  "channel:manage:redemptions",
-  "bits:read",
-];
+const scope = require("../twitch-scopes");
 
 module.exports = {
   up: async ({ context }) => {
