@@ -3,13 +3,24 @@
   import Icon from "@/components/UI/Icon.svelte";
   import MdEdit from "svelte-icons/md/MdEdit.svelte";
   import Switch from "@/components/UI/Switch.svelte";
+  import MdCode from "svelte-icons/md/MdCode.svelte";
   import EditCommandModal from "./EditCommandModal.svelte";
   import { command as commandStore } from "@/stores/command";
   import MdDeleteForever from "svelte-icons/md/MdDeleteForever.svelte";
+  import ConditionModal from "@/components/ConditionBuilder/Modal.svelte";
+  import MdSettingsEthernet from "svelte-icons/md/MdSettingsEthernet.svelte";
 
   export let command;
 
   let showEditModal = false;
+  let conditionModalOpened = false;
+
+  $: usage = parseUsage(command.usage || "");
+  $: rulesIcon =
+    command.rules && command.rules.length ? MdSettingsEthernet : MdCode;
+
+  let ts =
+    "text-shadow: 0px 1px 2px rgb(30 29 39 / 19%), 1px 2px 4px rgb(54 64 147 / 18%)";
 
   function removeCommand() {
     api.removeCommand(command);
@@ -33,10 +44,13 @@
       .join(" ");
   }
 
-  $: usage = parseUsage(command.usage || "");
+  function openConditionBuilderModal() {
+    conditionModalOpened = true;
+  }
 
-  let ts =
-    "text-shadow: 0px 1px 2px rgb(30 29 39 / 19%), 1px 2px 4px rgb(54 64 147 / 18%)";
+  function onSelectedCommandUpdate({ detail }) {
+    api.updateCommand({ ...command, ...detail });
+  }
 </script>
 
 <div class="flex items-center hover:bg-opacity-50 hover:bg-black" style="{ts}">
@@ -63,6 +77,12 @@
       <Icon icon="{MdEdit}" />
     </div>
     <div
+      class="p-1 opacity-50 hover:opacity-100 hover:bg-secondary hover:text-light cursor-pointer rounded-full"
+      on:click="{openConditionBuilderModal}"
+    >
+      <Icon icon="{rulesIcon}" />
+    </div>
+    <div
       class="p-1 opacity-50 hover:opacity-100 hover:bg-red-600 hover:text-light cursor-pointer rounded-full"
       on:click="{removeCommand}"
     >
@@ -72,3 +92,9 @@
 </div>
 
 <EditCommandModal bind:opened="{showEditModal}" command="{command}" />
+
+<ConditionModal
+  event="{command}"
+  on:update="{onSelectedCommandUpdate}"
+  bind:opened="{conditionModalOpened}"
+/>

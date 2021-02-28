@@ -8,6 +8,8 @@
   export let event;
 
   $: items = event.rules || [];
+  $: eventName = event.eventName || "onCommand";
+  $: commandName = event.commandName || event.name;
 
   const tags = writable([]);
   const defaultRule = writable(null);
@@ -34,15 +36,15 @@
 
   onMount(async () => {
     const events = await api.getEvents();
-    const result = events.find((e) => e.name === event.eventName);
+    const result = events.find((e) => e.name === eventName);
 
     if (!result) return;
 
     tags.set(Object.keys(result.tags));
 
-    if (event.eventName === "onCommand") {
+    if (eventName === "onCommand") {
       const commands = await api.getCommandList();
-      const command = commands.find((c) => c.name === event.commandName);
+      const command = commands.find((c) => c.name === commandName);
       if (command && command.usage) {
         tags.update((state) => [...command.usage.split(" "), ...state]);
       }

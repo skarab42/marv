@@ -1,5 +1,6 @@
 const getCommandByName = require("../api/getCommandByName");
 const pushActions = require("../pushActions");
+const jsonLogic = require("../jsonLogic");
 const { _ } = require("../../i18next");
 const ejs = require("ejs");
 const ms = require("ms");
@@ -12,6 +13,14 @@ function parseUsage(usage) {
     .trim()
     .split(" ")
     .filter((arg) => arg.length);
+}
+
+function isInvalidRules(command, args) {
+  return (
+    command.rules &&
+    command.rules.length &&
+    !jsonLogic.apply(command.rules[0], args)
+  );
 }
 
 module.exports = async function onCommand({
@@ -41,7 +50,8 @@ module.exports = async function onCommand({
     return;
   }
 
-  const args = {};
+  let args = {};
+
   const argNames = parseUsage(commandEntry.usage);
   const argList = argNames.map((arg) => `[${arg}]`).join(" ");
   const usage = `${command.prefix}${command.name} ${argList}`;
@@ -62,17 +72,19 @@ module.exports = async function onCommand({
     args[arg] = isNaN(value) ? value : float;
   });
 
-  args.user = nick;
+  args = {
+    ...args,
+    ...userVars,
+    user: nick,
+  };
+
+  if (isInvalidRules(commandEntry, args)) {
+    return;
+  }
 
   cooldowns[command.name] = now;
 
-  pushActions("onCommand", {
-    user: nick,
-    message,
-    command,
-    ...args,
-    ...userVars,
-  });
+  pushActions("onCommand", { message, command, ...args });
 
   let chatMessage = (commandEntry.message || "").trim();
 
