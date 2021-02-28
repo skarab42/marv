@@ -4,6 +4,7 @@ const lower = (a) => (a + "").toLowerCase();
 const has = (a, b) => lower(a).includes(lower(b));
 
 jsonLogic.add_operation("has", has);
+jsonLogic.add_operation("!!", (a, b) => !!a === !!b);
 jsonLogic.add_operation("hasNot", (a, b) => !has(a, b));
 jsonLogic.add_operation("==", (a, b) => lower(a) == lower(b));
 jsonLogic.add_operation("!=", (a, b) => lower(a) != lower(b));

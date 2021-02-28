@@ -37,9 +37,10 @@
 
   $: if (isBool && rule !== "!!") {
     onChange("rule", "!!");
-    onChange("value", "0");
+    onChange("value", false);
   } else if (!isBool && rule === "!!") {
     onChange("rule", rules[0]);
+    onChange("value", "");
   }
 
   function onRemove() {
@@ -95,7 +96,7 @@
   }
 
   function onSwitchChange({ detail }) {
-    onChange("value", detail ? "1" : "0");
+    onChange("value", detail);
   }
 </script>
 
@@ -120,7 +121,7 @@
   {/if}
 
   {#if isBool}
-    <Switch enabled="{parseInt(value)}" on:change="{onSwitchChange}" />
+    <Switch enabled="{value}" on:change="{onSwitchChange}" />
   {:else if isRange}
     <RangeInput value="{value}" on:change="{onRangeChange}" />
   {:else}
