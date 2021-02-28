@@ -24,7 +24,12 @@
   $: message = command.message || "";
 </script>
 
-<Modal on:close bind:opened title="{_('sentences.command-settings')}">
+<Modal
+  on:close
+  bind:opened
+  class="container"
+  title="{_('sentences.command-settings')}"
+>
   <div class="flex flex-col p-5 gap-2">
     <Input
       label="{_('words.command')}"

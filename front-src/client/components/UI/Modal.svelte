@@ -12,6 +12,9 @@
   export let closeCross = true;
   export let closeOnBlur = true;
 
+  let cls = "";
+  export { cls as class };
+
   function close() {
     opened = false;
     dispatch("close");
@@ -24,7 +27,11 @@
 
 {#if opened}
   <Overlay on:mousedown on:click="{onClickOut}">
-    <div on:click|stopPropagation class="m-auto" style="min-width:{minWidth}px">
+    <div
+      class="m-auto {cls}"
+      on:click|stopPropagation
+      style="min-width:{minWidth}px"
+    >
       <div class="bg-dark text-light rounded">
         {#if title}
           <div class="p-2 gap-2 flex items-center bg-primary rounded-t">
