@@ -25,6 +25,7 @@ let state = {
   recording: false,
   status: null,
   scenes: null,
+  sources: null,
   currentScene: null,
 };
 

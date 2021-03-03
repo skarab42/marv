@@ -168,6 +168,7 @@
     "go-to-scene": "OBS | Aller à la scène",
     "toggle-scene": "OBS | Basculer entre deux scènes",
     "toggle-audio": "OBS | Basculer source audio",
+    "audio-volume": "OBS | Volume audio",
     "no-scene-selected": "Aucune scène sélectionnée",
     "connect-at-startup": "Connecter OBS au démarrage",
     "first-start-install-sentence": "Pour connecter Marv à OBS, tu dois installer OBS WebSocket.",

@@ -5,6 +5,7 @@ import * as SceneList from "./OBS/SceneList";
 import * as GoToScene from "./OBS/GoToScene";
 import * as ToggleScene from "./OBS/ToggleScene";
 import * as ToggleAudio from "./OBS/ToggleAudio";
+import * as AudioVolume from "./OBS/AudioVolume";
 
 import * as TwitchChat from "./Twitch/Chat";
 import * as TwitchStream from "./Twitch/Stream";
@@ -18,6 +19,7 @@ const widgets = {
   GoToScene,
   ToggleScene,
   ToggleAudio,
+  AudioVolume,
   TwitchChat,
   TwitchStream,
   TwitchRewards,

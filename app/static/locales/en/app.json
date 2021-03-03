@@ -168,6 +168,7 @@
     "go-to-scene": "OBS | Go to scene",
     "toggle-scene": "OBS | Toggle between two scenes",
     "toggle-audio": "OBS | Toggle audio source",
+    "audio-volume": "OBS | Audio volume",
     "no-scene-selected": "No scene selected",
     "connect-at-startup": "Connect OBS at startup",
     "first-start-install-sentence": "If you want to use OBS with Marv you need to install OBS WebSocket.",

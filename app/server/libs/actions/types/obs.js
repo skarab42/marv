@@ -8,14 +8,20 @@ function create(action) {
 const actions = {
   ToggleAudio(action) {
     const { source } = action.widget.component.props;
-
     return obs.send("ToggleMute", { source });
+  },
+  AudioVolume(action) {
+    const { source } = action.widget.component.props;
+    const { volume, mute } = action.data || action.eventProps || "undefined";
+    if (mute !== undefined) {
+      return obs.send("SetMute", { source, mute });
+    }
+    return obs.send("SetVolume", { source, volume, useDecibel: false });
   },
   ToggleScene(action) {
     const { currentScene } = obs.getState();
     const { scene1, scene2 } = action.widget.component.props;
     const scene = currentScene === scene1 ? scene2 : scene1;
-
     return obs.send("SetCurrentScene", { "scene-name": scene });
   },
   GoToScene(action) {
