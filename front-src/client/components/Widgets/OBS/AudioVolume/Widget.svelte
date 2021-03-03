@@ -9,12 +9,14 @@
 
   export let widget;
 
-  let state = null;
+  let state = { volume: 0.5, muted: false };
 
   $: source = widget.component.props.source;
-  $: icon = state && !state.muted ? MdVolumeUp : MdVolumeOff;
+  $: icon = !state.muted ? MdVolumeUp : MdVolumeOff;
 
-  $: if (source) {
+  $: if (source) getVolume();
+
+  function getVolume() {
     obs.emit("GetVolume", { source }).then((result) => (state = result));
   }
 
@@ -37,6 +39,10 @@
   }
 
   onMount(async () => {
+    obs.on(`connected`, () => {
+      getVolume();
+    });
+
     obs.on(`source.volume`, ({ sourceName, volume }) => {
       if (sourceName === source) {
         state.volume = volume;
@@ -53,7 +59,7 @@
 
 <WidgetWrapper widget="{widget}">
   <div class="flex flex-col h-full">
-    {#if source && state}
+    {#if source}
       <div
         class="flex flex-col w-full h-full {state.muted ? 'text-red-600' : ''}"
       >
