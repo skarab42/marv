@@ -48,7 +48,6 @@
 
   <ColorPicker
     label="{false}"
-    position="right"
     color="{attrs.color}"
     previewClass="h-5 rounded"
     on:color="{onChange.bind(null, 'color')}"
