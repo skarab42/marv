@@ -36,13 +36,14 @@
     {/if}
   </div>
   {#if type === 'colorpicker'}
-    <ColorPicker
-      label="{false}"
-      color="{value}"
-      position="right"
-      on:color="{onChange}"
-      previewClass="h-5 rounded"
-    />
+    <div class="w-1/2">
+      <ColorPicker
+        label="{false}"
+        color="{value}"
+        on:color="{onChange}"
+        previewClass="h-5 rounded"
+      />
+    </div>
   {:else if type === 'fontpicker'}
     <Fontpicker
       font="{value}"
