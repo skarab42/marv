@@ -4,6 +4,7 @@ import api from "@/api/twitch";
 export const store = writable(null);
 export const stream = writable(null);
 export const user = writable(null);
+export const error = writable(null);
 export const chat = writable(null);
 export const pubsub = writable(null);
 export const commands = writable([]);
@@ -17,6 +18,7 @@ async function loadOnce() {
 
   api.on("state.stream", stream.set);
   api.on("state.pubsub", pubsub.set);
+  api.on("state.error", error.set);
   api.on("state.user", user.set);
   api.on("state.chat", chat.set);
 
@@ -50,6 +52,7 @@ export default async function load() {
 
   stream.set(state.stream);
   pubsub.set(state.pubsub);
+  error.set(state.error);
   user.set(state.user);
   chat.set(state.chat);
 

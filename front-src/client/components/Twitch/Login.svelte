@@ -3,11 +3,10 @@
   import { _ } from "@/libs/i18next";
   import StatusLine from "./StatusLine.svelte";
   import StatusSpinner from "./StatusSpinner.svelte";
-  import { user, chat, pubsub } from "@/stores/twitch";
   import TwitchIcon from "@/assets/images/Twitch_icon.svg";
+  import { user, chat, pubsub } from "@/stores/twitch";
 
   function onLogin() {
-    if ($user) return;
     api.login(true).catch((error) => {
       console.log("error:", error);
     });
@@ -42,10 +41,10 @@
     {#if status}
       <div
         on:mouseleave|stopPropagation
-        class="absolute p-2 whitespace-nowrap text-gray-800 bg-gray-300 rounded"
-        style="top:40px; right:0px; min-width:100px; z-index:500;"
+        class="absolute p-2 text-gray-800 bg-gray-300 rounded"
+        style="top:40px; right:0px; z-index:500;"
       >
-        <StatusLine label="Chat" status="{$chat}" />
+        <StatusLine label="Chat" status="{$chat}" on:click="{onLogin}" />
         <StatusLine label="PubSub" status="{$pubsub}" />
       </div>
     {/if}
