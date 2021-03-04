@@ -59,4 +59,3 @@ app.on("quit", onQuit);
 
 process.on("SIGINT", onQuit);
 process.on("SIGTERM", onQuit);
-process.on("SIGKILL", onQuit);
