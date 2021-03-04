@@ -64,9 +64,8 @@ async function _connect() {
     state.set("chat.connecting", false);
     resolve({ label: "chat", message: "connected" });
   } catch (error) {
-    state.set("chat.connected", false);
-    state.set("chat.connecting", false);
     logger.error(`[chat] ${error.stack}`);
+    state.set("error", { label: "chat", message: error.message });
 
     if (chat._connection) {
       chat.quit();
@@ -74,8 +73,11 @@ async function _connect() {
 
     if (reconnectCount >= maxReconnect) {
       const message = `Too many reconnection failures (max:${maxReconnect})`;
+      const error = { label: "chat", message };
+      state.set("chat.connecting", false);
       logger.error(`[chat] ${message}`);
-      reject({ label: "chat", message });
+      state.set("error", error);
+      reject(error);
       return;
     }
 
@@ -94,6 +96,7 @@ function connect(settings) {
   }
 
   state.set("chat.connecting", true);
+  state.set("error", null);
 
   return new Promise((resolve, reject) => {
     connectId = null;

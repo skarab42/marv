@@ -6,6 +6,7 @@ const io = socket();
 let state = {
   user: null,
   stream: null,
+  error: null,
   chat: {
     connecting: false,
     connected: false,
