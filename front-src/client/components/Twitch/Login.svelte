@@ -2,11 +2,14 @@
   import api from "@/api/twitch";
   import { _ } from "@/libs/i18next";
   import StatusLine from "./StatusLine.svelte";
+  import Icon from "@/components/UI/Icon.svelte";
   import StatusSpinner from "./StatusSpinner.svelte";
-  import { user, chat, pubsub } from "@/stores/twitch";
+  import MdRefresh from "svelte-icons/md/MdRefresh.svelte";
   import TwitchIcon from "@/assets/images/Twitch_icon.svg";
+  import { user, userState, chat, pubsub } from "@/stores/twitch";
 
   function onLogin() {
+    if ($userState.connected || $userState.connecting) return;
     api.login(true).catch((error) => {
       console.log("error:", error);
     });
@@ -25,7 +28,7 @@
   $: connected = $chat.connected && $pubsub.connected;
 </script>
 
-{#if $user}
+{#if $user && $userState.connected}
   <div
     class="relative flex px-2 flex-shrink-0 py-1 items-center justify-center"
     on:click="{onLogin}"
@@ -52,10 +55,14 @@
 {:else}
   <div
     on:click="{onLogin}"
-    class="px-2 flex items-center bg-secondary hover:bg-secondary-dark cursor-pointer"
+    class="px-2 flex items-center bg-secondary hover:bg-secondary-dark {$userState.connecting ? '' : 'cursor-pointer'}"
   >
     <div class="p-2">
-      <TwitchIcon width="21" fill="#fefefe" />
+      {#if $userState.connecting}
+        <Icon class="animate-spin" icon="{MdRefresh}" />
+      {:else}
+        <TwitchIcon width="21" fill="#fefefe" />
+      {/if}
     </div>
     <div class="hidden lg:block flex-auto p-2 font-bold">
       {_('sentences.connect-with-twitch')}
