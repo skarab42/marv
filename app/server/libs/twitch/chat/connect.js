@@ -16,7 +16,7 @@ let pendingConnection = {
   channel: null,
 };
 
-const logger = loggers.get("server");
+const logger = loggers.get("twitch");
 
 function getRandomInt(max) {
   return Math.floor(Math.random() * Math.floor(max));
@@ -30,13 +30,12 @@ function reconnect() {
   reconnectDelay *= 2;
 }
 
-chat.onDisconnect((manually) => {
-  state.set("chat.connected", false);
-  if (!manually) reconnect();
-});
-
 function onRegister() {
   return new Promise((resolve) => {
+    chat.onDisconnect((manually) => {
+      state.set("chat.connected", false);
+      if (!manually) reconnect();
+    });
     chat.onRegister(() => {
       state.set("chat.registered", true);
       resolve();
@@ -75,6 +74,7 @@ async function _connect() {
       const message = `Too many reconnection failures (max:${maxReconnect})`;
       const error = { label: "chat", message };
       state.set("chat.connecting", false);
+      state.set("chat.connected", false);
       logger.error(`[chat] ${message}`);
       state.set("error", error);
       reject(error);
