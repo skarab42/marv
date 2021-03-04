@@ -15,6 +15,7 @@ let state = {
   },
   pubsub: {
     connected: false,
+    connecting: false,
   },
 };
 

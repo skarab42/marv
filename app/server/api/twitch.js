@@ -1,14 +1,17 @@
 const settings = require("../libs/settings");
 const state = require("../libs/twitch/state");
 const twitchLogin = require("../libs/twitch/login");
+const pubsubConnect = require("../libs/twitch/pubsub");
 const setEvent = require("../libs/twitch/api/setEvent");
 const getEvents = require("../libs/twitch/api/getEvents");
 const chatConnect = require("../libs/twitch/chat/connect");
 const addCommand = require("../libs/twitch/api/addCommand");
+const initChatEvents = require("../libs/twitch/chat/events");
 const updateReward = require("../libs/twitch/api/updateReward");
 const updateCommand = require("../libs/twitch/api/updateCommand");
 const removeCommand = require("../libs/twitch/api/removeCommand");
 const getRewardList = require("../libs/twitch/api/getRewardList");
+const installPlugings = require("../libs/twitch/plugins/install");
 const getCommandList = require("../libs/twitch/api/getCommandList");
 const getCommandNames = require("../libs/twitch/api/getCommandNames");
 const getLastFollowers = require("../libs/twitch/api/getLastFollowers");
@@ -16,7 +19,14 @@ const getLastFollowers = require("../libs/twitch/api/getLastFollowers");
 module.exports = {
   async login() {
     const user = await twitchLogin();
-    await chatConnect({ channel: user.display_name });
+    Promise.allSettled([
+      chatConnect({ channel: user.display_name }),
+      pubsubConnect(),
+      initChatEvents(),
+      installPlugings(),
+    ]).catch(() => {
+      // console.log("...");
+    });
     return user;
   },
   addCommand(command) {

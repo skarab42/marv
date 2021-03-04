@@ -2,10 +2,12 @@ const twitch = require("../../index");
 const path = require("path");
 const fs = require("fs");
 
-fs.readdirSync(__dirname).forEach((filename) => {
-  const name = path.parse(filename).name;
+module.exports = function init() {
+  fs.readdirSync(__dirname).forEach((filename) => {
+    const name = path.parse(filename).name;
 
-  if (name === "index") return;
+    if (name === "index") return;
 
-  twitch.chat[name](require(`./${name}`).bind(twitch.chat));
-});
+    twitch.chat[name](require(`./${name}`).bind(twitch.chat));
+  });
+};

@@ -3,8 +3,8 @@
   import { _ } from "@/libs/i18next";
   import StatusLine from "./StatusLine.svelte";
   import StatusSpinner from "./StatusSpinner.svelte";
-  import TwitchIcon from "@/assets/images/Twitch_icon.svg";
   import { user, chat, pubsub } from "@/stores/twitch";
+  import TwitchIcon from "@/assets/images/Twitch_icon.svg";
 
   function onLogin() {
     api.login(true).catch((error) => {
