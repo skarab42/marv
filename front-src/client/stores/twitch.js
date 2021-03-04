@@ -1,6 +1,7 @@
 import { writable } from "svelte/store";
 import api from "@/api/twitch";
 
+export const userState = writable(null);
 export const store = writable(null);
 export const stream = writable(null);
 export const user = writable(null);
@@ -16,6 +17,7 @@ let loaded = false;
 async function loadOnce() {
   if (loaded) return;
 
+  api.on("state.userState", userState.set);
   api.on("state.stream", stream.set);
   api.on("state.pubsub", pubsub.set);
   api.on("state.error", error.set);
@@ -50,6 +52,7 @@ export default async function load() {
 
   const state = await api.getState();
 
+  userState.set(state.userState);
   stream.set(state.stream);
   pubsub.set(state.pubsub);
   error.set(state.error);

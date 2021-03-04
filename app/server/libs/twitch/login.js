@@ -4,7 +4,7 @@ const getConnectedUser = require("./api/getConnectedUser");
 let user = null;
 
 module.exports = async function login() {
-  if (user) return user;
+  if (user && user.display_name) return user;
 
   user = await getConnectedUser();
   state.set("user", user);

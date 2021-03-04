@@ -5,6 +5,10 @@ const io = socket();
 
 let state = {
   user: null,
+  userState: {
+    connected: false,
+    connecting: false,
+  },
   stream: null,
   error: null,
   chat: {
@@ -28,10 +32,5 @@ function set(key, value) {
   const rootKey = key.split(".").shift();
   io.emit(`twitch.state.${rootKey}`, get(rootKey));
 }
-
-// function update(newState) {
-//   state = { ...state, ...newState };
-//   io.emit("twitch.state", state);
-// }
 
 module.exports = { get, set };

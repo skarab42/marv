@@ -19,14 +19,20 @@ const getLastFollowers = require("../libs/twitch/api/getLastFollowers");
 module.exports = {
   async login() {
     const user = await twitchLogin();
+
+    if (!user || !user.display_name) {
+      return user;
+    }
+
     Promise.allSettled([
       chatConnect({ channel: user.display_name }),
       pubsubConnect(),
       initChatEvents(),
       installPlugings(),
     ]).catch(() => {
-      // console.log("...");
+      // console.log("...", error);
     });
+
     return user;
   },
   addCommand(command) {
