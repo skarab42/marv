@@ -1,8 +1,6 @@
-const loggers = require("../libs/loggers");
 const settings = require("../libs/settings");
 const state = require("../libs/twitch/state");
 const twitchLogin = require("../libs/twitch/login");
-const chatJoin = require("../libs/twitch/chat/join");
 const setEvent = require("../libs/twitch/api/setEvent");
 const getEvents = require("../libs/twitch/api/getEvents");
 const chatConnect = require("../libs/twitch/chat/connect");
@@ -15,19 +13,10 @@ const getCommandList = require("../libs/twitch/api/getCommandList");
 const getCommandNames = require("../libs/twitch/api/getCommandNames");
 const getLastFollowers = require("../libs/twitch/api/getLastFollowers");
 
-const logger = loggers.get("server");
-
 module.exports = {
   async login() {
     const user = await twitchLogin();
-    await chatConnect();
-    const join = await chatJoin(user.display_name);
-
-    if (!join.alreadyJoined) {
-      logger.info("Chat connected");
-      settings.set("twitch.currentChannel", user.display_name);
-    }
-
+    await chatConnect({ channel: user.display_name });
     return user;
   },
   addCommand(command) {

@@ -51,8 +51,14 @@ async function obsAutoConnect() {
 
 async function twitchAutoConnect() {
   if (!(await settings.get("twitch.connectOnStartup"))) return;
-  const api = require("./api/twitch");
-  await api.login();
+  try {
+    loggers.get("twitch").info("Auto connect");
+    const api = require("./api/twitch");
+    await api.login();
+  } catch (error) {
+    const io = socket();
+    io.emit("twitch.login.error", { error });
+  }
 }
 
 function uriDecode(req, res, next) {
