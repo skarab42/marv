@@ -67,7 +67,8 @@
     "ask-remove-asset": "Supprimer \"{{filename}}\" de la timeline ?",
     "global-shortcut-reserved": "Ce raccourci est réservé par le système!",
     "type-shortcut-here": "Tapez le raccourci ici...",
-    "add-event": "Ajouter un évènement"
+    "add-event": "Ajouter un évènement",
+    "confirm-quit": "Voulez vous vraiment quitter Marv ?"
   },
   "words": {
     "settings": "options",
