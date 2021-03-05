@@ -42,11 +42,9 @@ module.exports = class AuthProvider {
   }
 
   getAuthUrl(scopes) {
-    const redir = encodeURIComponent(this.redirectURI);
-
-    return (
+    return encodeURI(
       `${authBaseURL}&client_id=${this.clientId}` +
-      `&redirect_uri=${redir}&scope=${scopes.join(" ")}` +
+      `&redirect_uri=${this.redirectURI}&scope=${scopes.join(" ")}` +
       `&force_verify=${this.forceVerify ? "true" : "false"}`
     );
   }
