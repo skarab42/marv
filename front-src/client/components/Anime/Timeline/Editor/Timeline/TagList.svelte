@@ -2,64 +2,62 @@
   import api from "@/api/twitch";
   import { _ } from "@/libs/i18next";
   import { getContext } from "svelte";
+  import Select from "./Select.svelte";
   import EventSelect from "./EventSelect.svelte";
-  import Input from "@/components/UI/Input.svelte";
-
-  const { fakeEvent } = getContext("Editor");
+  import Switch from "@/components/UI/Switch.svelte";
 
   export let widget;
 
-  let events = {};
-  let eventName = null;
+  let eventTag = "";
+  let eventName = "";
+  let eventTags = {};
+  let eventKeys = [];
+  let eventTagValue = null;
 
-  let tagValue = "";
-  let selectedTag = "";
-  let showTagInput = false;
+  $: isBool = eventTag.match(/^is[A-Z]/);
+
+  const { fakeEvent } = getContext("Editor");
 
   function onEventUpdate({ detail }) {
-    showTagInput = false;
-    events = detail.events;
     eventName = detail.eventName;
+    eventTags = detail.events[eventName];
+    eventKeys = Object.keys(eventTags);
+    eventTag = eventKeys[0];
   }
 
-  function onEditTag(tag) {
-    if (selectedTag === tag) {
-      showTagInput = !showTagInput;
-    } else {
-      showTagInput = true;
-    }
-    selectedTag = tag;
-    tagValue = events[eventName][tag];
-    setTimeout(() => {
-      const el = document.getElementById("tag-input");
-      el && el.focus();
-    }, 42);
+  function updateTag() {
+    eventTags[eventTag] = eventTagValue;
+    api.setEvent({ name: `on${eventName}`, tags: eventTags });
+    $fakeEvent = { eventName: `on${eventName}`, ...eventTags };
   }
 
   function onTagChange({ target }) {
-    events[eventName][selectedTag] = target.value;
-    $fakeEvent = { eventName: `on${eventName}`, ...events[eventName] };
-    api.setEvent({ name: `on${eventName}`, tags: events[eventName] });
+    eventTag = target.value;
+    eventTagValue = eventTags[eventTag];
+  }
+
+  function onTagValueChange({ target }) {
+    eventTagValue = target.value;
+    updateTag();
+  }
+
+  function onSwitchChange({ detail }) {
+    eventTagValue = detail;
+    updateTag();
   }
 </script>
 
 <EventSelect widget="{widget}" on:update="{onEventUpdate}" />
 
-{#if eventName}
-  <div class="pt-5 px-5 flex gap-2">
-    {#each Object.keys(events[eventName]) as tag}
-      <div
-        on:click="{onEditTag.bind(null, tag)}"
-        class="px-2 bg-gray-900 rounded cursor-pointer text-sm"
-      >
-        {tag}
-      </div>
-    {/each}
-  </div>
-{/if}
-
-{#if showTagInput}
-  <div class="mx-3 p-2">
-    <Input id="tag-input" value="{tagValue}" on:change="{onTagChange}" />
-  </div>
-{/if}
+<div class="flex p-5 pb-0 gap-2 items-center">
+  <Select value="{eventTag}" values="{eventKeys}" on:change="{onTagChange}" />
+  {#if isBool}
+    <Switch enabled="{eventTagValue}" on:change="{onSwitchChange}" />
+  {:else}
+    <input
+      class="flex-auto text-dark p-2"
+      value="{eventTagValue}"
+      on:change="{onTagValueChange}"
+    />
+  {/if}
+</div>

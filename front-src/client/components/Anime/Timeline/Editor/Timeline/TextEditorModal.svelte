@@ -20,7 +20,13 @@
   }
 </script>
 
-<Modal on:close opened="{opened}" {...$$restProps} title="{title}">
+<Modal
+  on:close
+  title="{title}"
+  {...$$restProps}
+  opened="{opened}"
+  class="container"
+>
   <TagList widget="{widget}" />
   <div class="p-5">
     {#await fetchText(item.target.filename)}
