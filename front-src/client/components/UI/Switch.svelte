@@ -16,7 +16,7 @@
 
 <div
   on:click="{onClick}"
-  class="relative h-4 flex items-center rounded cursor-pointer"
+  class="relative w-6 h-4 flex items-center rounded cursor-pointer"
 >
   <div class="w-6 h-2 bg-gray-500 bg-opacity-75 rounded-xl"></div>
   <div

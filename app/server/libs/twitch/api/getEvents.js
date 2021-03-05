@@ -28,8 +28,8 @@ module.exports = function getEvents() {
   return events.get("events").map((event) => {
     if (eventsWithUserVars.includes(event.name)) {
       event.tags = {
-        ...event.tags,
         ...userVars,
+        ...event.tags,
       };
     }
     return event;
