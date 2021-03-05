@@ -9,6 +9,7 @@ let reconnectDelay = 2; // seconds
 
 const logger = loggers.get("twitch");
 
+let connectedUser = null;
 let pendingConnection = {
   resolve: null,
   reject: null,
@@ -37,6 +38,7 @@ async function _connect() {
     }
     state.set("userState.connected", true);
     state.set("userState.connecting", false);
+    connectedUser = user._data;
     resolve(user._data);
   } catch (error) {
     logger.error(`[user] ${error.stack}`);
@@ -60,11 +62,11 @@ async function _connect() {
 
 module.exports = async function getConnectedUser() {
   if (state.get("userState.connected")) {
-    return Promise.resolve({ connected: true });
+    return Promise.resolve(connectedUser);
   }
 
   if (state.get("userState.connecting")) {
-    return Promise.resolve({ connecting: true });
+    return Promise.reject(new Error("Already connecting"));
   }
 
   state.set("userState.connecting", true);
