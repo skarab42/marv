@@ -79,7 +79,7 @@ function runAnime(action, cb) {
 
   Promise.all(promises)
     .then((elements) => {
-      elements.forEach((element) => {
+      [...elements].reverse().forEach((element) => {
         $anime.appendChild(element);
       });
       $main.appendChild($anime);
