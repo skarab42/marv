@@ -102,7 +102,7 @@
   $: $items.length ? updateAnimeDebounce() : resetAnime();
 
   function addItem(item) {
-    $items = [...$items, item];
+    $items = [item, ...$items];
     if (!$selectedItem) {
       $selectedItem = item;
     }
