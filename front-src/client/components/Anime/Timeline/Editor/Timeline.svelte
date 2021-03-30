@@ -95,7 +95,7 @@
   <div slot="header" class="bg-primary-dark">
     <Ruler />
   </div>
-  {#each $items as item, index (item.id)}
+  {#each [...$items].reverse() as item, index (item.id)}
     <Item
       bind:item
       index="{index}"
