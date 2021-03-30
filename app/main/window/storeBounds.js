@@ -12,8 +12,18 @@ module.exports = function storeBounds({ win, name, delay = 500 } = {}) {
 
   let timeout = null;
 
-  const loadBounds = () => win.setBounds(store.get("bounds"));
-  const updateBounds = () => store.set("bounds", win.getBounds());
+  const loadBounds = () => {
+    win.setBounds(store.get("bounds"));
+    if (store.get("fullscreen")) win.maximize();
+  };
+
+  const updateBounds = () => {
+    const maximized = win.isMaximized();
+
+    store.set("fullscreen", maximized);
+    if ( !maximized )
+      store.set("bounds", win.getBounds());
+  };
 
   const updateBoundsDelay = () => {
     timeout && clearTimeout(timeout);
