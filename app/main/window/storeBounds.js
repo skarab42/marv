@@ -16,9 +16,13 @@ module.exports = function storeBounds({ win, name, delay = 500 } = {}) {
     win.setBounds(store.get("bounds"));
     if (store.get("fullscreen")) win.maximize();
   };
+
   const updateBounds = () => {
-    store.set("bounds", win.getBounds());
-    store.set("fullscreen", win.isMaximized());
+    const maximized = win.isMaximized();
+
+	store.set("fullscreen", maximized);
+    if ( !maximized )
+      store.set("bounds", win.getBounds());
   };
 
   const updateBoundsDelay = () => {
