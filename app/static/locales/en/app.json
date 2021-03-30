@@ -162,7 +162,8 @@
     "group": "group",
     "and": "and",
     "or": "or",
-    "source": "source"
+    "source": "source",
+    "test": "test"
   },
   "obs": {
     "scene-list": "OBS | Scene list",

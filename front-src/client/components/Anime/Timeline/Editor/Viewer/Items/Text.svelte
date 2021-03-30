@@ -14,14 +14,20 @@
 
   let html = "Loading...";
 
-  $: fetchText(item.target.filename).then((rawText) => {
-    const data = $fakeEvent || { eventName: "animePreview" };
+  async function getText(filename, data) {
     try {
-      html = ejs.render(rawText, data);
+      html = await fetchText(filename, data);
+      data = data || { eventName: "animePreview" };
+      Object.keys(data).forEach((tag) => {
+        html = html.replace(`$${tag}`, data[tag]);
+      });
+      html = ejs.render(html, data);
     } catch (error) {
       html = `<pre>${error}</pre>`;
     }
-  });
+  }
+
+  $: getText(item.target.filename, $fakeEvent);
 </script>
 
 <div

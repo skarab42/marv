@@ -1,24 +1,19 @@
 <script>
   import api from "@/api/twitch";
   import { _ } from "@/libs/i18next";
+  import { getContext, onMount } from "svelte";
   import Select from "@/components/UI/Select.svelte";
-  import { createEventDispatcher, getContext, onMount } from "svelte";
 
-  const { fakeEvent } = getContext("Editor");
+  const { fakeEvent, fakeEventName, events } = getContext("Editor");
 
   export let widget;
   export let showLabel = true;
 
-  let events = {};
-  let eventName = null;
   let eventsNames = [];
 
-  const dispatch = createEventDispatcher();
-
   function setEventName(name) {
-    eventName = name;
-    $fakeEvent = { eventName: `on${name}`, ...events[eventName] };
-    dispatch("update", { events, eventName });
+    $fakeEventName = name;
+    $fakeEvent = { eventName: `on${name}`, ...$events[$fakeEventName] };
   }
 
   function updateEvents() {
@@ -28,10 +23,10 @@
         if (result) {
           const name = result.name.slice(2);
           eventsNames = [...eventsNames, name];
-          events[name] = result.tags;
+          $events[name] = result.tags;
         }
       });
-      setEventName(eventsNames[0]);
+      !$fakeEventName && setEventName(eventsNames[0]);
     });
   }
 
@@ -44,9 +39,10 @@
 
 {#if eventsNames.length}
   <Select
-    rootClass="flex-shrink-0"
+    value="{$fakeEventName}"
     items="{eventsNames}"
-    label="{showLabel && _('words.event')}"
+    rootClass="flex-shrink-0"
     on:change="{onEventChange}"
+    label="{showLabel && _('words.event')}"
   />
 {/if}
