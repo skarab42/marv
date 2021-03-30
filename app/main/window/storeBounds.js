@@ -20,7 +20,7 @@ module.exports = function storeBounds({ win, name, delay = 500 } = {}) {
   const updateBounds = () => {
     const maximized = win.isMaximized();
 
-	store.set("fullscreen", maximized);
+    store.set("fullscreen", maximized);
     if ( !maximized )
       store.set("bounds", win.getBounds());
   };
