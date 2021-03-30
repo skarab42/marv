@@ -1,5 +1,37 @@
 # Changelog
 
+## v1.7.0 (2021-03-30)
+
+### Features
+
+- **OBS:** Edit port and password (#238) (357984f)
+- Add remove confirm modal on command and event (#237) (dafa53b)
+- **timeline:** Reverse item order (#236) (5a97e52)
+- Conditional event and command (#235) (fd133b9)
+- Add quit button in main menu (#210) (4b00069)
+- OBS audio volume widget (#201) (4662d73)
+- Set widget min size when selected (#184) (3808fda)
+- OBS toggle audio source (#183) (4c23b01)
+- Conditional commands (#182) (c490b6b)
+- Add channel:read:subscriptions scope (#176) (6328118)
+- Conditional events (#175) (0385b3a)
+
+### Bug Fixes
+
+- Boolen tags in text file (#219) (53e4a27)
+- Twitch (chat) login in electron (#218) (fcfa190)
+- User not resolved after seconds call (#216) (64589ff)
+- Encode the entire URI used to login with Twitch (#214) (56a861b)
+- Remove SIGKILL signal handler (#212) (3bb7118)
+- User auto reconnect (#209) (fc2cadb)
+- Pubsub auto reconnect (#208) (7d87e4b)
+- Chat auto reconnect (#207) (07dcf93)
+- Color picker (#202) (87bb79c)
+- Event trigger update (#178) (8fbe78b)
+- **dev:** Main window open on save (#177) (6ce24ce)
+
+---
+
 ## v1.6.0 (2021-02-23)
 
 ### Features
@@ -104,49 +136,6 @@
 ### Bug Fixes
 
 - **path:** Fix app directory case (0047b90)
-
----
-
-## v1.2.0 (2021-01-21)
-
-### Features
-
-- **panels:** Add set (panels) method (9fabd36)
-- **ui:** Add click to open right menu message (548c540)
-- **locale:** Add right click sentences (5265493)
-- **ui:** Create/Add widget on panel creation (faed14d)
-- **ui:** Remove the edit topbar (29fa74d)
-- **ui:** Hide context menu item when not usable (e90af9d)
-- **ui:** Global context menu (ca2c0f8)
-- **ui:** Add item separator (f189d18)
-- **ui:** Capitalize menu item (35759a1)
-- **ui:** Remove sample code (f788c42)
-- **ui:** Add class prop (e4c2911)
-- **ui:** Add Separator component (668c178)
-- **locale:** Add edit grid sentences (901daea)
-- **ui:** Constrains context menu in the window (824fa61)
-- **ui:** Use app ContextMenu (e5ec039)
-- **ui:** Add ContextMenu component (8646a1b)
-- **ui:** Add remove panel in context menu (8d75c26)
-- **locale:** Update sentences (82c8e0a)
-- **ui:** Add RemoveModal component (4dcc2f7)
-- **ui:** Add ContexMenu and RenameModal (4b3624a)
-- **ui:** Add Menu and MenuItem components (ff8a8da)
-- **ui:** Add ContextMenu component (c297c25)
-- **ui:** Add Modal and RenameModal (0723858)
-- **ui:** Add class prop (01f569b)
-- **ui:** Add ContextMenu component (9afe803)
-- **ui:** Add contextmenu event (1d20103)
-- **dep:** Add svelte-portal (21ca4b5)
-- **ui:** Switch topbars order (bb53ead)
-- **ui:** Allows changing the order of the panels (f67689c)
-
-### Bug Fixes
-
-- **ui:** Fix unsaved change (e2280af)
-- **ui:** Fix undefined currentPanel (0918334)
-- **panel:** Fix undefined current panel when last is removed (560dc74)
-- **locale:** Fix language selection (d579fa1)
 
 ---
 
