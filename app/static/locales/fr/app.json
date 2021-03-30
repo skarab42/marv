@@ -68,7 +68,8 @@
     "global-shortcut-reserved": "Ce raccourci est réservé par le système!",
     "type-shortcut-here": "Tapez le raccourci ici...",
     "add-event": "Ajouter un évènement",
-    "confirm-quit": "Voulez vous vraiment quitter Marv ?"
+    "confirm-quit": "Voulez vous vraiment quitter Marv ?",
+    "obs-settings": "OBS configuration"
   },
   "words": {
     "settings": "options",
@@ -163,7 +164,9 @@
     "and": "et",
     "or": "ou",
     "source": "source",
-    "test": "test"
+    "test": "test",
+    "port": "port",
+    "password": "mot de passe"
   },
   "obs": {
     "scene-list": "OBS | Liste des scènes",
