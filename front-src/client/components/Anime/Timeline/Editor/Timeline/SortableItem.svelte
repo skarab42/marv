@@ -21,8 +21,9 @@
 
   function moveItem({ from, to }) {
     if (from === to) return;
-    $items.splice(to, 0, $items.splice(from, 1)[0]);
-    $items = $items;
+    let reversedItems = [...$items].reverse();
+    reversedItems.splice(to, 0, reversedItems.splice(from, 1)[0]);
+    $items = reversedItems.reverse();
   }
 
   function onDrop({ dataTransfer }) {
