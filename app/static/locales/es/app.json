@@ -68,7 +68,8 @@
     "global-shortcut-reserved": "Este acceso directo está reservado por el sistema!",
     "type-shortcut-here": "Escriba el acceso directo aquí...",
     "add-event": "Añadir evento",
-    "confirm-quit": "¿De verdad quieres dejar Marv?"
+    "confirm-quit": "¿De verdad quieres dejar Marv?",
+    "obs-settings": "OBS settings"
   },
   "words": {
     "settings": "opciones",
@@ -162,7 +163,9 @@
     "and": "and",
     "or": "or",
     "source": "fuente",
-    "test": "test"
+    "test": "test",
+    "port": "puerto",
+    "password": "contraseña"
   },
   "obs": {
     "scene-list": "OBS | Lista de escenas",
