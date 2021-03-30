@@ -1,5 +1,4 @@
 <script>
-  import { _ } from "@/libs/i18next";
   import CodeMirror from "codemirror";
   import { debounce } from "throttle-debounce";
   import { createEventDispatcher } from "svelte";

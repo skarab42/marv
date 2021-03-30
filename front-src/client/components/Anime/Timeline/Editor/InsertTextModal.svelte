@@ -8,7 +8,6 @@
 
   export let notify = null;
 
-
   const dispatch = createEventDispatcher();
 
   let value = "";

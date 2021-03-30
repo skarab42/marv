@@ -1,6 +1,5 @@
 <script>
   import api from "@/api/twitch";
-  import { _ } from "@/libs/i18next";
   import { getContext } from "svelte";
   import Select from "./Select.svelte";
   import EventSelect from "./EventSelect.svelte";
@@ -27,7 +26,7 @@
   function updateTag() {
     eventTags[eventTag] = eventTagValue;
     api.setEvent({ name: `on${$fakeEventName}`, tags: eventTags });
-    $fakeEvent = { eventName: `on${$fakeEventName}`, ...eventTags };
+    fakeEvent.set({ eventName: `on${$fakeEventName}`, ...eventTags });
   }
 
   function onTagChange({ target }) {

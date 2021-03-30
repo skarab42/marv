@@ -44,8 +44,8 @@ module.exports = class AuthProvider {
   getAuthUrl(scopes) {
     return encodeURI(
       `${authBaseURL}&client_id=${this.clientId}` +
-      `&redirect_uri=${this.redirectURI}&scope=${scopes.join(" ")}` +
-      `&force_verify=${this.forceVerify ? "true" : "false"}`
+        `&redirect_uri=${this.redirectURI}&scope=${scopes.join(" ")}` +
+        `&force_verify=${this.forceVerify ? "true" : "false"}`
     );
   }
 

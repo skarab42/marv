@@ -2,7 +2,6 @@
   import { _ } from "@/libs/i18next";
   import { update } from "@/libs/panels";
   import isValidEvent from "./isValidEvent";
-  import { createEventDispatcher } from "svelte";
   import Button from "@/components/UI/Button.svelte";
   import MdCode from "svelte-icons/md/MdCode.svelte";
   import MdClose from "svelte-icons/md/MdClose.svelte";

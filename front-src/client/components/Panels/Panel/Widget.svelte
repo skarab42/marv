@@ -37,7 +37,7 @@
 
   async function duplicate() {
     const { widget } = await duplicateWidget({ panel, item });
-    $selectedWidget = widget;
+    selectedWidget.set(widget);
   }
 
   function moveTo() {
@@ -50,8 +50,8 @@
 
   async function onPanelSelect({ detail: targetPanel }) {
     await moveWidgetToPanel({ panel, targetPanel, item });
-    $currentPanel = targetPanel;
-    $selectedWidget = widget;
+    currentPanel.set(targetPanel);
+    selectedWidget.set(widget);
   }
 
   function editStyles() {

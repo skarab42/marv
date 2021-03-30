@@ -24,8 +24,8 @@
 
   function selectItem(item) {
     if (!$selectedItem || $selectedItem.id !== item.id) {
-      $selectedKeyframe = null;
-      $selectedItem = item;
+      selectedKeyframe.set(null);
+      selectedItem.set(item);
     }
   }
 
