@@ -28,6 +28,15 @@
   class="container"
 >
   <TagList widget="{widget}" />
+  <div class="p-5 pb-2">
+    <div class="text-xs">
+      (
+      <a class="text-pink-600" href="https://ejs.co/#docs" target="_blank">
+        {_('sentences.supports-ejs-syntax')}
+      </a>
+      )
+    </div>
+  </div>
   <div class="p-5">
     {#await fetchText(item.target.filename)}
       Loading....

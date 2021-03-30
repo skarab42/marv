@@ -9,26 +9,25 @@
   export let widget;
 
   let eventTag = "";
-  let eventName = "";
   let eventTags = {};
   let eventKeys = [];
   let eventTagValue = null;
 
+  $: if ($fakeEventName) onEventUpdate();
   $: isBool = eventTag.match(/^is[A-Z]/);
 
-  const { fakeEvent } = getContext("Editor");
+  const { fakeEvent, fakeEventName, events } = getContext("Editor");
 
-  function onEventUpdate({ detail }) {
-    eventName = detail.eventName;
-    eventTags = detail.events[eventName];
+  function onEventUpdate() {
+    eventTags = $events[$fakeEventName];
     eventKeys = Object.keys(eventTags);
     eventTag = eventKeys[0];
   }
 
   function updateTag() {
     eventTags[eventTag] = eventTagValue;
-    api.setEvent({ name: `on${eventName}`, tags: eventTags });
-    $fakeEvent = { eventName: `on${eventName}`, ...eventTags };
+    api.setEvent({ name: `on${$fakeEventName}`, tags: eventTags });
+    $fakeEvent = { eventName: `on${$fakeEventName}`, ...eventTags };
   }
 
   function onTagChange({ target }) {
@@ -47,7 +46,7 @@
   }
 </script>
 
-<EventSelect widget="{widget}" on:update="{onEventUpdate}" />
+<EventSelect widget="{widget}" />
 
 <div class="flex p-5 pb-0 gap-2 items-center">
   <Select value="{eventTag}" values="{eventKeys}" on:change="{onTagChange}" />

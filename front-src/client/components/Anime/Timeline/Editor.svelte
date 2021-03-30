@@ -33,7 +33,7 @@
   const playables = ["audio", "video"];
 
   $: $items = initialItems;
-  $: duration = $anime ? $anime.duration : 0;
+  $: duration = $anime ? $anime.duration : 42;
 
   function updateAnime() {
     if ($anime && !$anime.paused) return;
@@ -90,6 +90,7 @@
     });
 
     $anime.seek($seek);
+    duration = $anime.duration;
     dispatch("update", { duration, items: $items });
   }
 

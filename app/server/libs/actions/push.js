@@ -75,6 +75,11 @@ module.exports = function push(action) {
 
   action = create(action);
 
+  if (action.fakeEvent) {
+    action.event = { eventName: action.fakeEvent.eventName };
+    action.eventProps = action.fakeEvent;
+  }
+
   action.eventProps.eventName = action.event
     ? action.event.eventName
     : "onClick";

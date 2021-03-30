@@ -1,9 +1,13 @@
 <script>
+  import api from "@/api/actions";
   import { _ } from "@/libs/i18next";
-  import { onMount, onDestroy } from "svelte";
   import pannable from "@/libs/svelte/pannable.js";
+  import Button from "@/components/UI/Button.svelte";
   import EventSelect from "./Timeline/EventSelect.svelte";
+  import { onMount, onDestroy, getContext } from "svelte";
   import ColorPicker from "@/components/UI/ColorPicker.svelte";
+
+  const { fakeEvent } = getContext("Editor");
 
   const localSize = JSON.parse(
     localStorage.getItem("anime.viewer.size") || "{}"
@@ -96,12 +100,21 @@
     bgColor = color.hex;
     localStorage.setItem("anime.viewer.bgColor", bgColor);
   }
+
+  function onPlay() {
+    api
+      .push({ type: "anime", widget, fakeEvent: $fakeEvent })
+      .catch((error) => {
+        console.log(">>>Error:", error);
+      });
+  }
 </script>
 
 <div class="h-full flex flex-col flex-auto">
   <div class="flex items-center bg-secondary-dark">
     <slot name="header" />
     <EventSelect widget="{widget}" showLabel="{false}" />
+    <Button class="bg-pink-700" on:click="{onPlay}">{_('words.test')}</Button>
     <div class="flex">
       <ColorPicker
         label="{_('words.color')}"

@@ -14,5 +14,7 @@ export default function create() {
     seek: writable(0),
     pixelPerMs: 10,
     fakeEvent: writable(null),
+    fakeEventName: writable(null),
+    events: writable({}),
   };
 }
