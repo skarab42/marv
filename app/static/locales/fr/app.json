@@ -225,7 +225,8 @@
       "onCommand": "Command",
       "onRedemption": "Redemption",
       "onBits": "Bits",
-      "onShortcut": "Shortcut"
+      "onShortcut": "Shortcut",
+      "null": "twitch.events.null"
     }
   },
   "labels": {

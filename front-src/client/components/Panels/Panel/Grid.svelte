@@ -1,6 +1,5 @@
 <script>
   import Grid from "svelte-grid";
-  import { _ } from "@/libs/i18next";
   import Widget from "./Widget.svelte";
   import { update } from "@/libs/panels";
   import { onMount, onDestroy } from "svelte";
@@ -13,7 +12,7 @@
   }
 
   function hide() {
-    $selectedWidget = null;
+    selectedWidget.set(null);
   }
 
   onMount(() => document.addEventListener("mousedown", hide));

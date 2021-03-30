@@ -6,3 +6,4 @@ node_modules/
 dist/
 *_.*
 *_
+front-src/libs/ejs.js

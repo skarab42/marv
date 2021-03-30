@@ -1,5 +1,4 @@
 <script>
-  import { _ } from "@/libs/i18next";
   import { createEventDispatcher } from "svelte";
 
   export let value;

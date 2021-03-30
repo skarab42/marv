@@ -12,8 +12,8 @@
   let eventsNames = [];
 
   function setEventName(name) {
-    $fakeEventName = name;
-    $fakeEvent = { eventName: `on${name}`, ...$events[$fakeEventName] };
+    fakeEventName.set(name);
+    fakeEvent.set({ eventName: `on${name}`, ...$events[$fakeEventName] });
   }
 
   function updateEvents() {
