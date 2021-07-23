@@ -280,5 +280,8 @@
       "has": "contient",
       "hasNot": "contient pas"
     }
+  },
+  "errors": {
+    "unable_to_fetch_follows": "Impossible de récuperer la list des follows"
   }
 }

@@ -280,5 +280,8 @@
       "has": "has",
       "hasNot": "has not"
     }
+  },
+  "errors": {
+    "unable_to_fetch_follows": "Unable to fetch follows list"
   }
 }

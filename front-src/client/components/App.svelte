@@ -13,6 +13,7 @@
   import { loadUsedFonts } from "../../libs/fonts";
   import appStore, { initialized } from "@/stores/app";
 
+  import Notify from "@/components/App/Notify.svelte";
   import Connected from "@/components/App/Connected.svelte";
   import Connecting from "@/components/App/Connecting.svelte";
   import Disconnected from "@/components/App/Disconnected.svelte";
@@ -59,3 +60,5 @@
 </div>
 
 <div id="modal"></div>
+
+<Notify />
