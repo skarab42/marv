@@ -1,6 +1,10 @@
 const { getSystemFonts, getUsedFonts } = require("../libs/files");
 const settings = require("../libs/settings");
+const loggers = require("../libs/loggers");
 const io = require("../libs/socket.io");
+
+const logger = loggers.get("app");
+const types = ["info", "warning", "error", "notice"];
 
 module.exports = {
   quit: () => {
@@ -30,5 +34,7 @@ module.exports = {
   },
   stateNotify(type, message, options = null) {
     io().emit("app.notice", { type, message, options });
+    type = types.includes(type) ? type : "notice";
+    logger[type](message);
   },
 };
