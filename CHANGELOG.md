@@ -1,5 +1,18 @@
 # Changelog
 
+## v1.8.0 (2021-07-24)
+
+### Features
+
+- Store fullscreen state (#240) (9687a0a)
+
+### Bug Fixes
+
+- non fatal error (#261) (d4d6367)
+- **timeline:** Sortable item order (#241) (abdd1f2)
+
+---
+
 ## v1.7.0 (2021-03-30)
 
 ### Features
@@ -128,14 +141,6 @@
 ### Bug Fixes
 
 - **socketio:** Fix socket.io CORS origins (717460e)
-
----
-
-## v1.2.1 (2021-01-21)
-
-### Bug Fixes
-
-- **path:** Fix app directory case (0047b90)
 
 ---
 
