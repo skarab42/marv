@@ -282,6 +282,7 @@
     }
   },
   "errors": {
-    "unable_to_fetch_follows": "Unable to fetch follows list"
+    "unable_to_fetch_follows": "Unable to fetch follows list",
+    "unable_to_fetch_new_follows": "Unable to fetch new follows"
   }
 }

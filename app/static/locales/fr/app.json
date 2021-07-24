@@ -282,6 +282,7 @@
     }
   },
   "errors": {
-    "unable_to_fetch_follows": "Impossible de récuperer la list des follows"
+    "unable_to_fetch_follows": "Impossible de récuperer la list des follows",
+    "unable_to_fetch_new_follows": "Impossible de récuperer les derrniers follows"
   }
 }
