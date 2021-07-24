@@ -10,6 +10,6 @@ module.exports = async function install() {
   installLock = true;
 
   await updateFollowsPlugin();
-  streamStatePlugin();
-  followsPlugin();
+  await streamStatePlugin();
+  await followsPlugin();
 };

@@ -14,6 +14,7 @@
   import appStore, { initialized } from "@/stores/app";
 
   import Connected from "@/components/App/Connected.svelte";
+  import Notify from "@/components/App/Notify/Notify.svelte";
   import Connecting from "@/components/App/Connecting.svelte";
   import Disconnected from "@/components/App/Disconnected.svelte";
   import ElectronTopbar from "@/components/App/ElectronTopbar.svelte";
@@ -59,3 +60,5 @@
 </div>
 
 <div id="modal"></div>
+
+<Notify />

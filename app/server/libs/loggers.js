@@ -48,5 +48,6 @@ function createLogger({ group, console = false } = {}) {
 createLogger({ group: "server", console: watch });
 createLogger({ group: "twitch", console: false });
 createLogger({ group: "obs", console: watch });
+createLogger({ group: "app", console: watch });
 
 module.exports = loggers;

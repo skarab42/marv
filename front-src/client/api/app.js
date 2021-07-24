@@ -1,4 +1,4 @@
-import { emit } from "@/libs/socket.io";
+import { emit, on } from "@/libs/socket.io";
 
 export default {
   quit: () => emit("app.quit"),
@@ -8,4 +8,5 @@ export default {
   getUsedFonts: () => emit("app.getUsedFonts"),
   getSettings: () => emit("app.getSettings"),
   setSetting: (key, value) => emit("app.setSetting", key, value),
+  on: (key, cb) => on(`app.${key}`, cb),
 };

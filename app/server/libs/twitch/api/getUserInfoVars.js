@@ -1,5 +1,8 @@
 const getConnectedUser = require("./getConnectedUser");
+const appApi = require("../../../api/app");
+const { _ } = require("../../i18next");
 const twitch = require("../index");
+const retry = require("../retry");
 
 function getDefaultVars() {
   return {
@@ -23,16 +26,24 @@ function getChatUserInfoVars(data) {
   };
 }
 
+async function isSub(from, to) {
+  return !!(await twitch.api.helix.subscriptions.getSubscriptionForUser(
+    from,
+    to
+  ));
+}
+
 async function getPubSubUserInfoVars(user) {
   const broadcaster = await getConnectedUser();
   const isBroadcaster = broadcaster.login === user.login;
+  let isSubscriber = false;
 
-  const isSubscriber =
-    isBroadcaster ||
-    !!(await twitch.api.helix.subscriptions.getSubscriptionForUser(
-      broadcaster.id,
-      user.id
-    ));
+  try {
+    isSubscriber =
+      isBroadcaster || (await retry(() => isSub(broadcaster.id, user.id)));
+  } catch (error) {
+    appApi.stateNotify("error", _("errors.unable_to_fetch_sub_state"));
+  }
 
   let isMod = false;
   let isVip = false;

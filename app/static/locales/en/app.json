@@ -280,5 +280,11 @@
       "has": "has",
       "hasNot": "has not"
     }
+  },
+  "errors": {
+    "unable_to_fetch_follows": "Unable to fetch follows list",
+    "unable_to_fetch_new_follows": "Unable to fetch new follows",
+    "unable_to_fetch_rewards_list": "Unable to fetch rewards list",
+    "unable_to_fetch_stream_state": "Unable to fetch subscriber state"
   }
 }

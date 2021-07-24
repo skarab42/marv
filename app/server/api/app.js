@@ -1,5 +1,10 @@
 const { getSystemFonts, getUsedFonts } = require("../libs/files");
 const settings = require("../libs/settings");
+const loggers = require("../libs/loggers");
+const io = require("../libs/socket.io");
+
+const logger = loggers.get("app");
+const types = ["info", "warning", "error", "notice"];
 
 module.exports = {
   quit: () => {
@@ -12,9 +17,9 @@ module.exports = {
     return (await getSystemFonts()).fontNames;
   },
   loadFont: (url) => {
-    const io = require("../libs/socket.io")();
-    if (!io.__overlaySocket) return;
-    io.__overlaySocket.emit("loadFont", url);
+    const socket = io();
+    if (!socket.__overlaySocket) return;
+    socket.__overlaySocket.emit("loadFont", url);
   },
   getUsedFonts: () => {
     return getUsedFonts();
@@ -26,5 +31,10 @@ module.exports = {
   },
   setSetting: (key, value) => {
     return settings.set(`app.${key}`, value);
+  },
+  stateNotify(type, message, options = null) {
+    io().emit("app.notice", { type, message, options });
+    type = types.includes(type) ? type : "notice";
+    logger[type](message);
   },
 };
