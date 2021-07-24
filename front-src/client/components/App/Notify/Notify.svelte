@@ -2,6 +2,7 @@
   import { notices, closeNotice, pauseNotice } from "@/stores/notify";
   import RemoveCross from "@/components/UI/RemoveCross.svelte";
   import { slide } from "svelte/transition";
+  import { color } from "./colors";
 
   function progress(node, { duration }) {
     return {
@@ -12,28 +13,19 @@
     };
   }
 
-  const colors = {
-    info: "bg-gray-300 text-gray-800",
-    success: "bg-green-700 text-gray-300",
-    warning: "bg-orange-600 text-gray-300",
-    error: "bg-red-700 text-gray-300",
-  };
-
-  function color(type) {
-    return colors[type] || colors.info;
-  }
+  $: _notices = $notices.filter((notice) => !notice.closed);
 </script>
 
 <div class="absolute bottom-0 right-0 z-50 max-w-screen-sm">
   <div class="p-2 flex flex-col gap-2">
-    {#each $notices as notice (notice.id)}
+    {#each _notices as notice (notice.id)}
       <div
         on:mouseenter="{() => pauseNotice(notice)}"
         transition:slide|local
-        class="p-4 {color(notice.type)} rounded items-center shadow-md"
+        class="p-4 {color(notice.type)} rounded shadow-md"
       >
-        <div class="flex gap-4">
-          <div>{notice.message}</div>
+        <div class="flex gap-4 items-center">
+          <div class="flex-auto break-all">{notice.message}</div>
           <RemoveCross
             visible="{notice.options.dismissable}"
             on:click="{() => closeNotice(notice)}"

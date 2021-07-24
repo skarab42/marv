@@ -4,7 +4,7 @@
 
   let top = electron ? 29 : 0;
   let content = "flex overflow-auto";
-  let colors = "bg-black bg-opacity-75";
+  export let colors = "bg-black bg-opacity-75";
   let position = "absolute left-0 right-0 bottom-0 z-50";
 </script>
 

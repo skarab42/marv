@@ -13,8 +13,8 @@
   import { loadUsedFonts } from "../../libs/fonts";
   import appStore, { initialized } from "@/stores/app";
 
-  import Notify from "@/components/App/Notify.svelte";
   import Connected from "@/components/App/Connected.svelte";
+  import Notify from "@/components/App/Notify/Notify.svelte";
   import Connecting from "@/components/App/Connecting.svelte";
   import Disconnected from "@/components/App/Disconnected.svelte";
   import ElectronTopbar from "@/components/App/ElectronTopbar.svelte";

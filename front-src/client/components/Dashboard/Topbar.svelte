@@ -6,6 +6,7 @@
   import OBSStatus from "@/components/OBS/Status.svelte";
   import OBSConnect from "@/components/OBS/Connect.svelte";
   import TwitchLogin from "@/components/Twitch/Login.svelte";
+  import Notices from "@/components/App/Notify/Notices.svelte";
   import FlexbarSpacer from "@/components/UI/Flexbar/Spacer.svelte";
   import StreamStatus from "@/components/Twitch/StreamStatus.svelte";
 
@@ -24,6 +25,7 @@
     <StreamStatus />
     <FlexbarSpacer />
   {/if}
+  <Notices />
   <TwitchLogin />
   <DrawerToggle bgColor="{toggleBgColor}" />
 </Flexbar>
