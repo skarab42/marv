@@ -10,7 +10,6 @@ function mapSort(rewards) {
 
 async function _getRewardList() {
   const user = await login();
-  throw new Error("pouet");
   const rewards = await twitch.api.helix.channelPoints.getCustomRewards(user);
   return rewards ? mapSort(rewards) : null;
 }
