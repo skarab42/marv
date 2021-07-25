@@ -14,6 +14,7 @@
   import Button from "@/components/UI/Button.svelte";
   import Select from "@/components/UI/Select.svelte";
   import { findSpaceForWidget } from "@/stores/panels";
+  import Checkbox from "@/components/UI/Checkbox.svelte";
   import MdDelete from "svelte-icons/md/MdDeleteForever.svelte";
   import ConfirmModal from "@/components/UI/ConfirmModal.svelte";
 
@@ -97,6 +98,10 @@
   function onRemoveAction() {
     removeActionModal = true;
   }
+
+  function onCheckboxChange({ target }) {
+    change("random", target.checked);
+  }
 </script>
 
 {#if component}
@@ -112,6 +117,11 @@
         value="{widget.trigger}"
         label="{_('words.trigger')}"
         on:change="{onTriggerChange}"
+      />
+      <Checkbox
+        on:change="{onCheckboxChange}"
+        checked="{widget.random}"
+        label="{_('words.random')}"
       />
     {/if}
     {#if config.hasEvent}

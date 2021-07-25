@@ -41,8 +41,6 @@
   }
 
   async function onChange({ detail }) {
-    console.log(detail);
-
     if (detail.key === "shortcutName") {
       await onShortcutChange(detail.value);
       return;
