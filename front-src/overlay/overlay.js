@@ -5,6 +5,7 @@ import { loadUsedFonts, loadFont } from "../libs/fonts";
 import { on } from "./libs/socket.io";
 import animejs from "animejs";
 import ejs from "../libs/ejs";
+import api from "../libs/api";
 
 (async () => await loadUsedFonts(false))();
 
@@ -26,7 +27,7 @@ function runAnime(action, cb) {
 
   action.data.forEach((item) => {
     promises.push(
-      createElementFromTarget(item.target).then((element) => {
+      createElementFromTarget(item.target).then(async (element) => {
         const style = getStyle(item.target.style);
         const trans = getTrans(item.target.trans);
 
@@ -69,7 +70,13 @@ function runAnime(action, cb) {
             const regexp = new RegExp(`\\$${key}`, "g");
             element.innerText = element.innerText.replace(regexp, val);
           });
-          element.innerHTML = ejs.render(element.innerText, action.eventProps);
+          element.innerHTML = await ejs.render(
+            element.innerText,
+            { ...action.eventProps, api },
+            {
+              async: true,
+            }
+          );
         }
 
         return element;
