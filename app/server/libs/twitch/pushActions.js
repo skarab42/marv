@@ -49,6 +49,8 @@ function getValidEvents(widget, eventName) {
 module.exports = function pushActions(eventName, eventProps) {
   logger.debug("pushActions", { eventName, eventProps });
 
+  const randomActions = [];
+
   stores.panels.get("panels").forEach(({ widgets }) => {
     widgets.forEach((widget) => {
       if (!widget.component) return;
@@ -63,8 +65,17 @@ module.exports = function pushActions(eventName, eventProps) {
         if (isInvalidShortcut(event, eventProps)) return;
         if (isInvalidRules(event, eventProps)) return;
 
-        push({ type, widget, event, eventProps });
+        if (widget.random) {
+          randomActions.push({ type, widget, event, eventProps });
+        } else {
+          push({ type, widget, event, eventProps });
+        }
       });
     });
   });
+
+  if (randomActions.length) {
+    const random = Math.floor(Math.random() * randomActions.length);
+    push(randomActions[random]);
+  }
 };
