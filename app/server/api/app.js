@@ -32,9 +32,9 @@ module.exports = {
   setSetting: (key, value) => {
     return settings.set(`app.${key}`, value);
   },
-  stateNotify(type, message, options = null) {
-    io().emit("app.notice", { type, message, options });
+  stateNotify(type, message, data = undefined) {
+    io().emit("app.notice", { type, message, options: { data } });
     type = types.includes(type) ? type : "notice";
-    logger[type](message);
+    logger[type](message, data);
   },
 };

@@ -1,6 +1,7 @@
 const settings = require("../libs/settings");
 const state = require("../libs/twitch/state");
 const twitchLogin = require("../libs/twitch/login");
+const getUser = require("../libs/twitch/api/getUser");
 const pubsubConnect = require("../libs/twitch/pubsub");
 const setEvent = require("../libs/twitch/api/setEvent");
 const getEvents = require("../libs/twitch/api/getEvents");
@@ -60,6 +61,7 @@ module.exports = {
     });
   },
   getEvents: () => getEvents(),
+  getUser: (name) => getUser(name),
   setEvent: (event) => setEvent(event),
   getRewardList: () => getRewardList(),
   getCommandList: () => getCommandList(),

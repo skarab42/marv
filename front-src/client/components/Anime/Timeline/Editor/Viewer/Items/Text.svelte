@@ -1,6 +1,7 @@
 <script>
   import ejs from "../../../../../../../libs/ejs";
   import { fetchText } from "../../../libs/utils";
+  import api from "../../../../../../../libs/api";
   import getStyle from "../../../libs/getStyle";
   import getTrans from "../../../libs/getTrans";
   import { getContext } from "svelte";
@@ -21,7 +22,8 @@
       Object.keys(data).forEach((tag) => {
         html = html.replace(`$${tag}`, data[tag]);
       });
-      html = ejs.render(html, data);
+      data.api = api;
+      html = await ejs.render(html, data, { async: true });
     } catch (error) {
       html = `<pre>${error}</pre>`;
     }

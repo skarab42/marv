@@ -1,11 +1,17 @@
 const getCommandByName = require("../api/getCommandByName");
 const pushActions = require("../pushActions");
+const appApi = require("../../../api/app");
+const getUser = require("../api/getUser");
 const jsonLogic = require("../jsonLogic");
 const { _ } = require("../../i18next");
 const ejs = require("ejs");
 const ms = require("ms");
 
 const cooldowns = {};
+
+const api = {
+  getUser,
+};
 
 function parseUsage(usage) {
   return (usage || "")
@@ -89,6 +95,14 @@ module.exports = async function onCommand({
   let chatMessage = (commandEntry.message || "").trim();
 
   if (chatMessage.length) {
-    this.say(channel, ejs.render(chatMessage, args));
+    args.api = api;
+
+    chatMessage = chatMessage.replace(/[\r\n]+/g, " ");
+
+    try {
+      this.say(channel, await ejs.render(chatMessage, args, { async: true }));
+    } catch (error) {
+      appApi.stateNotify("error", _("errors.unable_to_render_ejs"), command);
+    }
   }
 };

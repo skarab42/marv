@@ -3,6 +3,7 @@ import { emit, on } from "@/libs/socket.io";
 export default {
   getState: () => emit("twitch.getState"),
   getEvents: () => emit("twitch.getEvents"),
+  getUser: (name) => emit("twitch.getUser", name),
   setEvent: (event) => emit("twitch.setEvent", event),
   getRewardList: () => emit("twitch.getRewardList"),
   getCommandList: () => emit("twitch.getCommandList"),
