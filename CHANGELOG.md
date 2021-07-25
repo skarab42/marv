@@ -1,5 +1,14 @@
 # Changelog
 
+## v1.9.0 (2021-07-25)
+
+### Features
+
+- random action (#269) (eaf4847)
+- async ejs support (#268) (71143fd)
+
+---
+
 ## v1.8.0 (2021-07-24)
 
 ### Features
@@ -133,14 +142,6 @@
 
 - **commands:** Fix empty command message (57f1973)
 - **overlay:** Fix multiple variables replacement (452287d)
-
----
-
-## v1.2.2 (2021-01-22)
-
-### Bug Fixes
-
-- **socketio:** Fix socket.io CORS origins (717460e)
 
 ---
 
