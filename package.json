@@ -47,7 +47,7 @@
     "compare-versions": "^3.6.0",
     "concurrently": "^5.3.0",
     "cz-conventional-changelog": "3.3.0",
-    "electron": "^11.0.3",
+    "electron": "^11.5.0",
     "electron-builder": "^22.9.1",
     "electron-rebuild": "^2.3.2",
     "eslint": "^7.12.0",
