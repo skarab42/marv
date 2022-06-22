@@ -35,7 +35,7 @@
     "sequelize": "^6.3.5",
     "sirv": "^1.0.7",
     "socket.io": "^2.4.0",
-    "sqlite3": "^5.0.0",
+    "sqlite3": "^5.0.3",
     "twitch": "^4.3.1",
     "twitch-chat-client": "^4.3.1",
     "twitch-pubsub-client": "^4.3.2",
